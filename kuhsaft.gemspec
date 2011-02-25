@@ -6,11 +6,11 @@ Gem::Specification.new do |s|
   s.name        = "kuhsaft"
   s.version     = Kuhsaft::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Felipe Kaufmann", "Phil Schilter"]
+  s.email       = "developers@screenconcept.ch"
+  s.homepage    = "http://github.com/screenconcept/kuhsaft"
+  s.summary     = %q{A tool that helps you to manage your content within your app.}
+  s.description = %q{Kuhsaft is a Rails engine that offers a simple CMS.}
 
   s.rubyforge_project = "kuhsaft"
 
