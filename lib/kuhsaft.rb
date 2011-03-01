@@ -1,3 +1,4 @@
+require 'kuhsaft/engine'
+
 module Kuhsaft
-  # Your code goes here...
 end
