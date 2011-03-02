@@ -24,4 +24,12 @@ describe Kuhsaft::Page do
     @page.childs << child
     child.parent.id.should be(@page.id)
   end
+  
+  it 'should have a list of root pages' do
+    Kuhsaft::Page.all.each { |p| p.destroy }
+    root_page = Factory.create :page
+    root_page.childs << Factory.create(:page)
+    root_page.childs << Factory.create(:page)   
+    Kuhsaft::Page.root_pages.count.should be(1)
+  end
 end
