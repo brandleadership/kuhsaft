@@ -5,5 +5,6 @@ spec/dummy/db/*.sqlite3
 spec/dummy/log/*.log
 spec/dummy/tmp/
 spec/dummy/db/migrate/*.rb
+spec/dummy/db/schema.rb
 Gemfile.lock
 .DS_Store
