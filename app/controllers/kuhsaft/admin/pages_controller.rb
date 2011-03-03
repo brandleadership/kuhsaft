@@ -1,3 +1,4 @@
+require 'pp'
 module Kuhsaft
   module Admin
     class PagesController < ApplicationController
@@ -19,7 +20,7 @@ module Kuhsaft
       end
     
       def create
-        @page = Kuhsaft::Page.create params[:page]
+        @page = Kuhsaft::Page.create params[:kuhsaft_page]
         @page.save
         respond_with @page, :location => edit_admin_page_url(@page)
       end
@@ -31,7 +32,7 @@ module Kuhsaft
     
       def update
         @page = Kuhsaft::Page.find(params[:id])
-        @page.update_attributes(params[:page])
+        @page.update_attributes(params[:kuhsaft_page])
         respond_with @page, :location => edit_admin_page_url(@page)
       end
     

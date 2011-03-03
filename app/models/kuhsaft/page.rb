@@ -4,7 +4,12 @@ class Kuhsaft::Page < ActiveRecord::Base
   belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
   
   scope :root_pages, where('parent_id IS NULL').order('position ASC')
-  delegate :title, :slug, :published, :keywords, :description, :to => :localized_page
+  delegate  :title, :title=, 
+            :slug, :slug=, 
+            :published, :published=, 
+            :keywords, :keywords=, 
+            :description, :description=, 
+            :to => :localized_page
   
   after_save :save_localized_page
   

@@ -38,29 +38,29 @@ describe Kuhsaft::Page do
     @page.save
   end
   
-#describe 'delegate properties to the localized page' do
-#  it 'should have a localized_page to delegate to' do
-#    @page.localized_page.should be_a(Kuhsaft::LocalizedPage)
-#  end
-#
-#  it 'should delegate the title to the localized_page' do
-#    @page.title = 'Hello'
-#    @page.localized_page.title.should == 'Hello'
-#  end
-#
-#  it 'should delegate the slug to the localized_page' do
-#    @page.slug = 'my-slug'
-#    @page.localized_page.slug.should == 'my-slug'
-#  end
-#
-#  it 'should delegate the keywords to the localized_page' do
-#    @page.keywords = 'my keywords are superb'
-#    @page.localized_page.keywords.should == 'my keywords are superb'
-#  end
-#
-#  it 'should delegate the description to the localized_page' do
-#    @page.description = 'my description'
-#    @page.localized_page.description.should == 'my description'
-#  end
-#end
+  describe 'should delegate property' do
+    it 'should have a localized_page to delegate to' do
+      @page.localized_page.should be_a(Kuhsaft::LocalizedPage)
+    end
+    
+    it 'should delegate the title to the localized_page' do
+      @page.title = 'Hello'
+      @page.localized_page.title.should == 'Hello'
+    end
+    
+    it 'should delegate the slug to the localized_page' do
+      @page.slug = 'my-slug'
+      @page.localized_page.slug.should == 'my-slug'
+    end
+    
+    it 'should delegate the keywords to the localized_page' do
+      @page.keywords = 'my keywords are superb'
+      @page.localized_page.keywords.should == 'my keywords are superb'
+    end
+    
+    it 'should delegate the description to the localized_page' do
+      @page.description = 'my description'
+      @page.localized_page.description.should == 'my description'
+    end
+  end
 end
