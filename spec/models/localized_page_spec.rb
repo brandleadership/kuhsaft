@@ -37,7 +37,25 @@ describe Kuhsaft::LocalizedPage do
     Factory.create(:localized_page).slug.should == @localized_page.title.parameterize
   end
   
+  it 'should not generate the slug if the user has set it' do
+    Factory.create(:localized_page, :slug => 'my-slug').slug.should == 'my-slug'
+  end
+  
   it 'should have pageparts' do
     Factory.create(:localized_page).page_parts.count.should be(1)
+  end
+  
+  describe 'validations' do
+    it 'should have a title' do
+      pending
+    end
+    
+    it 'should have a locale' do
+      pending
+    end
+    
+    it 'should have a slug' do
+      pending
+    end
   end
 end
