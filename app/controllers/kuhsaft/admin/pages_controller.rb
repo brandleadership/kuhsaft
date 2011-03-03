@@ -1,7 +1,6 @@
 module Kuhsaft
   module Admin
     class PagesController < ApplicationController
-    
       respond_to :html
     
       def index
@@ -22,7 +21,7 @@ module Kuhsaft
       def create
         @page = Kuhsaft::Page.create params[:page]
         @page.save
-        respond_with @page, :location => pages_path
+        respond_with @page, :location => edit_admin_page_url(@page)
       end
     
       def edit
@@ -32,14 +31,14 @@ module Kuhsaft
     
       def update
         @page = Kuhsaft::Page.find(params[:id])
-        @page.update_attribute(params[:page])
-        respond_with @page, :location => pages_path
+        @page.update_attributes(params[:page])
+        respond_with @page, :location => edit_admin_page_url(@page)
       end
     
       def destroy
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy
-        redirect_to pages_path
+        redirect_to admin_pages_path
       end
     end
   end

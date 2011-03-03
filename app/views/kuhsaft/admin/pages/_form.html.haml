@@ -1,0 +1,6 @@
+= simple_form_for @page, :url => url do |f|
+  = f.input :title
+  = f.input :slug
+  = f.input :keywords
+  = f.input :description, :as => :text
+  = f.button :submit

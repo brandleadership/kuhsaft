@@ -6,7 +6,7 @@ describe Kuhsaft::Admin::PagesController do
   describe 'should render successfully' do
     
     before :all do
-      # create page with ID=1
+      # create page with ID=1 if none exists
       Factory.create :page
     end
     

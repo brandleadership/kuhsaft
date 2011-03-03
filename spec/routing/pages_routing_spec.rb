@@ -22,11 +22,34 @@ describe 'routing to Kuhsaft::PagesController' do
   end
 end
 
-describe 'routing to Kuhsaft::Admin::PagesController' do
+describe 'routing GET to Kuhsaft::Admin::PagesController' do
   it 'routes /admin/pages to admin/pages#index' do
     { :get => '/admin/pages' }.should route_to(
       :controller => 'kuhsaft/admin/pages',
       :action => 'index'
+    )
+  end
+
+  it 'routes POST /admin/pages to admin/pages#create' do
+    { :post => '/admin/pages' }.should route_to(
+      :controller => 'kuhsaft/admin/pages',
+      :action => 'create'
+    )
+  end
+  
+  it 'routes PUT /admin/pages/:id to admin/pages#update' do
+    { :put => '/admin/pages/1' }.should route_to(
+      :controller => 'kuhsaft/admin/pages',
+      :action => 'update',
+      :id => '1'
+    )
+  end
+  
+  it 'routes DELETE /admin/pages/:id to admin/pages#destroy' do
+    { :delete => '/admin/pages/1' }.should route_to(
+      :controller => 'kuhsaft/admin/pages',
+      :action => 'destroy',
+      :id => '1'
     )
   end
   
