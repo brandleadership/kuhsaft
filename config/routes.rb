@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   scope :module => :kuhsaft do
-    resources :pages
+    namespace :admin do
+      resources :pages
+    end
   end
+  match '/:slug' => 'kuhsaft/pages#show'
 end

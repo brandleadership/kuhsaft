@@ -8,6 +8,6 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   end
   
   def create_slug
-    self.slug = title.parameterize unless self.slug.present?
+    self.slug = title.downcase.parameterize unless self.slug.present?
   end
 end
