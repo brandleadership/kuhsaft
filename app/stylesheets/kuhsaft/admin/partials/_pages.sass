@@ -1,0 +1,25 @@
+ul.pages-root
+  border-top: 1px solid #555
+  border-bottom: 1px solid #555
+  
+  ul
+    border-top: 1px solid #555
+  
+  li
+    border-bottom: 1px solid #555
+    padding: 0px 0px 0px 15px
+    
+  li:last-child
+    border: 0px
+    
+.page-branch
+  margin: 5px 0px
+  
+  .new-child, .delete
+    margin-left: 10px
+    visibility: hidden
+    +float_right
+  
+  &:hover
+    .new-child, .delete
+      visibility: visible
