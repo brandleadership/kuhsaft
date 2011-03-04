@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "kuhsaft"
   s.version     = Kuhsaft::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Felipe Kaufmann", "Phil Schilter"]
+  s.authors     = ["Immanuel Häussermann", "Felipe Kaufmann", "Phil Schilter"]
   s.email       = "developers@screenconcept.ch"
   s.homepage    = "http://github.com/screenconcept/kuhsaft"
   s.summary     = %q{A tool that helps you to manage your content within your app.}
@@ -23,8 +23,14 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'capybara', '>= 0.4.0'
   s.add_development_dependency 'ruby-debug'
+  s.add_development_dependency 'sqlite3-ruby', '1.2.5'
+  s.add_development_dependency 'guard'
+  s.add_development_dependency 'guard-spork'
+  s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'growl'
 
-  s.add_runtime_dependency 'rails', '3.0.4'
+  s.add_dependency 'rails', '3.0.4'
   s.add_dependency 'haml', '3.0.25'
   s.add_dependency 'compass'
+  s.add_dependency 'simple_form'
 end
