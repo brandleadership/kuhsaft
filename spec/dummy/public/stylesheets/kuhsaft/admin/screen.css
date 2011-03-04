@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* line 14, ../../../../../../../../.rvm/gems/ruby-1.8.7-p302@kuhsaft/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -58,9 +59,75 @@ a img {
   border: none;
 }
 
-/* line 4, ../../../../../../app/stylesheets/kuhsaft/admin/screen.sass */
-h1 {
-  text-indent: -119988px;
-  overflow: hidden;
-  text-align: left;
+/* line 1, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_generic.sass */
+a {
+  text-decoration: none;
+  color: black;
+}
+/* line 18, ../../../../../../../../.rvm/gems/ruby-1.8.7-p302@kuhsaft/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+a:visited {
+  color: black;
+}
+/* line 21, ../../../../../../../../.rvm/gems/ruby-1.8.7-p302@kuhsaft/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+a:focus {
+  color: black;
+}
+/* line 24, ../../../../../../../../.rvm/gems/ruby-1.8.7-p302@kuhsaft/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+a:hover {
+  color: #666666;
+}
+/* line 27, ../../../../../../../../.rvm/gems/ruby-1.8.7-p302@kuhsaft/gems/compass-0.10.6/frameworks/compass/stylesheets/compass/utilities/links/_link-colors.scss */
+a:active {
+  color: black;
+}
+
+/* line 5, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_generic.sass */
+.clear {
+  clear: both;
+}
+
+/* line 9, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_generic.sass */
+.toolbar a {
+  display: inline;
+  float: right;
+}
+
+/* line 12, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_generic.sass */
+#kuhsaft-wrapper {
+  margin: 20px;
+}
+
+/* line 1, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_pages.sass */
+ul.pages-root {
+  border-top: 1px solid #555555;
+  border-bottom: 1px solid #555555;
+}
+/* line 5, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_pages.sass */
+ul.pages-root ul {
+  border-top: 1px solid #555555;
+}
+/* line 8, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_pages.sass */
+ul.pages-root li {
+  border-bottom: 1px solid #555555;
+  padding: 0px 0px 0px 15px;
+}
+/* line 12, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_pages.sass */
+ul.pages-root li:last-child {
+  border: 0px;
+}
+
+/* line 15, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_pages.sass */
+.page-branch {
+  margin: 5px 0px;
+}
+/* line 18, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_pages.sass */
+.page-branch .new-child, .page-branch .delete {
+  margin-left: 10px;
+  visibility: hidden;
+  display: inline;
+  float: right;
+}
+/* line 24, ../../../../../../app/stylesheets/kuhsaft/admin/partials/_pages.sass */
+.page-branch:hover .new-child, .page-branch:hover .delete {
+  visibility: visible;
 }

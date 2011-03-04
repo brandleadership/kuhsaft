@@ -6,5 +6,11 @@
     /[if IE]
       = stylesheet_link_tag 'kuhsaft/admin/ie.css', :media => 'screen, projection'
     = csrf_meta_tag
+    = javascript_include_tag 'kuhsaft/admin/jquery-1.4.4.js'
+    = javascript_include_tag 'kuhsaft/admin/rails.js'
   %body
-    = yield
+    #kuhsaft-wrapper
+      .toolbar
+        = yield :toolbar
+        .clear
+      = yield
