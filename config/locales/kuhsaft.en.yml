@@ -1,0 +1,9 @@
+en:
+  kuhsaft:
+    admin:
+      pages:
+        index:
+          add: 'Add child page'
+          create: 'Create new page'
+          delete: 'Remove page'
+          confirm: 'Are you sure?'

@@ -7,13 +7,21 @@ ul.pages-root
   
   li
     border-bottom: 1px solid #555
-    padding: 0px 0px 0px 15px
+    
+    li
+      padding: 0px 0px 0px 15px
     
   li:last-child
     border: 0px
     
+  a.edit
+    margin-top: 4px
+    +float_left
+    
 .page-branch
   margin: 5px 0px
+  background: url(../../../images/drag-handle.png) no-repeat
+  padding-left: 25px
   
   .new-child, .delete
     margin-left: 10px

@@ -1,15 +1,41 @@
 - content_for :toolbar do
-  = link_to 'Neue Seite', new_admin_page_path
+  = link_to t('.create'), new_admin_page_path, :class => 'button'
+- content_for :scripts do
+  :javascript
+    $("ul").sortable({
+      containment: 'parent',
+      update: function(event, ui){
+        var self = $(ui.item),
+            prev = self.prev(),
+            id   = prev.length > 0 ? prev.data('id') : null,
+            sid  = self.data('id')
+        $.post('/admin/pages/'+sid, {reposition:id, _method: 'put'})
+      }
+    })
   
 %ul.pages-root
   - @pages.each do |page|
-    %li
+    %li{ :'data-id' => page.id }
       .page-branch
-        = link_to page.title, edit_admin_page_path(page), :class => :edit
-        = link_to 'Child einfügen', new_admin_page_path(:parent_id => page.id), :class => :'new-child'
-        = link_to('Löschen', admin_page_path(page), :confirm => 'Bist du sicher?', :method => :delete, :class => :delete) if page.childs.empty?
+        = link_to page.title+" - " +page.position.to_s, edit_admin_page_path(page), :class => :edit
+        = link_to t('.add'), new_admin_page_path(:parent_id => page.id), :class => 'new-child button'
+        = link_to(t('.delete'), admin_page_path(page), :confirm => t('.confirm'), :method => :delete, :class => 'delete button negative') if page.childs.empty?
+        .clear
       - unless page.childs.empty?
         %ul
-          - page.childs.each do |subpage|
-            %li
-              .page-branch= link_to subpage.title, edit_admin_page_path(subpage)
+          - page.childs.each do |page|
+            %li{ :'data-id' => page.id }
+              .page-branch
+                = link_to page.title, edit_admin_page_path(page), :class => :edit
+                = link_to t('.add'), new_admin_page_path(:parent_id => page.id), :class => 'new-child button'
+                = link_to(t('.delete'), admin_page_path(page), :confirm => t('.confirm'), :method => :delete, :class => 'delete button negative') if page.childs.empty?
+                .clear
+              - unless page.childs.empty?
+                %ul
+                  - page.childs.each do |page|
+                    %li{ :'data-id' => page.id }
+                      .page-branch
+                        = link_to page.title, edit_admin_page_path(page), :class => :edit
+                        = link_to t('.add'), new_admin_page_path(:parent_id => page.id), :class =>'new-child button'
+                        = link_to(t('.delete'), admin_page_path(page), :confirm => t('.confirm'), :method => :delete, :class => 'delete button negative') if page.childs.empty?
+                        .clear

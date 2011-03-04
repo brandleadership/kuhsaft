@@ -1,0 +1,216 @@
+a
+  &.button
+    display: inline-block
+    padding: 3px 5px 3px 5px
+    font-family: 'lucida grande', tahoma, verdana, arial, sans-serif
+    font-size: 12px
+    color: #3C3C3D
+    text-shadow: 1px 1px 0 #FFFFFF
+    background: #ececec url('../../../images/css3buttons_backgrounds.png') 0 0 no-repeat
+    white-space: nowrap
+    overflow: visible
+    cursor: pointer
+    text-decoration: none
+    border: 1px solid #CACACA
+    -webkit-border-radius: 2px
+    -moz-border-radius: 2px
+    -webkit-background-clip: padding-box
+    border-radius: 2px
+    outline: none
+    position: relative
+    zoom: 1
+    *display: inline
+    &.primary
+      font-weight: bold
+    &:hover
+      color: #FFFFFF
+      border-color: #388AD4
+      text-decoration: none
+      text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3)
+      background-position: 0 -40px
+      background-color: #2D7DC5
+    &:active, &.active
+      background-position: 0 -81px
+      border-color: #347BBA
+      background-color: #0F5EA2
+      color: #FFFFFF
+      text-shadow: none
+    &:active
+      top: 1px
+    &.negative
+      &:hover
+        color: #FFFFFF
+        background-position: 0 -121px
+        background-color: #D84743
+        border-color: #911D1B
+      &:active, &.active
+        background-position: 0 -161px
+        background-color: #A5211E
+        border-color: #911D1B
+    &.pill
+      -webkit-border-radius: 19px
+      -moz-border-radius: 19px
+      border-radius: 19px
+      padding: 2px 10px 2px 10px
+    &.left
+      -webkit-border-bottom-right-radius: 0px
+      -webkit-border-top-right-radius: 0px
+      -moz-border-radius-bottomright: 0px
+      -moz-border-radius-topright: 0px
+      border-bottom-right-radius: 0px
+      border-top-right-radius: 0px
+      margin-right: 0px
+    &.middle
+      margin-right: 0px
+      margin-left: 0px
+      -webkit-border-radius: 0px
+      -moz-border-radius: 0px
+      border-radius: 0px
+      border-left: none
+    &.right
+      -webkit-border-bottom-left-radius: 0px
+      -webkit-border-top-left-radius: 0px
+      -moz-border-radius-bottomleft: 0px
+      -moz-border-radius-topleft: 0px
+      border-top-left-radius: 0px
+      border-bottom-left-radius: 0px
+      margin-left: 0px
+      border-left: none
+    &.left:active, &.middle:active, &.right:active
+      top: 0px
+    &.big
+      font-size: 16px
+      padding-left: 17px
+      padding-right: 17px
+    span.icon
+      display: inline-block
+      width: 14px
+      height: 12px
+      margin: auto 7px auto auto
+      position: relative
+      top: 2px
+      background-image: url('../../../images/css3buttons_icons.png')
+      background-repeat: no-repeat
+  &.big.button span.icon
+    top: 0px
+  &.button
+    span.icon.book
+      background-position: 0 0
+    &:hover span.icon.book
+      background-position: 0 -15px
+    span.icon.calendar
+      background-position: 0 -30px
+    &:hover span.icon.calendar
+      background-position: 0 -45px
+    span.icon.chat
+      background-position: 0 -60px
+    &:hover span.icon.chat
+      background-position: 0 -75px
+    span.icon.check
+      background-position: 0 -90px
+    &:hover span.icon.check
+      background-position: 0 -103px
+    span.icon.clock
+      background-position: 0 -116px
+    &:hover span.icon.clock
+      background-position: 0 -131px
+    span.icon.cog
+      background-position: 0 -146px
+    &:hover span.icon.cog
+      background-position: 0 -161px
+    span.icon.comment
+      background-position: 0 -176px
+    &:hover span.icon.comment
+      background-position: 0 -190px
+    span.icon.cross
+      background-position: 0 -204px
+    &:hover span.icon.cross
+      background-position: 0 -219px
+    span.icon.downarrow
+      background-position: 0 -234px
+    &:hover span.icon.downarrow
+      background-position: 0 -249px
+    span.icon.fork
+      background-position: 0 -264px
+    &:hover span.icon.fork
+      background-position: 0 -279px
+    span.icon.heart
+      background-position: 0 -294px
+    &:hover span.icon.heart
+      background-position: 0 -308px
+    span.icon.home
+      background-position: 0 -322px
+    &:hover span.icon.home
+      background-position: 0 -337px
+    span.icon.key
+      background-position: 0 -352px
+    &:hover span.icon.key
+      background-position: 0 -367px
+    span.icon.leftarrow
+      background-position: 0 -382px
+    &:hover span.icon.leftarrow
+      background-position: 0 -397px
+    span.icon.lock
+      background-position: 0 -412px
+    &:hover span.icon.lock
+      background-position: 0 -427px
+    span.icon.loop
+      background-position: 0 -442px
+    &:hover span.icon.loop
+      background-position: 0 -457px
+    span.icon.magnifier
+      background-position: 0 -472px
+    &:hover span.icon.magnifier
+      background-position: 0 -487px
+    span.icon.mail
+      background-position: 0 -502px
+    &:hover span.icon.mail
+      background-position: 0 -514px
+    span.icon.move
+      background-position: 0 -526px
+    &:hover span.icon.move
+      background-position: 0 -541px
+    span.icon.pen
+      background-position: 0 -556px
+    &:hover span.icon.pen
+      background-position: 0 -571px
+    span.icon.pin
+      background-position: 0 -586px
+    &:hover span.icon.pin
+      background-position: 0 -601px
+    span.icon.plus
+      background-position: 0 -616px
+    &:hover span.icon.plus
+      background-position: 0 -631px
+    span.icon.reload
+      background-position: 0 -646px
+    &:hover span.icon.reload
+      background-position: 0 -660px
+    span.icon.rightarrow
+      background-position: 0 -674px
+    &:hover span.icon.rightarrow
+      background-position: 0 -689px
+    span.icon.rss
+      background-position: 0 -704px
+    &:hover span.icon.rss
+      background-position: 0 -719px
+    span.icon.tag
+      background-position: 0 -734px
+    &:hover span.icon.tag
+      background-position: 0 -749px
+    span.icon.trash
+      background-position: 0 -764px
+    &:hover span.icon.trash
+      background-position: 0 -779px
+    span.icon.unlock
+      background-position: 0 -794px
+    &:hover span.icon.unlock
+      background-position: 0 -809px
+    span.icon.uparrow
+      background-position: 0 -824px
+    &:hover span.icon.uparrow
+      background-position: 0 -839px
+    span.icon.user
+      background-position: 0 -854px
+    &:hover span.icon.user
+      background-position: 0 -869px

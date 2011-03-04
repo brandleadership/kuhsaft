@@ -14,6 +14,7 @@ class Kuhsaft::Page < ActiveRecord::Base
             :to => :localized_page
   
   after_save :save_localized_page
+  after_create :set_position
   
   def root?
     parent.nil?
@@ -65,6 +66,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     if before_id.blank?
       position_to_top
     else
+      before_id =  before_id.to_i
       preceding_page = Kuhsaft::Page.find(before_id)
       update_attribute :position, preceding_page.position
       preceding_page.preceding_siblings.each { |s| s.decrement_position }
@@ -74,5 +76,9 @@ class Kuhsaft::Page < ActiveRecord::Base
   
   def self.position_of id
     Kuhsaft::Page.find(id).position rescue 0
+  end
+  
+  def set_position
+    update_attribute :position, siblings.count
   end
 end

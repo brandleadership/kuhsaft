@@ -5,7 +5,7 @@ module Kuhsaft
       layout 'admin'
       
       def index
-        @pages = Kuhsaft::Page.root_pages
+        @pages = Kuhsaft::Page.root_pages.positioned
         respond_with @pages
       end
     
@@ -22,7 +22,7 @@ module Kuhsaft
       def create
         @page = Kuhsaft::Page.create params[:kuhsaft_page]
         @page.save
-        respond_with @page, :location => edit_admin_page_url(@page)
+        respond_with @page, :location => admin_pages_path
       end
     
       def edit
@@ -32,8 +32,9 @@ module Kuhsaft
     
       def update
         @page = Kuhsaft::Page.find(params[:id])
-        @page.update_attributes(params[:kuhsaft_page])
-        respond_with @page, :location => edit_admin_page_url(@page)
+        @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
+        @page.reposition params[:reposition] if params[:reposition].present?
+        respond_with @page, :location => admin_pages_path
       end
     
       def destroy
