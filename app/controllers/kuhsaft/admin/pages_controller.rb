@@ -1,4 +1,3 @@
-require 'pp'
 module Kuhsaft
   module Admin
     class PagesController < ApplicationController

@@ -33,6 +33,55 @@ describe Kuhsaft::Page do
     Kuhsaft::Page.root_pages.count.should >= 1
   end
   
+  it 'should increment it\'s position by 1' do
+    page = Factory.create :page, :position => 100
+    page.increment_position
+    page.position.should == 101
+  end
+  
+  it 'should decrement it\'s position by 1' do
+    page = Factory.create :page, :position => 102
+    page.decrement_position
+    page.position.should == 101
+  end
+  
+  it 'should find the position of a page' do
+    page = Factory.create :page, :position => 20
+    Kuhsaft::Page.position_of(page.id).should be(20)
+  end
+  
+  it 'should find the predecing sibling' do
+    page1 = Factory.create :page, :position => 1111
+    page2 = Factory.create :page, :position => 1112
+    page3 = Factory.create :page, :position => 1113
+    page3.preceding_sibling.id.should == page2.id
+  end
+  
+  it 'should find the succeeding sibling' do
+    page1 = Factory.create :page, :position => 1211
+    page2 = Factory.create :page, :position => 1212
+    page3 = Factory.create :page, :position => 1213
+    page1.succeeding_sibling.id.should == page2.id
+  end
+  
+  it 'should reposition before a page' do
+    page1 = Factory.create :page, :position => 1311
+    page2 = Factory.create :page, :position => 1312
+    
+    page2.reposition page1.id
+    page2.save
+    page2.position.should == 1311
+  end
+  
+  it 'should reposition before all siblings' do
+    page1 = Factory.create :page, :position => 1411
+    page2 = Factory.create :page, :position => 1412
+    
+    page2.reposition nil
+    page2.save
+    page2.position.should == 0
+  end
+  
   it 'should save the localized_page when saved' do
     @page.should_receive(:save_localized_page)
     @page.save
