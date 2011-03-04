@@ -24,6 +24,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara', '>= 0.4.0'
   s.add_development_dependency 'ruby-debug'
   s.add_development_dependency 'sqlite3-ruby', '1.2.5'
+  s.add_development_dependency 'guard'
+  s.add_development_dependency 'guard-spork'
+  s.add_development_dependency 'guard-rspec'
 
   s.add_dependency 'rails', '3.0.4'
   s.add_dependency 'haml', '3.0.25'
