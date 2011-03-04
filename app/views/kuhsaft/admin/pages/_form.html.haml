@@ -3,4 +3,5 @@
   = f.input :slug
   = f.input :keywords
   = f.input :description, :as => :text
+  = f.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
   = f.button :submit

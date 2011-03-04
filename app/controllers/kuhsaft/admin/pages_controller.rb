@@ -2,7 +2,8 @@ module Kuhsaft
   module Admin
     class PagesController < ApplicationController
       respond_to :html
-    
+      layout 'admin'
+      
       def index
         @pages = Kuhsaft::Page.root_pages
         respond_with @pages

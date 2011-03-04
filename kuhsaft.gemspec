@@ -31,5 +31,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '3.0.4'
   s.add_dependency 'haml', '3.0.25'
+  s.add_dependency 'compass'
   s.add_dependency 'simple_form'
 end

@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'kuhsaft/admin/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'kuhsaft/admin/print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'kuhsaft/admin/ie.css', :media => 'screen, projection'
+    = csrf_meta_tag
+  %body
+    = yield
