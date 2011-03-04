@@ -79,6 +79,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def set_position
-    update_attribute :position, siblings.count
+    update_attribute :position, siblings.count if position.blank?
   end
 end
