@@ -1,7 +1,11 @@
-= simple_form_for @page, :url => url do |f|
+- Kuhsaft::Page.translation_locales.each do |locale|
+  = link_to locale.to_s, url.call(:translation_locale => locale)
+= simple_form_for @page, :url => url.call do |f|
+  %p= t('kuhsaft.admin.pages.current_translation_locale', :translation_locale => Kuhsaft::Page.current_translation_locale)
   = f.input :title
   = f.input :slug
   = f.input :keywords
   = f.input :description, :as => :text
+  = f.input :body, :as => :text
   = f.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
   = f.button :submit

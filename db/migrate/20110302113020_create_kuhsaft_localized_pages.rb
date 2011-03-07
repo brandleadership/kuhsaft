@@ -5,6 +5,7 @@ class CreateKuhsaftLocalizedPages < ActiveRecord::Migration
       t.string :slug
       t.string :keywords
       t.text :description
+      t.text :body
       t.integer :published
       t.string :locale
       t.references :page
