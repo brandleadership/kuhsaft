@@ -92,11 +92,11 @@ class Kuhsaft::Page < ActiveRecord::Base
     end
     
     def translation_locales
-      @translation_locales ||= [:en]
+      @translation_locales
     end
     
     def translation_locales=(array)
-      @translation_locales = array.map(&:to_sym)
+      @translation_locales = array.map(&:to_sym) if array.class == Array
     end
     
     def current_translation_locale

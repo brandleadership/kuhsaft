@@ -1,6 +1,6 @@
 - Kuhsaft::Page.translation_locales.each do |locale|
   = link_to locale.to_s, url.call(:translation_locale => locale)
-= simple_form_for @page, :url => url.call do |f|
+= simple_form_for @page, :url => url.call(:translation_locale => Kuhsaft::Page.current_translation_locale) do |f|
   %p= t('kuhsaft.admin.pages.current_translation_locale', :translation_locale => Kuhsaft::Page.current_translation_locale)
   = f.input :title
   = f.input :slug
