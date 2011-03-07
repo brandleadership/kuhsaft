@@ -3,6 +3,7 @@ module Kuhsaft
     class PagesController < ApplicationController
       respond_to :html
       layout 'admin'
+      before_filter :set_translation_locale      
       
       def index
         @pages = Kuhsaft::Page.root_pages.positioned
@@ -41,6 +42,10 @@ module Kuhsaft
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy
         redirect_to admin_pages_path
+      end
+      
+      def set_translation_locale
+        Kuhsaft::Page.current_translation_locale = params[:translation_locale] if params[:translation_locale].present?
       end
     end
   end

@@ -26,8 +26,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def translation
-    @localized_page ||= localized_pages.where('locale = ?', I18n.locale).first
-    @localized_page ||= localized_pages.build :locale => I18n.locale
+    @localized_page ||= localized_pages.where('locale = ?', Kuhsaft::Page.current_translation_locale).first
+    @localized_page ||= localized_pages.build :locale => Kuhsaft::Page.current_translation_locale
   end
   
   def save_translation
@@ -96,6 +96,14 @@ class Kuhsaft::Page < ActiveRecord::Base
     
     def translation_locales=(array)
       @translation_locales = array.map(&:to_sym)
+    end
+    
+    def current_translation_locale
+      @translation_locale ||= translation_locales.first
+    end
+    
+    def current_translation_locale=(locale)
+      @translation_locale = locale.to_sym
     end
   end
 end

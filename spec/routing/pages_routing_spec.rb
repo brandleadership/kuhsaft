@@ -23,7 +23,7 @@ describe 'routing to Kuhsaft::PagesController' do
   end
 end
 
-describe 'routing GET to Kuhsaft::Admin::PagesController' do
+describe 'routing to Kuhsaft::Admin::PagesController' do
   it 'routes /admin/pages to admin/pages#index' do
     { :get => '/admin/pages' }.should route_to(
       :controller => 'kuhsaft/admin/pages',

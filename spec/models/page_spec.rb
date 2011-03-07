@@ -99,6 +99,11 @@ describe Kuhsaft::Page do
     Kuhsaft::Page.translation_locales.include?(:en).should be_true
   end
   
+  it 'should have the current translation locale' do
+    Kuhsaft::Page.current_translation_locale = 'de'
+    Kuhsaft::Page.current_translation_locale.should be(:de)
+  end
+  
   it 'should only contain symbolized locales' do
     Kuhsaft::Page.translation_locales = ['de']
     Kuhsaft::Page.translation_locales.first.should be(:de)
