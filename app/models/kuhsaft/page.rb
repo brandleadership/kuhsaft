@@ -11,6 +11,7 @@ class Kuhsaft::Page < ActiveRecord::Base
             :published, :published=, 
             :keywords, :keywords=, 
             :description, :description=, 
+            :locale, :locale=,
             :to => :translation
   
   after_save :save_translation

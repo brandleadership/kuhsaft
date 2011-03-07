@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe 'routing to Kuhsaft::PagesController' do
-  it 'routes /:slug to pages#show' do
-    { :get => '/my-slug' }.should route_to(
+  it 'routes /:translation_locale/:slug to pages#show' do
+    { :get => '/en/my-slug' }.should route_to(
       :controller => 'kuhsaft/pages',
       :action => 'show',
-      :slug => 'my-slug'
+      :slug => 'my-slug',
+      :translation_locale => 'en'
     )
   end
   

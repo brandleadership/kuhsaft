@@ -11,7 +11,7 @@ describe Kuhsaft::PagesController do
     end
     
     it '#show' do
-      get :show, :slug => 'deutscher-titel'
+      get :show, :translation_locale => 'de', :slug => 'deutscher-titel'
       response.should be_success
     end
   end

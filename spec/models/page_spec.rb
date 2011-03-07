@@ -128,5 +128,10 @@ describe Kuhsaft::Page do
       @page.description = 'my description'
       @page.localized_page.description.should == 'my description'
     end
+    
+    it 'should delegate the locale to the localized_page' do
+      @page.locale = 'de'
+      @page.localized_page.locale.should == :de
+    end
   end
 end
