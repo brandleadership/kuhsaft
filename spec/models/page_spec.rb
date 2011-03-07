@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Kuhsaft::Page do
   
   before :each do 
+    Kuhsaft::Page.all.each { |p| p.destroy }
     @page = Factory.create :page
   end
   
@@ -11,7 +12,9 @@ describe Kuhsaft::Page do
   end
   
   it 'should have child pages' do
-    @page.childs << Factory.create(:page)
+    p = Factory.create(:page)
+    debugger
+    @page.childs << p
     @page.childs.count.should >= 1
   end
   
@@ -26,7 +29,6 @@ describe Kuhsaft::Page do
   end
   
   it 'should have a list of root pages' do
-    Kuhsaft::Page.all.each { |p| p.destroy }
     root_page = Factory.create :page
     root_page.childs << Factory.create(:page)
     root_page.childs << Factory.create(:page)
@@ -34,56 +36,59 @@ describe Kuhsaft::Page do
   end
   
   it 'should increment it\'s position by 1' do
-    page = Factory.create :page, :position => 100
+    page = Factory.create :page
+    position = page.position
     page.increment_position
-    page.position.should == 101
+    page.position.should == (position + 1)
   end
   
   it 'should decrement it\'s position by 1' do
-    page = Factory.create :page, :position => 102
+    page = Factory.create :page
+    position = page.position
     page.decrement_position
-    page.position.should == 101
+    page.position.should == (position - 1)
   end
   
   it 'should find the position of a page' do
-    page = Factory.create :page, :position => 20
-    Kuhsaft::Page.position_of(page.id).should be(20)
+    page = Factory.create :page
+    position = page.position
+    Kuhsaft::Page.position_of(page.id).should == position
   end
   
   it 'should find the predecing sibling' do
-    page1 = Factory.create :page, :position => 1111
-    page2 = Factory.create :page, :position => 1112
-    page3 = Factory.create :page, :position => 1113
+    page1 = Factory.create :page
+    page2 = Factory.create :page
+    page3 = Factory.create :page
     page3.preceding_sibling.id.should == page2.id
   end
   
   it 'should find the succeeding sibling' do
-    page1 = Factory.create :page, :position => 1211
-    page2 = Factory.create :page, :position => 1212
-    page3 = Factory.create :page, :position => 1213
-    page1.succeeding_sibling.id.should == page2.id
+    page1 = Factory.create :page
+    page2 = Factory.create :page
+    page3 = Factory.create :page
+    page2.succeeding_sibling.id.should == page3.id
   end
   
   it 'should reposition before a page' do
-    page1 = Factory.create :page, :position => 1311
-    page2 = Factory.create :page, :position => 1312
-    
+    page1 = Factory.create :page
+    page2 = Factory.create :page
+    position = page1.position
     page2.reposition page1.id
     page2.save
-    page2.position.should == 1311
+    page2.position.should == position
   end
   
   it 'should reposition before all siblings' do
-    page1 = Factory.create :page, :position => 1411
-    page2 = Factory.create :page, :position => 1412
-    
+    page1 = Factory.create :page
+    page2 = Factory.create :page
     page2.reposition nil
     page2.save
-    page2.position.should == 0
+    page2.position.should == 1
   end
   
   it 'should save the localized_page when saved' do
-    @page.should_receive(:save_localized_page)
+    @page.localized_page.title = 'some localized title'
+    @page.should_receive(:save_translation)
     @page.save
   end
   

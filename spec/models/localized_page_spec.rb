@@ -7,7 +7,7 @@ describe Kuhsaft::LocalizedPage do
   end
   
   it 'should have a symbolized locale' do
-    @localized_page.locale.should be(:de)
+    @localized_page.locale.should be(:en)
   end
   
   it 'should be published' do
@@ -47,15 +47,21 @@ describe Kuhsaft::LocalizedPage do
   
   describe 'validations' do
     it 'should have a title' do
-      pending
+      localized_page = Kuhsaft::LocalizedPage.new
+      localized_page.save
+      localized_page.should have(1).error_on(:title)
     end
     
     it 'should have a locale' do
-      pending
+      localized_page = Kuhsaft::LocalizedPage.new
+      localized_page.save
+      localized_page.should have(1).error_on(:locale)
     end
     
     it 'should have a slug' do
-      pending
+      localized_page = Kuhsaft::LocalizedPage.new
+      localized_page.save
+      localized_page.should have(1).error_on(:slug)
     end
   end
 end

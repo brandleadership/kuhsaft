@@ -11,9 +11,9 @@ class Kuhsaft::Page < ActiveRecord::Base
             :published, :published=, 
             :keywords, :keywords=, 
             :description, :description=, 
-            :to => :localized_page
+            :to => :translation
   
-  after_save :save_localized_page
+  after_save :save_translation
   after_create :set_position
   
   def root?
@@ -21,12 +21,16 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def localized_page
+    translation
+  end
+  
+  def translation
     @localized_page ||= localized_pages.where('locale = ?', I18n.locale).first
     @localized_page ||= localized_pages.build :locale => I18n.locale
   end
   
-  def save_localized_page
-    localized_page.save unless localized_page.blank?
+  def save_translation
+    @localized_page.save unless @localized_page.blank?
   end
   
   def increment_position
@@ -42,43 +46,45 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def preceding_sibling
-    preceding_siblings.last
+    siblings.where('position = ?', position - 1).first
   end
   
   def succeeding_sibling
-    succeeding_siblings.first
+    siblings.where('position = ?', position + 1).first
   end
   
   def preceding_siblings
-    siblings.positioned.where('position < ?', position)
+    siblings.positioned.where('position <= ?', position).where('id != ?', id)
   end
   
   def succeeding_siblings
-    siblings.positioned.where('position > ?', position)
+    siblings.positioned.where('position >= ?', position).where('id != ?', id)
   end
   
   def position_to_top
-    succeeding_siblings.update_all('position = position + 1')
-    update_attribute :position, 0
+    update_attribute :position, 1
+    recount_siblings_position_from 1
+  end
+  
+  def recount_siblings_position_from position
+    counter = position
+    succeeding_siblings.each { |s| counter += 1; s.update_attribute(:position, counter) }
   end
   
   def reposition before_id
     if before_id.blank?
       position_to_top
     else
-      before_id =  before_id.to_i
-      preceding_page = Kuhsaft::Page.find(before_id)
-      update_attribute :position, preceding_page.position
-      preceding_page.preceding_siblings.each { |s| s.decrement_position }
-      succeeding_siblings.each { |s| s.increment_position }
+      update_attribute :position, self.class.position_of(before_id)
+      recount_siblings_position_from position
     end
   end
   
+  def set_position
+    update_attribute(:position, siblings.count + 1)
+  end
+    
   def self.position_of id
     Kuhsaft::Page.find(id).position rescue 0
-  end
-  
-  def set_position
-    update_attribute :position, siblings.count if position.blank?
   end
 end

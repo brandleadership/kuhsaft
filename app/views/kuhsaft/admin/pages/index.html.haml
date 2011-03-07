@@ -15,7 +15,7 @@
   
 %ul.pages-root
   - @pages.each do |page|
-    %li{ :'data-id' => page.id }
+    %li{ :'data-id' => page.id, :'data-postion' => page.position }
       .page-branch
         = link_to page.title, edit_admin_page_path(page), :class => :edit
         = link_to t('.add'), new_admin_page_path(:parent_id => page.id), :class => 'new-child button'
