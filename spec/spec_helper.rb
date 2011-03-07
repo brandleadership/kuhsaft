@@ -36,7 +36,10 @@ Spork.prefork do
     # Remove this line if you don't want RSpec's should and should_not
     # methods or matchers
     require 'rspec/expectations'
+    require 'carrierwave/test/matchers'
+    
     config.include RSpec::Matchers
+    config.include CarrierWave::Test::Matchers
 
     # == Mock Framework
     config.mock_with :rspec
