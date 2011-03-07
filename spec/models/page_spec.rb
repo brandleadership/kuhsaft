@@ -13,7 +13,6 @@ describe Kuhsaft::Page do
   
   it 'should have child pages' do
     p = Factory.create(:page)
-    debugger
     @page.childs << p
     @page.childs.count.should >= 1
   end
@@ -90,6 +89,19 @@ describe Kuhsaft::Page do
     @page.localized_page.title = 'some localized title'
     @page.should_receive(:save_translation)
     @page.save
+  end
+  
+  it 'should provide an array of translation locales' do
+    Kuhsaft::Page.translation_locales.should be_a(Array)
+  end
+  
+  it 'should have :en as minimal translation locale' do
+    Kuhsaft::Page.translation_locales.include?(:en).should be_true
+  end
+  
+  it 'should only contain symbolized locales' do
+    Kuhsaft::Page.translation_locales = ['de']
+    Kuhsaft::Page.translation_locales.first.should be(:de)
   end
   
   describe 'should delegate property' do

@@ -83,8 +83,18 @@ class Kuhsaft::Page < ActiveRecord::Base
   def set_position
     update_attribute(:position, siblings.count + 1)
   end
+  
+  class << self
+    def position_of id
+      Kuhsaft::Page.find(id).position rescue 0
+    end
     
-  def self.position_of id
-    Kuhsaft::Page.find(id).position rescue 0
+    def translation_locales
+      @translation_locales ||= [:en]
+    end
+    
+    def translation_locales=(array)
+      @translation_locales = array.map(&:to_sym)
+    end
   end
 end
