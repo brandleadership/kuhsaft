@@ -20,3 +20,7 @@ Factory.define :page, :class => Kuhsaft::Page do |p|
     page.localized_pages << Factory.create(:localized_page, :page => page)
   end
 end
+
+Factory.define :asset, :class => Kuhsaft::Asset do |a|
+  p.file = 'dummy/public/images/spec-image.png'
+end
