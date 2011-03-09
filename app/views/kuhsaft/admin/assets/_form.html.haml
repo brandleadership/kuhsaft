@@ -1,3 +1,3 @@
-= simple_form_for @asset, :url => url do |f|
+= simple_form_for @asset, :url => url, :html => { :multipart => true } do |f|
   = f.input :file, :as => :file
   = f.button :submit

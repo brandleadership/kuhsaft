@@ -1,0 +1,7 @@
+%ul.list
+  - @assets.each do |asset|
+    %li
+      .thumb= image_tag asset.file.thumb.url
+      .link= link_to File.basename(asset.file.url), asset.file.url, :target => '_new'
+      .date= asset.updated_at
+      .clear

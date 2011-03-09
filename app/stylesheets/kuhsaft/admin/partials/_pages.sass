@@ -1,33 +1,38 @@
-ul.pages-root
-  border-top: 1px solid #555
-  border-bottom: 1px solid #555
-  
-  ul
+.pages
+  ul.pages-root
     border-top: 1px solid #555
-  
-  li
     border-bottom: 1px solid #555
-    
+  
+    ul
+      border-top: 1px solid #555
+  
     li
-      padding: 0px 0px 0px 15px
+      border-bottom: 1px solid #555
     
-  li:last-child
-    border: 0px
+      li
+        padding: 0px 0px 0px 15px
     
-  a.edit
-    margin-top: 4px
-    +float_left
+    li:last-child
+      border: 0px
     
-.page-branch
-  margin: 5px 0px
-  background: url(../../../images/drag-handle.png) no-repeat
-  padding-left: 25px
+    a.edit
+      margin-top: 4px
+      +float_left
+    
+  .page-branch
+    margin: 5px 0px
+    background: url(../../../images/drag-handle.png) no-repeat
+    padding-left: 25px
   
-  .new-child, .delete
-    margin-left: 10px
-    visibility: hidden
-    +float_right
-  
-  &:hover
     .new-child, .delete
-      visibility: visible
+      margin-left: 10px
+      visibility: hidden
+      +float_right
+  
+    &:hover
+      .new-child, .delete
+        visibility: visible
+        
+  form
+    input, label
+      display: block
