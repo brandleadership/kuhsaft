@@ -22,5 +22,5 @@ Factory.define :page, :class => Kuhsaft::Page do |p|
 end
 
 Factory.define :asset, :class => Kuhsaft::Asset do |a|
-  p.file = 'dummy/public/images/spec-image.png'
+  a.file File.open("#{Kuhsaft::Engine.root}/spec/dummy/public/images/spec-image.png")
 end

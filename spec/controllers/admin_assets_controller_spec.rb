@@ -2,16 +2,14 @@ require 'spec_helper'
 
 describe Kuhsaft::Admin::AssetsController do
   render_views
-
+  
+  before do
+    Factory.create :asset
+  end
+  
   describe 'should render successfully' do
-    
     it '#index' do
       get :index
-      response.should be_success
-    end
-    
-    it '#show' do
-      get :show, :id => 1
       response.should be_success
     end
     

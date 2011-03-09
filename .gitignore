@@ -8,6 +8,7 @@ spec/dummy/db/migrate/*.rb
 spec/dummy/db/schema.rb
 spec/dummy/public/stylesheets/*.css
 spec/dummy/public/uploads/tmp/*
+spec/dummy/public/uploads/assets/*
 Gemfile.lock
 .DS_Store
 .sass-cache

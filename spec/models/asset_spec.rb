@@ -13,12 +13,11 @@ describe Kuhsaft::Asset do
   end
   
   it 'should scale down to fit into a 50x50 thumb' do
-    pending 'require failing'
     @uploader.thumb.should have_dimensions(50, 50)
   end
   
   it "should make the image readable only to the owner and not executable" do
-    pending 'require failing'
+    pending 'how and where do we ensure permissions?'
     @uploader.should have_permissions(0600)
   end
 end
