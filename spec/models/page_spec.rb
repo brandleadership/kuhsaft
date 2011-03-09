@@ -75,17 +75,15 @@ describe Kuhsaft::Page do
   it 'should reposition before a page' do
     page1 = Factory.create :page
     page2 = Factory.create :page
-    position = page1.position
-    page2.reposition page1.id
-    page2.save
-    page2.position.should == position
+    page3 = Factory.create :page
+    page3.reposition page1.id
+    page3.preceding_sibling.id.should == page1.id
   end
   
   it 'should reposition before all siblings' do
     page1 = Factory.create :page
     page2 = Factory.create :page
     page2.reposition nil
-    page2.save
     page2.position.should == 1
   end
   

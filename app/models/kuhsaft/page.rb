@@ -80,7 +80,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     if before_id.blank?
       position_to_top
     else
-      update_attribute :position, self.class.position_of(before_id)
+      update_attribute :position, self.class.position_of(before_id) + 1
       recount_siblings_position_from position
     end
   end
@@ -91,7 +91,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   
   class << self
     def position_of id
-      Kuhsaft::Page.find(id).position rescue 0
+      Kuhsaft::Page.find(id).position rescue 1
     end
     
     def translation_locales
