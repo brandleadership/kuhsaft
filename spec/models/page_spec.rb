@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Kuhsaft::Page do
   
+  before do
+    Kuhsaft::Page.translation_locales = ['en', 'de']
+  end
+  
   before :each do 
     Kuhsaft::Page.all.each { |p| p.destroy }
     @page = Factory.create :page
