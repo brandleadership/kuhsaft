@@ -36,5 +36,6 @@ module Kuhsaft
         @asset.destroy
         redirect_to admin_assets_path
       end
+    end
   end
 end
