@@ -6,5 +6,5 @@
       = link_to t('kuhsaft.admin.pages.index.delete'), admin_page_path(page), :confirm => t('kuhsaft.admin.pages.index.confirm'), :method => :delete, :class => 'delete button negative' if page.childs.empty?
       .clear
       - unless page.childs.empty?
-        %ul
+        %ul.sortable
           = render :partial => 'branch', :locals => { :pages => page.childs }
