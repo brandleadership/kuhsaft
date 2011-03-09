@@ -4,7 +4,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
   
   scope :root_pages, where('parent_id IS NULL')
-  scope :positioned, order('position ASC')
+  default_scope order('position ASC')
   
   delegate  :title, :title=, 
             :slug, :slug=, 
@@ -59,11 +59,11 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def preceding_siblings
-    siblings.positioned.where('position <= ?', position).where('id != ?', id)
+    siblings.where('position <= ?', position).where('id != ?', id)
   end
   
   def succeeding_siblings
-    siblings.positioned.where('position >= ?', position).where('id != ?', id)
+    siblings.where('position >= ?', position).where('id != ?', id)
   end
   
   def position_to_top

@@ -6,7 +6,7 @@ module Kuhsaft
       before_filter :set_translation_locale      
       
       def index
-        @pages = Kuhsaft::Page.root_pages.positioned
+        @pages = Kuhsaft::Page.root_pages
         respond_with @pages
       end
     
@@ -34,7 +34,8 @@ module Kuhsaft
       def update
         @page = Kuhsaft::Page.find(params[:id])
         @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
-        @page.reposition params[:reposition] if params[:reposition].present?
+        # TODO: refactor 'reposition' as a page attribute, so it can be set through update_attributes
+        @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
         respond_with @page, :location => admin_pages_path
       end
     
