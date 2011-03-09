@@ -1,4 +1,9 @@
 en:
+  layouts:
+    kuhsaft:
+      admin:
+        pages_nav: 'Pages'
+        assets_nav: 'Assets'
   kuhsaft:
     admin:
       pages:
@@ -8,3 +13,8 @@ en:
           delete: 'Remove page'
           confirm: 'Are you sure?'
         current_translation_locale: 'Current translation: %{translation_locale}'
+      assets:
+        index:
+          create: 'Create new asset'
+          delete: 'Remove asset'
+          confirm: 'Are you sure?'

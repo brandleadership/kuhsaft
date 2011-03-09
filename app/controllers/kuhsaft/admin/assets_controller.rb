@@ -2,7 +2,7 @@ module Kuhsaft
   module Admin
     class AssetsController < ApplicationController
       respond_to :html
-      layout 'admin'
+      layout 'kuhsaft/admin'
       
       def index
         @assets = Kuhsaft::Asset.by_date

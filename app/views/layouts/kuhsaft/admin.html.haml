@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'kuhsaft/admin/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'kuhsaft/admin/print.css', :media => 'print'
+    /[if IE]
+      = stylesheet_link_tag 'kuhsaft/admin/ie.css', :media => 'screen, projection'
+    = csrf_meta_tag
+    = javascript_include_tag 'kuhsaft/admin/jquery-1.4.4.js'
+    = javascript_include_tag 'kuhsaft/admin/jquery-ui-1.8.10.custom.min.js'
+    = javascript_include_tag 'kuhsaft/admin/rails.js'
+  %body{ :class => "#{controller_name}" }
+    #kuhsaft-wrapper
+      %ul.module-nav
+        %li= link_to t('.pages_nav'), admin_pages_path
+        %li= link_to t('.assets_nav'), admin_assets_path
+      .toolbar
+        = yield :toolbar
+        .clear
+      = yield
+      = yield :scripts

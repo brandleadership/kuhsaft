@@ -2,7 +2,7 @@ module Kuhsaft
   module Admin
     class PagesController < ApplicationController
       respond_to :html
-      layout 'admin'
+      layout 'kuhsaft/admin'
       before_filter :set_translation_locale      
       
       def index
