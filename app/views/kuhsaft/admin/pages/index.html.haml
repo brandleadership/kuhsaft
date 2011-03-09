@@ -7,7 +7,7 @@
       update: function(event, ui){
         var self = $(ui.item),
             prev = self.prev(),
-            id   = prev.length > 0 ? prev.data('id') : null,
+            id   = prev.length > 0 ? prev.data('id') : '',
             sid  = self.data('id')
         $.post('/admin/pages/'+sid, {reposition:id, _method: 'put'})
       }
