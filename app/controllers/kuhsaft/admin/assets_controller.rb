@@ -5,7 +5,7 @@ module Kuhsaft
       layout 'admin'
       
       def index
-        @assets = Kuhsaft::Assets.all.by_date
+        @assets = Kuhsaft::Asset.by_date
         respond_with @assets
       end
     
