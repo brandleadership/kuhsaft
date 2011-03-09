@@ -27,7 +27,10 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def translation
-    @localized_page ||= localized_pages.where('locale = ?', Kuhsaft::Page.current_translation_locale).first rescue nil
+    unless @localized_page.present?
+      pages = localized_pages.where('locale = ?', Kuhsaft::Page.current_translation_locale)
+      @localized_page = pages.first unless pages.blank?
+    end
     @localized_page ||= localized_pages.build :locale => Kuhsaft::Page.current_translation_locale
   end
   
