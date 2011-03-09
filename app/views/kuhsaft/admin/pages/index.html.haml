@@ -2,7 +2,7 @@
   = link_to t('.create'), new_admin_page_path, :class => 'button'
 - content_for :scripts do
   :javascript
-    $("ul").sortable({
+    $("ul.sortable").sortable({
       containment: 'parent',
       update: function(event, ui){
         var self = $(ui.item),
@@ -13,29 +13,5 @@
       }
     })
   
-%ul.pages-root
-  - @pages.each do |page|
-    %li{ :'data-id' => page.id, :'data-postion' => page.position }
-      .page-branch
-        = link_to page.title, edit_admin_page_path(page), :class => :edit
-        = link_to t('.add'), new_admin_page_path(:parent_id => page.id), :class => 'new-child button'
-        = link_to(t('.delete'), admin_page_path(page), :confirm => t('.confirm'), :method => :delete, :class => 'delete button negative') if page.childs.empty?
-        .clear
-      - unless page.childs.empty?
-        %ul
-          - page.childs.each do |page|
-            %li{ :'data-id' => page.id }
-              .page-branch
-                = link_to page.title, edit_admin_page_path(page), :class => :edit
-                = link_to t('.add'), new_admin_page_path(:parent_id => page.id), :class => 'new-child button'
-                = link_to(t('.delete'), admin_page_path(page), :confirm => t('.confirm'), :method => :delete, :class => 'delete button negative') if page.childs.empty?
-                .clear
-              - unless page.childs.empty?
-                %ul
-                  - page.childs.each do |page|
-                    %li{ :'data-id' => page.id }
-                      .page-branch
-                        = link_to page.title, edit_admin_page_path(page), :class => :edit
-                        = link_to t('.add'), new_admin_page_path(:parent_id => page.id), :class =>'new-child button'
-                        = link_to(t('.delete'), admin_page_path(page), :confirm => t('.confirm'), :method => :delete, :class => 'delete button negative') if page.childs.empty?
-                        .clear
+%ul.pages-root.sortable
+  = render :partial => 'branch', :locals => { :pages => @pages }

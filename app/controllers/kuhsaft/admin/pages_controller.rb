@@ -3,7 +3,8 @@ module Kuhsaft
     class PagesController < ApplicationController
       respond_to :html
       layout 'kuhsaft/admin'
-      before_filter :set_translation_locale      
+      before_filter :set_translation_locale
+      helper :all
       
       def index
         @pages = Kuhsaft::Page.root_pages

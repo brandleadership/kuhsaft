@@ -10,5 +10,10 @@ module Kuhsaft
         app.middleware.insert 0, ::ActionDispatch::Static, "#{root}/public"
       end
     end
+    
+    initializer 'kuhsaft.helpers' do |app|
+      # Include your helpers here or they won't be loaded
+      # ActionView::Base.send :include, Kuhsaft::PagesHelper
+    end
   end
 end
