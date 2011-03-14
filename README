@@ -1,3 +1,36 @@
-Yiiihaaaaaa! Howdy!
+== Kuhsaft. A CMS as simple as it could be
 
-Let's milk the cow.
+Yiiihaaaaaa! Howdy, Let's milk the cow!
+
+== The Who, What and Why?
+
+Kuhsaft is made by some Rails developers at Screen Concept that got tired of
+fiddling with unusable content management sytems. We are trying hard to make a
+minimalistic and developer friendly CMS. Our goal is to provide a system for
+ourselves and our customers that makes the of-the-shelf website project a
+hasselfree thing. On one side easy to set up, integrate and customize (good for
+devs) on the other hand it should be easily usable by anyone.
+
+== Requirements
+
+Kuhsaft requires
+
+* A Rails 3 app to be integrated into
+* ImageMagick
+* An ActiveRecord compatible DB
+
+== Installation
+
+Add Kuhsaft to your Gemfile:
+
+  gem 'kuhsaft'
+
+And run
+
+  bundle install
+
+to get the gem
+
+== Usage
+
+... to be continued
