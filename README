@@ -31,6 +31,20 @@ And run
 
 to get the gem
 
+Then install the migrations and run them:
+
+  rails generate kuhsaft:install && rake db:migrate
+
+Finally, you need to add a before filter to the application controller (for now...)
+
+ApplicationController < ActionController::Base
+  before_filter :available_locales
+
+  def available_locales
+    Kuhsaft::Page.translation_locales = ['de', 'en', 'fr']
+  end
+end
+
 == Usage
 
 ... to be continued
