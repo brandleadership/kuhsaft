@@ -1,1 +1,1 @@
-= render :partial => 'form', :locals => { :url => Proc.new { |attrs| admin_pages_path(attrs) } }
+= render :partial => 'form', :locals => { :url => Proc.new { |attrs| admin_pages_path(attrs) }, :link_url => Proc.new{ |attrs| new_admin_page_path(attrs) }  }
