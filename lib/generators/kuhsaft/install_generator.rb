@@ -5,7 +5,7 @@ module Kuhsaft
   class InstallGenerator < Rails::Generators::Base
     include Rails::Generators::Migration
 
-    Kuhsaft::InstallGenerator.source_root(File.expand_path('../../db/migrate'))
+    Kuhsaft::InstallGenerator.source_root(File.expand_path(Kuhsaft::Engine.root + '/db/migrate'))
     
     def self.next_migration_number(dirname)
       if ActiveRecord::Base.timestamped_migrations
