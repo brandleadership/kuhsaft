@@ -1,5 +1,6 @@
 require 'rails/generators'
 require 'rails/generators/migration'
+require 'rails/generators/active_record'
 
 module Kuhsaft
   class InstallGenerator < Rails::Generators::Base
@@ -8,11 +9,7 @@ module Kuhsaft
    Kuhsaft::InstallGenerator.source_root(File.join(Kuhsaft::Engine.root, '/lib/templates/kuhsaft/install'))
 
     def self.next_migration_number(dirname)
-      if ActiveRecord::Base.timestamped_migrations
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
-      else
-        "%.3d" % (current_migration_number(dirname) + 1)
-      end
+      ActiveRecord::Generators::Base.next_migration_number(dirname)
     end
 
     def create_migration_file
