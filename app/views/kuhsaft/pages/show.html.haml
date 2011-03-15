@@ -1,1 +1,1 @@
-= @page.body if @page.present?
+= RDiscount.new(@page.body).to_html if @page.present?
