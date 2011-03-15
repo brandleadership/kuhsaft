@@ -10,6 +10,7 @@ Spork.prefork do
   require 'factory_girl'
   require "capybara/rails"
   require 'factories'
+  require 'generators/kuhsaft/install_generator'
 
   ActionMailer::Base.delivery_method = :test
   ActionMailer::Base.perform_deliveries = true
@@ -22,10 +23,8 @@ Spork.prefork do
   Capybara.default_selector = :css
 
   # Drop all records and run any available migration
-  migrations_source = File.expand_path("../../db/migrate/", __FILE__)
-  migrations_destination = File.expand_path("../dummy/db/", __FILE__)
-
-  system "cp -R #{migrations_source} #{migrations_destination}"
+  Rails::Generators.invoke 'kuhsaft:install'
+  
   ActiveRecord::Base.connection.tables.each { |table| ActiveRecord::Base.connection.drop_table(table) }
   ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
 

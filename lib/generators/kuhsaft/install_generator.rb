@@ -6,7 +6,7 @@ module Kuhsaft
   class InstallGenerator < Rails::Generators::Base
     include Rails::Generators::Migration
 
-   Kuhsaft::InstallGenerator.source_root(File.join(Kuhsaft::Engine.root, '/lib/templates/kuhsaft/install'))
+    source_root(File.join(Kuhsaft::Engine.root, '/lib/templates/kuhsaft/install'))
 
     def self.next_migration_number(dirname)
       ActiveRecord::Generators::Base.next_migration_number(dirname)
