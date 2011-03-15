@@ -45,6 +45,10 @@ describe Kuhsaft::LocalizedPage do
     Factory.create(:localized_page).page_parts.count.should be(1)
   end
   
+  it 'should delegate childs to it\'s page' do
+    @localized_page.childs.should == @localized_page.page.childs
+  end
+  
   describe 'validations' do
     it 'should have a title' do
       localized_page = Kuhsaft::LocalizedPage.new

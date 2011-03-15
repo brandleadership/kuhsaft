@@ -1,7 +1,9 @@
 class Kuhsaft::LocalizedPage < ActiveRecord::Base
   belongs_to :page
   has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content'
-  before_validation :create_slug  
+  before_validation :create_slug
+  
+  delegate :childs, :to => :page
   
   validates :title, :presence => true
   validates :locale, :presence => true
