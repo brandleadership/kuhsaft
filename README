@@ -35,14 +35,22 @@ Then install the migrations and run them:
 
   rails generate kuhsaft:install && rake db:migrate
 
+(NOTE: Steps below should hopefully not be necessary in future versions:)
+
 Finally, you need to add a before filter to the application controller (for now...)
 
-ApplicationController < ActionController::Base
-  before_filter :available_locales
+  ApplicationController < ActionController::Base
+    before_filter :available_locales
 
-  def available_locales
-    Kuhsaft::Page.translation_locales = ['de', 'en', 'fr']
+    def available_locales
+      Kuhsaft::Page.translation_locales = ['de', 'en', 'fr']
+    end
   end
+
+If you want to use devise for protecting the admin parts, do this in an initializer:
+
+Kuhsaft::Admin::PagesController.class_eval do
+  before_filter :authenticate_user!
 end
 
 == Usage
