@@ -3,5 +3,6 @@
     %li
       .thumb= image_tag asset.file.thumb.url
       .link= link_to File.basename(asset.file.url), asset.file.url, :target => '_new'
-      .date= asset.updated_at
+      =#.date= asset.updated_at
+      .date= link_to t('kuhsaft.admin.assets.index.delete'), admin_asset_path(asset), :confirm => t('kuhsaft.admin.assets.index.confirm'), :method => :delete, :class => 'delete button negative'
       .clear
