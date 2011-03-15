@@ -12,3 +12,4 @@ spec/dummy/public/uploads/kuhsaft/*
 Gemfile.lock
 .DS_Store
 .sass-cache
+spec/dummy/public/uploads/*
