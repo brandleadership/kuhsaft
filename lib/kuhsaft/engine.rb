@@ -6,7 +6,7 @@ module Kuhsaft
     end
 
     initializer 'kuhsaft.static_assets' do |app|
-      app.middleware.use ::ActionDispatch::Static, "#{root}/public"
+      app.middleware.use ::ActionDispatch::Static, "#{Kuhsaft::Engine.root}/public"
     end
 
     initializer 'kuhsaft.helpers' do |app|
