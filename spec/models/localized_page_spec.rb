@@ -49,6 +49,14 @@ describe Kuhsaft::LocalizedPage do
     @localized_page.childs.should == @localized_page.page.childs
   end
   
+  it 'should have a complete slug, consisting of it\'s parent pages slug' do
+    Kuhsaft::Page.current_translation_locale = :en
+    root_page = Factory.create(:page)
+    child_page = Factory.create(:page)
+    root_page.childs << child_page
+    child_page.url.should == '/en/english-title/english-title'
+  end
+  
   describe 'validations' do
     it 'should have a title' do
       localized_page = Kuhsaft::LocalizedPage.new

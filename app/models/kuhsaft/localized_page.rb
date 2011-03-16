@@ -18,4 +18,14 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
       write_attribute(:slug, read_attribute(:title).downcase.parameterize)
     end
   end
+  
+  def url
+    complete_slug = ''
+    if page.parent.present?
+      complete_slug << page.parent.url
+    else
+      complete_slug = "/#{locale}"
+    end
+    complete_slug << "/#{slug}"
+  end
 end

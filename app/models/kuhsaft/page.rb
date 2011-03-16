@@ -13,6 +13,7 @@ class Kuhsaft::Page < ActiveRecord::Base
             :description, :description=, 
             :locale, :locale=,
             :body, :body=,
+            :url,
             :to => :translation
   
   after_save :save_translation
