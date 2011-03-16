@@ -109,6 +109,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     
     def current_translation_locale=(locale)
       @translation_locale = locale.to_sym
+      I18n.locale = @translation_locale if I18n.available_locales.include?(@translation_locale)
     end
   end
 end
