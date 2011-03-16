@@ -6,12 +6,12 @@ describe Kuhsaft::PagesController do
   describe 'should render successfully' do
     
     before :all do
-      # create page with slug=deutscher-titel
+      # create page with slug=english-title
       Factory.create :page
     end
     
     it '#show' do
-      get :show, :translation_locale => 'de', :slug => 'deutscher-titel'
+      get :show, :translation_locale => 'en', :slug => 'english-title'
       response.should be_success
     end
   end

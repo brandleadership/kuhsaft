@@ -94,7 +94,10 @@ describe Kuhsaft::Page do
   end
   
   it 'should find its translated content by slug and locale' do
-    Kuhsaft::Page.find_translation('english-title', 'en').should be_a(Kuhsaft::LocalizedPage)
+    Kuhsaft::Page.all.each { |p| p.destroy }
+    Kuhsaft::LocalizedPage.all.each{ |p| p.destroy }
+    page = Factory.create(:page)
+    Kuhsaft::Page.find_translation(page.slug, page.locale).id.should be(page.id)
   end
   
   it 'should provide an array of translation locales' do
