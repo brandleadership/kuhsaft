@@ -93,6 +93,10 @@ describe Kuhsaft::Page do
     @page.save
   end
   
+  it 'should find its translated content by slug and locale' do
+    Kuhsaft::Page.find_translation('english-title', 'en').should be_a(Kuhsaft::LocalizedPage)
+  end
+  
   it 'should provide an array of translation locales' do
     Kuhsaft::Page.translation_locales.should be_a(Array)
   end

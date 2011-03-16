@@ -95,6 +95,11 @@ class Kuhsaft::Page < ActiveRecord::Base
       Kuhsaft::Page.find(id).position rescue 1
     end
     
+    def find_translation slug, locale
+      page = Kuhsaft::LocalizedPage.where('slug = ?', slug).where('locale = ?', locale)
+      page.first if page
+    end
+    
     def translation_locales
       @translation_locales
     end
