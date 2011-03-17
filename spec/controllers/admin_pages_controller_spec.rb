@@ -29,5 +29,10 @@ describe Kuhsaft::Admin::PagesController do
       get :edit, :id => 1
       response.should be_success
     end
+    
+    it '#create' do
+      post :create, :kuhsaft_page => { :title => 'hi' }
+      response.should be_redirect
+    end
   end
 end

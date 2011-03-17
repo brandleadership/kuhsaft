@@ -16,7 +16,7 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   
   def create_url
     complete_slug = ''
-    if page.parent.present?
+    if page.present? && page.parent.present?
       complete_slug << page.parent.url.to_s
     else
       complete_slug = "#{self.locale}"

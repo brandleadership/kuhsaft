@@ -22,10 +22,12 @@ module Kuhsaft
       end
     
       def create
-        parent = Kuhsaft::Page.find(params[:kuhsaft_page][:parent_id])
+        parent = Kuhsaft::Page.find(params[:kuhsaft_page][:parent_id]) if params[:kuhsaft_page][:parent_id].present?
         @page = Kuhsaft::Page.create params[:kuhsaft_page]
-        parent.childs << @page if parent.present?
-        parent.save
+        if parent.present?
+          parent.childs << @page
+          parent.save
+        end
         respond_with @page, :location => admin_pages_path
       end
     
