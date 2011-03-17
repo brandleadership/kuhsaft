@@ -90,7 +90,11 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def link
-    "/#{url}"
+    if body == nil && childs.count > 0
+      childs.first.link
+    else
+      "/#{url}"
+    end
   end
   
   class << self

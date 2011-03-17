@@ -112,6 +112,15 @@ describe Kuhsaft::Page do
     child.url.should == 'en/english-title/english-title'
   end
   
+  it 'should return the link of its first child when its empty' do
+    page = Factory.create :page
+    child = Factory.create :page
+    page.childs << child
+    page.body = nil
+    page.save
+    page.link.should == child.link
+  end
+  
   it 'should find its translated content by url' do
     Kuhsaft::Page.all.each { |p| p.destroy }
     Kuhsaft::LocalizedPage.all.each{ |p| p.destroy }
