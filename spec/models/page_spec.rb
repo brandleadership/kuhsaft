@@ -99,6 +99,11 @@ describe Kuhsaft::Page do
     page.url.should == 'en/english-title'
   end
   
+  it 'should have a link' do
+    page = Factory.create :page
+    page.link.should == '/en/english-title'
+  end
+  
   it 'should include the parents slug in its url' do
     page = Factory.create :page
     child = Factory.create :page

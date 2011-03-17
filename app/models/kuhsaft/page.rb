@@ -89,6 +89,10 @@ class Kuhsaft::Page < ActiveRecord::Base
     update_attribute(:position, siblings.count + 1)
   end
   
+  def link
+    "/#{url}"
+  end
+  
   class << self
     def position_of id
       Kuhsaft::Page.find(id).position rescue 1
