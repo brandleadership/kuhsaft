@@ -5,5 +5,5 @@ Rails.application.routes.draw do
       resources :assets
     end
   end
-  match '/:translation_locale/*slug' => 'kuhsaft/pages#show', :constraints => { :translation_locale => /[a-zA-Z]{2}/ }
+  match '/*url' => 'kuhsaft/pages#show'
 end

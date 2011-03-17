@@ -1,25 +1,12 @@
 require 'spec_helper'
 
 describe 'routing to Kuhsaft::PagesController' do
-  it 'routes /:translation_locale/:slug to pages#show' do
+  it 'routes /*url to pages#show' do
     { :get => '/en/my-slug' }.should route_to(
       :controller => 'kuhsaft/pages',
       :action => 'show',
-      :slug => 'my-slug',
-      :translation_locale => 'en'
+      :url => 'en/my-slug'
     )
-  end
-  
-  it 'does not expose pages#new' do
-    { :get => '/pages/new' }.should_not be_routable
-  end
-  
-  it 'does not expose pages#edit' do
-    { :get => '/pages/1/edit' }.should_not be_routable
-  end
-  
-  it 'does not expose pages#destroy' do
-    { :get => '/pages/1/destroy' }.should_not be_routable
   end
 end
 

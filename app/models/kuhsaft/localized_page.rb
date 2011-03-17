@@ -2,6 +2,7 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   belongs_to :page
   has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content'
   before_validation :create_slug
+  before_validation :create_url
   
   delegate :childs, :to => :page
   
@@ -13,19 +14,21 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
     read_attribute(:locale).to_sym unless read_attribute(:locale).nil?
   end
   
-  def create_slug
-    if title.present? && slug.blank?
-      write_attribute(:slug, read_attribute(:title).downcase.parameterize)
-    end
-  end
-  
-  def url
+  def create_url
+    #page ||= Kuhsaft::Page.find(self.page_id)
     complete_slug = ''
     if page.parent.present?
       complete_slug << page.parent.url
     else
-      complete_slug = "/#{locale}"
+      complete_slug = "#{self.locale}"
     end
-    complete_slug << "/#{slug}"
+    complete_slug << "/#{self.slug}"
+    self.url = complete_slug
+  end
+  
+  def create_slug
+    if title.present? && slug.blank?
+      write_attribute(:slug, read_attribute(:title).downcase.parameterize)
+    end
   end
 end

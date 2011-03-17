@@ -13,7 +13,7 @@ class Kuhsaft::Page < ActiveRecord::Base
             :description, :description=, 
             :locale, :locale=,
             :body, :body=,
-            :url,
+            :url, :url=,
             :to => :translation
   
   after_save :save_translation
@@ -21,10 +21,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   
   def root?
     parent.nil?
-  end
-  
-  def localized_page
-    translation
   end
   
   def translation
@@ -37,6 +33,9 @@ class Kuhsaft::Page < ActiveRecord::Base
   
   def save_translation
     @localized_page.save unless @localized_page.blank?
+    childs.each do |child|
+      child.translation.save if child.translation.persisted?
+    end
   end
   
   def increment_position
@@ -95,9 +94,9 @@ class Kuhsaft::Page < ActiveRecord::Base
       Kuhsaft::Page.find(id).position rescue 1
     end
     
-    def find_translation slug, locale
-      page = Kuhsaft::LocalizedPage.where('slug = ?', slug).where('locale = ?', locale)
-      page.first.page if page
+    def find_by_url url
+      translation = Kuhsaft::LocalizedPage.where('url = ?', url)
+      translation.present? && translation.first.present? ? translation.first.page : nil
     end
     
     def translation_locales

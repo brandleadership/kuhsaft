@@ -9,6 +9,7 @@ Factory.define :localized_page, :class => Kuhsaft::LocalizedPage do |p|
   p.title 'English title'
   p.published 1
   p.body 'hi'
+  p.url ''
   p.association :page
   p.after_create do |page|
     page.page_parts << Factory.build(:page_part, :localized_page => page)

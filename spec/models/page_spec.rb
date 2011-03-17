@@ -4,6 +4,7 @@ describe Kuhsaft::Page do
   
   before do
     Kuhsaft::Page.translation_locales = ['en', 'de']
+    Kuhsaft::Page.current_translation_locale = :en
   end
   
   before :each do 
@@ -87,17 +88,30 @@ describe Kuhsaft::Page do
     page2.position.should == 1
   end
   
-  it 'should save the localized_page when saved' do
-    @page.localized_page.title = 'some localized title'
+  it 'should save the translation when saved' do
+    @page.translation.title = 'some localized title'
     @page.should_receive(:save_translation)
     @page.save
   end
   
-  it 'should find its translated content by slug and locale' do
+  it 'should have an url when saved' do
+    page = Factory.create :page
+    page.url.should == 'en/english-title'
+  end
+  
+  it 'should include the parents slug in its url' do
+    page = Factory.create :page
+    child = Factory.create :page
+    page.childs << child
+    page.save
+    child.url.should == 'en/english-title/english-title'
+  end
+  
+  it 'should find its translated content by url' do
     Kuhsaft::Page.all.each { |p| p.destroy }
     Kuhsaft::LocalizedPage.all.each{ |p| p.destroy }
     page = Factory.create(:page)
-    Kuhsaft::Page.find_translation(page.slug, page.locale).id.should be(page.id)
+    Kuhsaft::Page.find_by_url(page.url).id.should == page.id
   end
   
   it 'should provide an array of translation locales' do
@@ -120,32 +134,36 @@ describe Kuhsaft::Page do
   
   describe 'should delegate property' do
     it 'should have a localized_page to delegate to' do
-      @page.localized_page.should be_a(Kuhsaft::LocalizedPage)
+      @page.translation.should be_a(Kuhsaft::LocalizedPage)
     end
     
-    it 'should delegate the title to the localized_page' do
+    it 'should delegate the title to the translation' do
       @page.title = 'Hello'
-      @page.localized_page.title.should == 'Hello'
+      @page.translation.title.should == 'Hello'
     end
     
-    it 'should delegate the slug to the localized_page' do
+    it 'should delegate the slug to the translation' do
       @page.slug = 'my-slug'
-      @page.localized_page.slug.should == 'my-slug'
+      @page.translation.slug.should == 'my-slug'
     end
     
-    it 'should delegate the keywords to the localized_page' do
+    it 'should delegate the url to the translation' do
+      @page.url.should == @page.translation.url
+    end
+    
+    it 'should delegate the keywords to the translation' do
       @page.keywords = 'my keywords are superb'
-      @page.localized_page.keywords.should == 'my keywords are superb'
+      @page.translation.keywords.should == 'my keywords are superb'
     end
     
-    it 'should delegate the description to the localized_page' do
+    it 'should delegate the description to the translation' do
       @page.description = 'my description'
-      @page.localized_page.description.should == 'my description'
+      @page.translation.description.should == 'my description'
     end
     
-    it 'should delegate the locale to the localized_page' do
+    it 'should delegate the locale to the translation' do
       @page.locale = 'de'
-      @page.localized_page.locale.should == :de
+      @page.translation.locale.should == :de
     end
   end
 end
