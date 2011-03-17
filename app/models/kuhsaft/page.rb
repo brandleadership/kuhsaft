@@ -90,7 +90,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def link
-    if body == nil && childs.count > 0
+    if body.blank? && childs.count > 0
       childs.first.link
     else
       "/#{url}"
