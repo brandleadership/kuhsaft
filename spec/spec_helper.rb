@@ -30,6 +30,9 @@ Spork.prefork do
 
   # Load support files
   Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+  
+  Kuhsaft::Page.translation_locales = [:en, :de]
+  Kuhsaft::Page.current_translation_locale = :en
 
   RSpec.configure do |config|
     # Remove this line if you don't want RSpec's should and should_not
@@ -39,6 +42,7 @@ Spork.prefork do
     
     config.include RSpec::Matchers
     config.include CarrierWave::Test::Matchers
+    config.include KuhsaftSpecHelper
 
     # == Mock Framework
     config.mock_with :rspec
