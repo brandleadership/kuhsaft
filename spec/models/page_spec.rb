@@ -2,24 +2,19 @@ require 'spec_helper'
 
 describe Kuhsaft::Page do
   
-  before do
-    Kuhsaft::Page.translation_locales = ['en', 'de']
-    Kuhsaft::Page.current_translation_locale = :en
-  end
-  
   before :each do 
-    Kuhsaft::Page.all.each { |p| p.destroy }
+    destroy_all_pages
     @page = Factory.create :page
   end
   
   it 'should have many localized_pages' do
-    @page.localized_pages.count.should >= 1
+    @page.localized_pages.should have_at_least(1).page
   end
   
   it 'should have child pages' do
     p = Factory.create(:page)
     @page.childs << p
-    @page.childs.count.should >= 1
+    @page.childs.should have_at_least(1).page
   end
   
   it 'should be the root page' do
@@ -29,14 +24,14 @@ describe Kuhsaft::Page do
   it 'should have a parent page' do
     child = Factory.create(:page)
     @page.childs << child
-    child.parent.id.should be(@page.id)
+    child.parent.should eq(@page)
   end
   
   it 'should have a list of root pages' do
     root_page = Factory.create :page
     root_page.childs << Factory.create(:page)
     root_page.childs << Factory.create(:page)
-    Kuhsaft::Page.root_pages.count.should >= 1
+    Kuhsaft::Page.root_pages.should have_at_least(2).pages
   end
   
   it 'should increment it\'s position by 1' do
@@ -122,10 +117,9 @@ describe Kuhsaft::Page do
   end
   
   it 'should find its translated content by url' do
-    Kuhsaft::Page.all.each { |p| p.destroy }
-    Kuhsaft::LocalizedPage.all.each{ |p| p.destroy }
+    destroy_all_pages
     page = Factory.create(:page)
-    Kuhsaft::Page.find_by_url(page.url).id.should == page.id
+    Kuhsaft::Page.find_by_url(page.url).should eq(page)
   end
   
   it 'should provide an array of translation locales' do
