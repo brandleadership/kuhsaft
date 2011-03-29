@@ -11,7 +11,7 @@ module Kuhsaft
 
     initializer 'kuhsaft.helpers' do |app|
       # Include your helpers here or they won't be loaded
-      # ActionView::Base.send :include, Kuhsaft::PagesHelper
+      ActionView::Base.send :include, Kuhsaft::PagesHelper
     end
   end
 end
