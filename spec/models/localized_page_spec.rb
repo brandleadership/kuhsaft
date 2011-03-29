@@ -53,6 +53,8 @@ describe Kuhsaft::LocalizedPage do
     
     before :each do
       @page = Factory.create :page
+      @page.title = nil
+      @page.slug = nil
     end
     
     it 'should have a title' do
