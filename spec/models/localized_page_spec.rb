@@ -41,12 +41,16 @@ describe Kuhsaft::LocalizedPage do
     Factory.create(:localized_page, :slug => 'my-slug').slug.should == 'my-slug'
   end
   
-  it 'should have pageparts' do
-    Factory.create(:localized_page).page_parts.count.should be(1)
-  end
-  
   it 'should delegate childs to it\'s page' do
     @localized_page.childs.should == @localized_page.page.childs
+  end
+  
+  it 'should have page_parts' do
+    @localized_page.should respond_to(:page_parts)
+  end
+  
+  after :each do
+    @localized_page.destroy
   end
   
   describe 'validations' do

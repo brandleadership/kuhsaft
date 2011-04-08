@@ -140,36 +140,23 @@ describe Kuhsaft::Page do
     Kuhsaft::Page.translation_locales.first.should be(:de)
   end
   
-  describe 'should delegate property' do
-    it 'should have a localized_page to delegate to' do
+  describe 'should delegate' do
+    it 'slug, title, keywords and description to the translation' do
+      [:slug, :title, :keywords, :description].each do |attr|
+        @page.send("#{attr}=", 'any value')
+        @page.translation.send(attr).should eq('any value')
+      end
+    end
+    
+    it 'localized_page to the translation' do
       @page.translation.should be_a(Kuhsaft::LocalizedPage)
     end
-    
-    it 'should delegate the title to the translation' do
-      @page.title = 'Hello'
-      @page.translation.title.should == 'Hello'
-    end
-    
-    it 'should delegate the slug to the translation' do
-      @page.slug = 'my-slug'
-      @page.translation.slug.should == 'my-slug'
-    end
-    
-    it 'should delegate the url to the translation' do
+
+    it 'url to the translation' do
       @page.url.should == @page.translation.url
     end
     
-    it 'should delegate the keywords to the translation' do
-      @page.keywords = 'my keywords are superb'
-      @page.translation.keywords.should == 'my keywords are superb'
-    end
-    
-    it 'should delegate the description to the translation' do
-      @page.description = 'my description'
-      @page.translation.description.should == 'my description'
-    end
-    
-    it 'should delegate the locale to the translation' do
+    it 'locale to the translation' do
       @page.locale = 'de'
       @page.translation.locale.should == :de
     end
