@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe Kuhsaft::Page do
   
+  before do
+    set_lang :en
+  end
+  
+  after do
+    reset_lang
+  end
+  
   before :each do 
     destroy_all_pages
     @page = Factory.create :page
@@ -111,7 +119,7 @@ describe Kuhsaft::Page do
     page = Factory.create :page
     child = Factory.create :page
     page.childs << child
-    page.body = nil
+    page.translation.body = nil
     page.save
     page.link.should == child.link
   end
@@ -140,25 +148,23 @@ describe Kuhsaft::Page do
     Kuhsaft::Page.translation_locales.first.should be(:de)
   end
   
+  it 'should have a translation' do
+    @page.translation.should be_a(Kuhsaft::LocalizedPage)
+  end
+  
   describe 'should delegate' do
     it 'slug, title, keywords and description to the translation' do
       [:slug, :title, :keywords, :description].each do |attr|
-        @page.send("#{attr}=", 'any value')
-        @page.translation.send(attr).should eq('any value')
+        @page.send(attr).should eq(@page.translation.send(attr))
       end
     end
     
-    it 'localized_page to the translation' do
-      @page.translation.should be_a(Kuhsaft::LocalizedPage)
-    end
-
     it 'url to the translation' do
-      @page.url.should == @page.translation.url
+      @page.url.should eq(@page.translation.url)
     end
     
     it 'locale to the translation' do
-      @page.locale = 'de'
-      @page.translation.locale.should == :de
+      @page.locale.should be(@page.translation.locale)
     end
   end
 end

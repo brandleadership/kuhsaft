@@ -1,6 +1,6 @@
 module Kuhsaft
   module Admin
-    class PagesController < ApplicationController
+    class PagesController < AdminController
       respond_to :html
       layout 'kuhsaft/admin'
       before_filter :set_translation_locale
@@ -18,6 +18,7 @@ module Kuhsaft
     
       def new
         @page = Kuhsaft::Page.new
+        @page.localized_pages << @page.localized_pages.find_or_initialize_by_locale(params[:locale])
         respond_with @page
       end
     

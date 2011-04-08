@@ -1,6 +1,6 @@
 module Kuhsaft
   module Admin
-    class AssetsController < ApplicationController
+    class AssetsController < AdminController
       respond_to :html
       layout 'kuhsaft/admin'
       
