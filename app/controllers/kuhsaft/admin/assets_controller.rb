@@ -1,9 +1,6 @@
 module Kuhsaft
   module Admin
     class AssetsController < AdminController
-      respond_to :html
-      layout 'kuhsaft/admin'
-      
       def index
         @assets = Kuhsaft::Asset.by_date
         respond_with @assets

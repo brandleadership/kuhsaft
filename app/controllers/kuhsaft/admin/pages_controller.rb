@@ -1,9 +1,6 @@
 module Kuhsaft
   module Admin
     class PagesController < AdminController
-      respond_to :html
-      layout 'kuhsaft/admin'
-      before_filter :set_translation_locale
       helper :all
       
       def index
@@ -49,10 +46,6 @@ module Kuhsaft
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy
         redirect_to admin_pages_path
-      end
-      
-      def set_translation_locale
-        Kuhsaft::Page.current_translation_locale = params[:translation_locale] if params[:translation_locale].present?
       end
     end
   end
