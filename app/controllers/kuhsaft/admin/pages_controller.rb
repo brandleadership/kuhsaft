@@ -2,23 +2,22 @@ module Kuhsaft
   module Admin
     class PagesController < AdminController
       helper :all
-      
+
       def index
         @pages = Kuhsaft::Page.root_pages
         respond_with @pages
       end
-    
+
       def show
         @page = Kuhsaft::Page.find(params[:id])
         respond_with @page
       end
-    
+
       def new
         @page = Kuhsaft::Page.new
-        @page.localized_pages << @page.localized_pages.find_or_initialize_by_locale(params[:locale])
         respond_with @page
       end
-    
+
       def create
         parent = Kuhsaft::Page.find(params[:kuhsaft_page][:parent_id]) if params[:kuhsaft_page][:parent_id].present?
         @page = Kuhsaft::Page.create params[:kuhsaft_page]
@@ -28,12 +27,12 @@ module Kuhsaft
         end
         respond_with @page, :location => admin_pages_path
       end
-    
+
       def edit
         @page = Kuhsaft::Page.find(params[:id])
         respond_with @page
       end
-    
+
       def update
         @page = Kuhsaft::Page.find(params[:id])
         @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
@@ -41,7 +40,7 @@ module Kuhsaft
         @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
         respond_with @page, :location => admin_pages_path
       end
-    
+
       def destroy
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy

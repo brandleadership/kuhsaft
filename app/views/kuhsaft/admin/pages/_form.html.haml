@@ -1,11 +1,9 @@
-- Kuhsaft::Page.translation_locales.each do |locale|
-  = link_to locale.to_s, url, :class => 'button'
-
 = simple_form_for @page, :url => url do |page|
-  = page.fields_for :localized_pages do |localized|
+  = page.fields_for :localized_pages, @page.localized_pages.find_or_initialize_by_locale(params[:locale]) do |localized|
     = localized.input :title
     = localized.input :slug, :required => false
     = localized.input :keywords
     = localized.input :description
     = localized.input :locale, :as => :hidden
+  = page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
   = page.button :submit

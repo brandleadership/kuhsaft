@@ -1,1 +1,3 @@
+- Kuhsaft::Page.translation_locales.each do |locale|
+  = link_to locale.to_s, edit_admin_page_path(:locale => locale), :class => 'button'
 = render :partial => 'form', :locals => { :url => admin_page_path(@page) }
