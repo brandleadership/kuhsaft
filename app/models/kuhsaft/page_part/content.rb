@@ -15,6 +15,26 @@ module Kuhsaft
         def serializeable_attributes
           @serializeable_attributes ||= []
         end
+        
+        def page_part_types
+          descendants
+        end
+        
+        def class_for_key key
+          key.split('.').map(&:camelize).join('::').constantize
+        end
+    
+        def key_for_class klass
+          klass.to_s.gsub('::', '.').underscore
+        end
+        
+        def to_name
+          self.to_s.split('::').last
+        end
+        
+        def to_key
+          key_for_class self
+        end
       end
       
       def collect_serializeable_attributes

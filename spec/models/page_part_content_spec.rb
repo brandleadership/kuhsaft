@@ -19,6 +19,30 @@ describe 'PagePart' do
       it 'should keep a list of the serializeable attributes' do
         Kuhsaft::PagePart::Content.serializeable_attributes.should be_a(Array)
       end
+      
+      it 'should have a list of page_part_types' do
+        Kuhsaft::PagePart::Content.page_part_types.should be_all { |p| p.superclass.should eq Kuhsaft::PagePart::Content }
+      end
+      
+      it 'should have the Markdown PagePart by default' do
+        Kuhsaft::PagePart::Content.subclasses.should include(Kuhsaft::PagePart::Markdown)
+      end
+      
+      it 'should map subclasses to strings' do
+        Kuhsaft::PagePart::Content.key_for_class(Kuhsaft::PagePart::Markdown).should eq('kuhsaft.page_part.markdown')
+      end
+      
+      it 'should map strings to subclasses' do
+        Kuhsaft::PagePart::Content.class_for_key('kuhsaft.page_part.markdown').should be(Kuhsaft::PagePart::Markdown)
+      end
+      
+      it 'should convert to_name' do
+        Kuhsaft::PagePart::Markdown.to_name.should eq('Markdown')
+      end
+      
+      it 'should convert to_key' do
+        Kuhsaft::PagePart::Markdown.to_key.should eq('kuhsaft.page_part.markdown')
+      end
     end
   end
   

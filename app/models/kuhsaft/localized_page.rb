@@ -10,6 +10,8 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   validates :locale, :presence => true
   validates :slug, :presence => true
   
+  attr_accessor :page_part
+  
   def locale
     read_attribute(:locale).to_sym unless read_attribute(:locale).nil?
   end

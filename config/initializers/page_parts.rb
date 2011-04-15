@@ -1,0 +1,1 @@
+Dir.glob("#{Kuhsaft::Engine.root}/app/models/kuhsaft/page_part/*.rb").sort.each { |file| require file }
