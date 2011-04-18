@@ -19,6 +19,7 @@ module Kuhsaft
         migration_template 'create_page_part_contents.rb', Rails.root + 'db/migrate/create_page_part_contents.rb'
         migration_template 'create_assets.rb', Rails.root + 'db/migrate/create_assets.rb'
         migration_template 'add_url_to_localized_pages.rb', Rails.root + 'db/migrate/add_url_to_localized_pages.rb'
+        migration_template 'add_type_to_page_part_contents.rb', Rails.root + 'db/migrate/add_type_to_page_part_contents.rb'
       end
     end
   end
