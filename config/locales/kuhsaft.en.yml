@@ -12,7 +12,7 @@ en:
           create: 'Create new page'
           delete: 'Remove page'
           confirm: 'Are you sure?'
-        form:
+        edit:
           add_page_part: 'Add a new part'
         current_translation_locale: 'Current translation: %{translation_locale}'
       assets:

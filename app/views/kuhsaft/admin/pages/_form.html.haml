@@ -1,10 +1,12 @@
 = simple_form_for @page, :url => url do |page|
-  = page.fields_for :localized_pages, @page.localized_pages.find_or_initialize_by_locale(params[:locale]) do |localized|
+  = page.fields_for :localized_pages, @localized_page do |localized|
     = localized.input :title
     = localized.input :slug, :required => false
     = localized.input :keywords
     = localized.input :description
     = localized.input :locale, :as => :hidden
-    = localized.input :page_part, :collection => Kuhsaft::PagePart::Content.page_part_types, :label_method => :to_name, :value_method => :to_key
+    = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
+      = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
+      = render :partial => page_part.object, :locals => { :input_form => page_part }
   = page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
   = page.button :submit

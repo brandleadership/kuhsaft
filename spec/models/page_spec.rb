@@ -152,6 +152,10 @@ describe Kuhsaft::Page do
     @page.translation.should be_a(Kuhsaft::LocalizedPage)
   end
   
+  it 'accepts a page_part_type to determine which page_part needs to be added' do
+    @page.should respond_to(:page_part_type)
+  end
+  
   describe 'should delegate' do
     it 'slug, title, keywords and description to the translation' do
       [:slug, :title, :keywords, :description].each do |attr|

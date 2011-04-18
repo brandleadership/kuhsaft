@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'PagePart' do
-  
   describe 'Content' do
     before do
       @content = Kuhsaft::PagePart::Content.new
@@ -65,6 +64,13 @@ describe 'PagePart' do
       m = Kuhsaft::PagePart::Markdown.create(:text => 'hi')
       m2 = Kuhsaft::PagePart::Markdown.find(m.id)
       m2.text.should eq('hi')
+    end
+    
+    it 'should save when created through an association' do
+      page = Factory.create :page
+      page.translation.page_parts.build :type => Kuhsaft::PagePart::Markdown, :text => 'why?'
+      page.translation.page_parts.last.should_receive(:collect_serializeable_attributes).and_return([[:text, 'why?']])
+      page.save
     end
   end
 end

@@ -48,6 +48,14 @@ module Kuhsaft
           end
         end
       end
+      
+      private
+      #
+      # OMFG, OMFG!!! http://stackoverflow.com/questions/5178204/what-is-a-better-way-to-create-sti-model-instance
+      #
+      def atributes_protected_by_default
+        super - [self.class.inheritance_column]
+      end
     end
   end
 end

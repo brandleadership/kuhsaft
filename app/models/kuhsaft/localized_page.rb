@@ -1,6 +1,6 @@
 class Kuhsaft::LocalizedPage < ActiveRecord::Base
   belongs_to :page
-  has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content'
+  has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
   before_validation :create_slug
   before_validation :create_url
   
@@ -10,7 +10,7 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   validates :locale, :presence => true
   validates :slug, :presence => true
   
-  attr_accessor :page_part
+  accepts_nested_attributes_for :page_parts
   
   def locale
     read_attribute(:locale).to_sym unless read_attribute(:locale).nil?

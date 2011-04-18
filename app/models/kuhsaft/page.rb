@@ -14,6 +14,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   after_save :save_translation
   after_create :set_position
   
+  attr_accessor :page_part_type
+  
   def root?
     parent.nil?
   end
