@@ -25,7 +25,7 @@ describe 'PagePart' do
       end
       
       it 'should have the Markdown PagePart by default' do
-        Kuhsaft::PagePart::Content.subclasses.should include(Kuhsaft::PagePart::Markdown)
+        Kuhsaft::PagePart::Content.descendants.should include(Kuhsaft::PagePart::Markdown)
       end
       
       it 'should map subclasses to strings' do
