@@ -36,9 +36,10 @@ module Kuhsaft
       def update
         @page = Kuhsaft::Page.find(params[:id])
         @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
+        
         # TODO: refactor 'reposition' as a page attribute, so it can be set through update_attributes
         @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
-        respond_with @page, :location => admin_pages_path
+        respond_with @page, :location => edit_admin_page_path(@page)
       end
 
       def destroy
