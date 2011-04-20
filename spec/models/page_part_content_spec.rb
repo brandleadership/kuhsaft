@@ -27,20 +27,8 @@ describe 'PagePart' do
         Kuhsaft::PagePart::Content.descendants.should include(Kuhsaft::PagePart::Markdown)
       end
       
-      it 'should map subclasses to strings' do
-        Kuhsaft::PagePart::Content.key_for_class(Kuhsaft::PagePart::Markdown).should eq('kuhsaft.page_part.markdown')
-      end
-      
-      it 'should map strings to subclasses' do
-        Kuhsaft::PagePart::Content.class_for_key('kuhsaft.page_part.markdown').should be(Kuhsaft::PagePart::Markdown)
-      end
-      
       it 'should convert to_name' do
         Kuhsaft::PagePart::Markdown.to_name.should eq('Markdown')
-      end
-      
-      it 'should convert to_key' do
-        Kuhsaft::PagePart::Markdown.to_key.should eq('kuhsaft.page_part.markdown')
       end
     end
   end
@@ -50,27 +38,19 @@ describe 'PagePart' do
       @m = Kuhsaft::PagePart::Markdown.new
     end
     
-    it 'should store text' do
+    it 'should have text' do
       @m.should respond_to(:text)
     end
     
-    it 'should collect the serializeable attributes to be saved' do
+    it 'should store text' do
       @m.text = 'hi'
-      @m.should_receive(:collect_serializeable_attributes).and_return([[:text, 'hi']])
-      @m.save
+      @m.text.should eq('hi')
     end
     
     it 'should restore the serialized attributes when loaded' do
       m = Kuhsaft::PagePart::Markdown.create(:text => 'hi')
       m2 = Kuhsaft::PagePart::Markdown.find(m.id)
       m2.text.should eq('hi')
-    end
-    
-    it 'should save when created through an association' do
-      page = Factory.create :page
-      page.translation.page_parts.build :type => Kuhsaft::PagePart::Markdown, :text => 'why?'
-      page.translation.page_parts.last.should_receive(:collect_serializeable_attributes).and_return([[:text, 'why?']])
-      page.save
     end
   end
 end
