@@ -1,13 +1,28 @@
+$color1: #2c5eb0
+$color2: #161f38
+$color3: #e4e9f2
+
 body
-  line-height: 135%
-  font-size: 12px
+  line-height: 150%
+  font-size: 16px
+  background: #efefef
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif
+  
+#kuhsaft-wrapper
+  background: #f9f9f9
+  padding: 24px
+  margin: 48px auto
+  max-width: 912px
   
 a
   text-decoration: none
-  +link-colors(#000, #666, #000, #000, #000)
+  +link-colors($color1, $color2, $color1, $color1, $color2)
   
 .clear
   clear: both
+
+.clearfix
+  +clearfix
 
 .toolbar
   padding: 5px 0px
@@ -15,15 +30,19 @@ a
     +float_right
 
 .module-nav
-  +horizontal-list(10px)
+  background: $color3
   font-size: 18px
-  line-height: 26px
+  font-weight: bold
+  margin: -24px
+  +horizontal-list(12px)
+  padding-left: 24px
+  width: 936px
+  margin-left: -24px
+  
+  a
+    line-height: 48px
 
 .list
   border-top: 1px solid #444
   li
     border-bottom: 1px solid #444
-
-#kuhsaft-wrapper
-  margin: 50px auto
-  max-width: 900px
