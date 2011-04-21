@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml', '3.0.25'
   s.add_dependency 'compass'
   s.add_dependency 'simple_form'
-  s.add_dependency 'carrierwave'
+  s.add_dependency 'carrierwave', '0.5.2'
   s.add_dependency 'rmagick'
   s.add_dependency 'rdiscount'
 end
