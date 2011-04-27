@@ -3,12 +3,14 @@
   %head
     = stylesheet_link_tag 'kuhsaft/admin/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'kuhsaft/admin/print.css', :media => 'print'
+    = stylesheet_link_tag 'kuhsaft/ui-lightness/jquery-ui-1.8.12.custom.css', :media => 'screen, projection'
     /[if IE]
       = stylesheet_link_tag 'kuhsaft/admin/ie.css', :media => 'screen, projection'
     = csrf_meta_tag
     = javascript_include_tag 'kuhsaft/admin/jquery-1.4.4.js'
-    = javascript_include_tag 'kuhsaft/admin/jquery-ui-1.8.10.custom.min.js'
+    = javascript_include_tag 'kuhsaft/admin/jquery-ui-1.8.12.custom.min.js'
     = javascript_include_tag 'kuhsaft/admin/rails.js'
+    = javascript_include_tag 'kuhsaft/admin/application.js'
   %body{ :class => "#{controller_name}" }
     #kuhsaft-wrapper
       %ul.module-nav

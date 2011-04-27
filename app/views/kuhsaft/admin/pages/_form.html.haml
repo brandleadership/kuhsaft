@@ -2,6 +2,10 @@
   = page.fields_for :localized_pages, @localized_page do |localized|
     = localized.input :title
     = localized.input :slug, :required => false
+    = localized.input :published, :collection => Kuhsaft::PublishState.all, :label_method => :human_name, :value_method => :value
+    .clear
+    - if localized.object.published == Kuhsaft::PublishState::PUBLISHED_AT
+      = localized.input :published_at, :as => :datetime
     = localized.input :keywords
     = localized.input :description
     = localized.input :locale, :as => :hidden

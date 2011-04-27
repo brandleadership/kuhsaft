@@ -1,7 +1,7 @@
 class Kuhsaft::LocalizedPage < ActiveRecord::Base
   belongs_to :page
   has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
-  scope :published, lambda{ where('published > 0 OR published_at < ?', DateTime.now)}
+  scope :published, lambda{ where('published = ? OR published_at < ?', Kuhsaft::PublishState::PUBLISHED, DateTime.now) }
   scope :search, lambda{ |term| published.where('fulltext LIKE ?', "%#{term}%").where('locale = ?', Kuhsaft::Page.current_translation_locale) }
   
   before_validation :create_slug, :create_url, :collect_fulltext
