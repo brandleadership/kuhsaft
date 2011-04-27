@@ -1,6 +1,7 @@
 class Kuhsaft::LocalizedPage < ActiveRecord::Base
   belongs_to :page
   has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
+  scope :search, lambda{ |term| where('fulltext LIKE ?', "%#{term}%") }
   
   before_validation :create_slug, :create_url, :collect_fulltext
   delegate :childs, :to => :page

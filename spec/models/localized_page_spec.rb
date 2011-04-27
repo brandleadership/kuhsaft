@@ -105,4 +105,23 @@ describe Kuhsaft::LocalizedPage do
       @page.fulltext.should include('oh la la')
     end
   end
+  
+  describe 'search' do
+    before do
+      Factory.create :page
+      Factory.create :page
+      Factory.create :page
+    end
+    
+    it 'should find any containing the search term' do
+      Kuhsaft::LocalizedPage.search('hi').should have_at_least(0).items
+    end
+    
+    it 'should find with "English Title"' do
+      puts "*"*20
+      puts Kuhsaft::Page.all.map{ |p| p.title.to_s + " "}
+      puts "*"*20
+      Kuhsaft::LocalizedPage.search('English Title').should have_at_least(1).item
+    end
+  end
 end
