@@ -22,6 +22,7 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   end
   
   def create_url
+    return if self.page_type == 'redirect'
     complete_slug = ''
     if page.present? && page.parent.present?
       complete_slug << page.parent.url.to_s

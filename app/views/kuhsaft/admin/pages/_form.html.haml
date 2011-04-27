@@ -2,17 +2,21 @@
   = page.fields_for :localized_pages, @localized_page do |localized|
     = localized.input :title
     = localized.input :slug, :required => false
+    = localized.input :page_type, :as => :radio, :collection => ['', 'redirect']
     = localized.input :published, :collection => Kuhsaft::PublishState.all, :label_method => :human_name, :value_method => :value
     .clear
-    - if localized.object.published == Kuhsaft::PublishState::PUBLISHED_AT
-      = localized.input :published_at, :as => :datetime
-    = localized.input :keywords
-    = localized.input :description
-    = localized.input :locale, :as => :hidden
-    = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
-      - unless page_part.object.persisted?
-        = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
-      = render :partial => page_part.object, :locals => { :input_form => page_part }
-      = page_part.input :_destroy, :as => :boolean
+    - unless localized.object.page_type == 'redirect'
+      - if localized.object.published == Kuhsaft::PublishState::PUBLISHED_AT
+        = localized.input :published_at, :as => :datetime
+      = localized.input :keywords
+      = localized.input :description
+      = localized.input :locale, :as => :hidden
+      = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
+        - unless page_part.object.persisted?
+          = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
+        = render :partial => page_part.object, :locals => { :input_form => page_part }
+        = page_part.input :_destroy, :as => :boolean
+    - else
+      = localized.input :url, :as => :string
   = page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
   = page.button :submit

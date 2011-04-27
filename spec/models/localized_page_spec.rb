@@ -52,6 +52,25 @@ describe Kuhsaft::LocalizedPage do
     @localized_page.destroy
   end
   
+  describe 'page_type' do
+    it 'should have a page_type' do
+      @localized_page.should respond_to(:page_type)
+    end
+    
+    it 'should generate the url with an empty page_type' do
+      page = Factory.create :page
+      page.translation.url.should eq('en/english-title')
+    end
+    
+    it 'should take the users url with a "redirect" page_type' do
+      page = Factory.create :page
+      page.translation.page_type = 'redirect'
+      page.translation.url = '/en/news'
+      page.save
+      page.translation.url.should eq('/en/news')
+    end
+  end
+  
   describe 'validations' do
     before do
       @localized_page = Factory.create :localized_page
