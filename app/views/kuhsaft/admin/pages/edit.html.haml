@@ -1,1 +1,7 @@
-= render :partial => 'form', :locals => { :url => Proc.new { |attrs| admin_page_path(@page, attrs) }, :link_url => Proc.new{ |attrs| edit_admin_page_path(@page, attrs) } }
+- Kuhsaft::Page.translation_locales.each do |locale|
+  = link_to locale.to_s, edit_admin_page_path(:locale => locale), :class => 'button'
+  
+= simple_form_for @page, :url => edit_admin_page_path(@page), :html => { :method => :get } do |form|
+  = form.input :page_part_type, :collection => Kuhsaft::PagePart::Content.page_part_types, :label_method => :to_name, :value_method => :to_s
+  = form.button :submit, :name => :add_page_part, :value => t('.add_page_part')
+= render :partial => 'form', :locals => { :url => admin_page_path(@page) }

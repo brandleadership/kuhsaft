@@ -6,33 +6,33 @@ class Kuhsaft::Page < ActiveRecord::Base
   scope :root_pages, where('parent_id IS NULL')
   default_scope order('position ASC')
   
-  delegate  :title, :title=, 
-            :slug, :slug=, 
-            :published, :published=, 
-            :keywords, :keywords=, 
-            :description, :description=, 
-            :locale, :locale=,
-            :body, :body=,
-            :url, :url=,
-            :to => :translation
+  delegate  :title, :slug, :published, :keywords, :description, :locale, :body, :url, :fulltext,
+            :to => :translation, :allow_nil => true
+  
+  accepts_nested_attributes_for :localized_pages
   
   after_save :save_translation
   after_create :set_position
+  
+  #
+  # Stores the selected type of page_part when created through the form
+  #
+  attr_accessor :page_part_type
   
   def root?
     parent.nil?
   end
   
-  def translation
-    unless @localized_page.present?
-      pages = localized_pages.where('locale = ?', Kuhsaft::Page.current_translation_locale)
-      @localized_page = pages.first unless pages.blank?
-    end
-    @localized_page ||= localized_pages.build :locale => Kuhsaft::Page.current_translation_locale
+  def translation lang = nil
+    lang ||= Kuhsaft::Page.current_translation_locale
+    @translation = localized_pages.where('locale = ?', lang).first if @translation.blank? || @translation.locale != lang
+    @translation
   end
   
   def save_translation
-    @localized_page.save unless @localized_page.blank?
+    unless @translation.blank?
+      @translation.save 
+    end
     childs.each do |child|
       child.translation.save if child.translation.persisted?
     end

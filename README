@@ -56,3 +56,12 @@ end
 == Usage
 
 ... to be continued
+
+
+== Adding new migrations in development
+
+1. create your_migration.rb in lib/temlates/kuhsaft/install
+2. drop migrations in spec/dummy/db/migrate: rm spec/dummy/db/migrate/*.rb
+3. drop existing development and test DB for the spec/dummy app: rake db:drop:all
+4. install new migrations:rails g kuhsaft:install:migrations
+5. run specs for your engine: rspec spec/, which generates your test tables with the new migrations (see spec_helper.rb)
