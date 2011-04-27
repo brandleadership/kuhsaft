@@ -1,7 +1,8 @@
 class Kuhsaft::LocalizedPage < ActiveRecord::Base
   belongs_to :page
   has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
-  scope :search, lambda{ |term| where('fulltext LIKE ?', "%#{term}%") }
+  scope :published, lambda{ where('published > 0 OR published_at < ?', DateTime.now)}
+  scope :search, lambda{ |term| published.where('fulltext LIKE ?', "%#{term}%").where('locale = ?', Kuhsaft::Page.current_translation_locale) }
   
   before_validation :create_slug, :create_url, :collect_fulltext
   delegate :childs, :to => :page
@@ -11,6 +12,10 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   validates :slug, :presence => true
   
   accepts_nested_attributes_for :page_parts, :allow_destroy => true
+  
+  def published?
+    published > 0 || (published_at < DateTime.now if published_at.present?)
+  end
   
   def locale
     read_attribute(:locale).to_sym unless read_attribute(:locale).nil?

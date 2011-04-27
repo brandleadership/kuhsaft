@@ -125,5 +125,13 @@ describe Kuhsaft::LocalizedPage do
     it 'should find with "English Title"' do
       Kuhsaft::LocalizedPage.search('English Title').should have_at_least(1).item
     end
+    
+    it 'should only find results with the current locale' do
+      Kuhsaft::LocalizedPage.search('English Title').should be_all { |p| p.locale == Kuhsaft::Page.current_translation_locale }
+    end
+    
+    it 'should only find published results' do
+      Kuhsaft::LocalizedPage.search('English Title').should be_all { |p| p.published? == true }
+    end
   end
 end
