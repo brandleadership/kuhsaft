@@ -81,6 +81,7 @@ describe Kuhsaft::LocalizedPage do
       @page.translation.page_parts << Kuhsaft::PagePart::Markdown.new(:text => 'oh la la1')
       @page.translation.page_parts << Kuhsaft::PagePart::Markdown.new(:text => 'oh la la2')
       @page.translation.page_parts << Kuhsaft::PagePart::Markdown.new(:text => 'oh la la3')
+      @page.translation.page_parts << Kuhsaft::PagePart::Markdown.new(:text => nil)
       @page.save
     end
     
@@ -104,6 +105,10 @@ describe Kuhsaft::LocalizedPage do
     it 'should contain the page part content' do
       @page.fulltext.should include('oh la la')
     end
+    
+    it 'should convert all data to strings' do
+      expect { @page.translation.collect_fulltext }.to_not raise_error
+    end
   end
   
   describe 'search' do
@@ -118,9 +123,6 @@ describe Kuhsaft::LocalizedPage do
     end
     
     it 'should find with "English Title"' do
-      puts "*"*20
-      puts Kuhsaft::Page.all.map{ |p| p.title.to_s + " "}
-      puts "*"*20
       Kuhsaft::LocalizedPage.search('English Title').should have_at_least(1).item
     end
   end

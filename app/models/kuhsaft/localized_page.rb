@@ -37,10 +37,10 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
     self.fulltext = page_parts.inject('') do |text, page_part|
       page_part.class.searchable_attributes.each do |attr|
         text << ' '
-        text << page_part.send(attr)
+        text << page_part.send(attr).to_s
       end
       text
     end
-    self.fulltext << [title, keywords, description].join(' ')
+    self.fulltext << [title.to_s, keywords.to_s, description.to_s].join(' ')
   end
 end
