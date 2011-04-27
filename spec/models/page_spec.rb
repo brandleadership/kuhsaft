@@ -124,6 +124,14 @@ describe Kuhsaft::Page do
     page.link.should == child.link
   end
   
+  it 'should not modify the url when it\'s a redirect' do
+    page = Factory.create :page
+    page.translation.page_type = 'redirect'
+    page.translation.url = '/en/news'
+    page.save
+    page.link.should eq('/en/news')
+  end
+  
   it 'should find its translated content by url' do
     destroy_all_pages
     page = Factory.create(:page)

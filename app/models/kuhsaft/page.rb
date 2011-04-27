@@ -90,10 +90,14 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def link
-    if body.blank? && childs.count > 0
+    if translation.page_parts.count == 0 && childs.count > 0
       childs.first.link
     else
-      "/#{url}"
+      if translation.page_type == 'redirect'
+        url
+      else
+        "/#{url}"
+      end
     end
   end
   
