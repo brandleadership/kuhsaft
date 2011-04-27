@@ -6,7 +6,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   scope :root_pages, where('parent_id IS NULL')
   default_scope order('position ASC')
   
-  delegate  :title, :slug, :published, :keywords, :description, :locale, :body, :url,
+  delegate  :title, :slug, :published, :keywords, :description, :locale, :body, :url, :fulltext,
             :to => :translation, :allow_nil => true
   
   accepts_nested_attributes_for :localized_pages
@@ -14,6 +14,9 @@ class Kuhsaft::Page < ActiveRecord::Base
   after_save :save_translation
   after_create :set_position
   
+  #
+  # Stores the selected type of page_part when created through the form
+  #
   attr_accessor :page_part_type
   
   def root?
@@ -27,7 +30,9 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def save_translation
-    @translation.save unless @translation.blank?
+    unless @translation.blank?
+      @translation.save 
+    end
     childs.each do |child|
       child.translation.save if child.translation.persisted?
     end

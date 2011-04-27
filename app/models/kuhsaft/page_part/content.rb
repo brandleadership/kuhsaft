@@ -20,6 +20,15 @@ module Kuhsaft
             self.content[name] = val
           end
         end
+        
+        def searchable_attr name
+          name = name.to_sym
+          searchable_attributes << name
+        end
+        
+        def searchable_attributes
+          @searchable_attributes ||= []
+        end
 
         def serializeable_attributes
           @serializeable_attributes ||= []

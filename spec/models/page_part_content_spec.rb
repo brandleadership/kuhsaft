@@ -19,6 +19,10 @@ describe 'PagePart' do
         Kuhsaft::PagePart::Content.serializeable_attributes.should be_a(Array)
       end
       
+      it 'should keep a list of searchable attributes' do
+        Kuhsaft::PagePart::Content.searchable_attributes.should be_a(Array)
+      end
+      
       it 'should have a list of page_part_types' do
         Kuhsaft::PagePart::Content.page_part_types.should be_all { |p| p.superclass.should eq Kuhsaft::PagePart::Content }
       end
@@ -40,6 +44,10 @@ describe 'PagePart' do
     
     it 'should have text' do
       @m.should respond_to(:text)
+    end
+    
+    it 'should have searchable text' do
+      Kuhsaft::PagePart::Markdown.searchable_attributes.should include(:text)
     end
     
     it 'should store text' do

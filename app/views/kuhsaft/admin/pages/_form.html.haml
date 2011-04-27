@@ -9,5 +9,6 @@
       - unless page_part.object.persisted?
         = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
       = render :partial => page_part.object, :locals => { :input_form => page_part }
+      = page_part.input :_destroy, :as => :boolean
   = page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
   = page.button :submit

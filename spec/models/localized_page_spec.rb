@@ -13,6 +13,10 @@ describe Kuhsaft::LocalizedPage do
     @localized_page.published?.should be_true
   end
   
+  it 'should have a fulltext field' do
+    @localized_page.should respond_to(:fulltext)
+  end
+  
   it 'should not be published when set to false' do
     @localized_page.update_attribute :published, false
     @localized_page.published?.should be_false
@@ -65,6 +69,40 @@ describe Kuhsaft::LocalizedPage do
     
     after do
       @localized_page.destroy
+    end
+  end
+  
+  describe 'fulltext' do
+    before do
+      @page =  Factory.create :page
+      @page.translation.keywords = 'key words'
+      @page.translation.description = 'descrip tion'
+      @page.translation.title = 'my title'
+      @page.translation.page_parts << Kuhsaft::PagePart::Markdown.new(:text => 'oh la la1')
+      @page.translation.page_parts << Kuhsaft::PagePart::Markdown.new(:text => 'oh la la2')
+      @page.translation.page_parts << Kuhsaft::PagePart::Markdown.new(:text => 'oh la la3')
+      @page.save
+    end
+    
+    it 'should collect the fulltext when saved' do
+      @page.translation.should_receive(:collect_fulltext)
+      @page.save
+    end
+    
+    it 'should contain the title' do
+      @page.fulltext.should include('my title')
+    end
+    
+    it 'should contain the keywords' do
+      @page.fulltext.should include('key words')
+    end
+    
+    it 'should contain the description' do
+      @page.fulltext.should include('descrip tion')
+    end
+    
+    it 'should contain the page part content' do
+      @page.fulltext.should include('oh la la')
     end
   end
 end
