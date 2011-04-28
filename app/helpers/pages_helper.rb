@@ -3,7 +3,8 @@ module PagesHelper
     lang = Kuhsaft::Page.current_translation_locale
     page = Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.page
     page.translation
-    return page
+    yield page if block_given?
+    page
   rescue
   end
   
@@ -23,23 +24,28 @@ module PagesHelper
 
   def navigation_for id
     if id.blank?
-      Kuhsaft::Page.root_pages
+      pages = Kuhsaft::Page.root_pages
     else
-      Kuhsaft::Page.where('parent_id = ?', id)
+      pages = Kuhsaft::Page.where('parent_id = ?', id)
     end
+    yield pages if block_given?
+    pages
   end
 
   def page_for_level num
     url = params[:url].split('/').take(num + 1).join('/') unless params[:url].blank?
-    Kuhsaft::Page.find_by_url(url)
+    page = Kuhsaft::Page.find_by_url(url)
+    yield page if block_given?
+    page
+  rescue
   end
 
   def active_page_class page
     url = params[:url].presence || ''
-    url.include?(page.url.to_s) ? 'active' : nil
+    url.include?(page.url.to_s) ? :active : nil
   end
 
   def current_page_class page
-    'current' if active_page_class(page) == 'active'
+    :current if active_page_class(page) == :active
   end
 end
