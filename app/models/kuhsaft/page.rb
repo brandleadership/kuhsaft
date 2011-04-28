@@ -1,5 +1,5 @@
 class Kuhsaft::Page < ActiveRecord::Base
-  has_many :localized_pages
+  has_many :localized_pages, :dependent => :destroy
   has_many :childs, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
   belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
   
