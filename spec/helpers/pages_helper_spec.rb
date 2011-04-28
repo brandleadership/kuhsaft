@@ -30,6 +30,11 @@ describe PagesHelper do
       navigation_for(@page.id) { |pages| @yielded_pages = pages }
       @yielded_pages.should respond_to(:each) # don't be explicity about AR:Relation
     end
+    
+    it 'should not yield if there are not pages' do
+      navigation_for(9999) { |pages| @yielded_pages = pages }
+      @yielded_pages.should be_nil
+    end
   end
 
   it '#current_page_path should return the path for the current page' do

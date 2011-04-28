@@ -28,7 +28,7 @@ module PagesHelper
     else
       pages = Kuhsaft::Page.where('parent_id = ?', id)
     end
-    yield pages if block_given?
+    yield pages if block_given? && pages.length > 0
     pages
   end
 
