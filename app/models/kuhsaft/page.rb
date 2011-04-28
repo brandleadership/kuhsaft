@@ -23,6 +23,17 @@ class Kuhsaft::Page < ActiveRecord::Base
     parent.nil?
   end
   
+  def parent_pages
+    parent_pages_list = []
+    parent = self
+    
+    while parent
+      parent_pages_list << parent unless parent.translation.page_type == Kuhsaft::PageType::NAVIGATION
+      parent = parent.parent
+    end
+    parent_pages_list.reverse
+  end
+  
   def translation lang = nil
     lang ||= Kuhsaft::Page.current_translation_locale
     @translation = localized_pages.where('locale = ?', lang).first if @translation.blank? || @translation.locale != lang

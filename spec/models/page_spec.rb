@@ -164,6 +164,20 @@ describe Kuhsaft::Page do
     @page.should respond_to(:page_part_type)
   end
   
+  describe '#parent_pages' do
+    it 'should have parent_pages' do
+      @page.should respond_to(:parent_pages)
+    end
+    
+    it 'should have a list of parent pages' do
+      @page.parent_pages.should be_instance_of(Array)
+    end
+    
+    it 'should be ordered from top to bottom' do
+      @page.parent_pages.last.should be(@page)
+    end
+  end
+  
   describe 'should delegate' do
     it 'slug, title, keywords and description to the translation' do
       [:slug, :title, :keywords, :description].each do |attr|
