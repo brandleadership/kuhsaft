@@ -93,7 +93,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     if translation.page_parts.count == 0 && childs.count > 0
       childs.first.link
     else
-      if translation.page_type == 'redirect'
+      if translation.page_type == Kuhsaft::PageType::REDIRECT
         url
       else
         "/#{url}"

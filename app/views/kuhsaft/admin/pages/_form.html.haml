@@ -2,10 +2,10 @@
   = page.fields_for :localized_pages, @localized_page do |localized|
     = localized.input :title
     = localized.input :slug, :required => false
-    = localized.input :page_type, :as => :radio, :collection => ['', 'redirect']
+    = localized.input :page_type, :as => :radio, :collection => Kuhsaft::PageType.all
     = localized.input :published, :collection => Kuhsaft::PublishState.all, :label_method => :human_name, :value_method => :value
     .clear
-    - unless localized.object.page_type == 'redirect'
+    - unless localized.object.page_type == Kuhsaft::PageType::REDIRECT
       - if localized.object.published == Kuhsaft::PublishState::PUBLISHED_AT
         = localized.input :published_at, :as => :datetime
       = localized.input :keywords

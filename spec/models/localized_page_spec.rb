@@ -57,17 +57,26 @@ describe Kuhsaft::LocalizedPage do
       @localized_page.should respond_to(:page_type)
     end
     
-    it 'should generate the url with an empty page_type' do
+    it 'should just generate the url when the page_type is empty' do
       page = Factory.create :page
       page.translation.url.should eq('en/english-title')
     end
     
-    it 'should take the users url with a "redirect" page_type' do
+    it 'should save the users url with a "REDIRECT" page_type' do
       page = Factory.create :page
-      page.translation.page_type = 'redirect'
+      page.translation.page_type = Kuhsaft::PageType::REDIRECT
       page.translation.url = '/en/news'
       page.save
       page.translation.url.should eq('/en/news')
+    end
+    
+    it 'should not use the slug in the url when the page_type is "NAVIGATION"' do
+      page = Factory.create :page
+      child_page = Factory.create :page
+      page.childs << child_page
+      page.translation.page_type = Kuhsaft::PageType::NAVIGATION
+      page.save
+      child_page.translation.url.should eq('en/english-title')
     end
   end
   
