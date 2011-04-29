@@ -44,6 +44,19 @@ describe PagesHelper do
       navigation_for(:slug => 'test').should have(1).item
     end
   end
+  
+  describe '#homepage' do
+    before do
+      page1, page2, page3 = create_page_tree
+      page1.translation.page_type = page2.translation.page_type = Kuhsaft::PageType::NAVIGATION
+      page1.save
+      page2.save
+    end
+    
+    it 'should return the first page in the page hierarchy' do
+      homepage.should be_a(Kuhsaft::Page)
+    end
+  end
 
   it '#current_page_path should return the path for the current page' do
     @page.localized_pages.create :locale => :de, :title => 'seite1'

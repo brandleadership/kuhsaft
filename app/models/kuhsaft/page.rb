@@ -6,7 +6,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   scope :root_pages, where('parent_id IS NULL')
   default_scope order('position ASC')
   
-  delegate  :title, :slug, :published, :keywords, :description, :locale, :body, :url, :fulltext,
+  delegate  :title, :slug, :published, :published?, :page_type, :keywords, :description, :locale, :body, :url, :fulltext,
             :to => :translation, :allow_nil => true
   
   accepts_nested_attributes_for :localized_pages

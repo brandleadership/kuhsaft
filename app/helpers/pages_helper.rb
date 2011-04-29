@@ -34,6 +34,10 @@ module PagesHelper
     pages
   end
   
+  def homepage
+    Kuhsaft::Page.root_pages.first
+  end
+  
   def page_for_level num
     url = params[:url].split('/').take(num + 1).join('/') unless params[:url].blank?
     page = Kuhsaft::Page.find_by_url(url)
