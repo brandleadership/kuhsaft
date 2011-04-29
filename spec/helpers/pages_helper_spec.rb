@@ -35,6 +35,14 @@ describe PagesHelper do
       navigation_for(9999) { |pages| @yielded_pages = pages }
       @yielded_pages.should be_nil
     end
+    
+    it 'should accept options instead of an id' do
+      page1, page2, page3 = create_page_tree
+      page1.translation.page_type = Kuhsaft::PageType::NAVIGATION
+      page1.translation.slug = 'test'
+      page1.save
+      navigation_for(:slug => 'test').should have(1).item
+    end
   end
 
   it '#current_page_path should return the path for the current page' do

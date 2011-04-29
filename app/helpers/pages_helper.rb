@@ -22,16 +22,18 @@ module PagesHelper
     Kuhsaft::Asset.find(id)
   end
 
-  def navigation_for id
-    if id.blank?
-      pages = Kuhsaft::Page.root_pages
-    else
+  def navigation_for options
+    if options.is_a?(Hash) && slug = options.delete(:slug)
+      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.childs
+    elsif (options.is_a?(Fixnum) && id = options) ||  id = options.delete(:id)
       pages = Kuhsaft::Page.where('parent_id = ?', id)
+    elsif options.nil?
+      pages = Kuhsaft::Page.root_pages
     end
     yield pages if block_given? && pages.length > 0
     pages
   end
-
+  
   def page_for_level num
     url = params[:url].split('/').take(num + 1).join('/') unless params[:url].blank?
     page = Kuhsaft::Page.find_by_url(url)
