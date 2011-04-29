@@ -1,4 +1,4 @@
-- content_for :toolbar do
+- content_for :admin_toolbar do
   = link_to t('.create'), new_admin_page_path, :class => 'button'
 %ul.pages-root.sortable
   = render :partial => 'branch', :locals => { :pages => @pages }
