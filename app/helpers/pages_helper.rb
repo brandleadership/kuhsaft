@@ -21,6 +21,10 @@ module PagesHelper
   def asset_for id
     Kuhsaft::Asset.find(id)
   end
+  
+  def render_markdown text
+    RDiscount.new(text).to_html if text.present?
+  end
 
   def navigation_for options
     if options.is_a?(Hash) && slug = options.delete(:slug)

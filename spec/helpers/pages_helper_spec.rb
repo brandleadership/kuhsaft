@@ -14,6 +14,12 @@ describe PagesHelper do
     asset_for(asset.id).should eq(asset)
   end
   
+  describe '#render_markdown' do
+    it 'should parse markdown and convert it to html' do
+      render_markdown('# hi').should eq("<h1>hi</h1>\n")
+    end
+  end
+  
   describe '#navigation_for' do
     before do
       @page = Factory.create :page
