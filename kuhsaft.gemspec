@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~>3.0'
   s.add_dependency 'haml', '3.0.25'
-  s.add_dependency 'compass', '0.10.6'
+  s.add_dependency 'compass', '0.11.1'
   s.add_dependency 'simple_form'
   s.add_dependency 'carrierwave', '0.5.2'
   s.add_dependency 'rmagick', '2.12.2'
