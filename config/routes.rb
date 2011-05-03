@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   scope :module => :kuhsaft do
     scope ':locale' do
-      namespace :admin do
+      namespace :cms do
         resources :pages
       end
     end
 
-    namespace :admin do
+    namespace :cms do
       resources :assets
     end
   end

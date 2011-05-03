@@ -1,0 +1,10 @@
+- unless pages.blank?
+  - pages.each do |page|
+    %li.page-branch{ :'data-id' => page.id }
+      = link_to page.title, edit_cms_page_path(page), :class => :edit
+      = link_to t('kuhsaft.admin.pages.index.add'), new_cms_page_path(:parent_id => page.id), :class => 'new-child button'
+      = link_to t('kuhsaft.admin.pages.index.delete'), cms_page_path(page), :confirm => t('kuhsaft.admin.pages.index.confirm'), :method => :delete, :class => 'delete button negative' if page.childs.empty?
+      .clear
+      - unless page.childs.empty?
+        %ul.sortable
+          = render :partial => 'branch', :locals => { :pages => page.childs }

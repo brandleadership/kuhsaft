@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Admin::PagesController do
+describe Kuhsaft::Cms::PagesController do
   render_views
 
   describe 'should render successfully' do

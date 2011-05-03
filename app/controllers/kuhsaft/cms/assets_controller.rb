@@ -1,5 +1,5 @@
 module Kuhsaft
-  module Admin
+  module Cms
     class AssetsController < AdminController
       def index
         @assets = Kuhsaft::Asset.by_date

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Admin::AssetsController do
+describe Kuhsaft::Cms::AssetsController do
   render_views
   
   before do

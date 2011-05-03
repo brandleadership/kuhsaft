@@ -10,61 +10,61 @@ describe 'routing to Kuhsaft::PagesController' do
   end
 end
 
-describe 'routing to Kuhsaft::Admin::PagesController' do
-  it 'routes /en/admin/pages to admin/pages#index' do
-    { :get => '/en/admin/pages' }.should route_to(
-      :controller => 'kuhsaft/admin/pages',
+describe 'routing to Kuhsaft::cms::PagesController' do
+  it 'routes /en/cms/pages to cms/pages#index' do
+    { :get => '/en/cms/pages' }.should route_to(
+      :controller => 'kuhsaft/cms/pages',
       :action => 'index',
       :locale => 'en'
     )
   end
 
-  it 'routes POST /en/admin/pages to admin/pages#create' do
-    { :post => '/en/admin/pages' }.should route_to(
-      :controller => 'kuhsaft/admin/pages',
+  it 'routes POST /en/cms/pages to cms/pages#create' do
+    { :post => '/en/cms/pages' }.should route_to(
+      :controller => 'kuhsaft/cms/pages',
       :action => 'create',
       :locale => 'en'
     )
   end
   
-  it 'routes PUT /en/admin/pages/:id to admin/pages#update' do
-    { :put => '/en/admin/pages/1' }.should route_to(
-      :controller => 'kuhsaft/admin/pages',
+  it 'routes PUT /en/cms/pages/:id to cms/pages#update' do
+    { :put => '/en/cms/pages/1' }.should route_to(
+      :controller => 'kuhsaft/cms/pages',
       :action => 'update',
       :id => '1',
       :locale => 'en'
     )
   end
   
-  it 'routes DELETE /en/admin/pages/:id to admin/pages#destroy' do
-    { :delete => '/en/admin/pages/1' }.should route_to(
-      :controller => 'kuhsaft/admin/pages',
+  it 'routes DELETE /en/cms/pages/:id to cms/pages#destroy' do
+    { :delete => '/en/cms/pages/1' }.should route_to(
+      :controller => 'kuhsaft/cms/pages',
       :action => 'destroy',
       :id => '1',
       :locale => 'en'
     )
   end
   
-  it 'routes /en/admin/pages/:id to admin/pages#show' do
-    { :get => '/en/admin/pages/1' }.should route_to(
-      :controller => 'kuhsaft/admin/pages',
+  it 'routes /en/cms/pages/:id to cms/pages#show' do
+    { :get => '/en/cms/pages/1' }.should route_to(
+      :controller => 'kuhsaft/cms/pages',
       :action => 'show',
       :id => '1',
       :locale => 'en'
     )
   end
   
-  it 'routes /en/admin/pages/new to admin/pages#new' do
-    { :get => '/en/admin/pages/new' }.should route_to(
-      :controller => 'kuhsaft/admin/pages',
+  it 'routes /en/cms/pages/new to cms/pages#new' do
+    { :get => '/en/cms/pages/new' }.should route_to(
+      :controller => 'kuhsaft/cms/pages',
       :action => 'new',
       :locale => 'en'
     )  
   end
   
-  it 'routes /en/admin/pages/:id/edit to admin/pages#edit' do
-    { :get => '/en/admin/pages/1/edit' }.should route_to(
-        :controller => 'kuhsaft/admin/pages',
+  it 'routes /en/cms/pages/:id/edit to cms/pages#edit' do
+    { :get => '/en/cms/pages/1/edit' }.should route_to(
+        :controller => 'kuhsaft/cms/pages',
         :action => 'edit',
         :id => '1',
         :locale => 'en'    

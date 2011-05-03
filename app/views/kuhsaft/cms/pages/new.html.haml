@@ -1,0 +1,3 @@
+- Kuhsaft::Page.translation_locales.each do |locale|
+  = link_to locale.to_s, new_cms_page_path(:locale => locale), :class => 'button'
+= render :partial => 'form', :locals => { :url => cms_pages_path }

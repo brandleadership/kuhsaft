@@ -1,5 +1,5 @@
 module Kuhsaft
-  module Admin
+  module Cms
     class PagesController < AdminController
       helper :all
 
@@ -26,7 +26,7 @@ module Kuhsaft
           parent.childs << @page
           parent.save
         end
-        respond_with @page, :location => edit_admin_page_path(@page)
+        respond_with @page, :location => edit_cms_page_path(@page)
       end
 
       def edit
@@ -45,7 +45,7 @@ module Kuhsaft
         @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
         # TODO: refactor 'reposition' as a page attribute, so it can be set through update_attributes
         @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
-        respond_with @page, :location => edit_admin_page_path(@page)
+        respond_with @page, :location => edit_cms_page_path(@page)
       end
 
       def destroy

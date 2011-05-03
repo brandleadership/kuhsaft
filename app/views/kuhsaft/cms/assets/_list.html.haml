@@ -8,4 +8,4 @@
         .copy-link
           %input{ :type => :text, :value => asset.file.url }
       %td
-        = link_to t('kuhsaft.admin.assets.index.delete'), admin_asset_path(asset), :confirm => t('kuhsaft.admin.assets.index.confirm'), :method => :delete, :class => 'delete button negative'
+        = link_to t('kuhsaft.admin.assets.index.delete'), cms_asset_path(asset), :confirm => t('kuhsaft.admin.assets.index.confirm'), :method => :delete, :class => 'delete button negative'

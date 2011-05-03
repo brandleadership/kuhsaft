@@ -1,5 +1,5 @@
 module Kuhsaft
-  module Admin
+  module Cms
     class AdminController < ApplicationController
       
       respond_to :html
