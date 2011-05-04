@@ -16,7 +16,7 @@
       %ul.module-nav
         %li= link_to t('.pages_nav'), cms_pages_path
         %li= link_to t('.assets_nav'), cms_assets_path
-        = render :partial => 'admin/admin_navigation' rescue ''
+        = render :partial => 'cms/admin_navigation' rescue ''
       .toolbar
         = yield :admin_toolbar
         .clear
