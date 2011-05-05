@@ -51,7 +51,7 @@ module Kuhsaft
       def destroy
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy
-        redirect_to admin_pages_path
+        redirect_to cms_pages_path
       end
     end
   end
