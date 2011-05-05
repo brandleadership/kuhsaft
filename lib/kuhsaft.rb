@@ -4,4 +4,5 @@ module Kuhsaft
   require 'simple_form'
   require 'carrierwave'
   require 'rdiscount'
+  require 'compass'
 end
