@@ -23,6 +23,7 @@ module Kuhsaft
         install_migration_once 'add_fulltext_to_localized_page.rb'
         install_migration_once 'add_page_type_to_localized_pages.rb'
         install_migration_once 'add_published_at_to_localized_pages.rb'
+        install_migration_once 'add_tags_to_page_part_contents.rb'
       end
       
       private      

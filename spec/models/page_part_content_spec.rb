@@ -14,6 +14,14 @@ describe 'PagePart' do
       @content.should respond_to(:content)
     end
     
+    it 'should be orderable' do
+      @content.should respond_to(:position)
+    end
+    
+    it 'should have tags' do
+      @content.should respond_to(:tags)
+    end
+    
     context 'class' do
       it 'should keep a list of the serializeable attributes' do
         Kuhsaft::PagePart::Content.serializeable_attributes.should be_a(Array)

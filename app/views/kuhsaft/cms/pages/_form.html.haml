@@ -2,7 +2,8 @@
   = page.fields_for :localized_pages, @localized_page do |localized|
     = localized.input :title
     = localized.input :slug, :required => false
-    = localized.input :page_type, :as => :radio, :collection => Kuhsaft::PageType.all
+    = localized.input :page_type, :collection => Kuhsaft::PageType.all
+    .clear
     = localized.input :published, :collection => Kuhsaft::PublishState.all, :label_method => :human_name, :value_method => :value
     .clear
     - unless localized.object.page_type == Kuhsaft::PageType::REDIRECT
@@ -11,11 +12,13 @@
       = localized.input :keywords
       = localized.input :description
       = localized.input :locale, :as => :hidden
-      = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
-        - unless page_part.object.persisted?
-          = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
-        = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
-        = page_part.input :_destroy, :as => :boolean
+      .edit-page-part.markdown-page-part
+        = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
+          - unless page_part.object.persisted?
+            = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
+          = page_part.input :tags, :as => :string
+          = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
+          = page_part.input :_destroy, :as => :boolean
     - else
       = localized.input :url, :as => :string
   = page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?

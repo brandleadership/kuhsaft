@@ -1,6 +1,8 @@
 module Kuhsaft
   module PagePart
     class Content < ActiveRecord::Base
+      include Kuhsaft::Orderable
+      
       belongs_to :localized_page      
       serialize :content
       
