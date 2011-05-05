@@ -14,7 +14,7 @@
       = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
         - unless page_part.object.persisted?
           = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
-        = render :partial => page_part.object, :locals => { :input_form => page_part }
+        = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
         = page_part.input :_destroy, :as => :boolean
     - else
       = localized.input :url, :as => :string

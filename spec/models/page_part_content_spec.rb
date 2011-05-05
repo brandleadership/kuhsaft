@@ -60,5 +60,17 @@ describe 'PagePart' do
       m2 = Kuhsaft::PagePart::Markdown.find(m.id)
       m2.text.should eq('hi')
     end
+    
+    describe 'edit_partial_path' do
+      it 'should return kuhsaft/page_part/markdowns/edit_markdown' do
+        @m.edit_partial_path.should eq('kuhsaft/page_part/markdowns/edit_markdown')
+      end
+    end
+    
+    describe 'show_partial_path' do
+      it 'should return kuhsaft/page_part/markdowns/show_markdown' do
+        @m.show_partial_path.should eq('kuhsaft/page_part/markdowns/show_markdown')
+      end
+    end
   end
 end

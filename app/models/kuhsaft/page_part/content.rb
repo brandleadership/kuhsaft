@@ -43,6 +43,19 @@ module Kuhsaft
         end
       end
       
+      def edit_partial_path
+        path = self.class.model_name.partial_path.split '/'
+        path << "edit_#{path.pop}"
+        path.join '/'
+        #self.class.model_name.partial_path
+      end
+      
+      def show_partial_path
+        path = self.class.model_name.partial_path.split '/'
+        path << "show_#{path.pop}"
+        path.join '/'
+      end
+      
       private
       #
       # OMFG, OMFG!!! http://stackoverflow.com/questions/5178204/what-is-a-better-way-to-create-sti-model-instance
