@@ -200,8 +200,8 @@ describe Kuhsaft::Page do
   end
   
   describe 'should delegate' do
-    it 'slug, title, published, published?, page_type, fulltext, keywords and description to the translation' do
-      [:slug, :title, :published, :published?, :page_type, :fulltext, :keywords, :description].each do |attr|
+    it 'slug, title, published, published?, page_type, fulltext, keywords, page_parts and description to the translation' do
+      [:slug, :title, :published, :published?, :page_type, :fulltext, :keywords, :page_parts, :description].each do |attr|
         @page.send(attr).should eq(@page.translation.send(attr))
       end
     end
