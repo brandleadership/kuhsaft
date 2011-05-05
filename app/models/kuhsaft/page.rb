@@ -63,6 +63,14 @@ class Kuhsaft::Page < ActiveRecord::Base
     end
   end
   
+  def redirect?
+    page_type == Kuhsaft::PageType::REDIRECT
+  end
+  
+  def navigation?
+    page_type == Kuhsaft::PageType::NAVIGATION
+  end
+  
   class << self
     def position_of id
       Kuhsaft::Page.find(id).position rescue 1

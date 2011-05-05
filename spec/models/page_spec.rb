@@ -178,6 +178,27 @@ describe Kuhsaft::Page do
     end
   end
   
+  describe 'page types' do
+    
+    before do
+      @page = Factory::create :page
+    end
+    
+    describe '#navigation?' do
+      it 'should be true if the page_type is PageType::NAVIGATION' do
+        @page.translation.page_type = Kuhsaft::PageType::NAVIGATION
+        @page.navigation?.should be_true
+      end
+    end
+    
+    describe '#redirect?' do
+      it 'should be true if the page_type is PageType::REDIRECT' do
+        @page.translation.page_type = Kuhsaft::PageType::REDIRECT
+        @page.redirect?.should be_true
+      end
+    end
+  end
+  
   describe 'should delegate' do
     it 'slug, title, published, published?, page_type, fulltext, keywords and description to the translation' do
       [:slug, :title, :published, :published?, :page_type, :fulltext, :keywords, :description].each do |attr|
