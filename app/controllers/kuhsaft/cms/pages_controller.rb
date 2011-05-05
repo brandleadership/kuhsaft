@@ -1,8 +1,6 @@
 module Kuhsaft
   module Cms
     class PagesController < AdminController
-      helper :all
-
       def index
         @pages = Kuhsaft::Page.root_pages
         respond_with @pages
