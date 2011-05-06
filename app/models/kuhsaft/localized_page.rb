@@ -3,7 +3,15 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
 
   scope :current_locale, lambda{ where('locale = ?', Kuhsaft::Page.current_translation_locale) }
-  scope :published, lambda{ where('published = ? OR published_at < ?', Kuhsaft::PublishState::PUBLISHED, DateTime.now) }
+  
+  scope :published, lambda{ 
+    where('published = ? OR published_at < ? AND published = ?', 
+      Kuhsaft::PublishState::PUBLISHED, 
+      DateTime.now, 
+      Kuhsaft::PublishState::PUBLISHED_AT
+    )
+  }
+  
   scope :search, lambda{ |term| current_locale.published.where('fulltext LIKE ?', "%#{term}%") }
   scope :navigation, lambda{ |slug| current_locale.published.where('slug = ?', slug) }
   
