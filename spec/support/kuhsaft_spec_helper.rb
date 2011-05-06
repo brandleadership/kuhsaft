@@ -15,8 +15,11 @@ module KuhsaftSpecHelper
   
   def create_page_tree
     page1 = Factory.create :page
+    page1.translation.update_attribute :title, 'English Title 1'
     page2 = Factory.create :page
+    page2.translation.update_attribute :title, 'English Title 2'
     page3 = Factory.create :page
+    page3.translation.update_attribute :title, 'English Title 3'
     
     page1.childs << page2
     page1.save

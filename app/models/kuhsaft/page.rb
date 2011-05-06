@@ -8,7 +8,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   scope :root_pages, where('parent_id IS NULL')
   default_scope order('position ASC')
   
-  delegate  :title, :slug, :published, :published?, :page_type, :keywords, :description, :locale, :body, :url, :fulltext, :page_parts,
+  delegate  :title, :slug, :published, :published?, :page_type, :keywords, :description, 
+            :locale, :body, :url, :fulltext, :page_parts, :redirect?, :navigation?,
             :to => :translation, :allow_nil => true
   
   accepts_nested_attributes_for :localized_pages
@@ -55,20 +56,12 @@ class Kuhsaft::Page < ActiveRecord::Base
     if translation.page_parts.count == 0 && childs.count > 0
       childs.first.link
     else
-      if translation.page_type == Kuhsaft::PageType::REDIRECT
+      if translation.redirect?
         url
       else
         "/#{url}"
       end
     end
-  end
-  
-  def redirect?
-    page_type == Kuhsaft::PageType::REDIRECT
-  end
-  
-  def navigation?
-    page_type == Kuhsaft::PageType::NAVIGATION
   end
   
   class << self

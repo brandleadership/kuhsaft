@@ -15,188 +15,227 @@ describe Kuhsaft::Page do
     @page = Factory.create :page
   end
   
-  it 'should have many localized_pages' do
-    @page.localized_pages.should have_at_least(1).page
-  end
-  
-  it 'should have child pages' do
-    p = Factory.create(:page)
-    @page.childs << p
-    @page.childs.should have_at_least(1).page
-  end
-  
-  it 'should be the root page' do
-    @page.root?.should be(true)
-  end
-  
-  it 'should have a parent page' do
-    child = Factory.create(:page)
-    @page.childs << child
-    child.parent.should eq(@page)
-  end
-  
-  it 'should have a list of root pages' do
-    root_page = Factory.create :page
-    root_page.childs << Factory.create(:page)
-    root_page.childs << Factory.create(:page)
-    Kuhsaft::Page.root_pages.should have_at_least(2).pages
-  end
-  
-  it 'should increment it\'s position by 1' do
-    page = Factory.create :page
-    position = page.position
-    page.increment_position
-    page.position.should == (position + 1)
-  end
-  
-  it 'should decrement it\'s position by 1' do
-    page = Factory.create :page
-    position = page.position
-    page.decrement_position
-    page.position.should == (position - 1)
-  end
-  
-  it 'should find the position of a page' do
-    page = Factory.create :page
-    position = page.position
-    Kuhsaft::Page.position_of(page.id).should == position
-  end
-  
-  it 'should find the predecing sibling' do
-    page1 = Factory.create :page
-    page2 = Factory.create :page
-    page3 = Factory.create :page
-    page3.preceding_sibling.id.should == page2.id
-  end
-  
-  it 'should find the succeeding sibling' do
-    page1 = Factory.create :page
-    page2 = Factory.create :page
-    page3 = Factory.create :page
-    page2.succeeding_sibling.id.should == page3.id
-  end
-  
-  it 'should reposition before a page' do
-    page1 = Factory.create :page
-    page2 = Factory.create :page
-    page3 = Factory.create :page
-    page3.reposition page1.id
-    page3.preceding_sibling.id.should == page1.id
-  end
-  
-  it 'should reposition before all siblings' do
-    page1 = Factory.create :page
-    page2 = Factory.create :page
-    page2.reposition nil
-    page2.position.should == 1
-  end
-  
-  it 'should save the translation when saved' do
-    @page.translation.title = 'some localized title'
-    @page.should_receive(:save_translation)
-    @page.save
-  end
-  
-  it 'should have an url when saved' do
-    page = Factory.create :page
-    page.url.should == 'en/english-title'
-  end
-  
-  it 'should have a link' do
-    page = Factory.create :page
-    page.link.should == '/en/english-title'
-  end
-  
-  it 'should include the parents slug in its url' do
-    page = Factory.create :page
-    child = Factory.create :page
-    page.childs << child
-    page.save
-    child.url.should == 'en/english-title/english-title'
-  end
-  
-  it 'should return the link of its first child when its empty' do
-    page = Factory.create :page
-    child = Factory.create :page
-    page.childs << child
-    page.translation.body = nil
-    page.save
-    page.link.should == child.link
-  end
-  
-  it 'should not modify the url when it\'s a redirect' do
-    page = Factory.create :page
-    page.translation.page_type = 'redirect'
-    page.translation.url = '/en/news'
-    page.save
-    page.link.should eq('/en/news')
-  end
-  
-  it 'should find its translated content by url' do
-    destroy_all_pages
-    page = Factory.create(:page)
-    Kuhsaft::Page.find_by_url(page.url).should eq(page)
-  end
-  
-  it 'should provide an array of translation locales' do
-    Kuhsaft::Page.translation_locales.should be_a(Array)
-  end
-  
-  it 'should have :en as minimal translation locale' do
-    Kuhsaft::Page.translation_locales.include?(:en).should be_true
-  end
-  
-  it 'should have the current translation locale' do
-    Kuhsaft::Page.current_translation_locale = 'de'
-    Kuhsaft::Page.current_translation_locale.should be(:de)
-  end
-  
-  it 'should only contain symbolized locales' do
-    Kuhsaft::Page.translation_locales = ['de']
-    Kuhsaft::Page.translation_locales.first.should be(:de)
-  end
-  
-  it 'should have a translation' do
-    @page.translation.should be_a(Kuhsaft::LocalizedPage)
-  end
-  
-  it 'accepts a page_part_type to determine which page_part needs to be added' do
-    @page.should respond_to(:page_part_type)
-  end
-  
-  describe '#parent_pages' do
-    it 'should have parent_pages' do
-      @page.should respond_to(:parent_pages)
-    end
-    
-    it 'should have a list of parent pages' do
-      @page.parent_pages.should be_instance_of(Array)
-    end
-    
-    it 'should be ordered from top to bottom' do
-      @page.parent_pages.last.should be(@page)
-    end
-  end
-  
-  describe 'page types' do
-    
-    before do
-      @page = Factory::create :page
-    end
-    
-    describe '#navigation?' do
-      it 'should be true if the page_type is PageType::NAVIGATION' do
-        @page.translation.page_type = Kuhsaft::PageType::NAVIGATION
-        @page.navigation?.should be_true
+  describe 'associations' do
+    describe '#localized_pages' do
+      it 'should have localized_pages' do
+        @page.should respond_to(:localized_pages)
+      end
+      
+      it 'should have at least 1 localized page' do
+        @page.localized_pages.should have_at_least(1).item
       end
     end
     
-    describe '#redirect?' do
-      it 'should be true if the page_type is PageType::REDIRECT' do
-        @page.translation.page_type = Kuhsaft::PageType::REDIRECT
-        @page.redirect?.should be_true
+    describe '#childs' do
+      it 'should have child pages' do
+        @page.childs << Factory.create(:page)
+        @page.childs.should have_at_least(1).page
       end
     end
+  end
+  
+  describe 'class methods' do
+    describe '#root_pages' do
+      before { destroy_all_pages }            
+      it 'should have a list of the toplevel pages' do
+        root_page = Factory.create :page
+        Kuhsaft::Page.root_pages.should have_at_least(1).page
+      end
+    end
+    
+    describe '#position_of' do
+      it 'should find the position of a page' do
+        page = Factory.create :page
+        position = page.position
+        Kuhsaft::Page.position_of(page.id).should == position
+      end
+    end
+    
+    describe '#find_by_url' do
+      before { destroy_all_pages }
+      it 'should find its translated content by url' do
+        page = Factory.create(:page)
+        Kuhsaft::Page.find_by_url(page.url).should eq(page)
+      end
+    end
+    
+    describe 'languages and locales' do
+      describe '#translation_locales' do
+        it 'should provide an array of translation locales' do
+          Kuhsaft::Page.translation_locales.should be_an_instance_of(Array)
+        end
+        
+        it 'should contain :en as minimal translation locale' do
+          Kuhsaft::Page.translation_locales.include?(:en).should be_true
+        end
+        
+        it 'should contain only locale symbols' do
+          Kuhsaft::Page.translation_locales = ['de']
+          Kuhsaft::Page.translation_locales.should be_all { |l| l.should be_an_instance_of(Symbol)}
+        end
+      end
+      
+      describe '#current_translation_locale' do
+        it 'should have the current translation locale' do
+          Kuhsaft::Page.current_translation_locale = 'de'
+          Kuhsaft::Page.current_translation_locale.should be(:de)
+        end
+      end
+    end
+  end
+  
+  describe 'instance methods' do
+    describe '#root?' do
+      it 'should return true for a page without a parent' do
+        Factory::create(:page).root?.should be_true
+      end
+    end
+    
+    describe '#parent' do
+      before do
+        @page = Factory::create :page
+        @child = Factory::create :page
+        @page.childs << @child
+      end
+      
+      it 'should know it\'s parent page' do
+        @child.should respond_to(:parent)
+      end
+      
+      it 'should be a Kuhsaft::Page' do
+        @child.parent.should be_an_instance_of(Kuhsaft::Page)
+      end
+    end
+    
+    describe '#translation' do
+      it 'should have a translation' do
+        @page.should respond_to(:translation)
+      end
+      
+      it 'should return a Kuhsaft::LocalizedPage' do
+        @page.translation.should be_an_instance_of(Kuhsaft::LocalizedPage)
+      end
+      
+      context 'when saving the page' do
+        it 'should save the translation' do
+          @page.translation.title = 'some localized title'
+          @page.should_receive(:save_translation)
+          @page.save
+        end
+      end
+    end
+    
+    describe '#page_part_type' do
+      it 'accepts a page_part_type to determine which page_part needs to be added' do
+        @page.should respond_to(:page_part_type)
+      end
+    end
+    
+    describe '#parent_pages' do
+      it 'should have parent_pages' do
+        @page.should respond_to(:parent_pages)
+      end
+    
+      it 'should have a list of parent pages' do
+        @page.parent_pages.should be_instance_of(Array)
+      end
+    
+      it 'should be ordered from top to bottom' do
+        @page.parent_pages.last.should be(@page)
+      end
+    end
+    
+    describe '#link' do
+      it 'should have a link' do
+        @page.should respond_to(:link)
+      end
+      
+      context 'when it has no content' do
+        it 'should return the link of it\'s first child' do
+          page = Factory.create :page
+          child = Factory.create :page
+          page.childs << child
+          page.translation.body = nil
+          page.save
+          page.link.should == child.link
+        end
+      end
+    end
+  end
+  
+  describe 'custom ordering' do
+    describe '#increment_position' do
+      it 'should increment it\'s position by 1' do
+        page = Factory.create :page
+        position = page.position
+        page.increment_position
+        page.position.should == (position + 1)
+      end
+    end
+    
+    describe '#decrement_position' do
+      it 'should decrement it\'s position by 1' do
+        page = Factory.create :page
+        position = page.position
+        page.decrement_position
+        page.position.should == (position - 1)
+      end
+    end
+    
+    describe '#preceding_sibling' do
+      it 'should find the predecing sibling' do
+        page1 = Factory.create :page
+        page2 = Factory.create :page
+        page3 = Factory.create :page
+        page3.preceding_sibling.id.should == page2.id
+      end
+    end
+    
+    describe '#succeeding_sibling' do
+      it 'should find the succeeding sibling' do
+        page1 = Factory.create :page
+        page2 = Factory.create :page
+        page3 = Factory.create :page
+        page2.succeeding_sibling.id.should == page3.id
+      end
+    end
+    
+    describe '#reposition' do
+      it 'should reposition before a page, specified by id' do
+        page1 = Factory.create :page
+        page2 = Factory.create :page
+        page3 = Factory.create :page
+        page3.reposition page1.id
+        page3.preceding_sibling.id.should == page1.id
+      end
+    
+      it 'should reposition before all siblings, specified by nil' do
+        page1 = Factory.create :page
+        page2 = Factory.create :page
+        page2.reposition nil
+        page2.position.should == 1
+      end
+    end
+    
+    describe '#siblings' do
+      pending 'describe'
+    end
+    
+    describe '#position_to_top' do
+      pending 'describe'
+    end
+    
+    describe '#recount_siblings_position_from' do
+      pending 'describe'
+    end
+    
+    describe '#reposition' do
+      pending 'describe'
+    end
+    
+    describe '#set_position' do
+      pending
+    end    
   end
   
   describe 'should delegate' do

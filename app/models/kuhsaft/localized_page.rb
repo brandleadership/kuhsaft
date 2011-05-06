@@ -12,16 +12,32 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   
   validates :title, :presence => true
   validates :locale, :presence => true
-  validates :slug, :presence => true, :unless => :allow_empty_slug
+  validates :slug, :presence => true, :uniqueness => true, :unless => :allow_empty_slug
+  validates :slug, :uniqueness => true
   
   accepts_nested_attributes_for :page_parts, :allow_destroy => true
   
   def published?
-    published > 0 || (published_at < DateTime.now if published_at.present?)
+    return true if published == Kuhsaft::PublishState::PUBLISHED
+    return false if published == Kuhsaft::PublishState::UNPUBLISHED
+    if published == Kuhsaft::PublishState::PUBLISHED_AT
+      return false if published_at.blank?
+      published_at < DateTime.now
+    else
+      false
+    end
   end
   
   def locale
     read_attribute(:locale).to_sym unless read_attribute(:locale).nil?
+  end
+  
+  def redirect?
+    page_type == Kuhsaft::PageType::REDIRECT
+  end
+  
+  def navigation?
+    page_type == Kuhsaft::PageType::NAVIGATION
   end
   
   def create_url

@@ -8,10 +8,12 @@ describe PagesHelper do
   after do
     destroy_all_pages
   end
-
-  it '#asset_for should return the asset with the given id' do
-    asset = Factory.create :asset
-    asset_for(asset.id).should eq(asset)
+  
+  describe '#asset_for' do
+    it 'should return the asset with the given id' do
+      asset = Factory.create :asset
+      asset_for(asset.id).should eq(asset)
+    end
   end
   
   describe '#render_markdown' do
@@ -63,45 +65,42 @@ describe PagesHelper do
       homepage.should be_a(Kuhsaft::Page)
     end
   end
-
-  it '#current_page_path should return the path for the current page' do
-    @page.localized_pages.create :locale => :de, :title => 'seite1'
-    helper.current_page_path(:de).should eq('/de/seite1')
+  
+  describe '#current_page_path' do
+    it 'should return the path for the current page' do
+      @page.localized_pages.create :locale => :de, :title => 'seite1'
+      helper.current_page_path(:de).should eq('/de/seite1')
+    end
   end
 
-  it '#active_page_class should return :active' do
-    helper.stub!(:params).and_return :url => 'en/english-title'
-    helper.active_page_class(@page).should be(:active)
+  describe '#active_page_class' do
+    it '#active_page_class should return :active' do
+      helper.stub!(:params).and_return :url => @page.url
+      helper.active_page_class(@page).should be(:active)
+    end
   end
   
   describe '#page_for_level' do
-    before do 
+    before do
       destroy_all_pages
+      @page1, @page2, @page3 = create_page_tree
+      helper.stub!(:params).and_return :url => @page3.url
+    end
+    it 'should return the page for the 1. level' do
+      helper.page_for_level(1).should eq(@page1)
     end
     
-    it 'should return the page for the 1. level of en/english-title/english-title/english-title' do
-      page1, page2, page3 = create_page_tree
-      helper.stub!(:params).and_return :url => 'en/english-title/english-title/english-title'
-      helper.page_for_level(1).should eq(page1)
+    it 'should return the page for the 2. level' do
+      helper.page_for_level(2).should eq(@page2)
     end
     
-    it 'should return the page for the 2. level of en/english-title/english-title/english-title' do
-      page1, page2, page3 = create_page_tree
-      helper.stub!(:params).and_return :url => 'en/english-title/english-title/english-title'
-      helper.page_for_level(2).should eq(page2)
-    end
-    
-    it 'should return the page for the 3. level of en/english-title/english-title/english-title' do
-      page1, page2, page3 = create_page_tree
-      helper.stub!(:params).and_return :url => 'en/english-title/english-title/english-title'
-      helper.page_for_level(3).should eq(page3)
+    it 'should return the page for the 3. level' do
+      helper.page_for_level(3).should eq(@page3)
     end
     
     it 'should yield the page to the given block' do
-      page1, page2, page3 = create_page_tree
-      helper.stub!(:params).and_return :url => 'en/english-title/english-title/english-title'
       helper.page_for_level(1) { |p| @yielded_page = p }
-      @yielded_page.should eq(page1)
+      @yielded_page.should eq(@page1)
     end
   end
   

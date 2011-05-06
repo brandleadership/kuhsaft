@@ -1,6 +1,6 @@
 Factory.define :localized_page, :class => Kuhsaft::LocalizedPage do |p|
   p.locale 'en'
-  p.title 'English title'
+  p.title { "English Title #{Factory.next(:title)}" }
   p.published 1
   p.body 'hi'
   p.url ''
@@ -17,3 +17,5 @@ end
 Factory.define :asset, :class => Kuhsaft::Asset do |a|
   a.file File.open("#{Kuhsaft::Engine.root}/spec/dummy/public/images/spec-image.png")
 end
+
+Factory.sequence(:title) { |n| n }
