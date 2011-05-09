@@ -33,7 +33,8 @@ to get the gem
 
 Then install the migrations and run them:
 
-  rails generate kuhsaft:install && rake db:migrate
+  rails generate kuhsaft:install:migrations && rake db:migrate
+  rails generate kuhsaft:install:assets
 
 (NOTE: Steps below should hopefully not be necessary in future versions:)
 
@@ -49,7 +50,7 @@ Finally, you need to add a before filter to the application controller (for now.
 
 If you want to use devise for protecting the admin parts, do this in an initializer:
 
-Kuhsaft::Admin::PagesController.class_eval do
+Kuhsaft::Cms::PagesController.class_eval do
   before_filter :authenticate_user!
 end
 
