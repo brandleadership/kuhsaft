@@ -20,8 +20,8 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   
   validates :title, :presence => true
   validates :locale, :presence => true
-  validates :slug, :presence => true, :uniqueness => true, :unless => :allow_empty_slug
-  validates :url, :uniqueness => true
+  validates :slug, :presence => true, :uniqueness => true, :unless => :navigation?
+  validates :url, :uniqueness => true, :unless => :navigation?
   
   accepts_nested_attributes_for :page_parts, :allow_destroy => true
   
@@ -49,14 +49,15 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   end
   
   def create_url
-    return if self.page_type == Kuhsaft::PageType::REDIRECT
+    return if redirect?
+    
     complete_slug = ''
     if page.present? && page.parent.present?
       complete_slug << page.parent.url.to_s
     else
       complete_slug = "#{self.locale}"
     end
-    complete_slug << "/#{self.slug}" unless self.page_type == Kuhsaft::PageType::NAVIGATION
+    complete_slug << "/#{self.slug}" unless navigation?
     self.url = complete_slug
   end
   
@@ -74,9 +75,5 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
       text
     end
     self.fulltext << [title.to_s, keywords.to_s, description.to_s].join(' ')
-  end
-  
-  def allow_empty_slug
-    self.page_type == Kuhsaft::PageType::NAVIGATION
   end
 end
