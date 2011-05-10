@@ -15,7 +15,7 @@ module Kuhsaft
     end
     
     def human_name
-      I18n.translate(name)
+      I18n.translate(@name)
     end
     
     def self.all

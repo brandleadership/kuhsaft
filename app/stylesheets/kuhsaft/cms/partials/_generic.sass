@@ -1,19 +1,89 @@
-$color1: #2c5eb0
-$color2: #161f38
-$color3: #e4e9f2
+$color1: #0c1550
+$color2: #1a2363
+$color3: #f7f8e6
+$border-color: #cdcdcd
 
 body
-  line-height: 150%
-  font-size: 16px
-  background: #efefef
+  line-height: 140%
+  color: #333
   font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif
+  background: #e9e9e9
   
 #kuhsaft-wrapper
-  background: #f9f9f9
-  padding: 24px
-  margin: 48px auto
-  max-width: 912px
+  background: #e9e9e9 url(/images/wrapper-bg.png) repeat-x
+
+.hidden
+  display: none
+
+.cms-content-container
+  +single-box-shadow(#666, 0px, 2px, 8px)
+  margin: 20px
+
+.language-tabs
+  border:
+    top: 1px solid #cfcfcf
+    bottom: 1px solid #cfcfcf
+  background: #e3e3e3 url(/images/tab-bg.png) repeat-x
+  height: 40px
   
+  li
+    width: 100px
+    height: 40px
+    text-align: center
+    text-transform: uppercase
+    font-weight: bold
+    border:
+      right: 1px solid #cfcfcf
+    +float_left
+    
+  a
+    display: block
+    width: 99px
+    height: 100%
+    line-height: 40px
+    border-right: 1px solid #f0f0f0
+    +text-shadow(#fff, 0px, 1px, 0px)
+
+  .current
+    background: #f8f8f8
+    height: 41px
+
+.cms-content
+  background: #f8f8f8
+  padding: 35px
+
+.box-container
+  border:
+    left: 1px solid $border-color
+    right: 1px solid $border-color
+    bottom: 1px solid $border-color
+
+.box
+  border-top: 1px solid $border-color
+  padding: 15px 25px
+  color: #7a7a7a
+
+.lightened-box
+  background: #f0f0f0
+  +text-shadow(#fff, 0px, 1px, 0px)
+  @extend .box
+  
+.darkened-box
+  background: #d5d5d5
+  +text-shadow(#fff, 0px, 1px, 0px)
+  @extend .box
+  
+.colored-box
+  background: $color3
+  @extend .box
+
+h1
+  font-size: 36px
+  font-weight: bold
+  line-height: 46px
+  margin-top: 10px
+  color: $color1
+
 a
   text-decoration: none
   +link-colors($color1, $color2, $color1, $color1, $color2)
@@ -33,11 +103,8 @@ a
   background: $color3
   font-size: 18px
   font-weight: bold
-  margin: -24px
   +horizontal-list(12px)
   padding-left: 24px
-  width: 936px
-  margin-left: -24px
   
   a
     line-height: 48px

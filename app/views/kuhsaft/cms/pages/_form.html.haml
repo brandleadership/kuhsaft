@@ -1,25 +1,46 @@
 = simple_form_for @page, :url => url do |page|
-  = page.fields_for :localized_pages, @localized_page do |localized|
-    = localized.input :title
-    = localized.input :slug, :required => false
-    = localized.input :page_type, :collection => Kuhsaft::PageType.all
-    .clear
-    = localized.input :published, :collection => Kuhsaft::PublishState.all, :label_method => :human_name, :value_method => :value
-    .clear
-    - unless localized.object.page_type == Kuhsaft::PageType::REDIRECT
-      - if localized.object.published == Kuhsaft::PublishState::PUBLISHED_AT
-        = localized.input :published_at, :as => :datetime
-      = localized.input :keywords
-      = localized.input :description
-      = localized.input :locale, :as => :hidden
-      .edit-page-part.markdown-page-part
-        = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
-          - unless page_part.object.persisted?
-            = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
-          = page_part.input :tags, :as => :string
-          = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
-          = page_part.input :_destroy, :as => :boolean
-    - else
-      = localized.input :url, :as => :string
+  
   = page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
-  = page.button :submit
+  
+  = page.fields_for :localized_pages, @localized_page do |localized|
+    
+    .lightened-box
+      %h1= page_title
+      = localized.input :title, :required => false
+      = localized.input :slug, :required => false
+      .clear
+    
+    = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
+      .colored-box  
+        - unless page_part.object.persisted?
+          = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
+        
+        = page_part.input :tags, :as => :string
+        = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
+        = page_part.input :_destroy, :as => :boolean
+    
+    .lightened-box.add-page-part
+      %label{ :for => :page_part_type }= t('.add_element')
+      = page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
+      = page.button :submit, :name => :add_page_part, :value => t('.add_page_part')
+      .clear
+    
+    .darkened-box
+      %h3.toggle.closed= t('.metainformation')
+      .collapsable.hidden
+        = localized.input :url, :as => :string if @page.redirect?
+        - unless localized.object.page_type == Kuhsaft::PageType::REDIRECT
+          - if localized.object.published == Kuhsaft::PublishState::PUBLISHED_AT
+            = localized.input :published_at, :as => :datetime
+          = localized.input :keywords
+          = localized.input :description, :input_html => { :class => :small }
+          = localized.input :locale, :as => :hidden
+          = localized.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false
+    .lightened-box
+      = localized.input :published, :as => :radio, :collection => Kuhsaft::PublishState.all, :label_method => :human_name, :value_method => :value, :prompt => false
+      = page.button :submit
+
+:javascript
+  $(".toggle").click(function(){
+    $(this).toggleClass("closed").next(".collapsable").toggleClass("hidden")
+  })

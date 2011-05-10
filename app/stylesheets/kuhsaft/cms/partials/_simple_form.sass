@@ -1,0 +1,55 @@
+.simple_form
+  label
+    width: 200px
+    +float_left
+    
+  input.string, textarea.text
+    padding: 3px 2px
+    width: 626px
+    border:
+      top: 1px solid #b8b8b8
+      left: 1px solid #b8b8b8
+      right: 1px solid #cfcfcf
+      bottom: 1px solid #cfcfcf
+    +float_left
+  
+  .input
+    margin: 5px 0px
+    +clearfix
+  
+  textarea.small
+    height: 80px
+    
+  select
+    width: 170px
+
+.collection_radio
+  input
+    +float_left
+
+.toggle
+  color: $color1
+  padding-left: 20px
+  background: url(/images/toggle-arrow-open.png) no-repeat left center
+
+.toggle.closed
+  background: url(/images/toggle-arrow-closed.png) no-repeat left center
+
+#kuhsaft_page_page_part_type
+  +float_left
+  
+#kuhsaft_page_submit
+  +float_left
+  
+.add-page-part
+  padding:
+    top: 15px
+    bottom: 10px
+    
+  .input
+    width: 420px
+    +float_left
+    
+input[type='text']:focus, textarea:focus
+  background: $color3
+  +transition(background, 1s)

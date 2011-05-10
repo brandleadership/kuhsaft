@@ -14,10 +14,15 @@
         %li= link_to t('.pages_nav'), cms_pages_path
         %li= link_to t('.assets_nav'), cms_assets_path
         = render :partial => 'cms/admin_navigation' rescue ''
-      .toolbar
-        = yield :admin_toolbar
-        .clear
-      = yield :before_admin_content
-      = yield
-      = yield :after_admin_content
+      .cms-content-container.row
+        %ul.language-tabs
+          = yield :cms_language_tabs
+          .clear
+          //.toolbar
+          //  = yield :admin_toolbar
+          .clear
+        .cms-content
+          = yield :before_admin_content
+          = yield
+          = yield :after_admin_content
       = yield :scripts

@@ -5,7 +5,7 @@ en:
         pages_nav: 'Pages'
         assets_nav: 'Assets'
   kuhsaft:
-    admin:
+    cms:
       pages:
         index:
           add: 'Add child page'
@@ -13,10 +13,20 @@ en:
           delete: 'Remove page'
           confirm: 'Are you sure?'
         edit:
-          add_page_part: 'Add a new part'
+          edit: 'Edit page'
+        form:
+          add_page_part: 'Add element'
         current_translation_locale: 'Current translation: %{translation_locale}'
       assets:
         index:
           create: 'Create new asset'
           delete: 'Remove asset'
           confirm: 'Are you sure?'
+  unpublished: "Save page offline"
+  published: "Publish page"
+  published_at: "Go online on"
+  simple_form:
+    labels:
+      title: 'Page title'
+      slug: 'URL segment'
+      page_part_type: 'Add element'
