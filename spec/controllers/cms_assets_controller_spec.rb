@@ -9,17 +9,17 @@ describe Kuhsaft::Cms::AssetsController do
   
   describe 'should render successfully' do
     it '#index' do
-      get :index
+      get :index, :locale => :en
       response.should be_success
     end
     
     it '#new' do
-      get :new
+      get :new, :locale => :en
       response.should be_success
     end
     
     it '#edit' do
-      get :edit, :id => 1
+      get :edit, :id => 1, :locale => :en
       response.should be_success
     end
   end

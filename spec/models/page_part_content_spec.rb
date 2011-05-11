@@ -38,10 +38,6 @@ describe 'PagePart' do
       it 'should have the Markdown PagePart by default' do
         Kuhsaft::PagePart::Content.descendants.should include(Kuhsaft::PagePart::Markdown)
       end
-      
-      it 'should convert to_name' do
-        Kuhsaft::PagePart::Markdown.to_name.should eq('Markdown')
-      end
     end
   end
   
