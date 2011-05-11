@@ -7,17 +7,48 @@ body
   line-height: 140%
   color: #333
   font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif
-  background: #e9e9e9
+  background: #cccccb
   
 #kuhsaft-wrapper
-  background: #e9e9e9 url(/images/wrapper-bg.png) repeat-x
+  //background: #e9e9e9 url(/images/wrapper-bg.png) repeat-x left 100px
 
 .hidden
   display: none
 
+.cms-header
+  background: url(/images/header-bg.jpg)
+  border-bottom: 1px solid #7c7a7f
+  +min-height(200px)
+
+.cms-module-nav
+  +horizontal-list(0px)
+  +float_right
+  border-top: 1px solid #7c7a7f
+  margin-top: -61px
+  
+  a
+    background: $color1
+    padding: 10px 15px
+    line-height: 40px
+    border-left: 1px solid #ccc
+    +link-colors(#fff, #fff, #fff, #fff, #fff)
+  
+  li
+    height: 40px
+    
+  li.current
+    border-left: 1px solid #7c7a7f
+    height: 41px
+    a
+      background: #cccccb url(/images/module-nav-tab-bg.png) repeat-x
+      border-left: 1px solid #e6e6e6
+      +text-shadow(#fff, 0px, 1px, 0px)
+      +link-colors($color1, $color2, $color1, $color1, $color1)
+
 .cms-content-container
   +single-box-shadow(#666, 0px, 2px, 8px)
   margin: 20px
+  width: 960px
 
 .language-tabs
   border:
@@ -83,6 +114,8 @@ h1
   line-height: 46px
   margin-top: 10px
   color: $color1
+  background: url(/images/page-icon.png) no-repeat left 3px
+  padding-left: 36px
 
 a
   text-decoration: none
@@ -94,22 +127,23 @@ a
 .clearfix
   +clearfix
 
-.toolbar
-  padding: 5px 0px
-  a
-    +float_right
-
-.module-nav
-  background: $color3
-  font-size: 18px
-  font-weight: bold
-  +horizontal-list(12px)
-  padding-left: 24px
-  
-  a
-    line-height: 48px
-
 .list
   border-top: 1px solid #444
   li
     border-bottom: 1px solid #444
+    
+.publish-information
+  input[type="radio"], label
+    +float_left
+    
+  .grid-3, .grid-5, .grid-2
+    +float_left
+    
+  .grid-3
+    width: 180px
+    
+  .grid-5
+    width: 300px
+  
+  .grid-2
+    width: 120px

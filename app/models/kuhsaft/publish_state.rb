@@ -13,15 +13,11 @@ module Kuhsaft
     def initialize options
       options.each_pair { |k,v| instance_variable_set("@#{k}", v) if respond_to?(k) }
     end
-    
-    def human_name
-      I18n.translate(@name)
-    end
-    
+
     def self.all
       @all ||= [
-        PublishState.new(:name => 'unpublished', :value => UNPUBLISHED),
         PublishState.new(:name => 'published', :value => PUBLISHED),
+        PublishState.new(:name => 'unpublished', :value => UNPUBLISHED),
         PublishState.new(:name => 'published_at', :value => PUBLISHED_AT)
         ]
     end

@@ -10,16 +10,18 @@
     = javascript_include_tag 'kuhsaft/cms/application.js'
   %body{ :class => "#{controller_name}" }
     #kuhsaft-wrapper
-      %ul.module-nav
-        %li= link_to t('.pages_nav'), cms_pages_path
-        %li= link_to t('.assets_nav'), cms_assets_path
-        = render :partial => 'cms/admin_navigation' rescue ''
-      .cms-content-container.row
+      .cms-header
+      .cms-content-container
+        %ul.cms-module-nav
+          %li.current= link_to t('.pages_nav'), cms_pages_path
+          %li= link_to t('.assets_nav'), cms_assets_path
+          = render :partial => 'cms/admin_navigation' rescue ''
+        .clear
         %ul.language-tabs
           = yield :cms_language_tabs
           .clear
-          //.toolbar
-          //  = yield :admin_toolbar
+          .toolbar
+            = yield :admin_toolbar
           .clear
         .cms-content
           = yield :before_admin_content
