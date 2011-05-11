@@ -10,12 +10,14 @@ en:
     cms:
       pages:
         index:
-          add: 'Add child page'
+        edit:
+          edit: 'Edit page'
+        branch:
+          add: 'Add page'
           create: 'Create new page'
           delete: 'Remove page'
           confirm: 'Are you sure?'
-        edit:
-          edit: 'Edit page'
+          not_translated: 'Not yet translated'
         form:
           add_page_part: 'Add element'
           unpublished: "Save page offline"

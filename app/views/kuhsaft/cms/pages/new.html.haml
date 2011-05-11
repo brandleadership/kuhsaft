@@ -1,5 +1,6 @@
-- Kuhsaft::Page.translation_locales.each do |locale|
-  = link_to locale.to_s, new_cms_page_path(:locale => locale), :class => 'button'
+- content_for :cms_language_tabs do
+  - Kuhsaft::Page.translation_locales.each do |locale|
+    %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, new_cms_page_path(:locale => locale)
 
-%h1= t('.new')
-= render :partial => 'form', :locals => { :url => cms_pages_path, :page_title => t('.new') }
+.box-container    
+  = render :partial => 'form', :locals => { :url => cms_pages_path, :page_title => t('.new') }
