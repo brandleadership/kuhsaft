@@ -21,12 +21,12 @@
           = page_part.input :tags, :as => :string, :label => false, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => 'Tags' }
           = page_part.input :_destroy, :as => :boolean, :wrapper_html => { :class => 'page-part-destroy' }
           .clear
-
-    .lightened-box.add-page-part
-      %label.string{ :for => :page_part_type }= t('.add_element')
-      = page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
-      = page.button :submit, :name => :add_page_part, :value => t('.add_page_part')
-      .clear
+    - if localized.object.persisted?
+      .lightened-box.add-page-part
+        %label.string{ :for => :page_part_type }= t('.add_element')
+        = page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
+        = page.button :submit, :name => :add_page_part, :value => t('.add_page_part')
+        .clear
 
     .darkened-box
       %h3.toggle.closed= t('.metainformation')
