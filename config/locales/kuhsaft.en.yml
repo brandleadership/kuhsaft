@@ -27,8 +27,9 @@ en:
       assets:
         index:
           create: 'Create new asset'
-          delete: 'Remove asset'
+        list:
           confirm: 'Are you sure?'
+          delete: 'Remove asset'
   simple_form:
     labels:
       title: 'Page title'

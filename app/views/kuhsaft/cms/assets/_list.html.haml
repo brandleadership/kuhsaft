@@ -1,11 +1,8 @@
-%table
-  - @assets.each do |asset|
-    %tr
-      %td
-        .thumb= image_tag asset.file.thumb.url
-      %td
-        .link= link_to asset.file.filename, asset.file.url, :target => '_new'
-        .copy-link
-          %input{ :type => :text, :value => asset.file.url }
-      %td
-        = link_to t('kuhsaft.admin.assets.index.delete'), cms_asset_path(asset), :confirm => t('kuhsaft.admin.assets.index.confirm'), :method => :delete, :class => 'delete button negative'
+- @assets.each do |asset|
+  .asset-pic
+    .thumb
+      = link_to image_tag(asset.file.thumb.url), edit_cms_asset_path(asset)
+    .copy
+      %input.string{ :type => :text, :value => asset.file.url }
+    = link_to t('.delete'), cms_asset_path(asset), :confirm => t('.confirm'), :method => :delete
+.clear

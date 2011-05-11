@@ -14,7 +14,7 @@ module Kuhsaft
       def create
         @asset = Kuhsaft::Asset.create params[:kuhsaft_asset]
         @asset.save
-        respond_with @asset, :location => admin_assets_path
+        respond_with @asset, :location => cms_assets_path
       end
     
       def edit
@@ -25,13 +25,13 @@ module Kuhsaft
       def update
         @asset = Kuhsaft::Asset.find(params[:id])
         @asset.update_attributes(params[:kuhsaft_asset])
-        respond_with @asset, :location => admin_assets_path
+        respond_with @asset, :location => cms_assets_path
       end
     
       def destroy
         @asset = Kuhsaft::Asset.find(params[:id])
         @asset.destroy
-        redirect_to admin_assets_path
+        redirect_to cms_assets_path
       end
     end
   end
