@@ -29,11 +29,11 @@
     .darkened-box
       %h3.toggle.closed= t('.metainformation')
       .collapsable.hidden
+        = localized.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :label_html => { :class => :string }
         = localized.input :url, :as => :string if @page.redirect?
         - unless localized.object.page_type == Kuhsaft::PageType::REDIRECT
           = localized.input :keywords
           = localized.input :description, :input_html => { :class => :small }, :label_html => { :class => :string }
-          = localized.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :label_html => { :class => :string }
     .lightened-box.publish-information
       .column.grid-3
         = localized.radio_button :published, Kuhsaft::PublishState::PUBLISHED

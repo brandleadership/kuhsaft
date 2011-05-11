@@ -31,7 +31,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     parent = self
     
     while parent
-      parent_pages_list << parent unless parent.translation.page_type == Kuhsaft::PageType::NAVIGATION
+      parent_pages_list << parent unless parent.translation.blank? || parent.translation.navigation?
       parent = parent.parent
     end
     parent_pages_list.reverse
