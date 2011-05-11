@@ -30,19 +30,20 @@ module Kuhsaft
       def edit
         @page = Kuhsaft::Page.find(params[:id])
         @localized_page = @page.localized_pages.find_or_initialize_by_locale(params[:locale])
-
-        if params[:add_page_part].present?
-          @localized_page.page_parts.build :type => params[:kuhsaft_page][:page_part_type].constantize
-        end
-        
         respond_with @page
       end
 
       def update
         @page = Kuhsaft::Page.find(params[:id])
+        
         @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
         # TODO: refactor 'reposition' as a page attribute, so it can be set through update_attributes
         @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
+        
+        if params[:add_page_part].present?
+          @page.translation.page_parts << params[:kuhsaft_page][:page_part_type].constantize.new
+        end
+        
         respond_with @page, :location => edit_cms_page_path(@page)
       end
 

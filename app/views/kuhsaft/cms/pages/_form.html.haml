@@ -8,7 +8,7 @@
       %h1= page_title
       = localized.input :locale, :as => :hidden
       = localized.input :title, :required => false
-      = localized.input :slug, :required => false
+      = localized.input :slug, :required => false, :input_html => { :class => :dimmed }
       .clear
     
     = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
@@ -16,16 +16,18 @@
         - unless page_part.object.persisted?
           = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
         
-        = page_part.input :tags, :as => :string
         = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
-        = page_part.input :_destroy, :as => :boolean
-    
+        .page-part-helpers
+          = page_part.input :tags, :as => :string, :label => false, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => 'Tags' }
+          = page_part.input :_destroy, :as => :boolean, :wrapper_html => { :class => 'page-part-destroy' }
+          .clear
+
     .lightened-box.add-page-part
       %label.string{ :for => :page_part_type }= t('.add_element')
       = page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
       = page.button :submit, :name => :add_page_part, :value => t('.add_page_part')
       .clear
-    
+
     .darkened-box
       %h3.toggle.closed= t('.metainformation')
       .collapsable.hidden

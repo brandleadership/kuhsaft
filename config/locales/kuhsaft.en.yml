@@ -5,6 +5,8 @@ en:
         pages_nav: 'Pages'
         assets_nav: 'Assets'
   kuhsaft:
+    page_part:
+      markdown: 'Formatted Text'
     cms:
       pages:
         index:
@@ -30,3 +32,4 @@ en:
       title: 'Page title'
       slug: 'URL segment'
       page_part_type: 'Add element'
+      destroy: 'Delete this element'

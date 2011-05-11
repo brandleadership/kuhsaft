@@ -41,7 +41,7 @@ module Kuhsaft
         end
         
         def to_name
-          self.to_s.split('::').last
+          I18n.translate self.to_s.underscore.gsub('/', '.').downcase
         end
       end
       
