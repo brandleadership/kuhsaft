@@ -20,10 +20,22 @@ body
   border-bottom: 1px solid #7c7a7f
   +min-height(200px)
 
+.page-tree-breadcrumb
+  margin-bottom: 20px
+  
+  a
+    background: url(/images/page-tree-breadcrumb-arrow.png) no-repeat right center
+    padding-right: 15px
+    
+  a:last-child
+    background: transparent
+    
 .cms-module-nav
   +horizontal-list(0px)
   +float_right
-  border-top: 1px solid #7c7a7f
+  border:
+    top: 1px solid #7c7a7f
+    right: 1px solid #7c7a7f
   margin-top: -61px
   
   a

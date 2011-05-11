@@ -13,8 +13,8 @@
       .cms-header
       .cms-content-container
         %ul.cms-module-nav
-          %li.current= link_to t('.pages_nav'), cms_pages_path
-          %li= link_to t('.assets_nav'), cms_assets_path
+          = admin_tab(t('.pages_nav'), cms_pages_path)
+          = admin_tab(t('.assets_nav'), cms_assets_path)
           = render :partial => 'cms/admin_navigation' rescue ''
         .clear
         %ul.language-tabs

@@ -2,9 +2,9 @@
   - Kuhsaft::Page.translation_locales.each do |locale|
     %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, edit_cms_page_path(:locale => locale)
 
+.page-tree-breadcrumb
+  - @page.parent_pages.each do |parent_page|
+    = link_to(parent_page.title, cms_page_path(parent_page))
+
 .box-container
   = render :partial => 'form', :locals => { :url => cms_page_path(@page), :page_title => t('.edit') }
-    
-  //= simple_form_for @page, :url => edit_cms_page_path(@page), :html => { :method => :get } do |form|
-  //  = form.input :page_part_type, :collection => Kuhsaft::PagePart::Content.page_part_types, :label_method => :to_name, :value_method => :to_s
-  //  = form.button :submit, :name => :add_page_part, :value => t('.add_page_part')
