@@ -32,4 +32,4 @@ en:
       title: 'Page title'
       slug: 'URL segment'
       page_part_type: 'Add element'
-      destroy: 'Delete this element'
+      _destroy: 'Delete this element'
