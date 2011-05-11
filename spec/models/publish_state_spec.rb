@@ -9,10 +9,6 @@ describe Kuhsaft::PublishState do
     it 'should be UNPUBLISHED' do
       @publish_state.value.should be(Kuhsaft::PublishState::UNPUBLISHED)
     end
-    
-    it 'should have a translated name' do
-      @publish_state.human_name.should eq(I18n.translate('unpublished'))
-    end
   end
   
   context 'published' do
@@ -23,10 +19,6 @@ describe Kuhsaft::PublishState do
     it 'should be PUBLISHED' do
       @publish_state.value.should be(Kuhsaft::PublishState::PUBLISHED)
     end
-    
-    it 'should have a translated name' do
-      @publish_state.human_name.should eq(I18n.translate('published'))
-    end
   end
   
   context 'published_at' do
@@ -36,10 +28,6 @@ describe Kuhsaft::PublishState do
     
     it 'should be PUBLISHED_AT' do
       @publish_state.value.should be(Kuhsaft::PublishState::PUBLISHED_AT)
-    end
-    
-    it 'should have a translated name' do
-      @publish_state.human_name.should eq(I18n.translate('published_at'))
     end
   end
 end
