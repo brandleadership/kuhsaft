@@ -11,4 +11,12 @@ class Kuhsaft::Asset < ActiveRecord::Base
   def name
     File.basename(file.path) if file.present? && file.path.present?
   end
+  
+  def path
+    file.url
+  end
+  
+  def path=val
+    # do nothing
+  end
 end

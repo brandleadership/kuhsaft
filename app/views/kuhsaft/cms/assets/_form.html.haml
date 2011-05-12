@@ -1,3 +1,15 @@
 = simple_form_for @asset, :url => url, :html => { :multipart => true } do |f|
-  = f.input :file, :as => :file
-  = f.button :submit
+  .lightened-box
+    %h1= page_title
+    = f.input :file, :as => :file
+    = f.input :path, :as => :string, :input_html => { :readonly => true }
+    .clear
+  - if @asset.file.url.present?
+    .darkened-box
+      - if [:jpg, :jpeg, :png].include?(@asset.file_type)
+        .fixed-width-image
+          = link_to image_tag(@asset.file.url), @asset.file.url
+      - else
+        = link_to @asset.name, @asset.file.url
+  .lightened-box
+    = f.button :submit
