@@ -11,16 +11,18 @@
       = localized.input :slug, :required => false, :input_html => { :class => :dimmed }
       .clear
     
-    = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
-      .colored-box  
-        - unless page_part.object.persisted?
-          = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
-        
-        = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
-        .page-part-helpers
-          = page_part.input :tags, :as => :string, :label => false, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => 'Tags' }
-          = page_part.input :_destroy, :as => :boolean, :wrapper_html => { :class => 'page-part-destroy' }
-          .clear
+    .page-part-list
+      = localized.fields_for :page_parts, @localized_page.page_parts do |page_part|
+        .colored-box.draggable-box{ :'data-id' => page_part.object.id, :'data-put-url' => '' }
+          .drag-handler
+          - unless page_part.object.persisted?
+            = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
+    
+          = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
+          .page-part-helpers
+            = page_part.input :tags, :as => :string, :label => false, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => 'Tags' }
+            = page_part.input :_destroy, :as => :boolean, :wrapper_html => { :class => 'page-part-destroy' }
+            .clear
     - if localized.object.persisted?
       .lightened-box.add-page-part
         %label.string{ :for => :page_part_type }= t('.add_element')

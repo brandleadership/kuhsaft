@@ -120,6 +120,12 @@ body
   background: $color3
   @extend .box
 
+.draggable-box 
+  position: relative
+
+.draggable-box.colored-box
+  background: $color3 url(/images/page-part-draggable-area.png) no-repeat top right
+
 h1
   font-size: 36px
   font-weight: bold
@@ -252,3 +258,15 @@ ul.pages-root
 .icon
   font-size: 12px
   margin: 2px 5px
+  
+.drag-handler
+  width: 140px
+  height: 60px
+  position: absolute
+  right: 0px
+  top: 0px
+  cursor: pointer
+  
+.will-drag
+  border: 1px solid #666
+  +single-box-shadow(rgba(0,0,0,0.2), 0px, 5px, 20px)
