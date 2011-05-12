@@ -10,6 +10,7 @@ en:
     cms:
       pages:
         index:
+          create: 'Create new page'
         edit:
           edit: 'Edit page'
         branch:
