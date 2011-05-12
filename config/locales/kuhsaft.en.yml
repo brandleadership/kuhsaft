@@ -29,7 +29,7 @@ en:
           create: 'Create new asset'
         list:
           confirm: 'Are you sure?'
-          delete: 'Remove asset'
+          delete: 'Delete asset'
   simple_form:
     labels:
       title: 'Page title'

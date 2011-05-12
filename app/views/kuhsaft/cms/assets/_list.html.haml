@@ -1,7 +1,10 @@
 - @assets.each do |asset|
   .asset-pic
     .thumb
-      = link_to image_tag(asset.file.thumb.url), edit_cms_asset_path(asset)
+      - if [:png, :jpg, :jpeg].include? asset.file_type
+        = link_to image_tag(asset.file.thumb.url), edit_cms_asset_path(asset)
+      - else
+        = link_to asset.name, edit_cms_asset_path(asset)
     .copy
       %input.string{ :type => :text, :value => asset.file.url }
     = link_to t('.delete'), cms_asset_path(asset), :confirm => t('.confirm'), :method => :delete

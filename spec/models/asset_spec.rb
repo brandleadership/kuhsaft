@@ -12,12 +12,28 @@ describe Kuhsaft::Asset do
     Kuhsaft::AssetUploader.enable_processing = false
   end
   
-  it 'should scale down to fit into a 50x50 thumb' do
-    @uploader.thumb.should have_dimensions(50, 50)
+  it 'should scale down to fit into a 100x100 thumb' do
+    @uploader.thumb.should have_dimensions(100, 100)
   end
   
   it "should make the image readable only to the owner and not executable" do
     pending 'how and where do we ensure permissions?'
     @uploader.should have_permissions(0600)
+  end
+  
+  describe '#file_type' do
+    it 'should have a file_type' do
+      @asset.should respond_to(:file_type)
+    end
+    
+    it 'should be symbolized' do
+      @asset.file_type.should be_a(Symbol)
+    end
+  end
+  
+  describe '#name' do
+    it 'should have a name' do
+      @asset.should respond_to(:name)
+    end
   end
 end
