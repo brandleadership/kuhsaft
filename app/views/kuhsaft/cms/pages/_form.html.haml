@@ -1,6 +1,6 @@
 = simple_form_for @page, :url => url do |page|
   
-  = page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
+  //= page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
   
   = page.fields_for :localized_pages, @localized_page do |localized|
     
@@ -9,6 +9,7 @@
       = localized.input :locale, :as => :hidden
       = localized.input :title, :required => false
       = localized.input :slug, :required => false, :input_html => { :class => :dimmed }
+      = page.input :parent_id, :collection => Kuhsaft::Page.flat_tree(), :label_method => :nesting_name, :selected => params[:parent_id].presence || page.object.parent_id.presence, :prompt => 'None'
       .clear
     
     .page-part-list

@@ -70,6 +70,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   
   def nesting_name
     num_dashes = parent_pages.size - 1
+    num_dashes = 0 if num_dashes < 0
     "#{'-' * num_dashes} #{self.title}".strip
   end
   
