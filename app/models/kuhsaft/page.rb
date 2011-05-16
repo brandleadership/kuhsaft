@@ -11,29 +11,29 @@ class Kuhsaft::Page < ActiveRecord::Base
   delegate  :title, :slug, :published, :published?, :page_type, :keywords, :description, 
             :locale, :body, :url, :fulltext, :page_parts, :redirect?, :navigation?,
             :to => :translation, :allow_nil => true
-  
+
   accepts_nested_attributes_for :localized_pages
-  
+
   after_save :save_translation
   after_create :set_position
-  
+
   #
   # Stores the selected type of page_part when created through the form
   #
   attr_accessor :page_part_type
-  
+
   def root?
     parent.nil?
   end
-  
+
   def without_self
     Kuhsaft::Page.where('id != ?', self.id)
   end
-  
+
   def parent_pages
     parent_pages_list = []
     parent = self
-    
+
     while parent
       parent_pages_list << parent unless parent.translation.blank? || parent.translation.navigation?
       parent = parent.parent
@@ -68,6 +68,11 @@ class Kuhsaft::Page < ActiveRecord::Base
     end
   end
   
+  def nesting_name
+    num_dashes = parent_pages.size - 1
+    "#{'-' * num_dashes} #{self.title}".strip
+  end
+  
   class << self
     def position_of id
       Kuhsaft::Page.find(id).position rescue 1
@@ -93,6 +98,16 @@ class Kuhsaft::Page < ActiveRecord::Base
     def current_translation_locale=(locale)
       @translation_locale = locale.to_sym
       I18n.locale = @translation_locale if I18n.available_locales.include?(@translation_locale)
+    end
+    
+    def flat_tree pages= nil
+      pages ||= Kuhsaft::Page.root_pages
+      list ||= []
+      pages.each do |page|
+        list << page
+        flat_tree(page.childs).each { |p| list << p } if page.childs.count > 0
+      end
+      list
     end
   end
 end

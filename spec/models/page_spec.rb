@@ -59,13 +59,12 @@ describe Kuhsaft::Page do
       end
     end
     
-    describe '#without_self' do
-      it 'should return pages but not itself' do
-        10.times { Factory.create :page }
-        page = Kuhsaft::Page.first
-        page.without_self.should_not include(page)
+    describe '#flat_tree' do
+      before { destroy_all_pages }
+      it 'should create an ordered, flat list of the page tree' do
+        tree = create_page_tree
+        Kuhsaft::Page.flat_tree.should eq(tree)
       end
-      after { destroy_all_pages }
     end
     
     describe 'languages and locales' do
@@ -98,6 +97,39 @@ describe Kuhsaft::Page do
       it 'should return true for a page without a parent' do
         Factory::create(:page).root?.should be_true
       end
+    end
+    
+    describe '#without_self' do
+      it 'should return pages but not itself' do
+        10.times { Factory.create :page }
+        page = Kuhsaft::Page.first
+        page.without_self.should_not include(page)
+      end
+      after { destroy_all_pages }
+    end
+    
+    describe '#nesting_name' do
+      before do
+        @p1, @p2, @p3 = create_page_tree
+      end
+      
+      context 'on the topmost level' do
+        it 'should have a label representing it\'s nesting depth without a leading dash' do
+          @p1.nesting_name.should eq('English Title 1')
+        end
+      end
+      
+      context 'on the first level' do
+        it 'should have a label with one dash' do
+          @p2.nesting_name.should eq('- English Title 2')
+        end
+      end
+      
+      context 'on the second level' do 
+        it 'should have a label with two dashes' do
+          @p3.nesting_name.should eq('-- English Title 3')
+        end
+      end      
     end
     
     describe '#parent' do
