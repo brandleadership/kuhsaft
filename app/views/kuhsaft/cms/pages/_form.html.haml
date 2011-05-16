@@ -9,7 +9,7 @@
       = localized.input :locale, :as => :hidden
       = localized.input :title, :required => false
       = localized.input :slug, :required => false, :input_html => { :class => :dimmed }
-      = page.input :parent_id, :collection => Kuhsaft::Page.flat_tree(), :label_method => :nesting_name, :selected => params[:parent_id].presence || page.object.parent_id.presence, :prompt => 'None'
+      = page.input :parent_id, :collection => Kuhsaft::Page.flat_tree(), :label_method => :nesting_name, :selected => params[:parent_id].presence || page.object.parent_id.presence, :prompt => 'None', :label_html => { :class => :string }
       .clear
     
     .page-part-list
