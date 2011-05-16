@@ -59,6 +59,15 @@ describe Kuhsaft::Page do
       end
     end
     
+    describe '#without_self' do
+      it 'should return pages but not itself' do
+        10.times { Factory.create :page }
+        page = Kuhsaft::Page.first
+        page.without_self.should_not include(page)
+      end
+      after { destroy_all_pages }
+    end
+    
     describe 'languages and locales' do
       describe '#translation_locales' do
         it 'should provide an array of translation locales' do

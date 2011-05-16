@@ -26,6 +26,10 @@ class Kuhsaft::Page < ActiveRecord::Base
     parent.nil?
   end
   
+  def without_self
+    Kuhsaft::Page.where('id != ?', self.id)
+  end
+  
   def parent_pages
     parent_pages_list = []
     parent = self

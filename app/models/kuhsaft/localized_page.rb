@@ -13,18 +13,20 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
   }
   
   scope :search, lambda{ |term| current_locale.published.where('fulltext LIKE ?', "%#{term}%") }
-  scope :navigation, lambda{ |slug| current_locale.published.where('slug = ?', slug) }
-  
+  scope :navigation, lambda{ |slug| 
+    current_locale.published.where('slug = ?', slug).where('page_type = ?', Kuhsaft::PageType::NAVIGATION)
+  }
+
   before_validation :create_slug, :create_url, :collect_fulltext
   delegate :childs, :to => :page
-  
+
   validates :title, :presence => true
   validates :locale, :presence => true
   validates :slug, :presence => true, :uniqueness => true, :unless => :navigation?
   validates :url, :uniqueness => true, :unless => :navigation?
-  
+
   accepts_nested_attributes_for :page_parts, :allow_destroy => true
-  
+
   def published?
     return true if published == Kuhsaft::PublishState::PUBLISHED
     return false if published == Kuhsaft::PublishState::UNPUBLISHED
@@ -35,22 +37,22 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
       false
     end
   end
-  
+
   def locale
     read_attribute(:locale).to_sym unless read_attribute(:locale).nil?
   end
-  
+
   def redirect?
     page_type == Kuhsaft::PageType::REDIRECT
   end
-  
+
   def navigation?
     page_type == Kuhsaft::PageType::NAVIGATION
   end
-  
+
   def create_url
     return if redirect?
-    
+
     complete_slug = ''
     if page.present? && page.parent.present?
       complete_slug << page.parent.url.to_s
@@ -60,12 +62,12 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
     complete_slug << "/#{self.slug}" unless navigation?
     self.url = complete_slug
   end
-  
+
   def create_slug
     has_slug = title.present? && slug.blank?
     write_attribute(:slug, read_attribute(:title).downcase.parameterize) if has_slug
   end
-  
+
   def collect_fulltext
     self.fulltext = page_parts.inject('') do |text, page_part|
       page_part.class.searchable_attributes.each do |attr|
