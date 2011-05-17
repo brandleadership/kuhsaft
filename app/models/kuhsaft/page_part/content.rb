@@ -5,6 +5,7 @@ module Kuhsaft
       
       belongs_to :localized_page      
       serialize :content
+      before_validation :downcase_tags
       
       class << self
         def serialize_attr name
@@ -43,6 +44,10 @@ module Kuhsaft
         def to_name
           I18n.translate self.to_s.underscore.gsub('/', '.').downcase
         end
+      end
+      
+      def downcase_tags
+        self.tags = self.tags.downcase
       end
       
       def edit_partial_path
