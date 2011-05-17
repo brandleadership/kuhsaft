@@ -24,7 +24,7 @@
             = page_part.input :tags, :as => :string, :label => false, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => 'Tags' }
             = page_part.input :_destroy, :as => :boolean, :wrapper_html => { :class => 'page-part-destroy' }
             .clear
-    - if localized.object.persisted?
+    - if localized.object.persisted? && !@page.redirect?
       .lightened-box.add-page-part
         %label.string{ :for => :page_part_type }= t('.add_element')
         = page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
