@@ -41,11 +41,11 @@
           = localized.input :description, :input_html => { :class => :small }, :label_html => { :class => :string }
     .lightened-box.publish-information
       .column.grid-3
+        = localized.radio_button :published, Kuhsaft::PublishState::UNPUBLISHED
+        = localized.label :published, t('.unpublished'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_0    
+      .column.grid-3
         = localized.radio_button :published, Kuhsaft::PublishState::PUBLISHED
         = localized.label :published, t('.published'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_1
-      .column.grid-3
-        = localized.radio_button :published, Kuhsaft::PublishState::UNPUBLISHED
-        = localized.label :published, t('.unpublished'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_0
       .column.grid-5
         = localized.radio_button :published, Kuhsaft::PublishState::PUBLISHED_AT
         = localized.label :published, t('.published_at'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_2
