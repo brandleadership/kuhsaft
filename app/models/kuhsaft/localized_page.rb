@@ -22,7 +22,7 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
 
   validates :title, :presence => true
   validates :locale, :presence => true
-  validates :slug, :presence => true, :uniqueness => true, :unless => :navigation?
+  validates :slug, :presence => true
   validates :url, :uniqueness => true, :unless => :navigation?
 
   accepts_nested_attributes_for :page_parts, :allow_destroy => true
