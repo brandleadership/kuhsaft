@@ -3,6 +3,7 @@
     %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, edit_cms_page_path(:locale => locale)
 
 .page-tree-breadcrumb
+  = link_to(t('.pages'), cms_pages_path)
   - @page.parent_pages.each do |parent_page|
     = link_to(parent_page.title, cms_page_path(parent_page))
 

@@ -1,7 +1,4 @@
 = simple_form_for @page, :url => url do |page|
-  
-  //= page.input :parent_id, :as => :hidden, :input_html => { :value => params[:parent_id] } if params[:parent_id].present?
-  
   = page.fields_for :localized_pages, @localized_page do |localized|
     
     .lightened-box
