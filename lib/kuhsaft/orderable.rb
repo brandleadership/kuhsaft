@@ -55,7 +55,6 @@ module Kuhsaft
   
       def set_position
         initial_position = siblings.blank? ? 1 : siblings.count + 1
-        debugger
         update_attribute(:position, initial_position)
       end
     end
