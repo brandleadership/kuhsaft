@@ -132,6 +132,16 @@ describe Kuhsaft::Page do
       end      
     end
     
+    describe '#siblings' do
+      it 'should know it\'s siblings' do
+        Factory.create(:page).should respond_to(:siblings)
+      end
+      
+      it 'should be a list of pages' do
+        Factory.create(:page).siblings.should be_all { |p| p.should be_an_instance_of(Kuhsaft::Page) }
+      end
+    end
+    
     describe '#parent' do
       before do
         @page = Factory::create :page

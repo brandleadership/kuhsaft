@@ -47,7 +47,7 @@ module Kuhsaft
       end
       
       def downcase_tags
-        self.tags = self.tags.downcase
+        self.tags = self.tags.downcase unless self.tags.blank?
       end
       
       def edit_partial_path
@@ -55,6 +55,10 @@ module Kuhsaft
         path << "edit_#{path.pop}"
         path.join '/'
         #self.class.model_name.partial_path
+      end
+      
+      def siblings
+        self.localized_page.page_parts.where('id !=?', self.id)
       end
       
       def show_partial_path

@@ -8,10 +8,6 @@ module Kuhsaft
       update_attribute :position, position - 1
     end
   
-    def siblings
-      (parent.present? ? parent.childs : Kuhsaft::Page.root_pages).where('id != ?', id)
-    end
-  
     def preceding_sibling
       siblings.where('position = ?', position - 1).first
     end

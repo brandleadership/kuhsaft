@@ -41,6 +41,10 @@ class Kuhsaft::Page < ActiveRecord::Base
     parent_pages_list.reverse
   end
   
+  def siblings
+    (parent.present? ? parent.childs : Kuhsaft::Page.root_pages).where('id != ?', id)
+  end
+  
   def translation lang = nil
     lang ||= Kuhsaft::Page.current_translation_locale
     @translation = localized_pages.where('locale = ?', lang).first if @translation.blank? || @translation.locale != lang
