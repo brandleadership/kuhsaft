@@ -24,6 +24,9 @@ en:
           unpublished: "Save page offline"
           published: "Publish page"
           published_at: "Go online on"
+          confirm: 'Are you sure?'
+          destroy_page_part: 'Delete'
+          separate_by_comma: 'Separate tags by comma'
         current_translation_locale: 'Current translation: %{translation_locale}'
       assets:
         index:
