@@ -50,10 +50,6 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
     page_type == Kuhsaft::PageType::NAVIGATION
   end
   
-  def published
-    read_attribute(:published).presence || Kuhsaft::PublishState::UNPUBLISHED
-  end
-  
   def create_url
     return if redirect?
 

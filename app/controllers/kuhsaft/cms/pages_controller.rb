@@ -14,6 +14,7 @@ module Kuhsaft
       def new
         @page = Kuhsaft::Page.new
         @localized_page = @page.localized_pages.find_or_initialize_by_locale(params[:locale])
+        @localized_page.published ||= Kuhsaft::PublishState::UNPUBLISHED
         respond_with @page
       end
 
