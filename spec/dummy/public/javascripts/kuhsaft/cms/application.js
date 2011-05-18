@@ -1,7 +1,7 @@
 $(function(){
   function updateSortable(event, ui){
     var self = $(ui.item),
-          prev = self.prev(),
+          prev = $(self.prevAll('.page-part')[0]),
           id   = prev.length > 0 ? prev.data('id') : ''
       $.post(self.data('put-url'), {reposition:id, _method: 'put'})
   }
@@ -25,8 +25,7 @@ $(function(){
   .mouseleave(function(){
     $(this).parent().removeClass("will-drag")
   })
-  
-  $(".page-part-list .draggable-box").mouseleave(function(){
+  $(".draggable-box").mouseleave(function(){
     $(this).removeClass("will-drag")
   })
 })

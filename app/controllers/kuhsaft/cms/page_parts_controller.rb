@@ -18,6 +18,10 @@ module Kuhsaft
       end
 
       def update
+        if @page_part = Kuhsaft::PagePart::Content.find(params[:id])
+          @page_part.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
+        end
+        render 'update'
       end
 
       def destroy

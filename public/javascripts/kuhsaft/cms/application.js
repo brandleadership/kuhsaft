@@ -1,7 +1,7 @@
 $(function(){
   function updateSortable(event, ui){
     var self = $(ui.item),
-          prev = self.prev(),
+          prev = $(self.prevAll('.page-part')[0]),
           id   = prev.length > 0 ? prev.data('id') : ''
       $.post(self.data('put-url'), {reposition:id, _method: 'put'})
   }

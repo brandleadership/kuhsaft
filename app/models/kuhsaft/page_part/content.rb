@@ -3,9 +3,10 @@ module Kuhsaft
     class Content < ActiveRecord::Base
       include Kuhsaft::Orderable
       
-      belongs_to :localized_page      
+      belongs_to :localized_page
       serialize :content
       acts_as_taggable
+      default_scope order('position ASC')
       
       class << self
         def serialize_attr name
@@ -54,7 +55,7 @@ module Kuhsaft
       end
       
       def siblings
-        self.localized_page.page_parts.where('id !=?', self.id)
+        self.localized_page.page_parts.where('id !=?', self.id) if self.localized_page.present?
       end
       
       def show_partial_path

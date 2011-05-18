@@ -31,6 +31,10 @@ describe 'PagePart' do
         Kuhsaft::PagePart::Content.serializeable_attributes.should be_a(Array)
       end
       
+      it 'should return the position of a page_part' do
+        Kuhsaft::PagePart::Content.should respond_to(:position_of)
+      end
+      
       it 'should keep a list of searchable attributes' do
         Kuhsaft::PagePart::Content.searchable_attributes.should be_a(Array)
       end
