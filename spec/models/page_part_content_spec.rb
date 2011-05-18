@@ -73,6 +73,13 @@ describe 'PagePart' do
       m2.text.should eq('hi')
     end
     
+    it 'should set the initial position after save' do
+      @m2 = Kuhsaft::PagePart::Markdown.new
+      @m2.text = 'hi there'
+      @m2.should_receive(:set_position)
+      @m2.save
+    end
+    
     describe 'edit_partial_path' do
       it 'should return kuhsaft/page_part/markdowns/edit_markdown' do
         @m.edit_partial_path.should eq('kuhsaft/page_part/markdowns/edit_markdown')

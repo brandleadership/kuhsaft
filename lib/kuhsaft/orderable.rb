@@ -3,7 +3,6 @@ module Kuhsaft
   # siblings(), returns the siblings of the same type of object
   
   module Orderable
-    
     def self.included base
       base.extend(ClassMethods)
       base.send :include, InstanceMethods
@@ -55,7 +54,9 @@ module Kuhsaft
       end
   
       def set_position
-        update_attribute(:position, siblings.count + 1) unless siblings.blank?
+        initial_position = siblings.blank? ? 1 : siblings.count + 1
+        debugger
+        update_attribute(:position, initial_position)
       end
     end
     

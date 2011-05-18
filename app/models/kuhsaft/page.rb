@@ -15,7 +15,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   accepts_nested_attributes_for :localized_pages
 
   after_save :save_translation
-  after_create :set_position
 
   #
   # Stores the selected type of page_part when created through the form
@@ -79,10 +78,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   class << self
-    def position_of id
-      Kuhsaft::Page.find(id).position rescue 1
-    end
-    
     def find_by_url url
       translation = Kuhsaft::LocalizedPage.where('url = ?', url)
       translation.present? && translation.first.present? ? translation.first.page : nil
