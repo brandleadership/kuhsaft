@@ -24,6 +24,7 @@ module Kuhsaft
         install_migration_once 'add_page_type_to_localized_pages.rb'
         install_migration_once 'add_published_at_to_localized_pages.rb'
         install_migration_once 'add_tags_to_page_part_contents.rb'
+        install_migration_once 'acts_as_taggable_on_migration.rb'
       end
       
       private      

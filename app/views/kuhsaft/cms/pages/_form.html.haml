@@ -6,7 +6,6 @@
       = localized.input :locale, :as => :hidden
       = localized.input :title, :required => false
       = localized.input :slug, :required => false, :input_html => { :class => :dimmed }
-      = page.input :parent_id, :collection => Kuhsaft::Page.flat_tree(), :label_method => :nesting_name, :selected => params[:parent_id].presence || page.object.parent_id.presence, :prompt => 'None', :label_html => { :class => :string }
       .clear
     
     .page-part-list
@@ -18,7 +17,7 @@
     
           = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
           .page-part-helpers
-            = page_part.input :tags, :as => :string, :label => false, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => 'Tags' }
+            = page_part.input :tag_list, :as => :string, :label => false, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => 'Tags' }
             = page_part.input :_destroy, :as => :boolean, :wrapper_html => { :class => 'page-part-destroy' }
             .clear
     - if localized.object.persisted? && !@page.redirect?
@@ -31,6 +30,7 @@
     .darkened-box
       %h3.toggle.closed= t('.metainformation')
       .collapsable.hidden
+        = page.input :parent_id, :collection => Kuhsaft::Page.flat_tree(), :label_method => :nesting_name, :selected => params[:parent_id].presence || page.object.parent_id.presence, :prompt => 'None', :label_html => { :class => :string }
         = localized.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :label_html => { :class => :string }
         = localized.input :url, :as => :string if @page.redirect?
         - unless localized.object.page_type == Kuhsaft::PageType::REDIRECT

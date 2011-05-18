@@ -22,6 +22,10 @@ describe 'PagePart' do
       @content.should respond_to(:tags)
     end
     
+    it 'should have a tag list' do
+      @content.should respond_to(:tag_list)
+    end
+    
     context 'class' do
       it 'should keep a list of the serializeable attributes' do
         Kuhsaft::PagePart::Content.serializeable_attributes.should be_a(Array)

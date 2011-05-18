@@ -6,6 +6,7 @@ module Kuhsaft
       belongs_to :localized_page      
       serialize :content
       before_validation :downcase_tags
+      acts_as_taggable
       
       class << self
         def serialize_attr name

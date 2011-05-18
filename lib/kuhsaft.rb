@@ -5,4 +5,5 @@ module Kuhsaft
   require 'carrierwave'
   require 'rdiscount'
   require 'compass'
+  require 'acts-as-taggable-on'
 end
