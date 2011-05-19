@@ -80,7 +80,13 @@ class Kuhsaft::Page < ActiveRecord::Base
   class << self
     def find_by_url url
       translation = Kuhsaft::LocalizedPage.where('url = ?', url)
-      translation.present? && translation.first.present? ? translation.first.page : nil
+      if translation.present? && translation.first.present?
+        page = translation.first.page
+        page.translation(translation.first.locale)
+        page
+      else
+        nil
+      end
     end
     
     def translation_locales
