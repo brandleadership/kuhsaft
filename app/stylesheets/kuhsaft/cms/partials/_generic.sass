@@ -196,35 +196,33 @@ a
 .dimmed
   background: #d5d5d5
 
+=nested-branch($depth)
+  $start-color: #f3f3f3
+  $stop-color: #e3e3e3
+  $calc-depth: $depth - 1
+  $padded-depth: (20px * $depth)
+  
+  background: darken($stop-color, $calc-depth*12.5%)
+  padding: 4px 4px 4px $padded-depth
+  border-bottom: 1px solid darken($stop-color, 10% + ($calc-depth*10%))
+  +linear-gradient(color-stops(darken($start-color, $calc-depth*12.5%), darken($stop-color, $calc-depth*12.5%)))
+  +text-shadow(darken(#fff, $calc-depth*10%), 0px, 1px, 0px)
+
 li
   .branch
-    background: #e3e3e3 url(/images/kuhsaft/page-branch-bg.png) repeat-x
-    padding: 4px 4px 4px 20px
-    
+    +nested-branch(1)
+
   li
     .branch
-      background: #c3c3c3 url(/images/kuhsaft/page-branch-bg-1.png) repeat-x
-      padding: 4px 4px 4px 40px
-      
+      +nested-branch(2)
+
     li
       .branch
-        background: #c3c3c3 url(/images/kuhsaft/page-branch-bg-1.png) repeat-x
-        padding: 4px 4px 4px 60px
-        
+        +nested-branch(3)
+
       li
         .branch
-          background: #c3c3c3 url(/images/kuhsaft/page-branch-bg-1.png) repeat-x
-          padding: 4px 4px 4px 80px
-          
-        li
-          .branch
-            background: #c3c3c3 url(/images/kuhsaft/page-branch-bg-1.png) repeat-x
-            padding: 4px 4px 4px 100px          
-            
-          li
-            .branch
-              background: #c3c3c3 url(/images/kuhsaft/page-branch-bg-1.png) repeat-x
-              padding: 4px 4px 4px 120px            
+          +nested-branch(4)
 
 .icon
   +float_right
@@ -235,15 +233,7 @@ li
 ul.pages-root
   width: 560px
   border: 1px solid #b2b2b2
-
-  ul
-    border-top: 1px solid #b2b2b2
-
-  li
-    border-bottom: 1px solid #b2b2b2
-  
-  li:last-child
-    border: 0px  
+  border-bottom: 0px
     
 .asset-pic
   width: 102px
@@ -270,7 +260,7 @@ ul.pages-root
 .fixed-width-image
   img
     max-width: 100%
-    
+
 .icon
   +hide-text
   +float_right
@@ -290,7 +280,7 @@ ul.pages-root
   background: url(/images/kuhsaft/delete.png) no-repeat center center
   width: 22px
   border-left: 0px
-  
+
 .drag-handler
   width: 140px
   height: 60px
