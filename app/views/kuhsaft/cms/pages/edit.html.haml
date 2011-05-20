@@ -8,4 +8,4 @@
     = link_to(parent_page.title, edit_cms_page_path(parent_page))
 
 .box-container
-  = render :partial => 'form', :locals => { :url => cms_page_path(@page), :page_title => t('.edit') }
+  = render :partial => 'form', :locals => { :url => cms_page_path(@page), :page_title => t('.edit_html', :title => @page.title ) }

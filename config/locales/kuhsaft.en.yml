@@ -12,7 +12,7 @@ en:
         index:
           create: 'Create new page'
         edit:
-          edit: 'Edit page'
+          edit_html: 'Editing page: <span>%{title}</span>'
         branch:
           add: 'Add page'
           create: 'Create new page'

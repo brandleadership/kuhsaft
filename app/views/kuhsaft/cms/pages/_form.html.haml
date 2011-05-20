@@ -2,7 +2,7 @@
   = page.fields_for :localized_pages, @localized_page do |localized|
     
     .lightened-box
-      %h1= page_title
+      %h1{ :class => "#{@page.persisted? ? 'edit' : 'new'}-page" }= page_title
       = localized.input :locale, :as => :hidden
       = localized.input :title, :required => false
       = localized.input :slug, :required => false, :input_html => { :class => :dimmed }
