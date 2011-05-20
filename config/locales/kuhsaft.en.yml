@@ -11,6 +11,8 @@ en:
       pages:
         index:
           create: 'Create new page'
+        new:
+          new: 'Creating new page'
         edit:
           edit_html: 'Editing page: <span>%{title}</span>'
         branch:
