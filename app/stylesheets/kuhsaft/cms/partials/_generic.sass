@@ -204,6 +204,7 @@ a
   
   background: darken($stop-color, $calc-depth*12.5%)
   padding: 4px 4px 4px $padded-depth
+  border-top: 1px solid darken(#fff, 3%+($calc-depth*10%))
   border-bottom: 1px solid darken($stop-color, 10% + ($calc-depth*10%))
   +linear-gradient(color-stops(darken($start-color, $calc-depth*12.5%), darken($stop-color, $calc-depth*12.5%)))
   +text-shadow(darken(#fff, $calc-depth*10%), 0px, 1px, 0px)
@@ -269,7 +270,6 @@ ul.pages-root
   padding: 0px 4px
   border:
     left: 1px solid #b2b2b2
-    right: 1px solid #fff
 
 .icon.add-child-page
   background: url(/images/kuhsaft/add-child-page.png) no-repeat center center
