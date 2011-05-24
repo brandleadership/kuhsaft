@@ -10,7 +10,7 @@
     
     .page-part-list
       - @localized_page.page_parts.each do |page_part_object|
-        .colored-box.draggable-box.page-part{ :'data-id' => page_part_object.id, :'data-put-url' => cms_page_page_part_path(page_part_object, :page_id => @page) }
+        .colored-box.draggable-box.page-part.can-drag{ :'data-id' => page_part_object.id, :'data-put-url' => cms_page_page_part_path(page_part_object, :page_id => @page) }
           = localized.fields_for :page_parts, page_part_object do |page_part|
             .drag-handler
             .destroy-handler
