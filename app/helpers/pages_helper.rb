@@ -35,7 +35,7 @@ module PagesHelper
       pages = Kuhsaft::Page.root_pages
     end
     yield pages if block_given? && pages.length > 0
-    pages
+    pages.select { |p| p.published? }
   end
   
   def homepage
