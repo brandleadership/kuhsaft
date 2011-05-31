@@ -28,14 +28,14 @@ module PagesHelper
 
   def navigation_for options
     if options.is_a?(Hash) && slug = options.delete(:slug)
-      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.childs rescue []
+      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.childs.published rescue []
     elsif (options.is_a?(Fixnum) && id = options) ||  id = options.delete(:id)
-      pages = Kuhsaft::Page.where('parent_id = ?', id)
+      pages = Kuhsaft::Page.published.where('parent_id = ?', id)
     elsif options.nil?
-      pages = Kuhsaft::Page.root_pages
+      pages = Kuhsaft::Page.published.root_pages
     end
     yield pages if block_given? && pages.length > 0
-    pages.select { |p| p.published? }
+    pages
   end
   
   def homepage

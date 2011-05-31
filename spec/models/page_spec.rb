@@ -67,6 +67,16 @@ describe Kuhsaft::Page do
       end
     end
     
+    describe '#published' do
+      before { destroy_all_pages }
+      it 'should get only published pages' do
+        p1, p2, p3 = 3.times.map { Factory.create :page }
+        p2.translation.update_attribute :published, Kuhsaft::PublishState::UNPUBLISHED
+        Kuhsaft::Page.published.should be_all { |p| p.published?.should be_true }
+        Kuhsaft::Page.published.length.should be(2)
+      end
+    end
+    
     describe 'languages and locales' do
       describe '#translation_locales' do
         it 'should provide an array of translation locales' do

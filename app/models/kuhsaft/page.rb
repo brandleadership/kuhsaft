@@ -5,6 +5,14 @@ class Kuhsaft::Page < ActiveRecord::Base
   has_many :childs, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
   belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
   
+  scope :published, lambda {
+    includes(:localized_pages).where('localized_pages.published = ? OR localized_pages.published_at < ? AND localized_pages.published = ?', 
+      Kuhsaft::PublishState::PUBLISHED, 
+      DateTime.now, 
+      Kuhsaft::PublishState::PUBLISHED_AT
+    )
+  }
+  
   scope :root_pages, where('parent_id IS NULL')
   default_scope order('position ASC')
   
