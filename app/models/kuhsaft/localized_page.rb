@@ -12,7 +12,7 @@ class Kuhsaft::LocalizedPage < ActiveRecord::Base
     )
   }
   
-  scope :search, lambda{ |term| current_locale.published.where('fulltext LIKE ?', "%#{term}%") }
+  scope :search, lambda{ |term| current_locale.published.where('`fulltext` LIKE ?', "%#{term}%") }
   scope :navigation, lambda{ |slug| 
     current_locale.published.where('slug = ?', slug).where('page_type = ?', Kuhsaft::PageType::NAVIGATION)
   }
