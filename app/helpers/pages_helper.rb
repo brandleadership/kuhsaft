@@ -43,7 +43,8 @@ module PagesHelper
   end
   
   def page_for_level num
-    input = params[:url].presence || request.path[1..-1]
+    input = controller.current_url if controller.respond_to? :current_url
+    input ||= params[:url].presence || ''
     url = input.split('/').take(num + 1).join('/') unless params[:url].blank?
     page = Kuhsaft::Page.find_by_url(url)
     yield page if block_given?
@@ -52,8 +53,9 @@ module PagesHelper
   end
 
   def active_page_class page
-    url = params[:url].presence || request.path.presence || ''
-    url.include?(page.url.to_s) ? :active : nil
+    input = controller.current_url if controller.respond_to? :current_url
+    input ||= params[:url].presence || ''
+    input.include?(page.url.to_s) ? :active : nil
   end
 
   def current_page_class page
