@@ -43,7 +43,8 @@ module PagesHelper
   end
   
   def page_for_level num
-    url = params[:url].split('/').take(num + 1).join('/') unless params[:url].blank?
+    input = params[:url].presence || request.path[1..-1]
+    url = input.split('/').take(num + 1).join('/') unless params[:url].blank?
     page = Kuhsaft::Page.find_by_url(url)
     yield page if block_given?
     page
