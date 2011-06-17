@@ -51,7 +51,7 @@ module PagesHelper
   end
 
   def active_page_class page
-    url = params[:url].presence || ''
+    url = params[:url].presence || request.path.presence || ''
     url.include?(page.url.to_s) ? :active : nil
   end
 
