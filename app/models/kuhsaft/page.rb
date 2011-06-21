@@ -68,10 +68,10 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
   
   def link
-    if translation.page_parts.count == 0 && childs.count > 0
+    if translation.present? && translation.page_parts.count == 0 && childs.count > 0
       childs.first.link
     else
-      if translation.redirect?
+      if translation.present? && translation.redirect?
         url
       else
         "/#{url}"
