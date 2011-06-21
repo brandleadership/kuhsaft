@@ -77,6 +77,20 @@ describe Kuhsaft::Page do
       end
     end
     
+    describe '#current_locale' do
+      before { destroy_all_pages }
+      it 'should only return pages with translations in the current locale' do
+        p1 = Factory.create :page
+        p1.translation.update_attribute :locale, :fr
+        p2 = Factory.create :page
+        p2.translation.update_attribute :locale, :fr
+        p3 = Factory.create :page
+        Kuhsaft::Page.current_translation_locale = :fr
+        Kuhsaft::Page.current_locale.should have(2).items
+        Kuhsaft::Page.current_translation_locale = :en
+      end
+    end
+    
     describe 'languages and locales' do
       describe '#translation_locales' do
         it 'should provide an array of translation locales' do

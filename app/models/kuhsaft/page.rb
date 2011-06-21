@@ -13,6 +13,10 @@ class Kuhsaft::Page < ActiveRecord::Base
     )
   }
   
+  scope :current_locale, lambda {
+    includes(:localized_pages).where('localized_pages.locale = ?', Kuhsaft::Page.current_translation_locale)
+  }
+  
   scope :root_pages, where('parent_id IS NULL')
   default_scope order('position ASC')
   

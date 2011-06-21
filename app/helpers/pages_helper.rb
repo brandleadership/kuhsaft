@@ -28,7 +28,7 @@ module PagesHelper
 
   def navigation_for options
     if options.is_a?(Hash) && slug = options.delete(:slug)
-      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.childs.published rescue []
+      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.childs.current_locale.published rescue []
     elsif (options.is_a?(Fixnum) && id = options) ||  id = options.delete(:id)
       pages = Kuhsaft::Page.published.where('parent_id = ?', id)
     elsif options.nil?
