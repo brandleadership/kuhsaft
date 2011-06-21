@@ -63,7 +63,7 @@ class Kuhsaft::Page < ActiveRecord::Base
       @translation.save 
     end
     childs.each do |child|
-      child.translation.save if child.translation.persisted?
+      child.translation.save if child.translation.present? && child.translation.persisted?
     end
   end
   
