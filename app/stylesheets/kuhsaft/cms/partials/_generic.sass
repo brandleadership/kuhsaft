@@ -127,9 +127,6 @@ body
 .draggable-box 
   position: relative
 
-.draggable-box.colored-box
-  background: $color3 url(/images/kuhsaft/page-part-draggable-area.png) no-repeat top right
-
 h1
   font-size: 36px
   font-weight: bold
@@ -189,7 +186,7 @@ a
   +border-bottom-left-radius(3px)
   +float-left
   width: 619px
-  margin: -5px 0px 0px 0px
+  margin: -5px 0px 10px 0px
 
 
 .page-part-destroy
@@ -294,14 +291,18 @@ ul.pages-root
   border-left: 0px
 
 .actions
-  height: 40px
+  height: 30px
   width: 100%
   clear: both
-  margin: 0px 0px 20px 0px
+  margin: 0px 0px 0px 0px
+  input#kuhsaft_page_submit
+    +float_right
 
 .drag-handler
-  width: 140px
-  height: 60px
+  background: $color3 url(/images/kuhsaft/page-part-draggable-area.png) no-repeat top right
+  width: 91px
+  height: 22px
+  margin: 0px 7px 0px 0px
   float: right
   cursor: url(/images/kuhsaft/openhand.cur), default !important
   &:active
@@ -310,7 +311,9 @@ ul.pages-root
 .destroy-handler  
   text-align: right
   width: 100px
-  float: right
+  margin: 0px 10px 0px 0px
+  padding: 5px 0px 0px 0px
+  +float_right
   
 .will-drag
   border: 1px solid #666

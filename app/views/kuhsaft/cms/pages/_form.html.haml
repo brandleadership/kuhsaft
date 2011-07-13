@@ -14,8 +14,6 @@
           = localized.fields_for :page_parts, page_part_object do |page_part|
             .actions
               .drag-handler
-              .destroy-handler
-                = link_to t('.destroy_page_part'), cms_page_page_part_path(page_part.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true
               - unless page_part.object.persisted?
                 = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
 
@@ -23,6 +21,10 @@
             = page_part.label :tag_list
             .page-part-helpers
               = page_part.text_field :tag_list, :placeholder => t('.separate_by_comma'), :class => 'page-part-tags'
+            .actions
+              = page.button :submit, :class => 'small-input-button'
+              .destroy-handler
+                = link_to t('.destroy_page_part'), cms_page_page_part_path(page_part.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true              
             .clear
     - if localized.object.persisted? && !@page.redirect?
       .lightened-box.add-page-part
