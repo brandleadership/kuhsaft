@@ -19,7 +19,7 @@
           = admin_tab(t('.pages_nav'), cms_pages_path)
           = admin_tab(t('.assets_nav'), cms_assets_path)
           = render :partial => 'cms/admin_navigation' rescue ''
-        .clear
+          .clear
         %ul.language-tabs
           = yield :cms_language_tabs
           .clear

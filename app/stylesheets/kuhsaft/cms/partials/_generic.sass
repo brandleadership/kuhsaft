@@ -11,14 +11,16 @@ body
   
 #kuhsaft-wrapper
   //background: #e9e9e9 url(/images/kuhsaft/wrapper-bg.png) repeat-x left 100px
+  width: 960px
+  margin: 0 auto
 
 .hidden
   display: none
 
 .cms-header
   background: url(/images/kuhsaft/header-bg.jpg)
-  border-bottom: 1px solid #7c7a7f
-  +min-height(200px)
+  border-bottom: 1px solid #cccccb
+  +min-height(150px)
 
 .page-tree-breadcrumb
   margin-bottom: 20px
@@ -38,7 +40,8 @@ body
   border:
     top: 1px solid #7c7a7f
     right: 1px solid #7c7a7f
-  margin-top: -61px
+  margin: -41px 10px 0px 0px
+  
   
   a
     background: $color1
@@ -60,13 +63,10 @@ body
       +link-colors($color1, $color2, $color1, $color1, $color1)
 
 .cms-content-container
-  +single-box-shadow(#666, 0px, 2px, 8px)
-  margin: 20px
   width: 960px
 
 .language-tabs
   border:
-    top: 1px solid #cfcfcf
     bottom: 1px solid #cfcfcf
   background: #e3e3e3 url(/images/kuhsaft/tab-bg.png) repeat-x
   height: 40px
@@ -96,6 +96,7 @@ body
 .cms-content
   background: #f8f8f8
   padding: 35px
+  +min-height(500px)
 
 .box-container
   border:
@@ -181,11 +182,15 @@ a
   background: #e3e5c5
   padding: 3px 6px
   border: 
-    top: 1px solid #d2d3b9
     left: 1px solid #d2d3b9
     right: 1px solid #fefff4
     bottom: 1px solid #fefff4
-  +border-radius(3px)
+  +border-bottom-right-radius(3px)
+  +border-bottom-left-radius(3px)
+  +float-left
+  width: 619px
+  margin: -5px 0px 0px 0px
+
 
 .page-part-destroy
   font-size: 12px
@@ -198,10 +203,7 @@ a
 
 .page-part-tags
   +float_left
-  width: 626px
-  
-  input
-    width: 612px
+  width: 612px
     
 .dimmed
   background: #d5d5d5
@@ -291,21 +293,24 @@ ul.pages-root
   width: 22px
   border-left: 0px
 
+.actions
+  height: 40px
+  width: 100%
+  clear: both
+  margin: 0px 0px 20px 0px
+
 .drag-handler
   width: 140px
   height: 60px
-  position: absolute
-  right: 0px
-  top: 0px
+  float: right
   cursor: pointer
+  &:active
+    cursor: move
 
 .destroy-handler  
   text-align: right
   width: 100px
-  position: absolute
-  right: 140px
-  top: 0px
-  padding-top: 10px
+  float: right
   
 .will-drag
   border: 1px solid #666

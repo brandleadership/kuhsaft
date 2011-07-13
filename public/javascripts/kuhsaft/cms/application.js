@@ -20,10 +20,10 @@ $(function(){
   })
   
   $(".page-part-list .drag-handler").mouseenter(function(){
-    $(this).parent().addClass("will-drag")
+    $(this).parent().parent().addClass("will-drag")
   })
   .mouseleave(function(){
-    $(this).parent().removeClass("will-drag")
+    $(this).parent().parent().removeClass("will-drag")
   })
   $(".draggable-box").mouseleave(function(){
     $(this).removeClass("will-drag")
