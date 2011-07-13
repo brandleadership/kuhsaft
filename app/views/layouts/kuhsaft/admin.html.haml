@@ -13,8 +13,14 @@
     #kuhsaft-wrapper
       .cms-header
         .container
-          - if respond_to?(:destroy_user_session_path)
-            = link_to(t('.logout'), destroy_user_session_path, :class => :logout)
+          .meta-actions
+            %a.micro-button{ :href => '/', :target => '_blank' }
+              View Site
+            .logout-box
+              - if respond_to?(:destroy_user_session_path)
+                = current_user.first_name
+                = current_user.last_name
+                = link_to '(logout)', destroy_user_session_path, :class => 'logout micro-logout'
       .cms-content-container
         %ul.cms-module-nav
           = admin_tab(t('.pages_nav'), cms_pages_path)

@@ -23,6 +23,15 @@ body
   border-bottom: 1px solid #cccccb
   +min-height(150px)
 
+.meta-actions
+  +float_right
+  margin: 10px 25px 0px 0px
+
+.logout-box
+  +float_right
+  margin: 0px 10px 0px 0px
+  font-size: 11px
+
 .page-tree-breadcrumb
   margin-bottom: 20px
   background: url(/images/kuhsaft/pages-breadcrumb-icon.png) no-repeat left 5px
@@ -200,8 +209,8 @@ a
     +float_left
 
 .page-part-tags
-  +float_left
-  width: 612px
+  &.string
+    width: 612px
     
 .dimmed
   background: #d5d5d5

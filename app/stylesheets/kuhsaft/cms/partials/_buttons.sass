@@ -1,5 +1,5 @@
 .toolbar
-  padding: 10px 0px
+  padding: 10px 25px
   background: #F8F8F8
   
   a.button,
@@ -9,7 +9,8 @@
 a.button,
 a.small-button,
 input.input-button,
-input.small-input-button
+input.small-input-button,
+.micro-button
   background: $color1
   padding: 10px 15px
   margin-right: 10px
@@ -25,3 +26,9 @@ input.small-input-button
 a.small-button,
 input.small-input-button
   padding: 5px 10px
+  
+.micro-button
+  +float_right
+  margin: 0px 10px 0px 0px
+  font-size: 11px
+  padding: 0px 4px
