@@ -1,7 +1,7 @@
 $(function(){
   function updateSortable(event, ui){
     var self = $(ui.item),
-          prev = $(self.prevAll('.page-part')[0]),
+          prev = $(self.prevAll('.can-drag')[0]),
           id   = prev.length > 0 ? prev.data('id') : ''
       $.post(self.data('put-url'), {reposition:id, _method: 'put'})
   }
@@ -20,12 +20,15 @@ $(function(){
   })
   
   $(".page-part-list .drag-handler").mouseenter(function(){
-    $(this).parent().addClass("will-drag")
+    $(this).parent().parent().addClass("will-drag")
   })
   .mouseleave(function(){
-    $(this).parent().removeClass("will-drag")
+    $(this).parent().parent().removeClass("will-drag")
   })
   $(".draggable-box").mouseleave(function(){
     $(this).removeClass("will-drag")
   })
+  
+  $('.colored-box textarea.text').elastic();
+  
 })
