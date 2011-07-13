@@ -28,4 +28,7 @@ $(function(){
   $(".draggable-box").mouseleave(function(){
     $(this).removeClass("will-drag")
   })
+  
+  $('.colored-box textarea.text').elastic();
+  
 })
