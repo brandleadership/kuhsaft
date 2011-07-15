@@ -16,7 +16,7 @@ describe Kuhsaft::PagesController do
   
   describe 'should render successfully' do
     it '#show' do
-      get :show, :url => '/en/english-title'
+      get :show, :locale => 'en', :url => '/english-title'
       response.should be_success
     end
   end

@@ -5,7 +5,8 @@ describe 'routing to Kuhsaft::PagesController' do
     { :get => '/en/my-slug' }.should route_to(
       :controller => 'kuhsaft/pages',
       :action => 'show',
-      :url => 'en/my-slug'
+      :url => 'my-slug',
+      :locale => 'en'
     )
   end
 end
