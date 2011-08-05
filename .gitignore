@@ -9,7 +9,9 @@ spec/dummy/db/schema.rb
 spec/dummy/public/stylesheets/*
 spec/dummy/public/uploads/tmp/*
 spec/dummy/public/uploads/kuhsaft/*
+spec/dummy/public/uploads/*
+spec/dummy/public/images/**/*
+spec/dummy/public/javascripts/**/*
 Gemfile.lock
 .DS_Store
 .sass-cache
-spec/dummy/public/uploads/*
