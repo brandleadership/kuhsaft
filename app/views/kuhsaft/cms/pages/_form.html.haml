@@ -12,16 +12,18 @@
       - @localized_page.page_parts.each do |page_part_object|
         .colored-box.draggable-box.page-part.can-drag{ :'data-id' => page_part_object.id, :'data-put-url' => cms_page_page_part_path(page_part_object, :page_id => @page) }
           = localized.fields_for :page_parts, page_part_object do |page_part|
-            .drag-handler
-            .destroy-handler
-              = link_to t('.destroy_page_part'), cms_page_page_part_path(page_part.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true
-            - unless page_part.object.persisted?
-              = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
+            .actions
+              .drag-handler
+              .destroy-handler
+                = link_to t('.destroy_page_part'), cms_page_page_part_path(page_part.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true
+              - unless page_part.object.persisted?
+                = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
 
             = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
+            = page_part.label :tag_list
             .page-part-helpers
-              = page_part.input :tag_list, :as => :string, :wrapper_html => { :class => 'page-part-tags' }, :input_html => { :placeholder => t('.separate_by_comma') }
-              .clear
+              = page_part.text_field :tag_list, :placeholder => t('.separate_by_comma'), :class => 'page-part-tags'
+            .clear
     - if localized.object.persisted? && !@page.redirect?
       .lightened-box.add-page-part
         %label.string{ :for => :page_part_type }= t('.add_element')
@@ -50,7 +52,7 @@
         = localized.label :published, t('.published_at'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_2
         = localized.text_field :published_at, :class => 'small string', :placeholder => 'dd.mm.yyyy HH:MM'
       .column.grid-2
-        = page.button :submit
+        = page.button :submit, :class => 'input-button'
       .clear
 
 :javascript
