@@ -19,4 +19,8 @@ class Kuhsaft::Asset < ActiveRecord::Base
   def path=val
     # do nothing
   end
+  
+  def filename
+    try(:file).try(:file).try(:filename)
+  end
 end

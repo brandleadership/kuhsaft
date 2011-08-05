@@ -7,5 +7,5 @@
         = link_to asset.name, edit_cms_asset_path(asset)
     .copy
       %input.string{ :type => :text, :value => asset.file.url }
-    = link_to t('.delete'), cms_asset_path(asset), :confirm => t('.confirm'), :method => :delete
+    = link_to t('.delete'), cms_asset_path(asset), :confirm => t('.confirm', :filename => asset.filename), :method => :delete
 .clear
