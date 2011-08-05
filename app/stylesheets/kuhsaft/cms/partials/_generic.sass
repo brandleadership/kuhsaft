@@ -1,6 +1,7 @@
 $color1: #0c1550
 $color2: #1a2363
 $color3: #f7f8e6
+$color4: #263392
 $border-color: #cdcdcd
 
 body
@@ -22,6 +23,15 @@ body
   border-bottom: 1px solid #cccccb
   +min-height(150px)
 
+.meta-actions
+  +float_right
+  margin: 10px 25px 0px 0px
+
+.logout-box
+  +float_right
+  margin: 0px 10px 0px 0px
+  font-size: 11px
+
 .page-tree-breadcrumb
   margin-bottom: 20px
   background: url(/images/kuhsaft/pages-breadcrumb-icon.png) no-repeat left 5px
@@ -40,7 +50,7 @@ body
   border:
     top: 1px solid #7c7a7f
     right: 1px solid #7c7a7f
-  margin: -41px 10px 0px 0px
+  margin: -41px 35px 0px 0px
   
   a
     background: $color1
@@ -125,9 +135,6 @@ body
 .draggable-box 
   position: relative
 
-.draggable-box.colored-box
-  background: $color3 url(/images/kuhsaft/page-part-draggable-area.png) no-repeat top right
-
 h1
   font-size: 36px
   font-weight: bold
@@ -147,7 +154,7 @@ h1
   
 a
   text-decoration: none
-  +link-colors($color1, $color2, $color1, $color1, $color2)
+  +link-colors($color1, $color4, $color1, $color1, $color2)
   
 .clear
   clear: both
@@ -187,7 +194,7 @@ a
   +border-bottom-left-radius(3px)
   +float-left
   width: 619px
-  margin: -5px 0px 0px 0px
+  margin: -5px 0px 10px 0px
 
 
 .page-part-destroy
@@ -200,8 +207,8 @@ a
     +float_left
 
 .page-part-tags
-  +float_left
-  width: 612px
+  &.string
+    width: 612px
     
 .dimmed
   background: #d5d5d5
@@ -292,23 +299,29 @@ ul.pages-root
   border-left: 0px
 
 .actions
-  height: 40px
+  height: 30px
   width: 100%
   clear: both
-  margin: 0px 0px 20px 0px
+  margin: 0px 0px 0px 0px
+  input#kuhsaft_page_submit
+    +float_right
 
 .drag-handler
-  width: 140px
-  height: 60px
+  background: $color3 url(/images/kuhsaft/page-part-draggable-area.png) no-repeat top right
+  width: 91px
+  height: 22px
+  margin: 0px 7px 0px 0px
   float: right
-  cursor: pointer
+  cursor: url(/images/kuhsaft/openhand.cur), default !important
   &:active
-    cursor: move
+    cursor: url(/images/kuhsaft/closedhand.cur), default !important
 
 .destroy-handler  
   text-align: right
   width: 100px
-  float: right
+  margin: 0px 10px 0px 0px
+  padding: 5px 0px 0px 0px
+  +float_right
   
 .will-drag
   border: 1px solid #666
