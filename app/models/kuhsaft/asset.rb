@@ -3,7 +3,7 @@ class Kuhsaft::Asset < ActiveRecord::Base
   mount_uploader :file, Kuhsaft::AssetUploader
   
   def file_type
-    if file.url.present? && ext = file.url.split('.').last
+    if file.path.present? && ext = File.extname(file.path).split('.').last
       ext.to_sym unless ext.blank?
     end
   end

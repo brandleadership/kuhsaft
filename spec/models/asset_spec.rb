@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Kuhsaft::Asset do
   before do
     Kuhsaft::AssetUploader.enable_processing = true
-    @asset = Kuhsaft::Asset.new
+    @asset = Factory(:asset)
     @uploader = Kuhsaft::AssetUploader.new(@asset, :file)
     @uploader.store!(File.open(File.join(Kuhsaft::Engine.root, 'spec', 'dummy', 'public', 'images', 'spec-image.png')))
   end
@@ -12,8 +12,8 @@ describe Kuhsaft::Asset do
     Kuhsaft::AssetUploader.enable_processing = false
   end
   
-  it 'should scale down to fit into a 100x100 thumb' do
-    @uploader.thumb.should have_dimensions(100, 100)
+  it 'should have a thumbnail' do
+    @uploader.should respond_to(:thumb)
   end
   
   it "should make the image readable only to the owner and not executable" do

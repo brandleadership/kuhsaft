@@ -30,9 +30,12 @@ class Kuhsaft::AssetUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [100, 100]
+    process :resize_images
+    def resize_images
+      resize_to_fill(100, 100) if @file.present? && @file.content_type.present? && @file.content_type.include?('image')
+    end
   end
-
+  
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
