@@ -13,8 +13,10 @@ en:
           create: 'Create new page'
         new:
           new: 'Creating new page'
+          pages: 'Pages'
         edit:
           edit_html: 'Editing page: <span>%{title}</span>'
+          pages: 'Pages'
         branch:
           add: 'Add page'
           create: 'Create new page'
