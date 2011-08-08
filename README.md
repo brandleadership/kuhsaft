@@ -1,5 +1,8 @@
 # Kuhsaft. A CMS as simple as it could be
 
+**IMPORTANT: Kuhsaft >= 0.3.0 runs only on Rails 3.1. If you are stuck on
+Rails 3 go for the 0.2 Versions**
+
 Yiiihaaaaaa! Howdy, Let's milk the cow!
 
 ## The Who, What and Why?
@@ -33,13 +36,17 @@ to get the gem
 
 Then install the assets and the migrations and run them:
 
-    rails generate kuhsaft:install:assets
     rails generate kuhsaft:install:migrations
     rake db:migrate
-    
+
 If you are upgrading, run those installers again and hopefully we will generate just the migrations you need.
 
 (NOTE: Steps below should hopefully not be necessary in future versions:)
+
+In order to load the engine's assets you need to require them in your
+application.css:
+
+    //= require kuhsaft
 
 Finally, you need to add a before filter to the application controller (for now...)
 
