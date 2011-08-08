@@ -22,8 +22,8 @@
 
 ### Improvements
 
-- Lots of styling improvements for the backend ([@iphilgood][])
-- Formatted Text textareas now resize smartly according to its content ([@iphilgood][])
+- Lots of styling improvements for the backend ([@iphilgood][] & [melinda][])
+- Formatted Text textareas now resize smartly according to its content ([@iphilgood][] & [melinda][])
 - Added specific delete messages for pages and assets ([@manufaktor][])
 - Updated to latest UJS Jquery ([@manufaktor][])
 - Backend recognizes a current_user and will display a logout possibility ([@iphilgood][])
