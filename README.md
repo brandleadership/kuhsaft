@@ -1,5 +1,8 @@
 # Kuhsaft. A CMS as simple as it could be
 
+**IMPORTANT: Kuhsaft >= 0.3.0 runs only on Rails 3.1. If you are stuck on
+Rails 3 go for the 0.2 Versions**
+
 Yiiihaaaaaa! Howdy, Let's milk the cow!
 
 ## The Who, What and Why?
