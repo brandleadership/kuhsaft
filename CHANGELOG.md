@@ -4,6 +4,8 @@
 
 ### Improvements
 
+- we have a changelog now!
+
 ### New features
 
 ## 0.3.0 - August 8, 2011
