@@ -18,7 +18,7 @@
 
 ### Bug fixes
 
-- params[:locale] is now recognized by the PagesController ([@manufaktor][])
+- `params[:locale]` is now recognized by the PagesController ([@manufaktor][])
 
 ### Improvements
 
