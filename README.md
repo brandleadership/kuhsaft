@@ -72,6 +72,25 @@ Create a toplevel page and set the page type to "navigation". You can now get th
 
     navigation_for(:slug => 'main-navigation') { |pages| ... }
 
+## Integrating custom Models into Kuhsaft (aka Rails Admin Lite)
+
+There is a chance that Pages and Assets is not enough for you and you need custom models in your Rails app. It's your lucky day, because Kuhsaft was designed with the goal to easily integrate into a usual Rails app.
+
+There is one caveat though: You need to **stay in the Kuhsaft namespaces for your admin controllers and views** if you want to use the Kuhsaft UI as a backend to your models.
+
+Put your admin controller for the model in question in
+`app/controllers/cms/` and keep it in the `Cms` namespace, e.g:
+
+```ruby
+module Cms
+  class ProjectsController < Kuhsaft::Cms::AdminController
+    def index
+      # do somethinng
+    end
+  end
+end
+```
+
 # LICENSE
-  
+
 See the file LICENSE.
