@@ -4,6 +4,16 @@
 
 ### Improvements
 
+### New features
+
+## 0.3.1 - August 9, 2011
+
+### Bug fixes
+
+- fix image paths and update readme concerning asset pipeline ([@effkau][])
+
+### Improvements
+
 - we have a changelog now! ([@effkay][])
 
 ### New features
