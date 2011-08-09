@@ -43,11 +43,6 @@ If you are upgrading, run those installers again and hopefully we will generate 
 
 (NOTE: Steps below should hopefully not be necessary in future versions:)
 
-In order to load the engine's assets you need to require them in your
-application.css:
-
-    //= require kuhsaft
-
 Finally, you need to add a before filter to the application controller (for now...)
 
     ApplicationController < ActionController::Base
