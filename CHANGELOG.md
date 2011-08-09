@@ -10,7 +10,7 @@
 
 ### Bug fixes
 
-- fix image paths and update readme concerning asset pipeline ([@effkau][])
+- fix image paths and update readme concerning asset pipeline ([@effkay][])
 
 ### Improvements
 
