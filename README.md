@@ -69,5 +69,5 @@ Create a toplevel page and set the page type to "navigation". You can now get th
     navigation_for(:slug => 'main-navigation') { |pages| ... }
 
 # LICENSE
-  
+
 See the file LICENSE.

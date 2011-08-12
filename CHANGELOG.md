@@ -4,6 +4,16 @@
 
 ### Improvements
 
+### New features
+
+## 0.3.1 - August 9, 2011
+
+### Bug fixes
+
+- fix image paths and update readme concerning asset pipeline ([@effkay][])
+
+### Improvements
+
 - we have a changelog now! ([@effkay][])
 
 ### New features
@@ -18,12 +28,12 @@
 
 ### Bug fixes
 
-- params[:locale] is now recognized by the PagesController ([@manufaktor][])
+- `params[:locale]` is now recognized by the PagesController ([@manufaktor][])
 
 ### Improvements
 
-- Lots of styling improvements for the backend ([@iphilgood][])
-- Formatted Text textareas now resize smartly according to its content ([@iphilgood][])
+- Lots of styling improvements for the backend ([@iphilgood][] & [melinda][])
+- Formatted Text textareas now resize smartly according to its content ([@iphilgood][] & [melinda][])
 - Added specific delete messages for pages and assets ([@manufaktor][])
 - Updated to latest UJS Jquery ([@manufaktor][])
 - Backend recognizes a current_user and will display a logout possibility ([@iphilgood][])
