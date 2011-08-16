@@ -1,8 +1,10 @@
-## Master
+## master / rails31
 
 ### Bug fixes
 
 ### Improvements
+
+- fix README on how to integrate devise (rails31) ([@effkay][])
 
 ### New features
 
