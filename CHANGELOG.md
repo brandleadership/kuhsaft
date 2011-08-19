@@ -8,6 +8,12 @@
 
 ### New features
 
+## 0.2.3 - August 19, 2011
+
+### Bug fixes
+
+- update gem versions of dependencies, because some contain bugfixes (linecache, carrierwave) ([@manufaktor][])
+
 ## 0.3.1 - August 9, 2011
 
 ### Bug fixes
