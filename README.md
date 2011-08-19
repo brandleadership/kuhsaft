@@ -53,15 +53,11 @@ Finally, you need to add a before filter to the application controller (for now.
       end
     end
 
-If you want to use devise for protecting the admin parts, you need to add the devise before filter to the AdminController, so put this in `config/application.rb`:
+If you want to use devise for protecting the admin parts, do this in an initializer:
 
-```ruby
-    config.to_prepare do
-      Kuhsaft::Cms::AdminController.class_eval do
-        before_filter :authenticate_user!
-      end
+    Kuhsaft::Cms::PagesController.class_eval do
+      before_filter :authenticate_user!
     end
-```
 
 # Usage
 
