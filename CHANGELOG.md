@@ -6,6 +6,13 @@
 
 - fix README on how to integrate devise (rails31) ([@effkay][])
 
+## 0.2.4 - August 29, 2011
+
+### Improvements
+
+- handle 404s with an ActionController::RoutingError, controllers can optionally implement a `handle_404` method to change behavior ([@manufaktor][])
+- Backend now shows the hierarchy breadcrumb when creating a new page ([@manufaktor][])
+
 ### New features
 
 ## 0.2.3 - August 19, 2011
