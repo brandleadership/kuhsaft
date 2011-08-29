@@ -12,7 +12,7 @@ module Kuhsaft
         if respond_to?(:handle_404)
           handle_404
         else
-          render :status => 404, :template => 'kuhsaft/pages/404'
+          raise ActionController::RoutingError.new('Not Found')
         end
       end
     end

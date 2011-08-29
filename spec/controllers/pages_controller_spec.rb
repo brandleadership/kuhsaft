@@ -23,14 +23,8 @@ describe Kuhsaft::PagesController do
   end
   
   describe 'should render 404' do
-    it 'should have a 404 response code' do
-      get :show, :locale => 'en', :url => '/i-dont-know'
-      response.response_code.should eq(404)
-    end
-    
-    it 'should render the 404 partial by default' do
-      get :show, :locale => 'en', :url => '/i-dont-know'
-      response.should render_template(:template => '404')
+    it 'should raise RoutingError by default' do
+      expect{ get :show, :locale => 'en', :url => '/i-dont-know' }.to raise_error(ActionController::RoutingError)
     end
   end
 end
