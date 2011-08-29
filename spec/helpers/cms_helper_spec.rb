@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ApplicationHelper do
+describe CmsHelper do
   context 'when the user creates a toplevel page' do
     describe '#available_parent_pages' do
       it 'should return the 2 pages' do

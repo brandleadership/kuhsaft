@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_development_dependency 'rspec-rails', '>= 2.6'
-  s.add_development_dependency 'factory_girl_rails', '>= 2.0'
+  s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'capybara', '>= 0.4.0'
   s.add_development_dependency 'ruby-debug'
   s.add_development_dependency 'sqlite3-ruby', '1.2.5'

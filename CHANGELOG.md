@@ -6,6 +6,12 @@
 
 - fix README on how to integrate devise (rails31) ([@effkay][])
 
+## 0.2.5 - August 29, 2011
+
+### Bug fixes
+
+- fix a bug where virtual page tree wasn't available ([@manufaktor][])
+
 ## 0.2.4 - August 29, 2011
 
 ### Improvements
