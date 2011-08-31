@@ -6,7 +6,15 @@ module Kuhsaft
     
     def show
       @page = Kuhsaft::Page.find_by_url(params[:url])
-      respond_with @page
+      if @page.present?
+        respond_with @page
+      else
+        if respond_to?(:handle_404)
+          handle_404
+        else
+          raise ActionController::RoutingError.new('Not Found')
+        end
+      end
     end
     
     private

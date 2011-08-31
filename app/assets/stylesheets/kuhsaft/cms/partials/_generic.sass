@@ -130,6 +130,10 @@ body
   
 .colored-box
   background: $color3
+  border:
+    left: 1px solid $color3
+    right: 1px solid $color3
+    bottom: 1px solid $color3
   @extend .box
 
 .draggable-box 
@@ -324,7 +328,7 @@ ul.pages-root
   +float_right
   
 .will-drag
-  border: 1px solid #666
+  border: 1px solid #666 !important
   +single-box-shadow(rgba(0,0,0,0.2), 0px, 5px, 20px)
   
 .container
