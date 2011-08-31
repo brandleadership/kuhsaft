@@ -1,6 +1,7 @@
 Dir.glob("#{Kuhsaft::Engine.root}/app/models/kuhsaft/page_part/*.rb").sort.each { |file| require file }
 
 # https://rails.lighthouseapp.com/projects/8994/tickets/6306-collection-associations-build-method-not-supported-for-sti
+# updated: https://github.com/rails/rails/issues/815
 
 class ActiveRecord::Reflection::AssociationReflection
   def build_association(*opts)
