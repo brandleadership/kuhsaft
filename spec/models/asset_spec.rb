@@ -5,7 +5,7 @@ describe Kuhsaft::Asset do
     Kuhsaft::AssetUploader.enable_processing = true
     @asset = Factory(:asset)
     @uploader = Kuhsaft::AssetUploader.new(@asset, :file)
-    @uploader.store!(File.open(File.join(Kuhsaft::Engine.root, 'spec', 'dummy', 'public', 'images', 'spec-image.png')))
+    @uploader.store!(File.open(File.join(Kuhsaft::Engine.root, 'spec', 'dummy', 'app', 'assets', 'images', 'spec-image.png')))
   end
   
   after do
