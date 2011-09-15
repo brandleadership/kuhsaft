@@ -19,23 +19,6 @@ maintain rails 3.0 compatibility*
 
 - fix README on how to integrate devise ([@effkay][])
 
-## 0.3.1 - August 9, 2011
-
-### Bug fixes
-
-- fix image paths and update readme concerning asset pipeline ([@effkay][])
-
-### Improvements
-
-- we have a changelog now! ([@effkay][])
-
-### New features
-
-## 0.3.0 - August 8, 2011
-
-### Improvements
-
-- moved assets to a rails 3.1 compatible location ([@effkay][])
 
 ## 0.2.5 - August 29, 2011
 
@@ -55,6 +38,24 @@ maintain rails 3.0 compatibility*
 ### Bug fixes
 
 - update gem versions of dependencies, because some contain bugfixes (linecache, carrierwave) ([@manufaktor][])
+
+## 0.3.1 - August 9, 2011
+
+### Bug fixes
+
+- fix image paths and update readme concerning asset pipeline ([@effkay][])
+
+### Improvements
+
+- we have a changelog now! ([@effkay][])
+
+### New features
+
+## 0.3.0 - August 8, 2011
+
+### Improvements
+
+- moved assets to a rails 3.1 compatible location ([@effkay][])
 
 ## 0.2.2 - August 5, 2011
 
