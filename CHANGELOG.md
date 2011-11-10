@@ -1,10 +1,8 @@
 ## master
 
-### Bug fixes
+## 0.3.2 - September 15, 2011
 
-### Improvements
-
-### New features
+- Add german locale file for backend ([@jenzer][])
 
 ## 0.3.2 - September 15, 2011
 
@@ -73,4 +71,5 @@ maintain rails 3.0 compatibility*
 [@effkay]: https://github.com/effkay
 [@iphilgood]: https://github.com/iphilgood
 [@tscholz]: https://github.com/tscholz
+[@jenzer]: https://github.com/jenzer
 [melinda]: http://www.melinda-lini.de/
