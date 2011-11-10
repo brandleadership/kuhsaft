@@ -1,6 +1,6 @@
 ## master
 
-## 0.3.2 - September 15, 2011
+## 0.3.2 - November 10, 2011
 
 - Add german locale file for backend ([@jenzer][])
 
