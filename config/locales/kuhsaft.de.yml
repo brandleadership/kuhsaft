@@ -1,0 +1,47 @@
+de:
+  404: '404, Seite nicht gefunden'
+  layouts:
+    kuhsaft:
+      admin:
+        pages_nav: 'Seiten'
+        assets_nav: 'Assets'
+  kuhsaft:
+    page_part:
+      markdown: 'Formatierter Text'
+    cms:
+      pages:
+        index:
+          create: 'Neue Seite erstellen'
+        new:
+          new: 'Neue Seite erstellen'
+          pages: 'Seiten'
+        edit:
+          edit_html: 'Seite editieren: <span>%{title}</span>'
+          pages: 'Seiten'
+        branch:
+          add: 'Seite hinzufügen'
+          create: 'Neue Seite erstellen'
+          delete: 'Seite entfernen'
+          confirm: 'Soll die Seite "%{page_title}" endgültig entfernt werden?'
+          not_translated: 'Noch nicht übersetzt'
+        form:
+          add_page_part: 'Element hinzufügen'
+          unpublished: 'Seite offline sichern'
+          published: 'Seite publizieren'
+          published_at: 'Publizieren am'
+          confirm: 'Soll dieser Teil der Seite entgültig entfernt werden?'
+          destroy_page_part: 'Löschen'
+          separate_by_comma: 'Tags durch Komma trennen'
+        current_translation_locale: 'Aktuelle Übersetzung: %{translation_locale}'
+      assets:
+        index:
+          create: 'Neues Asset hinzufügen'
+        list:
+          confirm: 'Soll das Asset "%{filename}" entgültig entfernt werden?'
+          delete: 'Asset löschen'
+  simple_form:
+    labels:
+      title: 'Seiten Titel'
+      slug: 'URL Segment'
+      page_part_type: 'Element hinzufügen'
+      _destroy: 'Diese Element löschen'
