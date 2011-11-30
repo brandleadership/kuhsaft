@@ -1,6 +1,8 @@
 ## master
 
-## 0.3.2 - November 10, 2011
+- Migrate JS to asset pipeline/sprockets ([@effkay][])
+
+## 0.3.3 - November 10, 2011
 
 - Add german locale file for backend ([@jenzer][])
 
