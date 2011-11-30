@@ -6,6 +6,6 @@
 //
 //= require jquery.min
 //= require jquery_ujs
-//= require jquery-ui-1.8.12.custom.min
-//= require jquery.elastic.source
-//= require backend
+//= require ./jquery-ui-1.8.12.custom.min
+//= require ./jquery.elastic.source
+//= require ./backend
