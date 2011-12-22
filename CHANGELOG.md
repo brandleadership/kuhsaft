@@ -1,5 +1,6 @@
 ## master
 
+- Refactor CSS into proper format ([@manufaktor][] & [@donaier])
 - Migrate JS to asset pipeline/sprockets ([@effkay][])
 
 ## 0.3.3 - November 10, 2011
@@ -70,6 +71,7 @@ maintain rails 3.0 compatibility*
 - Backend recognizes a current_user and will display a logout possibility ([@iphilgood][])
 
 [@manufaktor]: https://github.com/manufaktor
+[@donaier]: https://github.com/donaier
 [@effkay]: https://github.com/effkay
 [@iphilgood]: https://github.com/iphilgood
 [@tscholz]: https://github.com/tscholz
