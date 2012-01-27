@@ -1,6 +1,6 @@
 ## master
 
-## 0.3.4
+## 0.3.4 - January 27, 2012
 
 - Add styles for 2 additional nesting levels in list views ([@effkay][])
 - Refactor CSS into proper format ([@manufaktor][] & [@donaier])
