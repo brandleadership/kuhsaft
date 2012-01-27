@@ -1,5 +1,8 @@
 ## master
 
+## 0.3.4
+
+- Add styles for 2 additional nesting levels in list views ([@effkay][])
 - Refactor CSS into proper format ([@manufaktor][] & [@donaier])
 - Migrate JS to asset pipeline/sprockets ([@effkay][])
 
@@ -19,7 +22,6 @@ maintain rails 3.0 compatibility*
 ### Improvements
 
 - fix README on how to integrate devise ([@effkay][])
-
 
 ## 0.2.5 - August 29, 2011
 
