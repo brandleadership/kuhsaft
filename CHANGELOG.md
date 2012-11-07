@@ -1,4 +1,6 @@
-## master
+## a new hope
+
+* to be discussed
 
 ## 0.3.4 - January 27, 2012
 
