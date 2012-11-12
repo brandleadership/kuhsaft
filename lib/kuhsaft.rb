@@ -1,3 +1,5 @@
+require "kuhsaft/engine"
+
 module Kuhsaft
   require 'kuhsaft/engine'
   require 'kuhsaft/orderable'

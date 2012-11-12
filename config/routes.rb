@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Kuhsaft::Engine.routes.draw do
   scope :module => :kuhsaft do
     scope ':locale' do
       namespace :cms do

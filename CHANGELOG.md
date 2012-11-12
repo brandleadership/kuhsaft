@@ -1,5 +1,6 @@
 ## a new hope
 
+* upgrade to ruby 1.9.3 and rails 3.2
 * to be discussed
 
 ## 0.3.4 - January 27, 2012
