@@ -1,14 +1,13 @@
 class CreatePagePartContents < ActiveRecord::Migration
-  def self.up
-    create_table :contents do |t|
+
+  def change
+    create_table :kuhsaft_contents do |t|
       t.integer :position
       t.text :content
-      t.references :localized_page
+      t.string :type
+      t.references :page
       t.timestamps
     end
   end
-  
-  def self.down
-    drop_table :contents
-  end  
+
 end

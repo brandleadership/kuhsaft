@@ -1,36 +1,30 @@
 class Kuhsaft::Page < ActiveRecord::Base
   include Kuhsaft::Orderable
-  
-  has_many :localized_pages, :dependent => :destroy
+
   has_many :childs, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
+  has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
   belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
-  
-  scope :published, lambda {
-    includes(:localized_pages).where('localized_pages.published = ? OR localized_pages.published_at < ? AND localized_pages.published = ?', 
-      Kuhsaft::PublishState::PUBLISHED, 
-      DateTime.now, 
-      Kuhsaft::PublishState::PUBLISHED_AT
-    )
-  }
-  
-  scope :current_locale, lambda {
-    includes(:localized_pages).where('localized_pages.locale = ?', Kuhsaft::Page.current_translation_locale)
-  }
-  
-  scope :root_pages, where('parent_id IS NULL')
+
   default_scope order('position ASC')
-  
-  delegate  :title, :slug, :published, :published?, :page_type, :keywords, :description, 
-            :locale, :body, :url, :fulltext, :page_parts, :redirect?, :navigation?,
-            :to => :translation, :allow_nil => true
 
-  accepts_nested_attributes_for :localized_pages
+  scope :root_pages, where('parent_id IS NULL')
+  scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
+  scope :search, lambda{ |term| published.where('`fulltext` LIKE ?', "%#{term}%") }
+  scope :navigation, lambda{ |slug| where('slug = ?', slug).where('page_type = ?', Kuhsaft::PageType::NAVIGATION) }
 
-  after_save :save_translation
+  before_validation :create_slug, :create_url, :collect_fulltext
 
+  validates :title, :presence => true
+  validates :slug, :presence => true
+  validates :url, :uniqueness => true, :unless => :navigation?
+
+  accepts_nested_attributes_for :page_parts, :allow_destroy => true
+
+  attr_accessible :title, :slug, :url, :page_type
   #
   # Stores the selected type of page_part when created through the form
   #
+
   attr_accessor :page_part_type
 
   def root?
@@ -41,83 +35,81 @@ class Kuhsaft::Page < ActiveRecord::Base
     Kuhsaft::Page.where('id != ?', self.id)
   end
 
+  def published?
+    published == Kuhsaft::PublishState::PUBLISHED
+  end
+
+  def redirect?
+    page_type == Kuhsaft::PageType::REDIRECT
+  end
+
+  def navigation?
+    page_type == Kuhsaft::PageType::NAVIGATION
+  end
+
   def parent_pages
-    parent_pages_list = []
+    parents = []
     parent = self
 
     while parent
-      parent_pages_list << parent unless parent.translation.blank? || parent.translation.navigation?
+      parents << parent unless parent.navigation?
       parent = parent.parent
     end
-    parent_pages_list.reverse
+    parents.reverse
   end
-  
+
   def siblings
     (parent.present? ? parent.childs : Kuhsaft::Page.root_pages).where('id != ?', id)
   end
-  
-  def translation lang = nil
-    lang ||= Kuhsaft::Page.current_translation_locale
-    @translation = localized_pages.where('locale = ?', lang).first if @translation.blank? || @translation.locale != lang
-    @translation
-  end
-  
-  def save_translation
-    unless @translation.blank?
-      @translation.save 
-    end
-    childs.each do |child|
-      child.translation.save if child.translation.present? && child.translation.persisted?
-    end
-  end
-  
+
   def link
-    if translation.present? && translation.page_parts.count == 0 && childs.count > 0
+    if page_parts.count == 0 && childs.count > 0
       childs.first.link
     else
-      if translation.present? && translation.redirect?
+      if redirect?
         url
       else
         "/#{url}"
       end
     end
   end
-  
+
+   def create_url
+    return if redirect?
+
+    complete_slug = ''
+    if parent.present?
+      complete_slug << parent.url.to_s
+    else
+      complete_slug = "#{I18n.locale}"
+    end
+    complete_slug << "/#{self.slug}" unless navigation?
+    self.url = complete_slug
+  end
+
+  def create_slug
+    has_slug = title.present? && slug.blank?
+    write_attribute(:slug, read_attribute(:title).downcase.parameterize) if has_slug
+  end
+
+  def collect_fulltext
+    self.fulltext = page_parts.inject('') do |text, page_part|
+      page_part.class.searchable_attributes.each do |attr|
+        text << ' '
+        text << page_part.send(attr).to_s
+      end
+      text
+    end
+    self.fulltext << [title.to_s, keywords.to_s, description.to_s].join(' ')
+  end
+
   def nesting_name
     num_dashes = parent_pages.size - 1
     num_dashes = 0 if num_dashes < 0
     "#{'-' * num_dashes} #{self.title}".strip
   end
-  
+
   class << self
-    def find_by_url url
-      translation = Kuhsaft::LocalizedPage.published.where('url = ?', url)
-      if translation.present? && translation.first.present?
-        page = translation.first.page
-        page.translation(translation.first.locale)
-        page
-      else
-        nil
-      end
-    end
-    
-    def translation_locales
-      @translation_locales
-    end
-    
-    def translation_locales=(array)
-      @translation_locales = array.map(&:to_sym) if array.class == Array
-    end
-    
-    def current_translation_locale
-      @translation_locale ||= translation_locales.first
-    end
-    
-    def current_translation_locale=(locale)
-      @translation_locale = locale.to_sym
-      I18n.locale = @translation_locale if I18n.available_locales.include?(@translation_locale)
-    end
-    
     def flat_tree pages= nil
       pages ||= Kuhsaft::Page.root_pages
       list ||= []

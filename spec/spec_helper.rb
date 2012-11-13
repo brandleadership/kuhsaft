@@ -5,8 +5,9 @@ require "rails/test_help"
 require "rspec/rails"
 require 'factory_girl'
 require "capybara/rails"
-require 'factories'
 require 'generators/kuhsaft/install/migrations_generator'
+
+FactoryGirl.find_definitions
 
 ActionMailer::Base.delivery_method = :test
 ActionMailer::Base.perform_deliveries = true
@@ -27,9 +28,6 @@ ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
-Kuhsaft::Page.translation_locales = [:en, :de]
-Kuhsaft::Page.current_translation_locale = :en
-
 RSpec.configure do |config|
   # Remove this line if you don't want RSpec's should and should_not
   # methods or matchers
@@ -39,6 +37,7 @@ RSpec.configure do |config|
   config.include RSpec::Matchers
   config.include CarrierWave::Test::Matchers
   config.include KuhsaftSpecHelper
+  config.include FactoryGirl::Syntax::Methods
 
   # == Mock Framework
   config.mock_with :rspec
