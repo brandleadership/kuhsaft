@@ -6,7 +6,7 @@ describe Kuhsaft::Cms::PagesController do
   describe 'should render successfully' do
     before :all do
       # create page with ID=1 if none exists
-      FactoryGirl.create :page
+      create(:page)
     end
 
     it '#index' do
@@ -31,7 +31,7 @@ describe Kuhsaft::Cms::PagesController do
 
     it '#create' do
       # TODO: this is ridiculous. We need to have integration tests(?) for this.
-      params = { :kuhsaft_page => { :localized_pages_attributes => { 0 => { :title => 'hi', :locale => :en }}}, :locale => :en }
+      params = { :kuhsaft_page => { :title => 'hi', :locale => :en } }
       post :create, params
       response.should be_redirect
     end
@@ -39,25 +39,20 @@ describe Kuhsaft::Cms::PagesController do
     it '#update' do
       # TODO: this is EXTREMELY ridiculous. We need to have integration tests(?) for this.
       page = Kuhsaft::Page.first
-      localized_page = page.translation
       params = {
-              :id => page.id,
-              :kuhsaft_page => {
-                :localized_pages_attributes => {
-                  0 => {
-                    :slug => "hi",
-                    :title => "Hi",
-                    :id => localized_page.id,
-                    :description => '',
-                    :locale => 'en',
-                    :page_parts_attributes => {
-                      0 => {
-                        :text => 'some text',
-                        :type => 'Kuhsaft::PagePart::Markdown'
-                      }
-                    }
-                  }
-                }}, :locale => :en }
+        :id => page.id,
+        :kuhsaft_page => {
+          :slug => "hi",
+          :title => "Hi",
+          :description => '',
+          :page_parts_attributes => {
+            0 => {
+              :text => 'some text',
+              :type => 'Kuhsaft::PagePart::Markdown'
+            }
+          }
+        }
+      }
       post :update, params
       response.should be_redirect
     end

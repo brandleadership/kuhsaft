@@ -4,7 +4,7 @@ describe Kuhsaft::Cms::AssetsController do
   render_views
 
   before do
-    FactoryGirl.create :asset
+    create :asset
   end
 
   describe 'should render successfully' do

@@ -4,14 +4,7 @@ describe Kuhsaft::PagesController do
   render_views
 
   before do
-    set_lang :en
-    # create page with slug=english-title-1
-    @page = FactoryGirl(:page)
-  end
-
-  after do
-    Kuhsaft::Page.all.each { |p| p.destroy }
-    reset_lang
+    create(:page, :slug => 'english-title-1')
   end
 
   describe 'should render successfully' do

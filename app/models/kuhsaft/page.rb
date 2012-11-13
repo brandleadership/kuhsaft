@@ -28,6 +28,16 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   attr_accessor :page_part_type
 
+  def self.flat_tree(pages = nil)
+    pages ||= Kuhsaft::Page.root_pages
+    list ||= []
+    pages.each do |page|
+      list << page
+      flat_tree(page.childs).each { |p| list << p } if page.childs.count > 0
+    end
+    list
+  end
+
   def root?
     parent.nil?
   end
@@ -75,7 +85,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     end
   end
 
-   def create_url
+  def create_url
     return if redirect?
 
     complete_slug = ''
@@ -110,15 +120,4 @@ class Kuhsaft::Page < ActiveRecord::Base
     "#{'-' * num_dashes} #{self.title}".strip
   end
 
-  class << self
-    def flat_tree pages= nil
-      pages ||= Kuhsaft::Page.root_pages
-      list ||= []
-      pages.each do |page|
-        list << page
-        flat_tree(page.childs).each { |p| list << p } if page.childs.count > 0
-      end
-      list
-    end
-  end
 end
