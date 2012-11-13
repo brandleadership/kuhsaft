@@ -1,8 +1,8 @@
 - content_for :cms_language_tabs do
-  - Kuhsaft::Page.translation_locales.each do |locale|
-    %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, cms_pages_path(:locale => locale)
+  - I18n.available_locales.each do |locale|
+    %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, kuhsaft.pages_path(:locale => locale)
 
 - content_for :admin_toolbar do
-  = link_to t('.create'), new_cms_page_path, :class => 'small-button'
+  = link_to t('.create'), kuhsaft.new_page_path, :class => 'small-button'
 %ul.pages-root.sortable
   = render :partial => 'branch', :locals => { :pages => @pages }

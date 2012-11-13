@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
-
-  mount Kuhsaft::Engine => "/kuhsaft"
+  mount Kuhsaft::Engine => "/cms"
 end

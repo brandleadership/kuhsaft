@@ -1,27 +1,24 @@
 module PagesHelper
   def current_page
-    lang = Kuhsaft::Page.current_translation_locale
-    page = Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.page
-    page.translation
-    yield page if block_given?
-    page
-  rescue
+  #   page = @page
+  #   yield @page if block_given?
+  # rescue
   end
-  
+
   def current_page_path(lang=nil)
-    if @page.present?
-      '/' + Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.url
-    else
-      root_path
-    end
-  rescue
-    root_path
+  #   if @page.present?
+  #     '/' + Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.url
+  #   else
+  #     root_path
+  #   end
+  # rescue
+  #   root_path
   end
 
   def asset_for id
     Kuhsaft::Asset.find(id)
   end
-  
+
   def render_markdown text
     RDiscount.new(text).to_html if text.present?
   end
@@ -37,11 +34,11 @@ module PagesHelper
     yield pages if block_given? && pages.length > 0
     pages
   end
-  
+
   def homepage
     Kuhsaft::Page.root_pages.first
   end
-  
+
   def page_for_level num
     input = controller.current_url if controller.respond_to? :current_url
     input ||= params[:url].presence || ''

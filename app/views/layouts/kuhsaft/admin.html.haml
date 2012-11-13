@@ -18,8 +18,8 @@
                 = link_to '(logout)', destroy_user_session_path, :class => 'logout micro-logout'
       .cms-content-container
         %ul.cms-module-nav
-          = admin_tab(t('.pages_nav'), cms_pages_path)
-          = admin_tab(t('.assets_nav'), cms_assets_path)
+          = admin_tab(t('.pages_nav'), kuhsaft.pages_path)
+          = admin_tab(t('.assets_nav'), kuhsaft.assets_path)
           = render :partial => 'cms/admin_navigation' rescue ''
           .clear
         %ul.language-tabs

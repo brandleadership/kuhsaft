@@ -13,19 +13,22 @@ module Kuhsaft
 
       def new
         @page = Kuhsaft::Page.new
-        @localized_page = @page.localized_pages.find_or_initialize_by_locale(params[:locale])
-        @localized_page.published ||= Kuhsaft::PublishState::UNPUBLISHED
+        @page.published ||= Kuhsaft::PublishState::UNPUBLISHED
         respond_with @page
       end
 
       def create
-        parent = Kuhsaft::Page.find(params[:kuhsaft_page][:parent_id]) if params[:kuhsaft_page][:parent_id].present?
+        parent = Kuhsaft::Page.find(params[:page][:parent_id]) if params[:page][:parent_id].present?
         @page = Kuhsaft::Page.create params[:kuhsaft_page]
         if parent.present?
           parent.childs << @page
           parent.save
         end
-        respond_with @page, :location => edit_cms_page_path(@page)
+        if @page.valid?
+          respond_with @page, :location => kuhsaft.edit_page_path(@page)
+        else
+          render 'new'
+        end
       end
 
       def edit
@@ -37,22 +40,22 @@ module Kuhsaft
 
       def update
         @page = Kuhsaft::Page.find(params[:id])
-        
+
         @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
         # TODO: refactor 'reposition' as a page attribute, so it can be set through update_attributes
         @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
-        
+
         if params[:add_page_part].present?
-          @page.translation.page_parts << params[:kuhsaft_page][:page_part_type].constantize.new
+          @page.page_parts << params[:kuhsaft_page][:page_part_type].constantize.new
         end
-        
-        respond_with @page, :location => edit_cms_page_path(@page)
+
+        respond_with @page, :location => kuhsaft.edit_page_path(@page)
       end
 
       def destroy
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy
-        redirect_to cms_pages_path
+        redirect_to kuhsaft.pages_path
       end
     end
   end

@@ -1,5 +1,5 @@
 - content_for :cms_language_tabs do
-  - Kuhsaft::Page.translation_locales.each do |locale|
+  - I18n.available_locales.each do |locale|
     %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, edit_cms_page_path(:locale => locale)
 
 .page-tree-breadcrumb
