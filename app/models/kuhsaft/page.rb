@@ -21,6 +21,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   accepts_nested_attributes_for :page_parts, :allow_destroy => true
 
   attr_accessible :title, :slug, :url, :page_type
+
   #
   # Stores the selected type of page_part when created through the form
   #

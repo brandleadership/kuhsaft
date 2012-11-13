@@ -1,41 +1,37 @@
 require 'spec_helper'
 
 describe PagesHelper do
-  before do
-    @page = FactoryGirl.create :page
-  end
-
-  after do
-    destroy_all_pages
+  let :page do
+    create(:page)
   end
 
   describe '#asset_for' do
-    it 'should return the asset with the given id' do
-      asset = FactoryGirl.create :asset
+    it 'returns the asset with the given id' do
+      asset = create(:asset)
       asset_for(asset.id).should eq(asset)
     end
   end
 
   describe '#render_markdown' do
-    it 'should parse markdown and convert it to html' do
+    it 'parses markdown and converts it to html' do
       render_markdown('# hi').should eq("<h1>hi</h1>\n")
     end
   end
 
   describe '#navigation_for' do
-    before do
-      @page = FactoryGirl.create :page
-      @page.childs << FactoryGirl.create(:page)
-      @page.childs << FactoryGirl.create(:page)
-      @page.save
+    let :page do
+      p = create(:page)
+      p.childs << create(:page)
+      p.childs << create(:page)
+      p
     end
 
-    it 'should return a list of pages' do
-      navigation_for(@page.id).should have_at_least(2).pages
+    it 'returns a list of pages' do
+      navigation_for(page.id).should have(2).pages
     end
 
-    it 'should yield a list of pages if there is more than 1' do
-      navigation_for(@page.id) { |pages| @yielded_pages = pages }
+    it 'yields a list of pages if there is more than 1' do
+      navigation_for(page.id) { |pages| @yielded_pages = pages }
       @yielded_pages.should respond_to(:each) # don't be explicity about AR:Relation
     end
 
@@ -46,8 +42,8 @@ describe PagesHelper do
 
     it 'should accept options instead of an id' do
       page1, page2, page3 = create_page_tree
-      page1.translation.page_type = Kuhsaft::PageType::NAVIGATION
-      page1.translation.slug = 'test'
+      page1.page_type = Kuhsaft::PageType::NAVIGATION
+      page1.slug = 'test'
       page1.save
       navigation_for(:slug => 'test').should have(1).item
     end
@@ -56,7 +52,7 @@ describe PagesHelper do
   describe '#homepage' do
     before do
       page1, page2, page3 = create_page_tree
-      page1.translation.page_type = page2.translation.page_type = Kuhsaft::PageType::NAVIGATION
+      page1.page_type = page2.page_type = Kuhsaft::PageType::NAVIGATION
       page1.save
       page2.save
     end
@@ -68,13 +64,14 @@ describe PagesHelper do
 
   describe '#current_page_path' do
     it 'should return the path for the current page' do
+      pending 'wtf is this?'
       @page.localized_pages.create :locale => :de, :title => 'seite1'
       helper.current_page_path(:de).should eq('/de/seite1')
     end
   end
 
   describe '#active_page_class' do
-    it '#active_page_class should return :active' do
+    it '#active_page_class returns :active' do
       helper.stub!(:params).and_return :url => @page.url
       helper.active_page_class(@page).should be(:active)
     end
@@ -82,7 +79,6 @@ describe PagesHelper do
 
   describe '#page_for_level' do
     before do
-      destroy_all_pages
       @page1, @page2, @page3 = create_page_tree
       helper.stub!(:params).and_return :url => @page3.url
     end
