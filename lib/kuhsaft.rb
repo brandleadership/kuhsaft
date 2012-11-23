@@ -3,6 +3,7 @@ require "kuhsaft/engine"
 module Kuhsaft
   require 'kuhsaft/engine'
   require 'kuhsaft/orderable'
+  require 'kuhsaft/translatable'
   require 'simple_form'
   require 'carrierwave'
   require 'rdiscount'

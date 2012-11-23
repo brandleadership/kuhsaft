@@ -1,5 +1,8 @@
 class Kuhsaft::Page < ActiveRecord::Base
   include Kuhsaft::Orderable
+  include Kuhsaft::Translatable
+
+  translate :title, :slug, :keywords, :description, :body, :url, :fulltext
 
   has_many :childs, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
   has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
@@ -9,14 +12,14 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   scope :root_pages, where('parent_id IS NULL')
   scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
-  scope :search, lambda{ |term| published.where('`fulltext` LIKE ?', "%#{term}%") }
-  scope :navigation, lambda{ |slug| where('slug = ?', slug).where('page_type = ?', Kuhsaft::PageType::NAVIGATION) }
+  scope :search, lambda{ |term| published.where("`#{locale_attr(:fulltext)}` LIKE ?", "%#{term}%") }
+  scope :navigation, lambda{ |slug| where(locale_attr(:slug) => slug).where(locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
 
   before_validation :create_slug, :create_url, :collect_fulltext
 
   validates :title, :presence => true
   validates :slug, :presence => true
-  validates :url, :uniqueness => true, :unless => :navigation?
+  #validates :url, :uniqueness => true, :unless => :navigation?
 
   accepts_nested_attributes_for :page_parts, :allow_destroy => true
 
@@ -28,14 +31,20 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   attr_accessor :page_part_type
 
-  def self.flat_tree(pages = nil)
-    pages ||= Kuhsaft::Page.root_pages
-    list ||= []
-    pages.each do |page|
-      list << page
-      flat_tree(page.childs).each { |p| list << p } if page.childs.count > 0
+  class << self
+    def flat_tree(pages = nil)
+      pages ||= Kuhsaft::Page.root_pages
+      list ||= []
+      pages.each do |page|
+        list << page
+        flat_tree(page.childs).each { |p| list << p } if page.childs.count > 0
+      end
+      list
     end
-    list
+
+    def find_by_url(url)
+      send "find_by_#{locale_attr(:url)}", url
+    end
   end
 
   def root?
@@ -100,7 +109,7 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   def create_slug
     has_slug = title.present? && slug.blank?
-    write_attribute(:slug, read_attribute(:title).downcase.parameterize) if has_slug
+    self.slug = title.downcase.parameterize if has_slug
   end
 
   def collect_fulltext
@@ -111,7 +120,7 @@ class Kuhsaft::Page < ActiveRecord::Base
       end
       text
     end
-    self.fulltext << [title.to_s, keywords.to_s, description.to_s].join(' ')
+    self.fulltext = self.fulltext + [title.to_s, keywords.to_s, description.to_s].join(' ')
   end
 
   def nesting_name

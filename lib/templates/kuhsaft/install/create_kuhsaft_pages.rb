@@ -4,16 +4,16 @@ class CreateKuhsaftPages < ActiveRecord::Migration
     create_table :kuhsaft_pages do |t|
       t.integer :position
       t.integer :parent_id
-      t.string :title
-      t.string :slug
-      t.string :keywords
-      t.text :description
-      t.text :body
+      t.string :title_en
+      t.string :slug_en
+      t.string :keywords_en
+      t.text :description_en
+      t.text :body_en
       t.integer :published
       t.references :page
-      t.text :url
+      t.text :url_en
       t.string :page_type
-      t.text :fulltext
+      t.text :fulltext_en
       t.timestamps
     end
   end

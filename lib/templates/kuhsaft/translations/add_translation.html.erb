@@ -1,0 +1,13 @@
+class Add<%= get_locale.classify %>Translation < ActiveRecord::Migration
+
+  def change
+    add_column :kuhsaft_pages, :title_<%= get_locale %>, :string
+    add_column :kuhsaft_pages, :slug_<%= get_locale %>, :string
+    add_column :kuhsaft_pages, :keywords_<%= get_locale %>, :string
+    add_column :kuhsaft_pages, :description_<%= get_locale %>, :text
+    add_column :kuhsaft_pages, :body_<%= get_locale %>, :text
+    add_column :kuhsaft_pages, :url_<%= get_locale %>, :text
+    add_column :kuhsaft_pages, :fulltext_<%= get_locale %>, :text
+  end
+
+end
