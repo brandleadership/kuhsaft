@@ -15,7 +15,7 @@ module Kuhsaft
 
       def create_migration_file
         install_migration_once 'create_kuhsaft_pages.rb'
-        install_migration_once 'create_page_part_contents.rb'
+        install_migration_once 'create_bricks.rb'
         install_migration_once 'create_assets.rb'
         install_migration_once 'acts_as_taggable_on_migration.rb'
       end

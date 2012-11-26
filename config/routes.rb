@@ -1,7 +1,7 @@
 Kuhsaft::Engine.routes.draw do
   scope :module => :cms do
     resources :pages do
-      resources :page_parts
+      resources :bricks
     end
     resources :assets
   end
