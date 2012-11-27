@@ -318,7 +318,7 @@ describe Kuhsaft::Page do
   describe '#fulltext' do
     let :page do
       p = create(:page, :keywords => 'key words', :description => 'descrip tion', :title => 'my title')
-      p.page_parts << Kuhsaft::PagePart::Markdown.new(:text => 'oh la la')
+      p.bricks << Kuhsaft::Brick.new(:locale => I18n.locale)
       p.save
       p
     end

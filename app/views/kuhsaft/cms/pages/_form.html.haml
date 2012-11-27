@@ -7,27 +7,27 @@
     .clear
 
   .page-part-list
-    - @page.page_parts.each do |page_part_object|
-      .colored-box.draggable-box.page-part.can-drag{ :'data-id' => page_part_object.id, :'data-put-url' => kuhsaft.page_page_part_path(page_part_object, :page_id => @page) }
-        = page.fields_for :page_parts, page_part_object do |page_part|
+    - @page.bricks.each do |brick_object|
+      .colored-box.draggable-box.page-part.can-drag{ :'data-id' => brick_object.id, :'data-put-url' => kuhsaft.page_page_part_path(brick_object, :page_id => @page) }
+        = page.fields_for :page_parts, brick_object do |brick|
           .actions
             .drag-handler
-            - unless page_part.object.persisted?
-              = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
+            - unless brick.object.persisted?
+              = brick.input :type, :as => :hidden, :input_html => { :value => brick.object.class.to_s }
 
-          = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
+          = render :partial => brick.object.edit_partial_path, :locals => { :input_form => brick }
           = page_part.label :tag_list
           .page-part-helpers
-            = page_part.text_field :tag_list, :placeholder => t('.separate_by_comma'), :class => 'page-part-tags string'
+            = brick.text_field :tag_list, :placeholder => t('.separate_by_comma'), :class => 'page-part-tags string'
           .actions
             = page.button :submit, :class => 'small-input-button'
             .destroy-handler
-              = link_to t('.destroy_page_part'), kuhsaft.page_page_part_path(page_part.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true
+              = link_to t('.destroy_page_part'), kuhsaft.page_page_part_path(brick.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true
           .clear
   - if page.object.persisted? && !@page.redirect?
     .lightened-box.add-page-part
       %label.string{ :for => :page_part_type }= t('.add_element')
-      = page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
+      = #page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
       = page.button :submit, :name => :add_page_part, :value => t('.add_page_part')
       .clear
 

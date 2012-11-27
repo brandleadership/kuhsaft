@@ -25,7 +25,8 @@ module Kuhsaft
     end
 
     def fulltext
-      raise NotImplementedError
+      #raise NotImplementedError
+      ""
     end
   end
 end
