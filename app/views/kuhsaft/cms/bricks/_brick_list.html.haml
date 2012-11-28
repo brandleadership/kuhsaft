@@ -1,0 +1,11 @@
+.brick-list
+  .brick-list-header
+    .btn-group
+      %a.btn.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+        Element hinzufügen
+        %span.caret
+      %ul.dropdown-menu
+
+  .brick-list-items
+    - brick_list.each do |brick|
+      = render 'kuhsaft/cms/bricks/brick_item', :brick => brick, :page => page

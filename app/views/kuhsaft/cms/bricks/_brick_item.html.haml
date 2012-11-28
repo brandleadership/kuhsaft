@@ -1,0 +1,10 @@
+.brick-item
+  .brick-item-header
+    .btn-group
+      = link_to kuhsaft.edit_page_brick_path(page, brick), :class => 'btn' do
+        %i.icon-move
+      = link_to kuhsaft.edit_page_brick_path(page, brick), :class => 'btn' do
+        %i.icon-trash
+
+  .brick-item-content
+    = render brick.to_edit_partial_path, :brick => brick

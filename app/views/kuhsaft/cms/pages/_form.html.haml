@@ -6,8 +6,10 @@
     = page.input :slug, :required => false, :input_html => { :class => :dimmed }
     .clear
 
+    = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page.bricks, :page => @page
+
   .page-part-list
-    - @page.bricks.each do |brick_object|
+    - [].each do |brick_object|
       .colored-box.draggable-box.page-part.can-drag{ :'data-id' => brick_object.id, :'data-put-url' => kuhsaft.page_page_part_path(brick_object, :page_id => @page) }
         = page.fields_for :page_parts, brick_object do |brick|
           .actions
