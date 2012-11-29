@@ -1,4 +1,5 @@
-= simple_form_for @page, :url => url do |page|
+= simple_form_for @page, :url => url, :html => { :class => 'form-horizontal' } do |form|
+
   %ul.nav.nav-tabs.js-tabs
     %li{ :class => metadata_tab_active(@page) }
       = link_to 'Metadaten', '#page-metadata', 'data-toggle' => :tab
@@ -7,48 +8,24 @@
 
   .tab-content
     #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }
-      %h2= page_title
-      = page.input :title, :required => false
-      = page.input :slug, :required => false, :input_html => { :class => :dimmed }
-      .clear
-
-      %h3.toggle.closed= t('.metainformation')
-      .collapsable.hidden
-        = page.input :parent_id, :collection => Kuhsaft::Page.flat_tree(), :label_method => :nesting_name, :selected => params[:parent_id].presence || page.object.parent_id.presence, :prompt => 'None', :label_html => { :class => :string }
-        = page.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :label_html => { :class => :string }
-        = page.input :url, :as => :string if @page.redirect?
-        - unless page.object.page_type == Kuhsaft::PageType::REDIRECT
-          = page.input :keywords
-          = page.input :description, :input_html => { :class => :small }, :label_html => { :class => :string }
+      = form.input :title, :required => false, :input_html => { :class => :span5 }
+      = form.input :slug, :required => false, :input_html => { :class => :span5 }
+      = form.input :parent_id, :collection => Kuhsaft::Page.flat_tree, :label_method => :nesting_name, :selected => params[:parent_id].presence || @page.parent_id.presence, :prompt => 'None', :input_html => { :class => :span3 }
+      = form.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :input_html => { :class => :span3 }
+      = form.input :url, :as => :string if @page.redirect?
+      = form.input :keywords, :input_html => { :class => :span5 }
+      = form.input :description, :as => :text, :input_html => { :class => :span5 }
 
       .lightened-box.publish-information
         .column.grid-3
-          = page.radio_button :published, Kuhsaft::PublishState::UNPUBLISHED
-          = page.label :published, t('.unpublished'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_0
+          = form.radio_button :published, Kuhsaft::PublishState::UNPUBLISHED
+          = form.label :published, t('.unpublished'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_0
         .column.grid-3
-          = page.radio_button :published, Kuhsaft::PublishState::PUBLISHED
-          = page.label :published, t('.published'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_1
+          = form.radio_button :published, Kuhsaft::PublishState::PUBLISHED
+          = form.label :published, t('.published'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_1
         .clear
     #page-content.tab-pane{ :class => content_tab_active(@page) }
-      = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page.bricks, :page => @page
+      = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page.bricks, :page => @page, :form => form, :parent => nil
 
-  = page.button :submit, :class => 'btn btn-primary'
-
-  //  .page-part-list
-  //    - [].each do |brick_object|
-  //      .colored-box.draggable-box.page-part.can-drag{ :'data-id' => brick_object.id, :'data-put-url' => kuhsaft.page_page_part_path(brick_object, :page_id => @page) }
-  //        = page.fields_for :page_parts, brick_object do |brick|
-  //          .actions
-  //            .drag-handler
-  //            - unless brick.object.persisted?
-  //              = brick.input :type, :as => :hidden, :input_html => { :value => brick.object.class.to_s }
-
-  //          = render :partial => brick.object.edit_partial_path, :locals => { :input_form => brick }
-  //          = page_part.label :tag_list
-  //          .page-part-helpers
-  //            = brick.text_field :tag_list, :placeholder => t('.separate_by_comma'), :class => 'page-part-tags string'
-  //          .actions
-  //            = page.button :submit, :class => 'small-input-button'
-  //            .destroy-handler
-  //              = link_to t('.destroy_page_part'), kuhsaft.page_page_part_path(brick.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true
-  //          .clear
+  .actions
+    = form.button :submit, :class => 'btn btn-primary'
