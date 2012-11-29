@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'kuhsaft/cms/application.css', :media => 'screen, projection'
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.min.css" rel="stylesheet">
+    = csrf_meta_tag
+  %body{ :class => "#{controller_name}" }
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          %ul.nav
+            %li
+              = link_to 'Seiten', kuhsaft.pages_path
+            %li
+              = link_to 'Bilder', kuhsaft.assets_path
+    .container.cms
+      = yield
+    = javascript_include_tag 'kuhsaft/cms/application.js'
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>

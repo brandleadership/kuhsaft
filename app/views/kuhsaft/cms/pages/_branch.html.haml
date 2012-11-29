@@ -1,10 +1,10 @@
 - unless pages.blank?
   - pages.each do |page|
-    %li.can-drag{ :'data-id' => page.id, :'data-put-url' => cms_page_path(page) }
+    %li.can-drag{ :'data-id' => page.id, :'data-put-url' => kuhsaft.page_path(page) }
       .branch
-        = link_to page.title.presence || t('.not_translated'), edit_cms_page_path(page), :class => ('to-translate' if page.title.blank?)
-        = link_to t('.add'), new_cms_page_path(:parent_id => page.id), :class => 'icon add-child-page'
-        = link_to t('.delete'), cms_page_path(page), :confirm => t('.confirm', :page_title => page.title), :method => :delete, :class => 'icon delete' if page.childs.empty?
+        = link_to page.title.presence || t('.not_translated'), kuhsaft.page_path(page), :class => ('to-translate' if page.title.blank?)
+        = link_to t('.add'), kuhsaft.new_page_path(:parent_id => page.id), :class => 'icon add-child-page'
+        = link_to t('.delete'), kuhsaft.page_path(page), :confirm => t('.confirm', :page_title => page.title), :method => :delete, :class => 'icon delete' if page.childs.empty?
         .clear
       - unless page.childs.empty?
         %ul.sortable

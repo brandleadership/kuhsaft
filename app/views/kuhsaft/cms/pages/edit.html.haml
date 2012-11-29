@@ -1,11 +1,17 @@
-- content_for :cms_language_tabs do
-  - I18n.available_locales.each do |locale|
-    %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, kuhsaft.edit_page_path(:locale => locale)
-
-.page-tree-breadcrumb
-  = link_to(t('.pages'), kuhsaft.pages_path)
+= render 'content_language_switch'
+%ul.breadcrumb
+  %li
+    = link_to t('.pages'), kuhsaft.pages_path
+    %span.divider /
   - @page.parent_pages.each do |parent_page|
-    = link_to(parent_page.title, kuhsaft.edit_page_path(parent_page))
+    %li
+      - if @page.parent_pages.last == parent_page
+        .active
+          = parent_page.title
+      - else
+        = link_to parent_page.title, kuhsaft.edit_page_path(parent_page)
+        %span.divider /
+
 
 .box-container
   = render :partial => 'form', :locals => { :url => kuhsaft.page_path(@page), :page_title => t('.edit_html', :title => @page.title ) }

@@ -1,0 +1,6 @@
+.pull-right
+  %ul.nav.nav-pills
+    - I18n.available_locales.each do |locale|
+      %li{ :class => (:active if I18n.locale.to_s == locale.to_s) }
+        = link_to locale.to_s.upcase, url_for(:content_locale => locale)
+.clear
