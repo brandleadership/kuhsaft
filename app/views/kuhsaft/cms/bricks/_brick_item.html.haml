@@ -1,10 +1,24 @@
-.brick-item
-  .brick-item-header
-    .btn-group
-      = link_to kuhsaft.edit_page_brick_path(page, brick), :class => 'btn btn-small' do
-        %i.icon-move
-      = link_to kuhsaft.edit_page_brick_path(page, brick), :class => 'btn btn-small btn-danger' do
-        %i.icon-trash.icon-white
+.brick-item{ :id => brick.to_brick_item_id }
+  = simple_form_for brick, :as => :brick, :url => kuhsaft.brick_path(brick), :remote => true, :html => { :class => 'form-horizontal', :id => nil } do |form|
+    - if brick.user_can_change_persisted?
+      .brick-item-header
+        .btn-group
+          = form.button :submit, :class => 'btn btn-success btn-small ', :value => 'Save ✔'
 
-  .brick-item-content
-    = render brick.to_edit_partial_path, :brick => brick
+        - if brick.persisted?
+          = link_to kuhsaft.brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('.confirm'), :method => :delete, :remote => true do
+            %i.icon-trash.icon-white
+
+    - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)
+    - if brick_content.present?
+      .brick-item-content
+        = brick_content
+
+
+  - if brick.renders_own_childs?
+    .brick-item-childs
+      = render brick.to_edit_childs_partial_path, :brick => brick
+  - else
+    - if brick.respond_to?(:bricks)
+      .brick-item-childs
+        = render 'kuhsaft/cms/bricks/brick_list', :brick_list => brick

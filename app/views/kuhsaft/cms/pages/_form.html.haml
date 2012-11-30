@@ -1,13 +1,12 @@
-= simple_form_for @page, :url => url, :html => { :class => 'form-horizontal' } do |form|
+%ul.nav.nav-tabs.js-tabs
+  %li{ :class => metadata_tab_active(@page) }
+    = link_to 'Metadaten', '#page-metadata', 'data-toggle' => :tab
+  %li{ :class => content_tab_active(@page) }
+    = link_to 'Content', '#page-content', 'data-toggle' => :tab
 
-  %ul.nav.nav-tabs.js-tabs
-    %li{ :class => metadata_tab_active(@page) }
-      = link_to 'Metadaten', '#page-metadata', 'data-toggle' => :tab
-    %li{ :class => content_tab_active(@page) }
-      = link_to 'Content', '#page-content', 'data-toggle' => :tab
-
-  .tab-content
-    #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }
+.tab-content
+  #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }
+    = simple_form_for @page, :url => url, :html => { :class => 'form-horizontal' } do |form|
       = form.input :title, :required => false, :input_html => { :class => :span5 }
       = form.input :slug, :required => false, :input_html => { :class => :span5 }
       = form.input :parent_id, :collection => Kuhsaft::Page.flat_tree, :label_method => :nesting_name, :selected => params[:parent_id].presence || @page.parent_id.presence, :prompt => 'None', :input_html => { :class => :span3 }
@@ -24,8 +23,10 @@
           = form.radio_button :published, Kuhsaft::PublishState::PUBLISHED
           = form.label :published, t('.published'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_1
         .clear
-    #page-content.tab-pane{ :class => content_tab_active(@page) }
-      = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page.bricks, :page => @page, :form => form, :parent => nil
 
-  .actions
-    = form.button :submit, :class => 'btn btn-primary'
+      .actions
+        = form.button :submit, :class => 'btn btn-primary'
+
+  #page-content.tab-pane{ :class => content_tab_active(@page) }
+    - if @page.persisted?
+      = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page
