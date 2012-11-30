@@ -144,12 +144,6 @@ describe Kuhsaft::Page do
     end
   end
 
-  describe '#page_part_type' do
-    it 'accepts a page_part_type to determine which page_part needs to be added' do
-      subject.new.should respond_to(:page_part_type)
-    end
-  end
-
   describe '#parent_pages' do
     let :page do
       p1 = create(:page)
@@ -312,6 +306,17 @@ describe Kuhsaft::Page do
       it 'returns false' do
         Kuhsaft::Page.new(:page_type => Kuhsaft::PageType::NAVIGATION).redirect?.should be_false
       end
+    end
+  end
+
+  describe '#content' do
+    let :page do
+      build(:page)
+    end
+
+    it 'assigns a column brick by default' do
+      page.should_receive(:assign_default_content_brick)
+      page.save
     end
   end
 

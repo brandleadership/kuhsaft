@@ -1,12 +1,14 @@
 class Kuhsaft::Page < ActiveRecord::Base
   include Kuhsaft::Orderable
   include Kuhsaft::Translatable
+  include Kuhsaft::BrickList
+
+  acts_as_brick_list
 
   translate :title, :slug, :keywords, :description, :body, :url, :fulltext
   attr_accessible :title, :slug, :url, :page_type, :parent_id, :keywords, :description, :published
 
   has_many :childs, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
-  has_many :bricks, :class_name => 'Kuhsaft::Brick', :dependent => :destroy
   belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
 
   default_scope order('position ASC')
@@ -22,14 +24,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   validates :slug, :presence => true
   #validates :url, :uniqueness => true, :unless => :navigation?
 
-  accepts_nested_attributes_for :bricks, :allow_destroy => true
-
-
-  #
-  # Stores the selected type of page_part when created through the form
-  #
-
-  attr_accessor :page_part_type
 
   class << self
     def flat_tree(pages = nil)
@@ -126,4 +120,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     "#{'-' * num_dashes} #{self.title}".strip
   end
 
+  def brick_list_type
+    'Kuhsaft::Page'
+  end
 end
