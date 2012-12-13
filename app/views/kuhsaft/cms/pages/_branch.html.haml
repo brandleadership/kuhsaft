@@ -1,11 +1,18 @@
 - unless pages.blank?
-  - pages.each do |page|
-    %li.can-drag{ :'data-id' => page.id, :'data-put-url' => kuhsaft.page_path(page) }
-      .branch
-        = link_to page.title.presence || t('.not_translated'), kuhsaft.page_path(page), :class => ('to-translate' if page.title.blank?)
-        = link_to t('.add'), kuhsaft.new_page_path(:parent_id => page.id), :class => 'icon add-child-page'
-        = link_to t('.delete'), kuhsaft.page_path(page), :confirm => t('.confirm', :page_title => page.title), :method => :delete, :class => 'icon delete' if page.childs.empty?
-        .clear
+  .branch-list
+    - pages.each do |page|
+      .branch.row{ :'data-id' => page.id, :'data-put-url' => kuhsaft.page_path(page) }
+        .span9
+          = link_to page.title.presence || t('.not_translated'), kuhsaft.edit_page_path(page), :class => 'btn btn-link'
+        .span3
+          .pull-right
+            - if page.childs.empty?
+              = link_to kuhsaft.page_path(page), :confirm => t('.confirm', :page_title => page.title), :method => :delete, :class => 'btn btn-small btn-danger' do
+                %i.icon-trash.icon-white
+
+            = link_to kuhsaft.new_page_path(:parent_id => page.id), :class => 'btn btn-small' do
+              %i.icon-plus-sign
+              = t('.add')
+
       - unless page.childs.empty?
-        %ul.sortable
-          = render :partial => 'branch', :locals => { :pages => page.childs }
+        = render :partial => 'branch', :locals => { :pages => page.childs }
