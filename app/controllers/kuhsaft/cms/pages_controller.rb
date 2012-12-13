@@ -18,12 +18,8 @@ module Kuhsaft
       end
 
       def create
-        parent = Kuhsaft::Page.find(params[:page][:parent_id]) if params[:page][:parent_id].present?
-        @page = Kuhsaft::Page.create params[:kuhsaft_page]
-        if parent.present?
-          parent.childs << @page
-          parent.save
-        end
+        @page = Kuhsaft::Page.create params[:page]
+
         if @page.valid?
           respond_with @page, :location => kuhsaft.edit_page_path(@page)
         else
@@ -33,20 +29,18 @@ module Kuhsaft
 
       def edit
         @page = Kuhsaft::Page.find(params[:id])
-        @localized_page = @page.localized_pages.find_or_initialize_by_locale(params[:locale])
-        @localized_page.published ||= Kuhsaft::PublishState::UNPUBLISHED
+        @page.published ||= Kuhsaft::PublishState::UNPUBLISHED
         respond_with @page
       end
 
       def update
         @page = Kuhsaft::Page.find(params[:id])
-
-        @page.update_attributes(params[:kuhsaft_page]) if params[:kuhsaft_page].present?
+        @page.update_attributes(params[:page]) if params[:page].present?
         # TODO: refactor 'reposition' as a page attribute, so it can be set through update_attributes
         @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
 
         if params[:add_page_part].present?
-          @page.page_parts << params[:kuhsaft_page][:page_part_type].constantize.new
+          @page.bricks << params[:page][:page_part_type].constantize.new
         end
 
         respond_with @page, :location => kuhsaft.edit_page_path(@page)

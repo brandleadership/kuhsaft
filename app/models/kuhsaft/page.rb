@@ -1,11 +1,14 @@
 class Kuhsaft::Page < ActiveRecord::Base
   include Kuhsaft::Orderable
   include Kuhsaft::Translatable
+  include Kuhsaft::BrickList
+
+  acts_as_brick_list
 
   translate :title, :slug, :keywords, :description, :body, :url, :fulltext
+  attr_accessible :title, :slug, :url, :page_type, :parent_id, :keywords, :description, :published
 
   has_many :childs, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
-  has_many :page_parts, :class_name => 'Kuhsaft::PagePart::Content', :autosave => true
   belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
 
   default_scope order('position ASC')
@@ -21,15 +24,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   validates :slug, :presence => true
   #validates :url, :uniqueness => true, :unless => :navigation?
 
-  accepts_nested_attributes_for :page_parts, :allow_destroy => true
-
-  attr_accessible :title, :slug, :url, :page_type
-
-  #
-  # Stores the selected type of page_part when created through the form
-  #
-
-  attr_accessor :page_part_type
 
   class << self
     def flat_tree(pages = nil)
@@ -83,7 +77,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def link
-    if page_parts.count == 0 && childs.count > 0
+    if bricks.count == 0 && childs.count > 0
       childs.first.link
     else
       if redirect?
@@ -113,11 +107,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def collect_fulltext
-    self.fulltext = page_parts.inject('') do |text, page_part|
-      page_part.class.searchable_attributes.each do |attr|
-        text << ' '
-        text << page_part.send(attr).to_s
-      end
+    self.fulltext = bricks.localized.inject('') do |text, brick|
+      text << brick.fulltext
       text
     end
     self.fulltext = self.fulltext + [title.to_s, keywords.to_s, description.to_s].join(' ')
@@ -129,4 +120,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     "#{'-' * num_dashes} #{self.title}".strip
   end
 
+  def brick_list_type
+    'Kuhsaft::Page'
+  end
 end
