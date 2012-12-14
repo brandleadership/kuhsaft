@@ -6,4 +6,18 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require redactor
 //= require_tree .
+
+function loadTextEditor(elem){
+  elem.find(".js-editor").redactor({
+  })
+}
+
+$(function(){
+  loadTextEditor($("body"))
+})
+
+$("body").ajaxSuccess(function(){
+  loadTextEditor($("body"))
+})
