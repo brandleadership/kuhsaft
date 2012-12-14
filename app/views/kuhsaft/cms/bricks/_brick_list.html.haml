@@ -1,4 +1,7 @@
 .brick-list{ :id => brick_list.to_brick_list_id }
+  .brick-list-items
+    - brick_list.bricks.each do |brick|
+      = render 'kuhsaft/cms/bricks/brick_item', :brick => brick
   - if brick_list.user_can_add_childs?
     .brick-list-header
       .btn-group
@@ -11,7 +14,3 @@
           .divider
           %li
             = link_to 'Zweispaltiges Element', kuhsaft.bricks_path(:brick => { :type => 'Kuhsaft::TwoColumnBrick', :brick_list_id => brick_list.id, :brick_list_type => brick_list.class.to_s }), :remote => true, :method => :post
-
-  .brick-list-items
-    - brick_list.bricks.each do |brick|
-      = render 'kuhsaft/cms/bricks/brick_item', :brick => brick
