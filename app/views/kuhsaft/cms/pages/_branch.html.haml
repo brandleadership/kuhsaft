@@ -1,9 +1,10 @@
 - unless pages.blank?
-  .branch-list
-    - pages.each do |page|
-      .branch.row{ :'data-id' => page.id, :'data-put-url' => kuhsaft.page_path(page) }
+  - pages.each do |page|
+    .branch-group{ :'data-id' => page.id, :'data-put-url' => kuhsaft.page_path(page) }
+      .row-fluid.branch
         .span9
-          = link_to page.title.presence || t('.not_translated'), kuhsaft.edit_page_path(page), :class => 'btn btn-link'
+          .branch-title
+            = link_to page.title.presence || t('.not_translated'), kuhsaft.edit_page_path(page), :class => 'btn btn-link'
         .span3
           .pull-right
             - if page.childs.empty?
