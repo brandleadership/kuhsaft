@@ -11,6 +11,7 @@
 
 function loadTextEditor(elem){
   elem.find(".js-editor").redactor({
+    toolbarExternal: "#toolbar"
   })
 }
 
