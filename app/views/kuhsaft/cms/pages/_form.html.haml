@@ -13,18 +13,10 @@
       = form.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :input_html => { :class => :span3 }
       = form.input :url, :as => :string if @page.redirect?
       = form.input :keywords, :input_html => { :class => :span5 }
-      = form.input :description, :as => :text, :input_html => { :class => :span5 }
+      = form.input :description, :as => :text, :input_html => { :class => :span5, :rows => 4 }
+      = form.input :published, :as => :boolean
 
-      .lightened-box.publish-information
-        .column.grid-3
-          = form.radio_button :published, Kuhsaft::PublishState::UNPUBLISHED
-          = form.label :published, t('.unpublished'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_0
-        .column.grid-3
-          = form.radio_button :published, Kuhsaft::PublishState::PUBLISHED
-          = form.label :published, t('.published'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_1
-        .clear
-
-      .actions
+      .form-actions
         = form.button :submit, :class => 'btn btn-primary'
 
   #page-content.tab-pane{ :class => content_tab_active(@page) }
