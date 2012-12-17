@@ -309,17 +309,6 @@ describe Kuhsaft::Page do
     end
   end
 
-  describe '#content' do
-    let :page do
-      build(:page)
-    end
-
-    it 'assigns a column brick by default' do
-      page.should_receive(:assign_default_content_brick)
-      page.save
-    end
-  end
-
   describe '#fulltext' do
     let :page do
       p = create(:page, :keywords => 'key words', :description => 'descrip tion', :title => 'my title')

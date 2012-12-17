@@ -41,6 +41,21 @@ module Kuhsaft
       ""
     end
 
+    def render_stacked?
+      false
+    end
+
+    def parents
+      p = []
+      parent = brick_list.presence
+
+      while parent
+        p << parent
+        parent = parent.respond_to?(:brick_list) ? parent.brick_list : nil
+      end
+      p.reverse
+    end
+
     def set_locale
       self.locale = self.locale.presence || I18n.locale
     end

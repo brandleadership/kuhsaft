@@ -6,4 +6,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require redactor
 //= require_tree .
+
+function loadTextEditor(elem){
+  elem.find(".js-editor").redactor({
+    toolbarExternal: "#toolbar"
+  })
+}
+
+$(function(){
+  loadTextEditor($("body"))
+})
+
+$("body").ajaxSuccess(function(){
+  loadTextEditor($("body"))
+})
