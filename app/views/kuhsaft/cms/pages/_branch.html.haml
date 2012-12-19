@@ -7,7 +7,7 @@
             = link_to page.title.presence || t('.not_translated'), kuhsaft.edit_page_path(page), :class => 'btn btn-link'
         .span3
           .pull-right
-            - if page.childs.empty?
+            - if page.children.empty?
               = link_to kuhsaft.page_path(page), :confirm => t('.confirm', :page_title => page.title), :method => :delete, :class => 'btn btn-small btn-danger' do
                 %i.icon-trash.icon-white
 
@@ -15,5 +15,5 @@
               %i.icon-plus-sign
               = t('.add')
 
-      - unless page.childs.empty?
-        = render :partial => 'branch', :locals => { :pages => page.childs }
+      - unless page.children.empty?
+        = render :partial => 'branch', :locals => { :pages => page.children }
