@@ -23,18 +23,10 @@ describe Kuhsaft::Page do
     end
   end
 
-  describe '.childs' do
-    it 'has child pages' do
-      page = create(:page)
-      page.childs << create(:page)
-      page.childs.size.should be(1)
-    end
-  end
-
   describe '.root_pages' do
     it 'has a list of the toplevel pages' do
-      root_page = create(:page)
-      Kuhsaft::Page.root_pages.size.should be(1)
+      create(:page)
+      Kuhsaft::Page.roots.size.should be(1)
     end
   end
 
@@ -88,8 +80,16 @@ describe Kuhsaft::Page do
   end
 
   describe '#root?' do
-    it 'should return true for a page without a parent' do
-      create(:page).root?.should be_true
+    context 'when not having a parent' do
+      it 'returns true' do
+        create(:page).root?.should be_true
+      end
+    end
+
+    context 'when having a parent' do
+      it 'returns false' do
+        create(:page, :parent => create(:page)).root?.should be_false
+      end
     end
   end
 
@@ -102,78 +102,66 @@ describe Kuhsaft::Page do
   end
 
   describe '#nesting_name' do
-    before do
-      @p1, @p2, @p3 = create_page_tree
+    let :page do
+      create(:page)
+    end
+
+    let :child_page do
+      create(:page, :parent => page)
+    end
+
+    let :child_child_page do
+      create(:page, :parent => child_page)
     end
 
     context 'on the topmost level' do
-      it 'should have a label representing it\'s nesting depth without a leading dash' do
-        @p1.nesting_name.should eq(@p1.title)
+      it 'has a label representing it\'s nesting depth without a leading dash' do
+        page.nesting_name.should eq(page.title)
       end
     end
 
     context 'on the first level' do
       it 'should have a label with one dash' do
-        @p2.nesting_name.should eq("- #{@p2.title}")
+        child_page.nesting_name.should eq("- #{child_page.title}")
       end
     end
 
     context 'on the second level' do
       it 'should have a label with two dashes' do
-        @p3.nesting_name.should eq("-- #{@p3.title}")
+        child_child_page.nesting_name.should eq("-- #{child_child_page.title}")
       end
-    end
-  end
-
-  describe '#siblings' do
-    it 'knows the siblings' do
-      create(:page).should respond_to(:siblings)
-    end
-
-    it 'returns a list of pages' do
-      create(:page).siblings.should be_all { |p| p.should be_an_instance_of(Kuhsaft::Page) }
-    end
-  end
-
-  describe '#parent' do
-    it 'has a parent page' do
-      page  = create(:page)
-      child = create(:page)
-      page.childs << child
-      child.parent.should eq(page)
     end
   end
 
   describe '#parent_pages' do
     let :page do
-      p1 = create(:page)
-      p2 = create(:page)
-      p1.childs << p1
-      p2
+      create(:page)
+    end
+
+    let :child_page do
+      create(:page, :parent => page)
     end
 
     it 'has a list of parent pages' do
-      page.parent_pages.should be_instance_of(Array)
+      child_page.parent_pages.should == [page]
     end
 
     it 'is ordered from top to bottom' do
-      page.parent_pages.last.should be(page)
+      child_page.parent_pages.last.should == page
     end
   end
 
   describe '#link' do
     context 'when it has no content' do
       it 'should return the link of it\'s first child' do
-        page = create :page
-        child = create :page
-        page.childs << child
+        page = create(:page)
+        child = create(:page, :parent => page)
         page.body = nil
         page.save
         page.link.should == child.link
       end
     end
   end
-
 
   describe '#increment_position' do
     it 'increments the position by 1' do
@@ -258,8 +246,7 @@ describe Kuhsaft::Page do
     context 'when it is a normal page' do
       it 'returns the concatenated slug of the whole child/parent tree' do
         page = create(:page, :slug => 'parent-slug', :page_type => '')
-        child = create(:page, :slug => 'child-slug', :page_type => '')
-        page.childs << child
+        child = create(:page, :slug => 'child-slug', :page_type => '', :parent => page)
         child.url.should == 'en/parent-slug/child-slug'
       end
     end
@@ -267,8 +254,7 @@ describe Kuhsaft::Page do
     context 'when it is a navigation? page' do
       it 'returns without the parent page slug' do
         page = create(:page, :slug => 'parent-slug', :page_type => Kuhsaft::PageType::NAVIGATION)
-        child = create(:page, :slug => 'child-slug', :page_type => '')
-        page.childs << child
+        child = create(:page, :slug => 'child-slug', :page_type => '', :parent => page)
         child.url.should == 'en/child-slug'
       end
     end
