@@ -35,5 +35,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave', '>= 0.5.7'
   s.add_dependency 'rmagick', '>= 2.12.2'
   s.add_dependency 'rdiscount', '>= 1.6'
-  s.add_dependency 'acts-as-taggable-on', '>= 2.0.6'
 end
