@@ -59,10 +59,6 @@ class Kuhsaft::Page < ActiveRecord::Base
     children
   end
 
-  def root?
-    is_root?
-  end
-
   def without_self
     Kuhsaft::Page.where('id != ?', self.id)
   end

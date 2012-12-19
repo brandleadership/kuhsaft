@@ -79,20 +79,6 @@ describe Kuhsaft::Page do
     end
   end
 
-  describe '#root?' do
-    context 'when not having a parent' do
-      it 'returns true' do
-        create(:page).root?.should be_true
-      end
-    end
-
-    context 'when having a parent' do
-      it 'returns false' do
-        create(:page, :parent => create(:page)).root?.should be_false
-      end
-    end
-  end
-
   describe '#without_self' do
     it 'returns pages but not itself' do
       2.times { create(:page) }
