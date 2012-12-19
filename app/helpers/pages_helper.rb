@@ -25,18 +25,18 @@ module PagesHelper
 
   def navigation_for options
     if options.is_a?(Hash) && slug = options.delete(:slug)
-      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.childs.current_locale.published rescue []
+      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.children.current_locale.published rescue []
     elsif (options.is_a?(Fixnum) && id = options) ||  id = options.delete(:id)
       pages = Kuhsaft::Page.published.where('parent_id = ?', id)
     elsif options.nil?
-      pages = Kuhsaft::Page.published.root_pages
+      pages = Kuhsaft::Page.published.roots
     end
     yield pages if block_given? && pages.length > 0
     pages
   end
 
   def homepage
-    Kuhsaft::Page.root_pages.first
+    Kuhsaft::Page.roots.first
   end
 
   def page_for_level num

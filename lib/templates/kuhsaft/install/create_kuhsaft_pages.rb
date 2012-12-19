@@ -3,7 +3,6 @@ class CreateKuhsaftPages < ActiveRecord::Migration
   def change
     create_table :kuhsaft_pages do |t|
       t.integer :position
-      t.integer :parent_id
       t.string :title_en
       t.string :slug_en
       t.string :keywords_en
@@ -14,8 +13,12 @@ class CreateKuhsaftPages < ActiveRecord::Migration
       t.text :url_en
       t.string :page_type
       t.text :fulltext_en
+      t.string :ancestry
       t.timestamps
     end
+
+    add_index :kuhsaft_pages, :ancestry
+    add_index :kuhsaft_pages, :published
   end
 
 end

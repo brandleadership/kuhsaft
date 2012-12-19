@@ -3,17 +3,14 @@ class Kuhsaft::Page < ActiveRecord::Base
   include Kuhsaft::Translatable
   include Kuhsaft::BrickList
 
+  has_ancestry
   acts_as_brick_list
 
   translate :title, :slug, :keywords, :description, :body, :url, :fulltext
   attr_accessible :title, :slug, :url, :page_type, :parent_id, :keywords, :description, :published
 
-  has_many :childs, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
-  belongs_to :parent, :class_name => 'Kuhsaft::Page', :foreign_key => :parent_id
-
   default_scope order('position ASC')
 
-  scope :root_pages, where('parent_id IS NULL')
   scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
   scope :search, lambda{ |term| published.where("`#{locale_attr(:fulltext)}` LIKE ?", "%#{term}%") }
   scope :navigation, lambda{ |slug| where(locale_attr(:slug) => slug).where(locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
@@ -24,25 +21,26 @@ class Kuhsaft::Page < ActiveRecord::Base
   validates :slug, :presence => true
   #validates :url, :uniqueness => true, :unless => :navigation?
 
-
   class << self
     def flat_tree(pages = nil)
-      pages ||= Kuhsaft::Page.root_pages
-      list ||= []
-      pages.each do |page|
-        list << page
-        flat_tree(page.childs).each { |p| list << p } if page.childs.count > 0
+      arrange_as_array
+    end
+
+    def arrange_as_array(options={}, hash=nil)
+      hash ||= arrange(options)
+
+      arr = []
+      hash.each do |node, children|
+        arr << node
+        arr += arrange_as_array(options, children) unless children.empty?
       end
-      list
+
+      arr
     end
 
     def find_by_url(url)
       send "find_by_#{locale_attr(:url)}", url
     end
-  end
-
-  def root?
-    parent.nil?
   end
 
   def without_self
@@ -62,23 +60,12 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def parent_pages
-    parents = []
-    parent = self
-
-    while parent
-      parents << parent unless parent.navigation?
-      parent = parent.parent
-    end
-    parents.reverse
-  end
-
-  def siblings
-    (parent.present? ? parent.childs : Kuhsaft::Page.root_pages).where('id != ?', id)
+    ancestors
   end
 
   def link
-    if bricks.count == 0 && childs.count > 0
-      childs.first.link
+    if bricks.count == 0 && children.count > 0
+      children.first.link
     else
       if redirect?
         url
@@ -115,7 +102,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def nesting_name
-    num_dashes = parent_pages.size - 1
+    num_dashes = parent_pages.size
     num_dashes = 0 if num_dashes < 0
     "#{'-' * num_dashes} #{self.title}".strip
   end
