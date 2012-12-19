@@ -55,10 +55,6 @@ class Kuhsaft::Page < ActiveRecord::Base
     end
   end
 
-  def childs
-    children
-  end
-
   def without_self
     Kuhsaft::Page.where('id != ?', self.id)
   end
