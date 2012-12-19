@@ -18,7 +18,6 @@ module Kuhsaft
         install_migration_once 'create_bricks.rb'
         install_migration_once 'create_brick_types.rb'
         install_migration_once 'create_assets.rb'
-        install_migration_once 'acts_as_taggable_on_migration.rb'
       end
 
       private
