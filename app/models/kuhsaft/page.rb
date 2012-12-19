@@ -21,16 +21,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   validates :slug, :presence => true
   #validates :url, :uniqueness => true, :unless => :navigation?
 
-
   class << self
     def flat_tree(pages = nil)
-      # pages ||= Kuhsaft::Page.root_pages
-      # list ||= []
-      # pages.each do |page|
-      #   list << page
-      #   flat_tree(page.children).each { |p| list << p } if page.children.count > 0
-      # end
-      # list
       arrange_as_array
     end
 
@@ -48,10 +40,6 @@ class Kuhsaft::Page < ActiveRecord::Base
 
     def find_by_url(url)
       send "find_by_#{locale_attr(:url)}", url
-    end
-
-    def root_pages
-      roots
     end
   end
 

@@ -23,13 +23,6 @@ describe Kuhsaft::Page do
     end
   end
 
-  describe '.root_pages' do
-    it 'has a list of the toplevel pages' do
-      create(:page)
-      Kuhsaft::Page.roots.size.should be(1)
-    end
-  end
-
   describe '.position_of' do
     it 'should find the position of a page' do
       page = create(:page)

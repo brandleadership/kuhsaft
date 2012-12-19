@@ -2,7 +2,7 @@ module Kuhsaft
   module Cms
     class PagesController < AdminController
       def index
-        @pages = Kuhsaft::Page.root_pages
+        @pages = Kuhsaft::Page.roots
         respond_with @pages
       end
 
