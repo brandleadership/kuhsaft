@@ -54,6 +54,18 @@ describe Kuhsaft::Translatable do
       model.name = 'Johnny'
     end
 
+    context 'dynamic methods' do
+      it 'delegates boolean accessors' do
+        model.should_receive(:name_en?)
+        model.name?
+      end
+
+      it 'delegates simple dynamic finders' do
+        model.should_receive(:find_by_name_en).with('Max')
+        model.find_by_name('Max')
+      end
+    end
+
     context 'when changing the locale' do
       before do
         I18n.locale = :de
@@ -68,8 +80,6 @@ describe Kuhsaft::Translatable do
         model.should_receive(:name_de=).with('Johannes')
         model.name = 'Johannes'
       end
-
     end
   end
-
 end
