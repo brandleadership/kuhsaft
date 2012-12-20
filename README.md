@@ -61,11 +61,27 @@ If you want to use devise for protecting the admin parts, do this in an initiali
 
 # Usage
 
+## Adding additional content languages
+
+If you wan't to translate your pages into another language, generate a new translation migration:
+
+    # translate your pages into french
+    rails g kuhsaft:translations:add fr
+
+This creates a new migration file inside `db/migrate` of your app. Run the migration as you normally do:
+
+    rake db:migrate
+
+Finally, add the new translation locale to your `available_locales` inside your apps `application.rb`:
+
+    config.available_locales = [:en, :fr]
+
 ## Building a navigation
 
-Create a toplevel page and set the page type to "navigation". You can now get the child pages by using the navigation helper with the slug of that page: 
+Create a toplevel page and set the page type to "navigation". You can now get the child pages by using the navigation helper with the slug of that page:
 
     navigation_for(:slug => 'main-navigation') { |pages| ... }
+
 
 ## Integrating custom Models into Kuhsaft (aka Rails Admin Lite)
 
