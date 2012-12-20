@@ -38,6 +38,7 @@ RSpec.configure do |config|
   config.include CarrierWave::Test::Matchers
   config.include KuhsaftSpecHelper
   config.include FactoryGirl::Syntax::Methods
+  config.extend RequestMacros
 
   # == Mock Framework
   config.mock_with :rspec
