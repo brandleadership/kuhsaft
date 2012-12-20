@@ -18,6 +18,7 @@ module Kuhsaft
         install_migration_once 'create_bricks.rb'
         install_migration_once 'create_brick_types.rb'
         install_migration_once 'create_assets.rb'
+        install_migration_once 'create_kuhsaft_cms_admins.rb'
       end
 
       private
