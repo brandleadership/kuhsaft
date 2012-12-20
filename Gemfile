@@ -3,3 +3,4 @@ gemspec
 
 gem 'jquery-rails'
 gem 'ancestry'
+gem 'database_cleaner'

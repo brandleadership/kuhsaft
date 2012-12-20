@@ -1,11 +1,10 @@
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-require "rails/test_help"
-require "rspec/rails"
+require 'rails/test_help'
+require 'rspec/rails'
 require 'factory_girl'
-require "capybara/rails"
-require 'generators/kuhsaft/install/migrations_generator'
+require 'capybara/rails'
 
 FactoryGirl.find_definitions
 
@@ -18,12 +17,6 @@ Rails.backtrace_cleaner.remove_silencers!
 # Configure capybara for integration testing
 Capybara.default_driver   = :rack_test
 Capybara.default_selector = :css
-
-# Drop all records and run any available migration
-Rails::Generators.invoke 'kuhsaft:install:migrations'
-
-ActiveRecord::Base.connection.tables.each { |table| ActiveRecord::Base.connection.drop_table(table) }
-ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
 
 # Load support files
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
@@ -39,7 +32,27 @@ RSpec.configure do |config|
   config.include KuhsaftSpecHelper
   config.include FactoryGirl::Syntax::Methods
 
+  config.before :suite do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+    # Drop all records and run any available migration
+    ActiveRecord::Base.connection.tables.each { |table| ActiveRecord::Base.connection.drop_table(table) }
+    ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
+  end
+
+  config.after :suite do
+    # remove migrations?
+  end
+
+  config.before do
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
+
   # == Mock Framework
   config.mock_with :rspec
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 end
