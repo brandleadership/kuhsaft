@@ -102,4 +102,10 @@ describe Kuhsaft::Brick do
       Kuhsaft::TextBrick.new.to_edit_childs_partial_path.should == 'kuhsaft/text_bricks/text_brick/childs'
     end
   end
+
+  describe '#bricks' do
+    it 'can not have childs by default' do
+      brick.should_not respond_to(:bricks)
+    end
+  end
 end
