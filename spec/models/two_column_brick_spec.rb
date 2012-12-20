@@ -51,4 +51,10 @@ describe Kuhsaft::TwoColumnBrick do
       two_column_brick.bricks.should be_all { |brick| brick.should be_a(Kuhsaft::ColumnBrick) }
     end
   end
+
+  describe '#bricks' do
+    it 'can have childs' do
+      two_column_brick.should respond_to(:bricks)
+    end
+  end
 end
