@@ -1,4 +1,4 @@
-class CreateAssets < ActiveRecord::Migration
+class CreateKuhsaftAssets < ActiveRecord::Migration
 
   def change
     create_table :kuhsaft_assets do |t|

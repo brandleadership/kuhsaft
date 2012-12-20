@@ -1,4 +1,4 @@
-class CreateBrickTypes < ActiveRecord::Migration
+class CreateKuhsaftBrickTypes < ActiveRecord::Migration
 
   def change
     create_table :kuhsaft_brick_types do |t|
