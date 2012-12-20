@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara', '>= 0.4.0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'launchy'
-  s.add_development_dependency 'pry-rails'
 
   s.add_dependency 'rails', '~>3.2'
   s.add_dependency 'haml', '>= 3.1'
