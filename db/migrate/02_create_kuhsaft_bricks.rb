@@ -10,6 +10,7 @@ class CreateKuhsaftBricks < ActiveRecord::Migration
       t.text :read_more_text # TextBrick
       t.string :caption # LinkBrick
       t.text :href # LinkBrick
+      t.string :link_style # LinkBrick
       t.integer :partitioning # TwoColumnBrick
       t.timestamps
     end

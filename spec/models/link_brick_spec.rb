@@ -29,4 +29,10 @@ describe Kuhsaft::LinkBrick do
       link_brick.should_not respond_to(:bricks)
     end
   end
+
+  describe '.styles' do
+    it 'returns the available link styles' do
+      Kuhsaft::LinkBrick.styles.should == %w(pdf word excel button external)
+    end
+  end
 end
