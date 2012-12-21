@@ -1,0 +1,15 @@
+de:
+  activerecord:
+    models:
+      kuhsaft/page: 'Seite'
+    attributes:
+      kuhsaft/page:
+        title: 'Titel'
+        slug: 'URL Name'
+        keywords: 'Stichwörter'
+        description: 'Beschreibung'
+        url: 'URL'
+        published: 'Veröffentlicht'
+        page_type: 'Seitentyp'
+        parent_id: 'Übergeordnete Seite'
+        parent: 'Übergeordnete Seite'
