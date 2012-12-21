@@ -1,0 +1,8 @@
+de:
+  kuhsaft:
+    cms:
+      bricks:
+        brick_item:
+          save: 'Speichern ✔'
+        brick_list:
+          add_element: 'Element hinzufügen'
