@@ -1,9 +1,14 @@
 require 'spec_helper'
 
 describe Kuhsaft::TextBrick do
+
+  let :text_brick do
+    Kuhsaft::TextBrick.new
+  end
+
   describe '#render_stacked?' do
     it 'returns false' do
-      Kuhsaft::TextBrick.new.render_stacked?.should be_false
+      text_brick.render_stacked?.should be_false
     end
 
     context 'when nested inside a TwoColumnBrick' do
@@ -15,6 +20,12 @@ describe Kuhsaft::TextBrick do
         two_col_brick.stub(:brick_list).and_return(page)
         text_brick.render_stacked?.should be_true
       end
+    end
+  end
+
+  describe '#bricks' do
+    it 'can not have childs' do
+      text_brick.should_not respond_to(:bricks)
     end
   end
 end
