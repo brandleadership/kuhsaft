@@ -10,13 +10,6 @@ module Kuhsaft
           I18n.locale = params[:content_locale]
         end
       end
-
-      def current_admin
-        dummy = ""
-        def dummy.cms_locale
-          :de
-        end
-      end
     end
   end
 end
