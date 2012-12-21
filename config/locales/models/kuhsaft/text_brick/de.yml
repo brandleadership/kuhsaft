@@ -1,0 +1,8 @@
+de:
+  activerecord:
+    models:
+      kuhsaft/text_brick: 'Text'
+    attributes:
+      kuhsaft/text_brick:
+        text: 'Text'
+        read_more_text: 'Mehr lesen'
