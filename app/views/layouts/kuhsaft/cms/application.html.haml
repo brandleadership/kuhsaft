@@ -10,7 +10,7 @@
         .container
           %ul.nav
             %li
-              = link_to 'Seiten', kuhsaft.pages_path
+              = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.pages_path
             %li
               = link_to 'Bilder', kuhsaft.assets_path
       #toolbar

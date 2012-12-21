@@ -1,7 +1,7 @@
 = render 'content_language_switch'
 %ul.breadcrumb
   %li
-    = link_to t('.pages'), kuhsaft.pages_path
+    = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.pages_path
     %span.divider /
   - @page.parent_pages.each do |parent_page|
     %li
