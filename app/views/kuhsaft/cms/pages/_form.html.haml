@@ -1,8 +1,8 @@
 %ul.nav.nav-tabs.js-tabs
   %li{ :class => metadata_tab_active(@page) }
-    = link_to 'Metadaten', '#page-metadata', 'data-toggle' => :tab
+    = link_to t('.tab_metadata'), '#page-metadata', 'data-toggle' => :tab
   %li{ :class => content_tab_active(@page) }
-    = link_to 'Content', '#page-content', 'data-toggle' => :tab
+    = link_to t('.tab_content'), '#page-content', 'data-toggle' => :tab
 
 .tab-content
   #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }

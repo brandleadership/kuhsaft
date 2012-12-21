@@ -4,3 +4,6 @@ de:
       pages:
         index:
           add_page: 'Seite hinzufügen'
+        form:
+          tab_metadata: 'Einstellungen'
+          tab_content: 'Inhalt'
