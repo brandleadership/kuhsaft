@@ -1,0 +1,5 @@
+de:
+  kuhsaft:
+    cms:
+      admin:
+        confirm_delete: '"%{name}" wirklich löschen?'

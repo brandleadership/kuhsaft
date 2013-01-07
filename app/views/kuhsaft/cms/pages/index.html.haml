@@ -3,5 +3,5 @@
   .span3
     = link_to kuhsaft.new_page_path, :class => 'btn btn-primary' do
       %i.icon-plus-sign.icon-white
-      Add page
+      = t('.add_page')
 = render :partial => 'branch', :locals => { :pages => @pages }

@@ -4,16 +4,16 @@
       .row-fluid.branch
         .span9
           .branch-title
-            = link_to page.title.presence || t('.not_translated'), kuhsaft.edit_page_path(page), :class => 'btn btn-link'
+            = link_to page.title.presence, kuhsaft.edit_page_path(page), :class => 'btn btn-link'
         .span3
           .pull-right
             - if page.children.empty?
-              = link_to kuhsaft.page_path(page), :confirm => t('.confirm', :page_title => page.title), :method => :delete, :class => 'btn btn-small btn-danger' do
+              = link_to kuhsaft.page_path(page), :confirm => t('kuhsaft.cms.admin.confirm_delete', :name => page.title), :method => :delete, :class => 'btn btn-small btn-danger' do
                 %i.icon-trash.icon-white
 
             = link_to kuhsaft.new_page_path(:parent_id => page.id), :class => 'btn btn-small' do
               %i.icon-plus-sign
-              = t('.add')
+              = t('kuhsaft.cms.pages.index.add_page')
 
       - unless page.children.empty?
         = render :partial => 'branch', :locals => { :pages => page.children }
