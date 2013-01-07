@@ -1,3 +1,5 @@
+# Add default backend user
+Kuhsaft::Cms::Admin.create(:email => 'admin@screenconcept.ch', :password => 'bambus')
 
 # Add default kuhsaft brick types
 
