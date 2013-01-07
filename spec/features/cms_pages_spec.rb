@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'Cms/Pages' do
+  sign_in_cms_admin
 
   context '#new' do
     before do

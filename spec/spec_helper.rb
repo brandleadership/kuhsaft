@@ -31,6 +31,7 @@ RSpec.configure do |config|
   config.include CarrierWave::Test::Matchers
   config.include KuhsaftSpecHelper
   config.include FactoryGirl::Syntax::Methods
+  config.extend RequestMacros
 
   config.before :suite do
     DatabaseCleaner.strategy = :transaction
