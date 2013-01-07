@@ -5,6 +5,10 @@ module Kuhsaft
 
     attr_accessible :partitioning
 
+    #
+    # Childs should only contain ColumnBricks, therefore we
+    # don't want the user to mess with it
+    #
     def user_can_add_childs?
       false
     end
@@ -13,6 +17,9 @@ module Kuhsaft
       true
     end
 
+    #
+    # Use own rendering implementation to show columns side by side
+    #
     def renders_own_childs?
       true
     end

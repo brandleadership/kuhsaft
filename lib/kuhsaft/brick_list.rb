@@ -14,14 +14,29 @@ module Kuhsaft
       "brick-list-#{id}-#{self.class.to_s.underscore.gsub('/', '_')}"
     end
 
+    #
+    # See TwoColumnBrick as an example, which can only have to ColumBricks
+    # and the User should not be able to add more
+    #
     def user_can_add_childs?
       true
     end
 
+    #
+    # return true if the user should be able to delete the brick through the UI.
+    # return false if not.
+    # See ColumnBrick, which should not be deleted inside the TwoColumnBrick
+    #
     def user_can_change_persisted?
       true
     end
 
+    #
+    # When true, the brick must implement the rendering of its childs by itself
+    # by using the _childs partial
+    # When false, the default BrickList rendering is used
+    # See _brick_item partial
+    #
     def renders_own_childs?
       false
     end
