@@ -8,6 +8,8 @@
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
         .container
+          %p.navbar-text.pull-right
+            = link_to t('.logout'), destroy_admin_session_path, :method => :delete
           %ul.nav
             %li
               = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.pages_path

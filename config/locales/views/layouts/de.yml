@@ -1,0 +1,6 @@
+de:
+  layouts:
+    kuhsaft:
+      cms:
+        application:
+          logout: 'Abmelden'
