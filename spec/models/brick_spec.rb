@@ -76,9 +76,9 @@ describe Kuhsaft::Brick do
     end
   end
 
-  describe '#render_stacked?' do
-    it 'returns false by default' do
-      Kuhsaft::Brick.new.render_stacked?.should be_false
+  describe '#render_as_horizontal_form?' do
+    it 'returns true by default' do
+      Kuhsaft::Brick.new.render_as_horizontal_form?.should be_true
     end
   end
 

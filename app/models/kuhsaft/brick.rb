@@ -30,18 +30,33 @@ module Kuhsaft
       path.join '/'
     end
 
+    #
+    # The child partial can contain your own implementation
+    # of how the brick renders it's child in the edit form.
+    # Returns the path to this partial.
+    #
     def to_edit_childs_partial_path
       path = self.to_partial_path.split '/'
       path << 'childs'
       path.join '/'
     end
 
+    #
+    # Return relevant fulltext information for this brick (e.g: it's name, description etc ).
+    # It will be stored in the related Page.
+    # Implement how you see fit.
+    #
     def fulltext
       raise NotImplementedError
     end
 
-    def render_stacked?
-      false
+    #
+    # return true: brick form labels/inputs render horizontally
+    # return false: brick form labels/inputs render vertically
+    # (see: http://twitter.github.com/bootstrap/base-css.html#forms)
+    #
+    def render_as_horizontal_form?
+      true
     end
 
     def parents
