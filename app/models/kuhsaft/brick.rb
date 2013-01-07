@@ -37,8 +37,7 @@ module Kuhsaft
     end
 
     def fulltext
-      #raise NotImplementedError
-      ""
+      raise NotImplementedError
     end
 
     def render_stacked?
