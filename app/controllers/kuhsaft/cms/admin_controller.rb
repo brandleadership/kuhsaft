@@ -11,10 +11,6 @@ module Kuhsaft
           I18n.locale = params[:content_locale]
         end
       end
-
-      def after_sign_in_path_for(resource)
-        kuhsaft.pages_path
-      end
     end
   end
 end

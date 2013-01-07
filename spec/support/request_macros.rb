@@ -6,7 +6,7 @@ module RequestMacros
                                  :password => '123456',
                                  :password_confirmation => '123456')
 
-      visit kuhsaft.new_admin_session_path
+      visit kuhsaft.pages_path
 
       within "#new_admin" do
         fill_in "Email", :with => 'max@demo.com'
