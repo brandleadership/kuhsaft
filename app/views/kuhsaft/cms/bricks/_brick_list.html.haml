@@ -11,6 +11,8 @@
         %ul.dropdown-menu
           %li
             = link_to 'Text', kuhsaft.bricks_path(:brick => { :type => 'Kuhsaft::TextBrick', :brick_list_id => brick_list.id, :brick_list_type => brick_list.brick_list_type }), :remote => true, :method => :post
+          %li
+            = link_to 'Link', kuhsaft.bricks_path(:brick => { :type => 'Kuhsaft::LinkBrick', :brick_list_id => brick_list.id, :brick_list_type => brick_list.brick_list_type }), :remote => true, :method => :post
           .divider
           %li
             = link_to 'Zweispaltiges Element', kuhsaft.bricks_path(:brick => { :type => 'Kuhsaft::TwoColumnBrick', :brick_list_id => brick_list.id, :brick_list_type => brick_list.class.to_s }), :remote => true, :method => :post
