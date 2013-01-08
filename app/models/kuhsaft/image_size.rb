@@ -2,6 +2,10 @@ module Kuhsaft
   class ImageSize
     attr_accessor :name, :width, :height
 
+    def label
+      I18n.t("activerecord.attributes.kuhsaft/image_size.sizes.#{name}")
+    end
+
     class << self
       def all
         [gallery_size, teaser_size]
