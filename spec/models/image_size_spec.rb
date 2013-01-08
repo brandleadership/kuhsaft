@@ -7,4 +7,10 @@ describe Kuhsaft::ImageSize do
                                         Kuhsaft::ImageSize.teaser_size]
     end
   end
+
+  describe '.find_by_name' do
+    it 'returns the size' do
+      Kuhsaft::ImageSize.find_by_name('gallery').should == Kuhsaft::ImageSize.gallery_size
+    end
+  end
 end

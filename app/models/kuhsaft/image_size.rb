@@ -7,6 +7,10 @@ module Kuhsaft
         [gallery_size, teaser_size]
       end
 
+      def find_by_name(name)
+        all.find { |size| size.name.to_s == name.to_s }
+      end
+
       def gallery_size
         @gallery_size ||= ImageSize.new.tap do |size|
           size.name = :gallery
