@@ -1,0 +1,4 @@
+= form.input :image, :as => :file, :input_html => { :class => 'span3' }
+= form.input :image_size, :collection => Kuhsaft::ImageSize.all, :label_method => :label, :input_html => { :class => 'span3' }
+= form.input :caption, :as => :string, :input_html => { :class => 'span6' }
+= form.input :href, :as => :string, :input_html => { :class => 'span6' }
