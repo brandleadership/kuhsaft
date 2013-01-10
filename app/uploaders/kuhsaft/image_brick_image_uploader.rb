@@ -1,7 +1,8 @@
 # encoding: utf-8
 module Kuhsaft
   class ImageBrickImageUploader < CarrierWave::Uploader::Base
-    include CarrierWave::RMagick
+    # include CarrierWave::RMagick
+    include CarrierWave::MiniMagick
     # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
     # include Sprockets::Helpers::RailsHelper
     # include Sprockets::Helpers::IsolatedHelper
@@ -22,6 +23,7 @@ module Kuhsaft
     #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
     # end
 
+
     # Process files as they are uploaded:
     # process :scale => [200, 300]
     #
@@ -30,8 +32,12 @@ module Kuhsaft
     # end
 
     # Create different versions of your uploaded files:
-    version :brick_size do
-      process :process_brick_size
+    version :converted do
+      process :process_brick_image_size
+    end
+
+    version :thumb, :from_version => :converted do
+      process :resize_to_fill => [160, 90]
     end
 
     # Add a white list of extensions which are allowed to be uploaded.
@@ -40,8 +46,11 @@ module Kuhsaft
       %w(jpg jpeg gif png)
     end
 
-    def process_brick_size
-
+    def process_brick_image_size
+      image_size = Kuhsaft::ImageSize.find_by_name(model.image_size)
+      if image_size.present?
+        resize_to_fill(image_size.width, image_size.height)
+      end
     end
 
     # Override the filename of the uploaded files:
