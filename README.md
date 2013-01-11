@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/screenconcept/kuhsaft.png)](http://travis-ci.org/screenconcept/kuhsaft)
+
 # Kuhsaft. A CMS as simple as it could be
 
 ## The Who, What and Why?
