@@ -3,7 +3,7 @@
 class Kuhsaft::AssetUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or ImageScience support:
-  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
   #include CarrierWave::ImageScience
 
   # Choose what kind of storage to use for this uploader:
@@ -35,7 +35,7 @@ class Kuhsaft::AssetUploader < CarrierWave::Uploader::Base
       resize_to_fill(100, 100) if @file.present? && @file.content_type.present? && @file.content_type.include?('image')
     end
   end
-  
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
