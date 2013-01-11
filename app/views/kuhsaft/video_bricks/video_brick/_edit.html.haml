@@ -1,3 +1,7 @@
+- if brick.errors.any?
+  .alert.alert-error
+    = t('.any_source_error')
+
 %fieldset
   %legend= t('.sublime_video_source')
   = form.input :video, :as => :file
