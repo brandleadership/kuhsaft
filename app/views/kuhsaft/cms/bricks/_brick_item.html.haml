@@ -1,12 +1,12 @@
 .brick-item{ :id => brick.to_brick_item_id }
-  = simple_form_for brick, :as => :brick, :url => kuhsaft.brick_path(brick), :remote => true, :html => { :class => (brick.render_as_horizontal_form? ? 'form-horizontal' : ''), :id => nil } do |form|
+  = simple_form_for brick, :as => :brick, :url => kuhsaft.cms_brick_path(brick), :remote => true, :html => { :class => (brick.render_as_horizontal_form? ? 'form-horizontal' : ''), :id => nil } do |form|
     - if brick.user_can_change_persisted?
       .brick-item-header
         .btn-group
           = form.button :submit, :class => 'btn btn-success btn-small ', :value => t('.save')
 
         - if brick.persisted?
-          = link_to kuhsaft.brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('kuhsaft.cms.bricks.brick_item.confirm'), :method => :delete, :remote => true do
+          = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('kuhsaft.cms.bricks.brick_item.confirm'), :method => :delete, :remote => true do
             %i.icon-trash.icon-white
 
     - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)

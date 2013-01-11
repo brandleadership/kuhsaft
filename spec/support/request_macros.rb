@@ -6,9 +6,9 @@ module RequestMacros
                                  :password => '123456',
                                  :password_confirmation => '123456')
 
-      visit kuhsaft.pages_path
+      visit kuhsaft.cms_pages_path
 
-      within "#new_admin" do
+      within "#new_cms_admin" do
         fill_in "Email", :with => 'max@demo.com'
         fill_in "Password", :with => '123456'
         click_on "Sign in"
