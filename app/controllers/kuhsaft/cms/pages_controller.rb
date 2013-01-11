@@ -21,7 +21,7 @@ module Kuhsaft
         @page = Kuhsaft::Page.create params[:page]
 
         if @page.valid?
-          respond_with @page, :location => kuhsaft.edit_page_path(@page)
+          respond_with @page, :location => kuhsaft.edit_cms_page_path(@page)
         else
           render 'new'
         end
@@ -43,13 +43,13 @@ module Kuhsaft
           @page.bricks << params[:page][:page_part_type].constantize.new
         end
 
-        respond_with @page, :location => kuhsaft.edit_page_path(@page)
+        respond_with @page, :location => kuhsaft.edit_cms_page_path(@page)
       end
 
       def destroy
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy
-        redirect_to kuhsaft.pages_path
+        redirect_to kuhsaft.cms_pages_path
       end
     end
   end

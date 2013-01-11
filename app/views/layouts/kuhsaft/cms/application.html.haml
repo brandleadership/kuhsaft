@@ -9,12 +9,12 @@
       .navbar-inner
         .container
           %p.navbar-text.pull-right
-            = link_to t('.logout'), destroy_admin_session_path, :method => :delete
+            = link_to t('.logout'), destroy_cms_admin_session_path, :method => :delete
           %ul.nav
             %li
-              = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.pages_path
+              = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.cms_pages_path
             %li
-              = link_to 'Bilder', kuhsaft.assets_path
+              = link_to 'Bilder', kuhsaft.cms_assets_path
       #toolbar
     .container.cms
       = yield
