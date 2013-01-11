@@ -1,0 +1,7 @@
+%fieldset
+  %legend= t('.sublime_video_source')
+  = form.input :video, :as => :file
+  = form.input :href, :as => :string, :input_html => { :class => 'span6' }
+%fieldset
+  %legend= t('.external_video_source')
+  = form.input :embed_src, :as => :text, :input_html => { :class => 'span6', :rows => 5 }
