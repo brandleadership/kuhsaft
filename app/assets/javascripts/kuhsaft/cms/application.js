@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require redactor
+//= require bootstrap
 //= require_tree .
 
 function loadTextEditor(elem){
