@@ -7,13 +7,13 @@ describe Kuhsaft::ColumnBrick do
   end
 
   describe '#user_can_change_persisted?' do
-    it 'returns true' do
+    it 'returns false' do
       column_brick.user_can_change_persisted?.should be_false
     end
   end
 
   describe '#renders_own_childs?' do
-    it 'returns true' do
+    it 'returns false' do
       column_brick.renders_own_childs?.should be_false
     end
   end
