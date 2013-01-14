@@ -80,5 +80,10 @@ module Kuhsaft
     def brick_list_type
       'Kuhsaft::Brick'
     end
+
+    # Returns a css classname suitable for use in the frontend
+    def to_style_class
+      self.class.to_s.underscore.dasherize.gsub('/', '-')
+    end
   end
 end

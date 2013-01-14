@@ -8,5 +8,5 @@ Kuhsaft::Engine.routes.draw do
     root :to => 'pages#index'
   end
 
-  #match '/:locale/*url' => 'pages#show', :as => :kuhsaft_page
+  match '/:locale/*url' => 'pages#show'
 end
