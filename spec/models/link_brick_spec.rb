@@ -35,4 +35,11 @@ describe Kuhsaft::LinkBrick do
       Kuhsaft::LinkBrick.styles.should == %w(pdf word excel button external)
     end
   end
+
+  describe '#to_style_class' do
+    it 'includes the link style' do
+      link_brick.stub(:link_style).and_return('pdf')
+      link_brick.to_style_class.should == 'kuhsaft-link-brick pdf'
+    end
+  end
 end

@@ -7,5 +7,9 @@ module Kuhsaft
     def self.styles
       %w(pdf word excel button external)
     end
+
+    def to_style_class
+      [super, link_style.presence].join(' ')
+    end
   end
 end
