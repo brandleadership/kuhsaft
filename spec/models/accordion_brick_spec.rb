@@ -23,4 +23,10 @@ describe Kuhsaft::AccordionBrick do
       accordion_brick.should respond_to(:bricks)
     end
   end
+
+  describe '#to_style_class' do
+    it 'includes the bootstrap classname' do
+      accordion_brick.to_style_class.should == 'kuhsaft-accordion-brick accordion'
+    end
+  end
 end
