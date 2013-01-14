@@ -57,4 +57,10 @@ describe Kuhsaft::TwoColumnBrick do
       two_column_brick.should respond_to(:bricks)
     end
   end
+
+  describe '#to_style_class' do
+    it 'adds the row class to the default styles' do
+      Kuhsaft::TwoColumnBrick.new.to_style_class.should == 'kuhsaft-two-column-brick row'
+    end
+  end
 end

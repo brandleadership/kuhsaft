@@ -32,6 +32,10 @@ module Kuhsaft
       [Partition.new('70/30', 0), Partition.new('50/50', 1), Partition.new('30/70', 2)]
     end
 
+    def to_style_class
+      [super, 'row'].join(' ')
+    end
+
     private
 
     def add_columns
