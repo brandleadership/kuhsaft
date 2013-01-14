@@ -99,4 +99,12 @@ describe Kuhsaft::Brick do
       Kuhsaft::TextBrick.new.to_style_class.should == 'kuhsaft-text-brick'
     end
   end
+
+  describe '#to_style_id' do
+    it 'returns a unique DOM id' do
+      brick = Kuhsaft::TextBrick.new
+      brick.stub(:id).and_return(104)
+      brick.to_style_id.should == 'kuhsaft-text-brick-104'
+    end
+  end
 end

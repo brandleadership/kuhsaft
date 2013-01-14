@@ -85,5 +85,10 @@ module Kuhsaft
     def to_style_class
       self.class.to_s.underscore.dasherize.gsub('/', '-')
     end
+
+    # Returns a unique DOM id suitable for use in the frontend
+    def to_style_id
+      "#{self.class.to_s.underscore.dasherize.gsub('/', '-')}-#{id}"
+    end
   end
 end
