@@ -93,4 +93,10 @@ describe Kuhsaft::Brick do
       brick.should_not respond_to(:bricks)
     end
   end
+
+  describe '#to_style_class' do
+    it 'returns a css classname' do
+      Kuhsaft::TextBrick.new.to_style_class.should == 'kuhsaft-text-brick'
+    end
+  end
 end
