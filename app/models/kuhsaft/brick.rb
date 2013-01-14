@@ -15,7 +15,6 @@ module Kuhsaft
 
     before_validation :set_locale
     before_validation :set_position
-    before_validation :set_brick_list_type
 
     validates :locale,
               :position,
@@ -78,8 +77,8 @@ module Kuhsaft
       self.position = self.position.presence || 1
     end
 
-    def set_brick_list_type
-      self.brick_list_type = self.brick_list_type.presence || 'Kuhsaft::Brick'
+    def brick_list_type
+      'Kuhsaft::Brick'
     end
   end
 end

@@ -15,11 +15,6 @@ describe Kuhsaft::Brick do
       brick.should_receive(:set_position)
       brick.valid?
     end
-
-    it 'sets a default brick list type' do
-      brick.should_receive(:set_brick_list_type)
-      brick.valid?
-    end
   end
 
   describe '#set_position' do
@@ -54,19 +49,9 @@ describe Kuhsaft::Brick do
     end
   end
 
-  describe '#set_brick_list_type' do
-    context 'witout a brick_list_type' do
-      it 'sets a default' do
-        brick.set_brick_list_type
-        brick.brick_list_type.should == 'Kuhsaft::Brick'
-      end
-    end
-
-    context 'with a brick_list_type' do
-      it 'does not change' do
-        brick.brick_list_type = 'Kuhsaft::TextBrick'
-        expect { brick.set_brick_list_type }.to_not change(brick, :brick_list_type)
-      end
+  describe '#brick_list_type' do
+    it 'returns Kuhsaft::Brick' do
+      brick.brick_list_type.should == 'Kuhsaft::Brick'
     end
   end
 

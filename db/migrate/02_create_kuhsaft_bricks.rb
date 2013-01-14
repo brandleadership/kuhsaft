@@ -8,7 +8,7 @@ class CreateKuhsaftBricks < ActiveRecord::Migration
       t.string :locale # all bricks
       t.text :text # TextBrick
       t.text :read_more_text # TextBrick
-      t.string :caption # LinkBrick, ImageBrick
+      t.string :caption # LinkBrick, ImageBrick, #AccordionItemBrick
       t.text :href # LinkBrick, ImageBrick, VideoBrick
       t.string :link_style # LinkBrick
       t.integer :partitioning # TwoColumnBrick
