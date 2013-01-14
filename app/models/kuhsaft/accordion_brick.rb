@@ -8,5 +8,9 @@ module Kuhsaft
     def user_can_change_persisted?
       true
     end
+
+    def to_style_class
+      [super, 'accordion'].join(' ')
+    end
   end
 end
