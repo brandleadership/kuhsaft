@@ -1,3 +1,3 @@
 - unless @page.blank?
-  - @page.bricks.each do |brick|
-    = render :partial => brick.show_partial_path, :locals => { :brick => brick }
+  - @page.bricks.localized.each do |brick|
+    = render brick
