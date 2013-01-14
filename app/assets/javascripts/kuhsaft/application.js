@@ -3,4 +3,5 @@
 
 $(function(){
   $(".page-content .collapse").collapse()
+  $(".page-content .carousel").carousel()
 })
