@@ -20,7 +20,7 @@ module Kuhsaft
         #
         respond_with @brick do |format|
           format.js
-          format.html { redirect_to edit_page_path(@brick.parents.first) }
+          format.html { redirect_to edit_cms_page_path(@brick.parents.first) }
         end
       end
 
