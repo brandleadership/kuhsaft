@@ -9,7 +9,7 @@ module Kuhsaft
     end
 
     def to_style_class
-      [super, link_style].join(' ')
+      [super, link_style.presence].join(' ')
     end
   end
 end
