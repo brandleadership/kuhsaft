@@ -9,3 +9,5 @@ Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::VideoBrick', :group => 'eleme
 Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::AccordionBrick', :group => 'elements')
 Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::AccordionItemBrick', :group => 'elements')
 Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::TwoColumnBrick', :group => 'layout_elements')
+Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::SliderBrick', :group => 'elements')
+Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::ImageBrick', :group => 'elements')
