@@ -43,6 +43,13 @@ Then install the assets and the migrations and run them:
     rake db:migrate
     rake db:seed
 
+Mount the kuhsaft engine in your routing file:
+
+    MyApp::Application.routes.draw do
+      # add your app routes here
+      mount Kuhsaft::Engine => "/"
+    end
+
 ## Testing
 
 There's a dummy app inside spec/dummy. Get it running by executing the following steps:
