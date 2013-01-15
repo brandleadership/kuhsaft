@@ -94,11 +94,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def collect_fulltext
-    self.fulltext = bricks.localized.inject('') do |text, brick|
-      text << brick.fulltext
-      text
-    end
-    self.fulltext = self.fulltext + [title.to_s, keywords.to_s, description.to_s].join(' ')
+    self.fulltext =[super, title.to_s, keywords.to_s, description.to_s].join(' ')
   end
 
   def nesting_name
