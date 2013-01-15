@@ -52,6 +52,14 @@ Mount the kuhsaft engine in your routing file:
       mount Kuhsaft::Engine => "/"
     end
 
+Load the Kuhsaft assets into your app, so you have working grids, widgets etc:
+
+    # application.css.sass
+    @import 'kuhsaft/application'
+
+    # application.js.coffee
+    //= require 'kuhsaft/application'
+
 ## Testing
 
 There's a dummy app inside spec/dummy. Get it running by executing the following steps:
