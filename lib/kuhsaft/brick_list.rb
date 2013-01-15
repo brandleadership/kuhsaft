@@ -1,5 +1,6 @@
 module Kuhsaft
   module BrickList
+
     def self.included(base)
       def base.acts_as_brick_list
         self.has_many :bricks, :class_name => 'Kuhsaft::Brick', :dependent => :destroy, :as => :brick_list
@@ -39,6 +40,22 @@ module Kuhsaft
     #
     def renders_own_childs?
       false
+    end
+
+    #
+    # Return relevant fulltext information for this brick (e.g: it's name, description etc ).
+    # It will be stored in the related Page.
+    # Implement how you see fit.
+    #
+    def collect_fulltext
+      if respond_to?(:bricks)
+        bricks.localized.inject('') do |text, brick|
+          text << brick.collect_fulltext
+          text
+        end
+      else
+        ''
+      end
     end
 
   end

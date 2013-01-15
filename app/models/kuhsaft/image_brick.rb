@@ -11,5 +11,9 @@ module Kuhsaft
     def resize_image_if_size_changed
       image.recreate_versions! if image_size_changed?
     end
+
+    def collect_fulltext
+      [super, caption].join(' ')
+    end
   end
 end

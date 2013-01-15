@@ -55,12 +55,6 @@ describe Kuhsaft::Brick do
     end
   end
 
-  describe '#fulltext' do
-    it 'must be overriden' do
-      expect { Kuhsaft::Brick.new }.to raise_error
-    end
-  end
-
   describe '#render_as_horizontal_form?' do
     it 'returns true by default' do
       Kuhsaft::Brick.new.render_as_horizontal_form?.should be_true

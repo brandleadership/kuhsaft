@@ -10,5 +10,9 @@ module Kuhsaft
     def to_style_class
       [super, 'accordion-group'].join(' ')
     end
+
+    def collect_fulltext
+      [super, caption].join(' ')
+    end
   end
 end
