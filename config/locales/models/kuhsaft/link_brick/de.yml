@@ -1,0 +1,9 @@
+de:
+  activerecord:
+    models:
+      kuhsaft/link_brick: 'Link'
+    attributes:
+      kuhsaft/link_brick:
+        caption: 'Linktext'
+        href: 'Link'
+        link_style: 'Stil'

@@ -1,0 +1,4 @@
+de:
+  activerecord:
+    models:
+      kuhsaft/slider_brick: 'Slider / Karussel'

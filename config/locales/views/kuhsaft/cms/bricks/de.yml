@@ -4,5 +4,6 @@ de:
       bricks:
         brick_item:
           save: 'Speichern ✔'
+          confirm: 'Wirklich löschen?'
         brick_list:
           add_element: 'Element hinzufügen'
