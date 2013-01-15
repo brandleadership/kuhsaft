@@ -35,4 +35,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick', '>= 3.4'
   s.add_dependency 'rdiscount', '>= 1.6'
   s.add_dependency 'devise'
+  s.add_dependency 'ancestry'
 end

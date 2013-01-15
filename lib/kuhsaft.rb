@@ -9,4 +9,5 @@ module Kuhsaft
   require 'carrierwave'
   require 'rdiscount'
   require 'compass'
+  require 'ancestry'
 end
