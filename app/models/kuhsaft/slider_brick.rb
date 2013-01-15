@@ -7,6 +7,10 @@ module Kuhsaft
     def fulltext
     end
 
+    def to_style_class
+      [super, 'carousel', 'slide'].join(' ')
+    end
+
   end
 end
 
