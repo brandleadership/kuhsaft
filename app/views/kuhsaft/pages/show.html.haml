@@ -1,5 +1,5 @@
-- unless @page.blank?
-  .page-content
-    - @page.bricks.localized.each do |brick|
-      .brick{ :class => brick.to_style_class }
+- cache @page do
+  - unless @page.blank?
+    .page-content
+      - @page.bricks.localized.each do |brick|
         = render brick

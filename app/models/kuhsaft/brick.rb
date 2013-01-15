@@ -2,7 +2,7 @@ module Kuhsaft
   class Brick < ActiveRecord::Base
     include Kuhsaft::BrickList
 
-    belongs_to :brick_list, :polymorphic => true
+    belongs_to :brick_list, :polymorphic => true, :touch => true
 
     scope :localized, lambda { where(:locale => I18n.locale) }
     default_scope order('position ASC').localized
