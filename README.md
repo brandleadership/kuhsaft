@@ -43,6 +43,8 @@ Then install the assets and the migrations and run them:
     rake db:migrate
     rake db:seed
 
+You might want to change the language suffixes on the fields inside the create_kuhsaft_pages migration, depending on your app's default_locale.
+
 Mount the kuhsaft engine in your routing file:
 
     MyApp::Application.routes.draw do
