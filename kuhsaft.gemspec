@@ -34,4 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave', '>= 0.7.1'
   s.add_dependency 'mini_magick', '>= 3.4'
   s.add_dependency 'rdiscount', '>= 1.6'
+  s.add_dependency 'devise'
+  s.add_dependency 'ancestry'
+  s.add_dependency 'bootstrap-sass', '>= 2.2.2.0'
 end
