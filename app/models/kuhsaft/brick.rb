@@ -41,15 +41,6 @@ module Kuhsaft
     end
 
     #
-    # Return relevant fulltext information for this brick (e.g: it's name, description etc ).
-    # It will be stored in the related Page.
-    # Implement how you see fit.
-    #
-    def fulltext
-      raise NotImplementedError
-    end
-
-    #
     # return true: brick form labels/inputs render horizontally
     # return false: brick form labels/inputs render vertically
     # (see: http://twitter.github.com/bootstrap/base-css.html#forms)
