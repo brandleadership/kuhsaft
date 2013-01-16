@@ -3,6 +3,5 @@ de:
     video_bricks:
       video_brick:
         edit:
-          sublime_video_source: 'Sublime Video einfügen'
-          external_video_source: 'YouTube/Vimeo/Andere Code einfügen'
           any_source_error: 'Bitte geben Sie mindestens eine Video Quelle an.'
+          embed_src_optional: 'Alternativ kann ein HTML Code zum einbetten eines Videos eingefügt werden.'
