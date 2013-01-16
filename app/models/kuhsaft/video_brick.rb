@@ -1,5 +1,10 @@
 module Kuhsaft
   class VideoBrick < Brick
+
+    YOUTUBE = 'youtube'
+    VIMEO = 'vimeo'
+    EXTERNAL = 'external'
+
     attr_accessible :video, :embed_src, :href
     validates :any_source, :presence => true
 
@@ -9,7 +14,7 @@ module Kuhsaft
     end
 
     def self.source_types
-      %w(youtube vimeo external)
+      [YOUTUBE, VIMEO, EXTERNAL]
     end
   end
 end
