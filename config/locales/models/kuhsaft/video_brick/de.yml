@@ -4,6 +4,6 @@ de:
       kuhsaft/video_brick: 'Video'
     attributes:
       kuhsaft/video_brick:
-        video: 'Video Datei'
-        embed_src: 'HTML Embed Code'
-        href: 'Link zu Video Datei'
+        video: 'Quelle'
+        embed_src: 'Embed Code'
+        href: 'Video'

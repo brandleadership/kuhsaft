@@ -72,6 +72,21 @@ Start up the dummy app. The first two steps also make sure you're ready to run `
 
 # Usage
 
+## Adding sublime video
+
+Create an initializer file in your app inside `config/initializers` and set the `sublime_video_token`:
+
+    Kuhsaft::Engine.configure do
+      # Get the token from the MySites section on the sublime video site
+      config.sublime_video_token = '123abcd'
+    end
+
+Require the sublime javascript with the following helper:
+
+    # in your application layout in the head section
+    sublime_video_include_tag
+
+
 ## Adding additional content languages
 
 If you wan't to translate your pages into another language, generate a new translation migration:

@@ -1,0 +1,9 @@
+%div{ :class => video_brick.to_style_class }
+  - if video_brick.video == Kuhsaft::VideoBrick::YOUTUBE
+    %video.sublime{ 'data-youtube-id' => video_brick.href, 'data-settings' => 'autoresize:fit', :preload => 'none' }
+  - elsif video_brick.video == Kuhsaft::VideoBrick::VIMEO || video_brick.video == Kuhsaft::VideoBrick::EXTERNAL
+    %video.sublime{ 'data-settings' => 'autoresize:fit', :preload => 'none' }
+      %source{ :src => video_brick.href }
+  - else
+    - if video_brick.embed_src.present?
+      = video_brick.embed_src.html_safe
