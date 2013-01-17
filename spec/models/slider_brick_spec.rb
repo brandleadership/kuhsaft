@@ -8,7 +8,7 @@ describe Kuhsaft::SliderBrick do
 
   describe '#bricks' do
     it 'can have childs' do
-      slider_brick.should respond_to(:bricks_not_really)
+      slider_brick.should respond_to(:bricks)
     end
   end
 
