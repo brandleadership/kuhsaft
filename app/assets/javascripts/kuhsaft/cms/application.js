@@ -11,9 +11,7 @@
 //= require_tree .
 
 function loadTextEditor(elem){
-  elem.find(".js-editor").redactor({
-    toolbarExternal: "#toolbar"
-  })
+  elem.find(".js-editor").redactor({})
 }
 
 $(function(){
