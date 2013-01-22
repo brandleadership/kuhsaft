@@ -125,6 +125,15 @@ todo
 * Implement the `fulltext` method on your brick, return anything you want to be searchable.
 * Customize the edit form behaviour of your brick by overriding methods like `render_as_horizontal_form?`. See the `Brick` and `BrickList` files for more methods.
 
+## Adding custom templates with placeholder bricks
+
+* Save your partial in views/user_templates ex. _contact_form.html.haml
+* Add translations for your partial in config/locales/locale.yml
+
+    de:
+      contact_form: Kontaktformular
+
+
 # LICENSE
 
 See the file LICENSE.
