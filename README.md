@@ -95,6 +95,34 @@ Require the sublime javascript with the following helper:
     sublime_video_include_tag
 
 
+## Configuring the image brick
+
+The image brick can process uploaded images into specific sizes. These sizes can be configured inside the engine configuration. You can also use the built-in default sizes:
+
+    # your_app/config/initializers/kuhsaft.rb
+    Kuhsaft::Engine.configure do
+      config.image_sizes.build_defaults! # creates 960x540 and 320x180 sizes
+    end
+
+You can also remove the default sizes:
+
+    # your_app/config/initializers/kuhsaft.rb
+    Kuhsaft::Engine.configure do
+      config.image_sizes.clear! # .all is now empty
+    end
+
+And most importantly, you can add custom sizes:
+
+    # your_app/config/initializers/kuhsaft.rb
+    Kuhsaft::Engine.configure do
+      config.image_sizes.add(:side_box_vertical, 180, 460)
+      config.image_sizes.add(:footer_teaser, 320, 220)
+    end
+
+The `name` option is a unique identifier, which is also used for translating the dropdown in the brick. You can add your translation by using the translation path:
+
+    activerecord.attributes.kuhsaft/image_size.sizes.#{name}
+
 ## Adding additional content languages
 
 If you wan't to translate your pages into another language, generate a new translation migration:
