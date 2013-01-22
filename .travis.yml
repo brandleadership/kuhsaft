@@ -1,0 +1,12 @@
+---
+language: ruby
+rvm:
+- 1.9.2
+- 1.9.3
+notifactions:
+  campfire:
+  - secret: ! 'QrdlvBVmKlkrBSYBMrJ0MbQWGbacMsN0j+rPZGN0tgGZpyoiMhq10ismUxrR
+
+      uAU1OXS+B5RxwVmrdd4F4MvNUDECE8NYqefKOZaXd1uIcG129ORlO3dNmvVg
+
+      wSvFY5D6Fb9dSrBbwhMQrgpBC/djyxkMLorkqh2iDARty+/TVR4='
