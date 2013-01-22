@@ -72,6 +72,14 @@ Start up the dummy app. The first two steps also make sure you're ready to run `
 
 # Usage
 
+## Making Kuhsaft helpers available to your app
+
+As defined in the rails docs, load the helpers from our isolated Kuhsaft engine inside your application controller:
+
+    class ApplicationController < ActionController::Base
+      helper Kuhsaft::Engine.helpers
+    end
+
 ## Adding sublime video
 
 Create an initializer file in your app inside `config/initializers` and set the `sublime_video_token`:
