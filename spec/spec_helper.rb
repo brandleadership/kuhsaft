@@ -5,6 +5,7 @@ require 'rails/test_help'
 require 'rspec/rails'
 require 'factory_girl'
 require 'capybara/rails'
+require 'rake'
 
 FactoryGirl.find_definitions
 
@@ -34,6 +35,10 @@ RSpec.configure do |config|
   config.extend RequestMacros
 
   config.before :suite do
+
+    load File.expand_path("../dummy/Rakefile", __FILE__)
+    Rake::Task['kuhsaft:install:migrations'].invoke
+
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
     # Drop all records and run any available migration
