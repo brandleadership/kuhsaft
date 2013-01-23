@@ -1,0 +1,6 @@
+= link_to 'Kuhsaft CMS', '#', :class => 'brand'
+%p.navbar-text.pull-right
+  = link_to t('.logout'), kuhsaft.destroy_cms_admin_session_path, :method => :delete
+%ul.nav
+  %li
+    = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.cms_pages_path
