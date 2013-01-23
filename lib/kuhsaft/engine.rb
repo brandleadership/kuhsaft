@@ -1,4 +1,13 @@
 module Kuhsaft
+
+  class ImageSizeDelegator
+    def method_missing(method, *args, &block)
+      Kuhsaft::ImageSize.send(method, *args, &block)
+    rescue NoMethodError
+      super
+    end
+  end
+
   class Engine < ::Rails::Engine
     isolate_namespace Kuhsaft
 
@@ -7,5 +16,8 @@ module Kuhsaft
 
     # defaults to nil
     config.sublime_video_token = nil
+
+    # delegate image size config to ImageSize class
+    config.image_sizes = ImageSizeDelegator.new
   end
 end
