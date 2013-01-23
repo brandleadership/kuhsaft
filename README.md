@@ -158,6 +158,9 @@ Building a navigation is simple, access to the page tree is available through th
       end
     end
 
+## Modifying the backend navigation
+
+Simply override the default partial for the main navigation in your app with your own file at `kuhsaft/cms/admin/_main_navigation.html.haml`
 
 ## Adding your own Bricks
 
