@@ -140,7 +140,24 @@ Finally, add the new translation locale to your `available_locales` inside your 
 
 ## Building a navigation
 
-todo
+Building a navigation is simple, access to the page tree is available through the common methods built into the ancestry gem. Just make sure you are only accessing published pages for your production site, using the `published` scope.
+
+### 2 level navigation example using simple-navigation
+
+    SimpleNavigation::Configuration.run do |navigation|
+      navigation.items do |primary|
+        # build first level
+        Kuhsaft::Page.roots.published.each do |page|
+          primary.item page.id, page.title, page.link do |sub_item|
+            # build second level
+            page.children.published.each do |subpage|
+              sub_item.item subpage.id, subpage.title, subpage.link
+            end
+          end
+        end
+      end
+    end
+
 
 ## Adding your own Bricks
 
