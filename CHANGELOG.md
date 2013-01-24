@@ -3,6 +3,10 @@
 * upgrade to ruby 1.9.3 and rails 3.2
 * to be discussed
 
+## features/placeholder_brick
+
+- Add placeholder brick to display user partials within normal page bricks
+
 ## 0.3.4 - January 27, 2012
 
 - Add styles for 2 additional nesting levels in list views ([@effkay][])

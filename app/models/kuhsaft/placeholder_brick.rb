@@ -4,7 +4,7 @@ module Kuhsaft
 
     def self.available_partials
       partials = []
-      Dir.glob('app/views/user_templates/_*.haml').each do |partial|
+      Dir.glob("#{Rails.root}/app/views/user_templates/_*.haml").each do |partial|
         filename = File.basename(partial).split('.', 0).first
         filename.slice!(0)
         partials << filename
