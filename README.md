@@ -175,9 +175,10 @@ Building a navigation is simple, access to the page tree is available through th
 * Save your partial in views/user_templates ex. _contact_form.html.haml
 * Add translations for your partial in config/locales/locale.yml
 
-    de:
-      contact_form: Kontaktformular
-
+```
+de:
+  contact_form: Kontaktformular
+```
 
 # LICENSE
 
