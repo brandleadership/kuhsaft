@@ -8,11 +8,27 @@ module Kuhsaft
 
     class << self
       def all
-        [gallery_size, teaser_size]
+        @all ||= []
+      end
+
+      def build_defaults!
+        @all = [gallery_size, teaser_size]
       end
 
       def find_by_name(name)
         all.find { |size| size.name.to_s == name.to_s }
+      end
+
+      def clear!
+        @all = []
+      end
+
+      def add(name, width, height)
+        @all << ImageSize.new.tap do |size|
+          size.name = name.to_sym
+          size.width = width
+          size.height = height
+        end
       end
 
       def gallery_size
