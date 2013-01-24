@@ -5,12 +5,12 @@
 
 ## features/placeholder_brick
 
-- Add placeholder brick to display user partials within normal page bricks
+- Add placeholder brick to display user partials within normal page bricks ([@donaier][])
 
 ## 0.3.4 - January 27, 2012
 
 - Add styles for 2 additional nesting levels in list views ([@effkay][])
-- Refactor CSS into proper format ([@manufaktor][] & [@donaier])
+- Refactor CSS into proper format ([@manufaktor][] & [@donaier][])
 - Migrate JS to asset pipeline/sprockets ([@effkay][])
 
 ## 0.3.3 - November 10, 2011
