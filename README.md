@@ -123,6 +123,16 @@ The `name` option is a unique identifier, which is also used for translating the
 
     activerecord.attributes.kuhsaft/image_size.sizes.#{name}
 
+## Adding custom templates with placeholder bricks
+
+* Save your partial in views/user_templates ex. _contact_form.html.haml
+* Add translations for your partial in config/locales/locale.yml
+
+```
+de:
+  contact_form: Kontaktformular
+```
+
 ## Adding additional content languages
 
 If you wan't to translate your pages into another language, generate a new translation migration:
@@ -169,16 +179,6 @@ Building a navigation is simple, access to the page tree is available through th
 * Add the `childs` partial to your views, if you want to render your bricks childs with your own html: `app/views/caption_bricks/caption_brick/_childs.html.haml`
 * Implement the `fulltext` method on your brick, return anything you want to be searchable.
 * Customize the edit form behaviour of your brick by overriding methods like `render_as_horizontal_form?`. See the `Brick` and `BrickList` files for more methods.
-
-## Adding custom templates with placeholder bricks
-
-* Save your partial in views/user_templates ex. _contact_form.html.haml
-* Add translations for your partial in config/locales/locale.yml
-
-```
-de:
-  contact_form: Kontaktformular
-```
 
 # LICENSE
 
