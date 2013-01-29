@@ -5,6 +5,7 @@ module Kuhsaft
   require 'kuhsaft/orderable'
   require 'kuhsaft/translatable'
   require 'kuhsaft/brick_list'
+  require 'kuhsaft/partial_extractor'
   require 'simple_form'
   require 'carrierwave'
   require 'rdiscount'

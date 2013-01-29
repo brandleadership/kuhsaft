@@ -123,6 +123,16 @@ The `name` option is a unique identifier, which is also used for translating the
 
     activerecord.attributes.kuhsaft/image_size.sizes.#{name}
 
+## Adding custom templates with placeholder bricks
+
+* Save your partial in `views/kuhsaft/placeholder_bricks/partials/_your_partial.html.haml`
+* Add translations for your partial in `config/locales/models/kuhsaft/placeholder_brick/locale.yml`
+
+```
+de:
+  your_partial: Your Partial
+```
+
 ## Adding additional content languages
 
 If you wan't to translate your pages into another language, generate a new translation migration:
