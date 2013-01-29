@@ -8,13 +8,14 @@ describe Kuhsaft::PlaceholderBrick do
   end
 
   before do
-    FileUtils.touch("#{Rails.root}/app/views/user_templates/_valid_partial.html.haml")
-    FileUtils.touch("#{Rails.root}/app/views/user_templates/not_a_partial.html.haml")
-    FileUtils.touch("#{Rails.root}/app/views/user_templates/_not_a_haml_file.txt")
+    FileUtils.mkdir_p("#{Rails.root}/app/views/kuhsaft/placeholder_bricks/partials")
+    FileUtils.touch("#{Rails.root}/app/views/kuhsaft/placeholder_bricks/partials/_valid_partial.html.haml")
+    FileUtils.touch("#{Rails.root}/app/views/kuhsaft/placeholder_bricks/partials/not_a_partial.html.haml")
+    FileUtils.touch("#{Rails.root}/app/views/kuhsaft/placeholder_bricks/partials/_not_a_haml_file.txt")
   end
 
   after do
-    FileUtils.rm(Dir.glob("#{Rails.root}/app/views/user_templates/*"))
+    FileUtils.rm_rf(Dir.glob("#{Rails.root}/app/views/kuhsaft"))
   end
 
   describe 'available partials' do

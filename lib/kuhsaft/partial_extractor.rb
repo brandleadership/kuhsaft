@@ -1,8 +1,8 @@
 module Kuhsaft
   class PartialExtractor
-
-    def extract_filenames(partials)
-      partials.each do |partial|
+    def extract_filenames(partial_paths)
+      partials = []
+      partial_paths.each do |partial|
         filename = File.basename(partial).split('.', 0).first
         filename.slice!(0)
         partials << filename
@@ -11,7 +11,7 @@ module Kuhsaft
     end
 
     def collect_partials(path)
-      extract_filenames(Dir.glob(Rails.root + path))
+      extract_filenames(Dir.glob("#{Rails.root}#{path}"))
     end
 
     def partials(path)

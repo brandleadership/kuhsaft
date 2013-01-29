@@ -125,12 +125,12 @@ The `name` option is a unique identifier, which is also used for translating the
 
 ## Adding custom templates with placeholder bricks
 
-* Save your partial in views/user_templates ex. _contact_form.html.haml
-* Add translations for your partial in config/locales/locale.yml
+* Save your partial in `views/kuhsaft/placeholder_bricks/partials/_your_partial.html.haml`
+* Add translations for your partial in `config/locales/models/kuhsaft/placeholder_brick/locale.yml`
 
 ```
 de:
-  contact_form: Kontaktformular
+  your_partial: Your Partial
 ```
 
 ## Adding additional content languages
