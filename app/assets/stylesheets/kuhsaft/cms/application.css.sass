@@ -5,41 +5,90 @@
 // = require_self
 //
 
+
+$baseBorderRadius: 0px
+$borderRadiusLarge: 0px
+$borderRadiusSmall: 0px
+
 @import bootstrap
+@import compass/css3
+
+// base styles
+
+h1
+  margin-top: 1em
+  margin-bottom: 0.5em
+  font-size: 3.5em
+
+form
+  margin: 0 !important
+
+// bootrap overrides
+
+.breadcrumb
+  background: #fff
+  opacity: 0.4
+  +single-transition(all, 0.3s)
+
+.breadcrumb:hover
+  opacity: 1
 
 .container.cms
   padding-top: 60px
 
-.brick-list
-  border: 1px solid #ccc
+// modules
 
-.tab-content
-  display: table
-  width: 100%
+.brick-caption
+  font-size: 1.25em
 
-.brick-list
-  margin: 1px
-
-.brick-list-header
-  background: #efefef
-  border-bottom: 1px solid #ccc
-  padding: 0.4em
-  text-align: right
-
-  .dropdown-menu
-    text-align: left
-
-.brick-item
-  border: 1px solid #e3e3e3
-  margin: 0.25em
-
-  .brick-item-content
-    padding: 0.5em
+.brick-caption
+  @extend .muted
+  font-weight: normal
+  font-style: italic
 
 .brick-item-header
   background: #efefef
   padding: 0.5em
   text-align: right
+
+  .btn
+    opacity: 0
+    +single-transition(all, 0.2s)
+
+  &:hover
+    .btn
+      opacity: 1
+
+.brick-list
+  padding-left: 2em
+
+.brick-list-header
+  text-align: right
+  padding: 0.5em
+
+  .dropdown-menu
+    text-align: left
+
+// The single column brick needs no level indentation
+// It usually acts as a helper container and is therefore not relevant
+// for the visual hierarchy
+.kuhsaft-column-brick
+  border: 0px solid #fff
+  > .brick-item-childs
+    > .brick-list
+      padding-left: 0
+
+.tab-content
+  display: table
+  width: 100%
+
+.brick-item
+  border: 1px solid #e3e3e3
+  // collapse multiple borders
+  margin: -1px
+
+  .brick-item-content
+    padding: 1em
 
 .clear
   clear: both
@@ -48,12 +97,6 @@
   margin-top: 1em
   margin-bottom: 1em
   text-align: right
-
-.saved
-  border-color: green
-
-form
-  margin: 0 !important
 
 .branch
   border-bottom: 1px solid #ccc
@@ -72,3 +115,4 @@ form
         .branch-title
           margin-left: 6em
 
+@import "bootstrap-responsive"
