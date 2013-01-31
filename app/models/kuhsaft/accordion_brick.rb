@@ -5,7 +5,7 @@ module Kuhsaft
 
     # TODO: validate only accept AccordionItem as child
 
-    def user_can_change_persisted?
+    def user_can_delete?
       true
     end
 

@@ -6,7 +6,12 @@ module Kuhsaft
     #
     # Users should not be able to delete this brick through the UI
     #
-    def user_can_change_persisted?
+    def user_can_delete?
+      false
+    end
+
+    # No need to save
+    def user_can_save?
       false
     end
 

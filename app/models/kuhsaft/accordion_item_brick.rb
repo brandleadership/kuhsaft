@@ -3,7 +3,7 @@ module Kuhsaft
     attr_accessible :caption
     validates :caption, :presence => true
 
-    def user_can_change_persisted?
+    def user_can_delete?
       true
     end
 

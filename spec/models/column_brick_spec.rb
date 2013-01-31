@@ -6,9 +6,9 @@ describe Kuhsaft::ColumnBrick do
     Kuhsaft::ColumnBrick.new
   end
 
-  describe '#user_can_change_persisted?' do
+  describe '#user_can_delete?' do
     it 'returns false' do
-      column_brick.user_can_change_persisted?.should be_false
+      column_brick.user_can_delete?.should be_false
     end
   end
 

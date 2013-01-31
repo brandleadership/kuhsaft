@@ -1,24 +1,26 @@
 .brick-item{ :id => brick.to_brick_item_id, :class => brick.to_style_class }
   = simple_form_for brick, :as => :brick, :url => kuhsaft.cms_brick_path(brick), :remote => true, :html => { :id => nil } do |form|
-    - if brick.user_can_change_persisted?
-      .brick-item-header.clearfix
-        .pull-left
-          - if brick.caption.present?
-            = brick.caption
-          %span.muted
-            = brick.backend_label(:parenthesis => true)
-        .pull-right
-          .btn-group
-            - # delete button
-            - if brick.persisted?
+    .brick-item-header.clearfix
+      .pull-left
+        - if brick.caption.present?
+          = brick.caption
+        %span.muted
+          = brick.backend_label(:parenthesis => true)
+      .pull-right
+        .btn-group
+          - # delete button
+          - if brick.persisted?
+            - if brick.user_can_delete?
               = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('kuhsaft.cms.bricks.brick_item.confirm'), :method => :delete, :remote => true do
                 %i.icon-trash.icon-white
+
             - # addable child dropdown menu
             - if brick.respond_to?(:brick_list)
               = render 'brick_type_dropdown', :brick_list => brick
 
-            - # save button
-            = form.button :submit, :class => 'btn btn-success btn-small ', :value => t('.save')
+            - if brick.user_can_save?
+              - # save button
+              = form.button :submit, :class => 'btn btn-success btn-small ', :value => t('.save')
 
 
     - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)

@@ -28,7 +28,16 @@ module Kuhsaft
     # return false if not.
     # See ColumnBrick, which should not be deleted inside the TwoColumnBrick
     #
-    def user_can_change_persisted?
+    def user_can_delete?
+      true
+    end
+
+    #
+    # Return true if the user can hit the save button
+    # Return false if not
+    # See column brick, which has no data on its own except childs, therefore no button is needed
+    #
+    def user_can_save?
       true
     end
 

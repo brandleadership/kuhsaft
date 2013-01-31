@@ -12,9 +12,9 @@ describe Kuhsaft::TwoColumnBrick do
     end
   end
 
-  describe '#user_can_change_persisted?' do
+  describe '#user_can_delete?' do
     it 'returns true' do
-      two_column_brick.user_can_change_persisted?.should be_true
+      two_column_brick.user_can_delete?.should be_true
     end
   end
 

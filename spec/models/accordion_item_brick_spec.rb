@@ -18,9 +18,9 @@ describe Kuhsaft::AccordionItemBrick do
     end
   end
 
-  describe '#user_can_change_persisted?' do
+  describe '#user_can_delete?' do
     it 'returns true' do
-      accordion_item_brick.user_can_change_persisted?.should be_true
+      accordion_item_brick.user_can_delete?.should be_true
     end
   end
 

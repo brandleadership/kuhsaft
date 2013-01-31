@@ -13,7 +13,7 @@ module Kuhsaft
       false
     end
 
-    def user_can_change_persisted?
+    def user_can_delete?
       true
     end
 
