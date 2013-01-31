@@ -106,4 +106,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   def brick_list_type
     'Kuhsaft::Page'
   end
+
+  def to_style_class
+    'kuhsaft-page'
+  end
 end

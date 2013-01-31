@@ -33,6 +33,9 @@ form
 .breadcrumb:hover
   opacity: 1
 
+.dropdown-menu
+  text-align: left
+
 .container.cms
   padding-top: 60px
 
@@ -61,7 +64,7 @@ form
 .brick-list
   padding-left: 2em
 
-// The single column brick needs no level indentation
+// The single column brick and the page-content (the "root") needs no level indentation
 // It usually acts as a helper container and is therefore not relevant
 // for the visual hierarchy
 .kuhsaft-column-brick
@@ -69,6 +72,9 @@ form
   > .brick-item-childs
     > .brick-list
       padding-left: 0
+#page-content
+  > .brick-list
+    padding-left: 0
 
 .tab-content
   display: table

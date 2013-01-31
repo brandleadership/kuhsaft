@@ -60,7 +60,7 @@ describe Kuhsaft::TwoColumnBrick do
 
   describe '#to_style_class' do
     it 'adds the row class to the default styles' do
-      Kuhsaft::TwoColumnBrick.new.to_style_class.should == 'kuhsaft-two-column-brick row'
+      Kuhsaft::TwoColumnBrick.new.to_style_class.should == 'kuhsaft-two-column-brick row-fluid'
     end
   end
 end

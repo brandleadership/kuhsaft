@@ -33,7 +33,7 @@ module Kuhsaft
     end
 
     def to_style_class
-      [super, 'row'].join(' ')
+      [super, 'row-fluid'].join(' ')
     end
 
     private

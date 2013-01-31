@@ -14,16 +14,8 @@
               = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('kuhsaft.cms.bricks.brick_item.confirm'), :method => :delete, :remote => true do
                 %i.icon-trash.icon-white
             - # addable child dropdown menu
-            - if brick.respond_to?(:user_can_add_childs?) && brick.user_can_add_childs? && Kuhsaft::BrickType.count > 0
-              %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
-                = t('.add_element')
-                %span.caret
-              %ul.dropdown-menu
-                - Kuhsaft::BrickType.grouped.group_by(&:group).each do |group, types|
-                  - types.each do |type|
-                    %li
-                      = link_to type.class_name.constantize.model_name.human, kuhsaft.cms_bricks_path(:brick => { :type => type.class_name, :brick_list_id => brick.id, :brick_list_type => brick.brick_list_type }), :remote => true, :method => :post
-                  .divider
+            - if brick.respond_to?(:brick_list)
+              = render 'brick_type_dropdown', :brick_list => brick
 
             - # save button
             = form.button :submit, :class => 'btn btn-success btn-small ', :value => t('.save')
