@@ -178,7 +178,7 @@ Building a navigation is simple, access to the page tree is available through th
 * Add the `edit` and `show` partials to your views, e.g: `app/views/caption_bricks/caption_brick/_edit.html.haml`
 * Add the `childs` partial to your views, if you want to render your bricks childs with your own html: `app/views/caption_bricks/caption_brick/_childs.html.haml`
 * Implement the `fulltext` method on your brick, return anything you want to be searchable.
-* Customize the edit form behaviour of your brick by overriding methods like `render_as_horizontal_form?`. See the `Brick` and `BrickList` files for more methods.
+* Customize the edit form behaviour of your brick by overriding methods like `to_style_class?`. See the `Brick` and `BrickList` files for more methods.
 
 # LICENSE
 

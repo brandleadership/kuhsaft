@@ -55,12 +55,6 @@ describe Kuhsaft::Brick do
     end
   end
 
-  describe '#render_as_horizontal_form?' do
-    it 'returns true by default' do
-      Kuhsaft::Brick.new.render_as_horizontal_form?.should be_true
-    end
-  end
-
   describe '#parents' do
     it 'returns the chain of parents' do
       item1, item2, item3 = mock, mock, Kuhsaft::Brick.new

@@ -40,15 +40,6 @@ module Kuhsaft
       path.join '/'
     end
 
-    #
-    # return true: brick form labels/inputs render horizontally
-    # return false: brick form labels/inputs render vertically
-    # (see: http://twitter.github.com/bootstrap/base-css.html#forms)
-    #
-    def render_as_horizontal_form?
-      true
-    end
-
     def parents
       p = []
       parent = brick_list.presence

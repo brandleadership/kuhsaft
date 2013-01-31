@@ -7,9 +7,5 @@ module Kuhsaft
     def self.available_partials
       @partials ||= Kuhsaft::PartialExtractor.new.partials(PARTIAL_PATH)
     end
-
-    def render_as_horizontal_form?
-      true unless parents.map(&:class).include? Kuhsaft::TwoColumnBrick
-    end
   end
 end
