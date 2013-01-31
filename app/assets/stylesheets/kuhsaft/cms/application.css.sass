@@ -51,22 +51,15 @@ form
   padding: 0.5em
 
   .btn
-    opacity: 0
-    +single-transition(all, 0.2s)
+    +opacity(0)
+    +single-transition(oapcity, 0.2s)
 
   &:hover
     .btn
-      opacity: 1
+      +opacity(1)
 
 .brick-list
   padding-left: 2em
-
-.brick-list-header
-  text-align: right
-  padding: 0.5em
-
-  .dropdown-menu
-    text-align: left
 
 // The single column brick needs no level indentation
 // It usually acts as a helper container and is therefore not relevant
