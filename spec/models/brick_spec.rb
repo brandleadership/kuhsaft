@@ -95,4 +95,16 @@ describe Kuhsaft::Brick do
       brick.to_style_id.should == 'kuhsaft-text-brick-104'
     end
   end
+
+  describe '#backend_label' do
+    it 'returns the name of the brick' do
+      brick =  Kuhsaft::TextBrick.new
+      brick.backend_label.should == 'Text'
+    end
+
+    context 'with the parenthesis option given' do
+      brick = Kuhsaft::TextBrick.new
+      brick.backend_label(:parenthesis => true).should == '(Text)'
+    end
+  end
 end

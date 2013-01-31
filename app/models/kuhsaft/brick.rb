@@ -72,5 +72,14 @@ module Kuhsaft
     def to_style_id
       "#{self.class.to_s.underscore.dasherize.gsub('/', '-')}-#{id}"
     end
+
+    def backend_label(options = {})
+      label = self.class.model_name.human
+      if options[:parenthesis] == true
+        "(#{label})"
+      else
+        label
+      end
+    end
   end
 end
