@@ -18,15 +18,15 @@
             - if brick.respond_to?(:brick_list)
               = render 'brick_type_dropdown', :brick_list => brick
 
-            - if brick.user_can_save?
-              - # save button
-              = form.button :submit, :class => 'btn btn-success btn-small ', :value => t('.save')
-
-
     - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)
     - if brick_content.present?
       .brick-item-content
         = brick_content
+        - if brick.user_can_save?
+          - # save button
+          .clearfix
+            .pull-right
+              = form.button :submit, :class => 'btn btn-success btn-small ', :value => t('.save')
 
 
   - if brick.renders_own_childs?
@@ -35,4 +35,9 @@
   - else
     - if brick.respond_to?(:bricks)
       .brick-item-childs
+        - if brick.bricks.empty?
+          .centered.empty-state
+            .muted= t('.empty')
+            = render 'brick_type_dropdown', :brick_list => brick
+
         = render 'kuhsaft/cms/bricks/brick_list', :brick_list => brick

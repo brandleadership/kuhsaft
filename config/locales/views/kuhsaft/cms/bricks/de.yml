@@ -5,3 +5,4 @@ de:
         brick_item:
           save: 'Speichern ✔'
           confirm: 'Wirklich löschen?'
+          empty: 'Hier ist noch nichts.'
