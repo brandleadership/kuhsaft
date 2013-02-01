@@ -12,6 +12,12 @@ describe Kuhsaft::ColumnBrick do
     end
   end
 
+  describe '#user_can_save' do
+    it 'returns false' do
+      column_brick.user_can_save?.should be_false
+    end
+  end
+
   describe '#renders_own_childs?' do
     it 'returns false' do
       column_brick.renders_own_childs?.should be_false

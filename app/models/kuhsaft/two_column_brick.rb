@@ -17,6 +17,10 @@ module Kuhsaft
       true
     end
 
+    def user_can_save?
+      true
+    end
+
     #
     # Use own rendering implementation to show columns side by side
     #

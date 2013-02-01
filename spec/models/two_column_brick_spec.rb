@@ -18,6 +18,12 @@ describe Kuhsaft::TwoColumnBrick do
     end
   end
 
+  describe '#user_can_save?' do
+    it 'returns true' do
+      two_column_brick.user_can_save?.should be_true
+    end
+  end
+
   describe '#renders_own_childs?' do
     it 'returns true' do
       two_column_brick.renders_own_childs?.should be_true
