@@ -26,6 +26,7 @@ module Kuhsaft
 
       def destroy
         @brick = Kuhsaft::Brick.find(params[:id])
+        @parent_brick = @brick.brick_list
         @brick.destroy
       end
 

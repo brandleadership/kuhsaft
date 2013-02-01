@@ -35,9 +35,4 @@
   - else
     - if brick.respond_to?(:bricks)
       .brick-item-childs
-        - if brick.bricks.empty?
-          .centered.empty-state
-            .muted= t('.empty')
-            = render 'brick_type_dropdown', :brick_list => brick
-
         = render 'kuhsaft/cms/bricks/brick_list', :brick_list => brick

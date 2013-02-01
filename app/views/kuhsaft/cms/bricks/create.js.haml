@@ -1,1 +1,1 @@
-$("##{@brick.brick_list.to_brick_list_id} > .brick-list-items").append("#{j(render('kuhsaft/cms/bricks/brick_item', :brick => @brick))}")
+$("##{@brick.brick_list.to_brick_list_id}.brick-list").append("#{j(render('kuhsaft/cms/bricks/brick_item', :brick => @brick))}").find("> .empty-state").remove()

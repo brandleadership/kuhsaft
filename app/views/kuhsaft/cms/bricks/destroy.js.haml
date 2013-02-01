@@ -1,1 +1,7 @@
-$("##{@brick.to_brick_item_id}").remove()
+var brick = $("##{@brick.to_brick_item_id}")
+var brickList = brick.parent()
+brick.remove()
+
+if(brickList.children().length == 0){
+brickList.html("#{j(render('empty_state', :brick => @parent_brick))}")
+}
