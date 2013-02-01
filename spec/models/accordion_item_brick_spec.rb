@@ -24,6 +24,12 @@ describe Kuhsaft::AccordionItemBrick do
     end
   end
 
+  describe '#user_can_save' do
+    it 'returns true' do
+      accordion_item_brick.user_can_save?.should == true
+    end
+  end
+
   describe '#renders_own_childs?' do
     it 'returns false' do
       accordion_item_brick.renders_own_childs?.should be_false

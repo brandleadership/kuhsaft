@@ -11,6 +11,10 @@ module Kuhsaft
       [super, 'accordion-group'].join(' ')
     end
 
+    def user_can_save?
+      true
+    end
+
     def collect_fulltext
       [super, caption].join(' ')
     end
