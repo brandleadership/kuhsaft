@@ -1,4 +1,4 @@
-## development
+## 1.0.1 - 2013-02-04
 
 - bugfix: Add non-minified version of redactor.js ([@effkay][])
 
