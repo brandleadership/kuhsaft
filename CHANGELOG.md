@@ -1,11 +1,9 @@
-## a new hope
+## 1.0.0 - 2013-02-04
 
-* upgrade to ruby 1.9.3 and rails 3.2
-* to be discussed
-
-## features/placeholder_brick
-
-- Add placeholder brick to display user partials within normal page bricks ([@donaier][])
+### Major redesign
+* added new brick system
+* added new UI
+* integrated with shoestrap
 
 ## 0.3.4 - January 27, 2012
 
@@ -62,4 +60,4 @@ maintain rails 3.0 compatibility**
 [@iphilgood]: https://github.com/iphilgood
 [@tscholz]: https://github.com/tscholz
 [@jenzer]: https://github.com/jenzer
-[melinda]: http://www.melinda-lini.de/
+[@lindimelindi]: http://www.melinda-lini.de/
