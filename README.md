@@ -60,6 +60,12 @@ Load the Kuhsaft assets into your app, so you have working grids, widgets etc:
     # application.js.coffee
     //= require 'kuhsaft/application'
 
+## Modifying the backend CSS
+Simply override the custom css in your app with your own style at `assets/stylesheets/kuhsaft/cms/customizations.css.sass`
+
+## Modifying the backend javascript
+Simply override the custom javascript in your app with your own script at `assets/javascripts/kuhsaft/cms/customizations.js.coffee`
+
 ## Testing
 
 There's a dummy app inside spec/dummy. Get it running by executing the following steps:
@@ -168,6 +174,9 @@ Building a navigation is simple, access to the page tree is available through th
       end
     end
 
+## Modifying the backend navigation
+
+Simply override the default partial for the main navigation in your app with your own file at `kuhsaft/cms/admin/_main_navigation.html.haml`
 
 ## Adding your own Bricks
 

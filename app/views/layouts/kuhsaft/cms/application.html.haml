@@ -1,18 +1,20 @@
 !!!
 %html
   %head
+    %meta{ charset: "utf-8" }
+    %title Kuhsaft CMS
     = stylesheet_link_tag 'kuhsaft/cms/application.css', :media => 'screen, projection'
     = csrf_meta_tag
+
   %body{ :class => "#{controller_name}" }
-    .navbar.navbar-inverse.navbar-fixed-top
+    .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %p.navbar-text.pull-right
-            = link_to t('.logout'), kuhsaft.destroy_cms_admin_session_path, :method => :delete
-          %ul.nav
-            %li
-              = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.cms_pages_path
+          = render 'main_navigation'
+
       #toolbar
     .container.cms
-      = yield
+      .row-fluid
+        .span-12
+          = yield
     = javascript_include_tag 'kuhsaft/cms/application.js'
