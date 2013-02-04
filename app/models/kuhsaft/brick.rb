@@ -56,7 +56,13 @@ module Kuhsaft
     end
 
     def set_position
-      self.position = self.position.presence || 1
+      self.position = if self.position.present?
+        self.position
+      elsif self.respond_to?(:brick_list) && self.brick_list.present?
+        brick_list.maximum(:position) + 1
+      else
+        1
+      end
     end
 
     def brick_list_type

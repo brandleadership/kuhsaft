@@ -1,3 +1,7 @@
+## 1.0.2 - 2013-02-04
+
+- fix: brick position is properly incremented when created
+
 ## 1.0.1 - 2013-02-04
 
 - bugfix: Add non-minified version of redactor.js ([@effkay][])
