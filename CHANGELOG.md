@@ -1,3 +1,7 @@
+## 1.0.3 - 2013-02-04
+- fix: fixed position regression introduced in 1.0.2
+- fix: empty text brick doesn't fail
+
 ## 1.0.2 - 2013-02-04
 
 - fix: brick position is properly incremented when created
