@@ -1,5 +1,4 @@
-# master
-
+## 1.1.0 - 2013-02-06
 - Remove devise from kuhsaft and provide instructions on how to protect the cms backend
 - fix: properly handle compass-rails dependency
 
