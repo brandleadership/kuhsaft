@@ -1,3 +1,10 @@
+## master
+
+- fix: require current rails version:
+  - prevents vulnerable rails apps with kuhsaft
+  - fixes issue where rake spec would run in development instead of test
+    env.
+
 ## 1.0.3 - 2013-02-04
 - fix: fixed position regression introduced in 1.0.2
 - fix: empty text brick doesn't fail
