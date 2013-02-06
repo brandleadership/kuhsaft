@@ -60,6 +60,19 @@ Load the Kuhsaft assets into your app, so you have working grids, widgets etc:
     # application.js.coffee
     //= require 'kuhsaft/application'
 
+## Authentication
+
+Kuhsaft itself does not ship with any form of authentication. However, it is fairly easy to add by plugging into the Kuhsaft::Cms::AdminController. An example with devise:
+
+```ruby
+# config/initializers/kuhsaft.rb
+Kuhsaft::Cms::AdminController.class_eval do
+  before_filter :authenticate_user!
+end
+```
+
+Also, be sure to have override the navigation partial in `app/views/kuhsaft/cms/admin/_main_navigation.html.haml` so you get a working logout button.
+
 ## Modifying the backend CSS
 Simply override the custom css in your app with your own style at `assets/stylesheets/kuhsaft/cms/customizations.css.sass`
 

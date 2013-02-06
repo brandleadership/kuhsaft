@@ -12,6 +12,5 @@ module Kuhsaft
   require 'rdiscount'
   require 'compass'
   require 'ancestry'
-  require 'devise'
   require 'bootstrap-sass'
 end
