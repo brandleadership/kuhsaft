@@ -1,4 +1,5 @@
-require "kuhsaft/engine"
+require 'kuhsaft/engine'
+require 'compass-rails'
 
 module Kuhsaft
   require 'kuhsaft/engine'
