@@ -1,3 +1,7 @@
+## 1.1.1 - 2012-2-06
+- Remove Kuhsaft::Cms::Admin seed
+- Fix Migration
+
 ## 1.1.0 - 2013-02-06
 - Remove devise from kuhsaft and provide instructions on how to protect the cms backend
 - fix: properly handle compass-rails dependency
