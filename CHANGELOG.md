@@ -1,3 +1,10 @@
+## master
+
+- fix: require current rails version:
+  - prevents vulnerable rails apps with kuhsaft
+  - fixes issue where rake spec would run in development instead of test
+    env.
+
 ## 1.1.1 - 2012-2-06
 - Remove Kuhsaft::Cms::Admin seed
 - Fix Migration
@@ -5,6 +12,8 @@
 ## 1.1.0 - 2013-02-06
 - Remove devise from kuhsaft and provide instructions on how to protect the cms backend
 - fix: properly handle compass-rails dependency
+
+>>>>>>> fix/spec_failures_on_traivs
 
 ## 1.0.3 - 2013-02-04
 - fix: fixed position regression introduced in 1.0.2

@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'rake'
 
-  s.add_dependency 'rails', '~>3.2'
+  s.add_dependency 'rails', '~>3.2.11'
   s.add_dependency 'haml', '>= 3.1'
   s.add_dependency 'compass', '>= 0.11.1'
   s.add_dependency 'compass-rails'
