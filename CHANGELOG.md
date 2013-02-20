@@ -5,6 +5,9 @@
   - fixes issue where rake spec would run in development instead of test
     env.
 
+- fix misterious case where the ajaxSuccess event sometimes was not
+  triggered, leaving the textareas without readactor.js toolbar
+
 ## 1.1.1 - 2012-2-06
 - Remove Kuhsaft::Cms::Admin seed
 - Fix Migration
