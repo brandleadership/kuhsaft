@@ -15,9 +15,9 @@ function loadTextEditor(elem){
 }
 
 $(function(){
-  loadTextEditor($("body"))
+  loadTextEditor($(document))
 })
 
-$("body").ajaxSuccess(function(){
+$(document).ajaxSuccess(function(){
   loadTextEditor($("body"))
 })
