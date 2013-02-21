@@ -1,3 +1,7 @@
+## features/show_inactive_state
+
+- show inactive state in page tree
+
 ## master
 
 - fix: require current rails version:
