@@ -1,3 +1,7 @@
+## features/reload_form_when_switching_page_type
+
+- disable/enable redirect_url field depending on page type dynamically
+
 ## master
 
 - fix: require current rails version:
