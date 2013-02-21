@@ -66,8 +66,10 @@ Kuhsaft itself does not ship with any form of authentication. However, it is fai
 
 ```ruby
 # config/initializers/kuhsaft.rb
-Kuhsaft::Cms::AdminController.class_eval do
-  before_filter :authenticate_user!
+Rails.application.config.to_prepare do
+  Kuhsaft::Cms::AdminController.class_eval do
+    before_filter :authenticate_user!
+  end
 end
 ```
 
@@ -103,9 +105,11 @@ As defined in the rails docs, load the helpers from our isolated Kuhsaft engine 
 
 Create an initializer file in your app inside `config/initializers` and set the `sublime_video_token`:
 
-    Kuhsaft::Engine.configure do
-      # Get the token from the MySites section on the sublime video site
-      config.sublime_video_token = '123abcd'
+    Rails.application.config.to_prepare do
+      Kuhsaft::Engine.configure do
+        # Get the token from the MySites section on the sublime video site
+        config.sublime_video_token = '123abcd'
+      end
     end
 
 Require the sublime javascript with the following helper:
@@ -119,23 +123,29 @@ Require the sublime javascript with the following helper:
 The image brick can process uploaded images into specific sizes. These sizes can be configured inside the engine configuration. You can also use the built-in default sizes:
 
     # your_app/config/initializers/kuhsaft.rb
-    Kuhsaft::Engine.configure do
-      config.image_sizes.build_defaults! # creates 960x540 and 320x180 sizes
+    Rails.application.config.to_prepare do
+      Kuhsaft::Engine.configure do
+        config.image_sizes.build_defaults! # creates 960x540 and 320x180 sizes
+      end
     end
 
 You can also remove the default sizes:
 
     # your_app/config/initializers/kuhsaft.rb
-    Kuhsaft::Engine.configure do
-      config.image_sizes.clear! # .all is now empty
+    Rails.application.config.to_prepare do
+      Kuhsaft::Engine.configure do
+        config.image_sizes.clear! # .all is now empty
+      end
     end
 
 And most importantly, you can add custom sizes:
 
     # your_app/config/initializers/kuhsaft.rb
-    Kuhsaft::Engine.configure do
-      config.image_sizes.add(:side_box_vertical, 180, 460)
-      config.image_sizes.add(:footer_teaser, 320, 220)
+    Rails.application.config.to_prepare do
+      Kuhsaft::Engine.configure do
+        config.image_sizes.add(:side_box_vertical, 180, 460)
+        config.image_sizes.add(:footer_teaser, 320, 220)
+      end
     end
 
 The `name` option is a unique identifier, which is also used for translating the dropdown in the brick. You can add your translation by using the translation path:
