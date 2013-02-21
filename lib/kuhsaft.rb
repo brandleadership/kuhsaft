@@ -1,6 +1,3 @@
-require 'kuhsaft/engine'
-require 'compass-rails'
-
 module Kuhsaft
   require 'kuhsaft/engine'
   require 'kuhsaft/orderable'
@@ -11,6 +8,8 @@ module Kuhsaft
   require 'carrierwave'
   require 'rdiscount'
   require 'compass'
+  require 'compass-rails'
   require 'ancestry'
   require 'bootstrap-sass'
+  require 'haml'
 end
