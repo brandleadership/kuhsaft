@@ -1,9 +1,6 @@
-## features/reload_form_when_switching_page_type
-
-- disable/enable redirect_url field depending on page type dynamically
-
 ## master
-
+- disable/enable redirect_url field depending on page type dynamically
+- show inactive state in page tree
 - fix: require current rails version:
   - prevents vulnerable rails apps with kuhsaft
   - fixes issue where rake spec would run in development instead of test
