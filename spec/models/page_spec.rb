@@ -73,14 +73,15 @@ describe Kuhsaft::Page do
   end
 
   describe "#state_class" do
+
+    let(:page) { Kuhsaft::Page.new }
+
     it 'returns publsihed as string when page is published' do
-      page = create(:page)
       page.published == Kuhsaft::PublishState::PUBLISHED
       page.state_class == 'published'
     end
 
     it 'returns unpublsihed as string when page is unpublished' do
-      page = create(:page)
       page.published == Kuhsaft::PublishState::UNPUBLISHED
       page.state_class == 'unpublished'
     end
