@@ -51,6 +51,14 @@ class Kuhsaft::Page < ActiveRecord::Base
     published == Kuhsaft::PublishState::PUBLISHED
   end
 
+  def state_class
+    if published?
+      'published'
+    else
+      'unpublished'
+    end
+  end
+
   def redirect?
     page_type == Kuhsaft::PageType::REDIRECT
   end

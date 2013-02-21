@@ -72,6 +72,20 @@ describe Kuhsaft::Page do
     end
   end
 
+  describe "#state_class" do
+    it 'returns publsihed as string when page is published' do
+      page = create(:page)
+      page.published == Kuhsaft::PublishState::PUBLISHED
+      page.state_class == 'published'
+    end
+
+    it 'returns unpublsihed as string when page is unpublished' do
+      page = create(:page)
+      page.published == Kuhsaft::PublishState::UNPUBLISHED
+      page.state_class == 'unpublished'
+    end
+  end
+
   describe '#without_self' do
     it 'returns pages but not itself' do
       2.times { create(:page) }

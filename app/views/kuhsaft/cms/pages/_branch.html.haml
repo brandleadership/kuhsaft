@@ -1,7 +1,7 @@
 - unless pages.blank?
   - pages.each do |page|
     .branch-group{ :'data-id' => page.id, :'data-put-url' => kuhsaft.cms_page_path(page) }
-      .row-fluid.branch
+      .row-fluid.branch{ :class => page.state_class }
         .span9
           .branch-title
             = link_to page.title.presence, kuhsaft.edit_cms_page_path(page), :class => 'btn btn-link'
