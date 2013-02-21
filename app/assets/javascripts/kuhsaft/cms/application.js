@@ -14,10 +14,26 @@ function loadTextEditor(elem){
   elem.find(".js-editor").redactor({})
 }
 
-$(function(){
-  loadTextEditor($(document))
-})
+function checkPageType() {
+  var redirect_url_input = $('#page_url');
+  if ($('#page_page_type option:selected').val() == 'redirect') {
+    redirect_url_input.removeAttr('disabled');
+  } else {
+    redirect_url_input.attr('disabled', 'disabled');
+  }
+}
 
-$(document).ajaxSuccess(function(){
-  loadTextEditor($("body"))
-})
+$(function(){
+  loadTextEditor($(document));
+});
+
+$(document).ajaxSuccess(function() {
+  loadTextEditor($("body"));
+});
+
+$(document).ready(function() {
+  checkPageType();
+  $('#page_page_type').change(function() {
+    checkPageType();
+  });
+});
