@@ -23,10 +23,19 @@ module Kuhsaft
               :brick_list_type,
               :presence => true
 
+    after_initialize do
+      self.position ||= has_siblings? ? brick_list.bricks.maximum(:position) + 1 : 1
+    end
+
     def to_edit_partial_path
       path = self.to_partial_path.split '/'
       path << 'edit'
       path.join '/'
+    end
+
+    # TODO: specs
+    def has_siblings?
+      brick_list.bricks.any?
     end
 
     #
