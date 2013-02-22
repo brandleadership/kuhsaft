@@ -8,12 +8,12 @@ module Kuhsaft
     end
 
     def allowed
-      if Kuhsaft::BrickType.count.zero?
+      if Kuhsaft::BrickType.enabled.count.zero?
         []
       elsif allowed_brick_types.empty?
-        Kuhsaft::BrickType.all
+        Kuhsaft::BrickType.enabled
       else
-        Kuhsaft::BrickType.constrained(allowed_brick_types)
+        Kuhsaft::BrickType.enabled.constrained(allowed_brick_types)
       end
     end
 

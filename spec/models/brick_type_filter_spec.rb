@@ -41,21 +41,21 @@ describe Kuhsaft::BrickTypeFilter do
 
     context 'when brick types are registered' do
       before do
-        Kuhsaft::BrickType.stub_chain(:count, :zero?).and_return(false)
+        Kuhsaft::BrickType.stub_chain(:enabled, :count, :zero?).and_return(false)
       end
 
       context 'when there are no constraints' do
-        it 'returns all brick types' do
+        it 'returns all enabled brick types' do
           brick_list.stub(:allowed_brick_types).and_return([])
-          Kuhsaft::BrickType.should_receive(:all)
+          Kuhsaft::BrickType.should_receive(:enabled)
           brick_type_filter.allowed
         end
       end
 
       context 'when there are constraints' do
-        it 'constrains the types' do
+        it 'constrains the enabled types' do
           brick_list.stub(:allowed_brick_types).and_return(['Kuhsaft::TextBrick'])
-          Kuhsaft::BrickType.should_receive(:constrained).with(['Kuhsaft::TextBrick'])
+          Kuhsaft::BrickType.enabled.should_receive(:constrained).with(['Kuhsaft::TextBrick'])
           brick_type_filter.allowed
         end
       end
