@@ -21,7 +21,6 @@ checkPageType = ->
     redirect_url_input.attr('disabled', 'disabled')
 
 sortableBrick = ->
-  console.log('fooooo')
   $(".brick-list").each (idx, elem) ->
     $(elem).sortable(
       handle: '.brick-item-header',
