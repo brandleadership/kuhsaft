@@ -1,3 +1,7 @@
+## features/definitive_button_options
+* set custom buttons on redactor editor
+* add documentation which tags can be inserted by the editor and need styling
+
 ## master
 - disable/enable redirect_url field depending on page type dynamically
 - show inactive state in page tree
@@ -17,7 +21,6 @@
 - Remove devise from kuhsaft and provide instructions on how to protect the cms backend
 - fix: properly handle compass-rails dependency
 
->>>>>>> fix/spec_failures_on_traivs
 
 ## 1.0.3 - 2013-02-04
 - fix: fixed position regression introduced in 1.0.2
