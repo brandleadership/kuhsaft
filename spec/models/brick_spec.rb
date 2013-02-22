@@ -70,6 +70,21 @@ describe Kuhsaft::Brick do
     end
   end
 
+  describe '#has_siblings?' do
+    it 'returns false if the brick has no siblings' do
+      brick = Kuhsaft::Brick.new
+      brick.has_siblings?.should be_false
+    end
+
+    it 'returns true if the brick has siblings' do
+      item1, item2, item3 = mock, mock, Kuhsaft::Brick.new
+      item1.stub(:bricks).and_return([item2, item3])
+      item2.stub(:brick_list).and_return(item1)
+      item3.stub(:brick_list).and_return(item1)
+      item3.has_siblings?.should be_true
+    end
+  end
+
   describe '#to_edit_childs_partial_path' do
     it 'returns the path to the form partial' do
       Kuhsaft::TextBrick.new.to_edit_childs_partial_path.should == 'kuhsaft/text_bricks/text_brick/childs'

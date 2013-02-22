@@ -33,9 +33,10 @@ module Kuhsaft
       path.join '/'
     end
 
-    # TODO: specs
     def has_siblings?
-      brick_list.bricks.any?
+      if brick_list
+        brick_list.bricks.any?
+      end
     end
 
     #
