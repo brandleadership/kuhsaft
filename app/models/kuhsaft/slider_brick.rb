@@ -11,6 +11,10 @@ module Kuhsaft
       [super, 'carousel', 'slide'].join(' ')
     end
 
+    def allowed_brick_types
+      %w(Kuhsaft::ImageBrick)
+    end
+
   end
 end
 
