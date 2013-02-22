@@ -1,3 +1,7 @@
+## features/sortable_bricks
+
+- make bricks sortable
+
 ## master
 - disable/enable redirect_url field depending on page type dynamically
 - show inactive state in page tree
