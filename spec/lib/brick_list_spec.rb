@@ -36,4 +36,15 @@ describe Kuhsaft::BrickList do
     end
   end
 
+  describe '#allowed_brick_types' do
+    it 'returns an array of possible classes as strings' do
+      brick.allowed_brick_types.should be_a(Array)
+    end
+  end
+
+  describe '#brick_types' do
+    it 'returns a Kuhsaft::BrickTypeFilter' do
+      brick.brick_types.should be_a(Kuhsaft::BrickTypeFilter)
+    end
+  end
 end
