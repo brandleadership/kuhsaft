@@ -9,6 +9,7 @@ module Kuhsaft
   require 'rdiscount'
   require 'compass'
   require 'compass-rails'
+  require 'jquery-rails'
   require 'ancestry'
   require 'bootstrap-sass'
   require 'haml'
