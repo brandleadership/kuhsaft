@@ -3,6 +3,6 @@ module Kuhsaft
     attr_accessible :disabled, :class_name, :group
     scope :grouped, order('`group`, `id` asc')
     scope :enabled, where('disabled IS NOT "false"')
-    scope :constrained, lambda { |list| where(:type => list) }
+    scope :constrained, lambda { |list| where(:class_name => list) }
   end
 end
