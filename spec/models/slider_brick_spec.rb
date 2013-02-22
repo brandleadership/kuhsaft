@@ -17,4 +17,10 @@ describe Kuhsaft::SliderBrick do
       slider_brick.to_style_class.should == 'kuhsaft-slider-brick carousel slide'
     end
   end
+
+  describe '#allowed_brick_types' do
+    it 'only allows ImageBricks' do
+      slider_brick.allowed_brick_types.should == %w(Kuhsaft::ImageBrick)
+    end
+  end
 end

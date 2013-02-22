@@ -67,5 +67,20 @@ module Kuhsaft
       end
     end
 
+    #
+    # Return a list of classnames which can be added as childs
+    # Return an empty array if you want no constraints
+    #
+    def allowed_brick_types
+      []
+    end
+
+    #
+    # Returns all possible brick types which can be added as child to this brick list instance
+    #
+    def brick_types
+      @brick_types ||= Kuhsaft::BrickTypeFilter.new(self)
+    end
+
   end
 end

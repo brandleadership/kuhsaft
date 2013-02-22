@@ -29,4 +29,10 @@ describe Kuhsaft::AccordionBrick do
       accordion_brick.to_style_class.should == 'kuhsaft-accordion-brick accordion'
     end
   end
+
+  describe '#allowed_brick_types' do
+    it 'only allows AccordionItems' do
+      accordion_brick.allowed_brick_types.should == %w(Kuhsaft::AccordionItemBrick)
+    end
+  end
 end

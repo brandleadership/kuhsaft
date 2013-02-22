@@ -12,5 +12,9 @@ module Kuhsaft
     def to_style_class
       [super, 'accordion'].join(' ')
     end
+
+    def allowed_brick_types
+      %w(Kuhsaft::AccordionItemBrick)
+    end
   end
 end

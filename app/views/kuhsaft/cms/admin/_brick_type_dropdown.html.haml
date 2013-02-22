@@ -1,10 +1,14 @@
-- if brick_list.respond_to?(:user_can_add_childs?) && brick_list.user_can_add_childs? && Kuhsaft::BrickType.count > 0
-  %a.btn.btn-small.btn-primary.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
-    = t('.add_element')
-    %span.caret
-  %ul.dropdown-menu.pull-right
-    - Kuhsaft::BrickType.grouped.group_by(&:group).each do |group, types|
-      - types.each do |type|
-        %li
-          = link_to type.class_name.constantize.model_name.human, kuhsaft.cms_bricks_path(:brick => { :type => type.class_name, :brick_list_id => brick_list.id, :brick_list_type => brick_list.brick_list_type }), :remote => true, :method => :post
-      .divider
+- unless brick_list.brick_types.empty?
+  - if brick_list.brick_types.allowed.count > 1
+    %a.btn.btn-small.btn-primary.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+      = t('.add_element')
+      %span.caret
+    %ul.dropdown-menu.pull-right
+      - brick_list.brick_types.allowed.grouped.group_by(&:group).each do |group, types|
+        - types.each do |type|
+          %li
+            = link_to type.class_name.constantize.model_name.human, kuhsaft.cms_bricks_path(:brick => { :type => type.class_name, :brick_list_id => brick_list.id, :brick_list_type => brick_list.brick_list_type }), :remote => true, :method => :post
+        .divider
+  - else
+    - brick_list.brick_types.allowed.each do |type|
+      = link_to t('.add_specific_element', :name => type.class_name.constantize.model_name.human), kuhsaft.cms_bricks_path(:brick => { :type => type.class_name, :brick_list_id => brick_list.id, :brick_list_type => brick_list.brick_list_type }), :remote => true, :method => :post, :class => 'btn btn-small btn-primary'
