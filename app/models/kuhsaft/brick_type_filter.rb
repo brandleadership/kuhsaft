@@ -2,7 +2,6 @@
 module Kuhsaft
   class BrickTypeFilter < SimpleDelegator
 
-
     def empty?
       !(respond_to?(:user_can_add_childs?) && user_can_add_childs? && !allowed.empty?)
     end
