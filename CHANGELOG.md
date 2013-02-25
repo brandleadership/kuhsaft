@@ -1,17 +1,16 @@
-## features/sortable_bricks
+## 1.2.0 - 2012-2-25
 
-- make bricks sortable
-
-## master
 - disable/enable redirect_url field depending on page type dynamically
 - show inactive state in page tree
 - fix: require current rails version:
   - prevents vulnerable rails apps with kuhsaft
   - fixes issue where rake spec would run in development instead of test
     env.
-
 - fix misterious case where the ajaxSuccess event sometimes was not
   triggered, leaving the textareas without readactor.js toolbar
+- make bricks sortable
+- add success message when page is saved
+- fix: Do not switch to content tab for page when there are validation errors in the meta tab
 
 ## 1.1.1 - 2012-2-06
 - Remove Kuhsaft::Cms::Admin seed
