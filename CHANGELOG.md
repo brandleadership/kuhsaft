@@ -1,5 +1,5 @@
-## master
-- make bricks sortable
+## 1.2.0 - 2012-2-25
+
 - set custom buttons on redactor editor
 - add documentation which tags can be inserted by the editor and need styling
 - added api to brick list to allow bricks to constrain their child bricks by type
@@ -11,6 +11,9 @@
     env.
 - fix misterious case where the ajaxSuccess event sometimes was not
   triggered, leaving the textareas without readactor.js toolbar
+- make bricks sortable
+- add success message when page is saved
+- fix: Do not switch to content tab for page when there are validation errors in the meta tab
 
 ## 1.1.1 - 2012-2-06
 - Remove Kuhsaft::Cms::Admin seed
