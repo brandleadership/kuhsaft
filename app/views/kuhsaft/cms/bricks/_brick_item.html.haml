@@ -1,5 +1,6 @@
 .brick-item{ :id => brick.to_brick_item_id, :class => brick.to_style_class }
   = simple_form_for brick, :as => :brick, :url => kuhsaft.cms_brick_path(brick), :remote => true, :html => { :id => nil } do |form|
+    = form.hidden_field :position, :class => 'position-field'
     .brick-item-header.clearfix
       .pull-left
         - if brick.caption.present?

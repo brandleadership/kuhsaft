@@ -1,3 +1,7 @@
+## features/sortable_bricks
+
+- make bricks sortable
+
 ## master
 - added api to brick list to allow bricks to constrain their child bricks by type
 - disable/enable redirect_url field depending on page type dynamically
