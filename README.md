@@ -177,6 +177,12 @@ Finally, add the new translation locale to your `available_locales` inside your 
 
     config.available_locales = [:en, :fr]
 
+## Styling the content
+
+By default, the text editor lets you add the following tags, for which you should supply some styles in your app:
+
+    p, h1, h2, h3, ul, ol, table, a, strong, em
+
 ## Building a navigation
 
 Building a navigation is simple, access to the page tree is available through the common methods built into the ancestry gem. Just make sure you are only accessing published pages for your production site, using the `published` scope.

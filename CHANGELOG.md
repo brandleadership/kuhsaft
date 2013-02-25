@@ -1,8 +1,7 @@
-## features/sortable_bricks
-
-- make bricks sortable
-
 ## master
+- make bricks sortable
+- set custom buttons on redactor editor
+- add documentation which tags can be inserted by the editor and need styling
 - added api to brick list to allow bricks to constrain their child bricks by type
 - disable/enable redirect_url field depending on page type dynamically
 - show inactive state in page tree
@@ -10,7 +9,6 @@
   - prevents vulnerable rails apps with kuhsaft
   - fixes issue where rake spec would run in development instead of test
     env.
-
 - fix misterious case where the ajaxSuccess event sometimes was not
   triggered, leaving the textareas without readactor.js toolbar
 
@@ -22,7 +20,6 @@
 - Remove devise from kuhsaft and provide instructions on how to protect the cms backend
 - fix: properly handle compass-rails dependency
 
->>>>>>> fix/spec_failures_on_traivs
 
 ## 1.0.3 - 2013-02-04
 - fix: fixed position regression introduced in 1.0.2
