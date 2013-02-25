@@ -1,6 +1,8 @@
-de:
+en:
   layouts:
     kuhsaft:
       cms:
         application:
           logout: 'Abmelden'
+        flash:
+          success: '%{subject} wurde erfolgreich gespeichert.'

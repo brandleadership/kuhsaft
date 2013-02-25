@@ -16,5 +16,7 @@
     .container.cms
       .row-fluid
         .span-12
+          = render 'content_language_switch'
+          = render 'flash', :flash => flash
           = yield
     = javascript_include_tag 'kuhsaft/cms/application.js'

@@ -21,6 +21,7 @@ module Kuhsaft
         @page = Kuhsaft::Page.create params[:page]
 
         if @page.valid?
+          flash[:success] = t('layouts.kuhsaft.cms.flash.success', :subject => Kuhsaft::Page.model_name.human)
           respond_with @page, :location => kuhsaft.edit_cms_page_path(@page)
         else
           render 'new'
@@ -35,15 +36,12 @@ module Kuhsaft
 
       def update
         @page = Kuhsaft::Page.find(params[:id])
-        @page.update_attributes(params[:page]) if params[:page].present?
-        # TODO: refactor 'reposition' as a page attribute, so it can be set through update_attributes
-        @page.reposition params[:reposition] if params[:reposition].present? || params.key?(:reposition)
-
-        if params[:add_page_part].present?
-          @page.bricks << params[:page][:page_part_type].constantize.new
+        if @page.update_attributes(params[:page])
+          flash[:success] = t('layouts.kuhsaft.cms.flash.success', :subject => Kuhsaft::Page.model_name.human)
+          respond_with @page, :location => kuhsaft.edit_cms_page_path(@page)
+        else
+          render 'edit'
         end
-
-        respond_with @page, :location => kuhsaft.edit_cms_page_path(@page)
       end
 
       def destroy
