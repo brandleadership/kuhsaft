@@ -16,5 +16,9 @@ module Kuhsaft
     def self.source_types
       [YOUTUBE, VIMEO, EXTERNAL]
     end
+
+    def user_can_add_childs?
+      false
+    end
   end
 end

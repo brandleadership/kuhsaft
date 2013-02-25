@@ -37,4 +37,10 @@ describe Kuhsaft::PlaceholderBrick do
       placeholder_brick.should_not respond_to(:bricks)
     end
   end
+
+  describe '#user_can_add_childs?' do
+    it 'returns false' do
+      placeholder_brick.user_can_add_childs?.should be_false
+    end
+  end
 end

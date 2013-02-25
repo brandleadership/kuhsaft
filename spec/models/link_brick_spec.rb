@@ -42,4 +42,10 @@ describe Kuhsaft::LinkBrick do
       link_brick.to_style_class.should == 'kuhsaft-link-brick pdf'
     end
   end
+
+  describe '#user_can_add_childs?' do
+    it 'returns false' do
+      link_brick.user_can_add_childs?.should be_false
+    end
+  end
 end

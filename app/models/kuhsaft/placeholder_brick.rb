@@ -7,5 +7,9 @@ module Kuhsaft
     def self.available_partials
       @partials ||= Kuhsaft::PartialExtractor.new.partials(PARTIAL_PATH)
     end
+
+    def user_can_add_childs?
+      false
+    end
   end
 end

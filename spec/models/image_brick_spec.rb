@@ -33,4 +33,10 @@ describe Kuhsaft::ImageBrick do
       image_brick.should_not respond_to(:bricks)
     end
   end
+
+  describe '#user_can_add_childs?' do
+    it 'returns false' do
+      image_brick.user_can_add_childs?.should be_false
+    end
+  end
 end
