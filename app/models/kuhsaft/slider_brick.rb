@@ -12,7 +12,7 @@ module Kuhsaft
     end
 
     def allowed_brick_types
-      %w(Kuhsaft::ImageBrick)
+      %w(Kuhsaft::ImageBrick Kuhsaft::VideoBrick)
     end
 
   end

@@ -118,4 +118,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   def to_style_class
     'kuhsaft-page'
   end
+
+  def allowed_brick_types
+    Kuhsaft::BrickType.enabled.pluck(:class_name) - ['Kuhsaft::AccordionItemBrick']
+  end
 end
