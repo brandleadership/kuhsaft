@@ -9,5 +9,9 @@ module Kuhsaft
     def collect_fulltext
       [super, caption].join(' ')
     end
+
+    def to_id
+      "anchor-#{caption.parameterize}"
+    end
   end
 end
