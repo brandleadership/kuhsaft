@@ -1,3 +1,7 @@
+## 1.2.2 - 2012-2-26
+- migrate the brick types 'disabled' field to 'enabled'
+- use mysql2 as the default driver in our tests
+
 ## 1.2.1 - 2012-2-26
 
 - fix SQL dialect issue in brick type filter
