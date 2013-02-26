@@ -1,3 +1,7 @@
+## 1.2.1 - 2012-2-26
+
+- fix SQL dialect issue in brick type filter
+
 ## 1.2.0 - 2012-2-25
 
 - set custom buttons on redactor editor
