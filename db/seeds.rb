@@ -9,3 +9,4 @@ Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::TwoColumnBrick', :group => 'l
 Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::SliderBrick', :group => 'elements')
 Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::ImageBrick', :group => 'elements')
 Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::PlaceholderBrick', :group => 'elements')
+Kuhsaft::BrickType.create(:class_name => 'Kuhsaft::AnchorBrick', :group => 'elements')
