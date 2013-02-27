@@ -1,12 +1,12 @@
 %div{ :class => text_brick.to_style_class }
   - if text_brick.read_more_text.present?
-    .expandable{ :id => text_brick.to_style_id }
-      = text_brick.text.html_safe
-      %a.more{ :href => '#' }
+    = text_brick.text.html_safe
+
+    %p
+      %a{ :href => '#', :type => 'button', :class => 'btn btn-danger', 'data-toggle' => 'collapse', 'data-target' => '#' + text_brick.to_style_id }
         = t('.read_more')
-      .expandable-content.hidden
-        = text_brick.read_more_text.to_s.html_safe
-        %a.less{ :href => "##{text_brick.to_style_id}" }
-          = t('.read_less')
+    %div.collapse.in{ :id => text_brick.to_style_id }
+      = text_brick.read_more_text.to_s.html_safe
+
   - else
     = text_brick.text.to_s.html_safe
