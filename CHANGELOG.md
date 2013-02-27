@@ -1,4 +1,5 @@
 ## 1.2.3 - 2013-02-27
+- Downgrade to jquery-rails 2.0.3 / jQuery 1.7.2
 - Fix text brick partial for collapsable layout
 - Implement necessary js files for collapsable content
 - Add AnchorBrick
