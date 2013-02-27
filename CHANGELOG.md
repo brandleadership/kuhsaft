@@ -1,5 +1,8 @@
-## features/anchor_brick - 2013-02-27
+## 1.2.3 - 2013-02-27
+- Fix text brick partial for collapsable layout
+- Implement necessary js files for collapsable content
 - Add AnchorBrick
+- Add visual feedback when saving a brick
 
 ## 1.2.2 - 2013-02-26
 - migrate the brick types 'disabled' field to 'enabled'

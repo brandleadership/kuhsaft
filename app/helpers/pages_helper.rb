@@ -58,4 +58,11 @@ module PagesHelper
   def current_page_class page
     :current if active_page_class(page) == :active
   end
+
+  def read_more_link(id)
+    link_to(id, :'data-toggle' => 'collapse', :'data-target' => id, :class => 'button button-read-more') do
+      @content = content_tag(:p, t('.read_more'), :class => 'read-more-text')
+      @content << content_tag(:p, t('.read_less'), :class => 'read-less-text')
+    end
+  end
 end
