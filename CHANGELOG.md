@@ -1,3 +1,7 @@
+## features/adapt_collapsable_text_brick_rendering
+- Fix text brick partial for collapsable layout
+- Implement necessary js files for collapsable content
+
 ## 1.2.2 - 2012-2-26
 - migrate the brick types 'disabled' field to 'enabled'
 - use mysql2 as the default driver in our tests
