@@ -35,6 +35,28 @@ sortableBrick = ->
             $(this).children('form').trigger('submit')
       )
 
+window.initSubmitLinks = (selector = null)->
+  selector ||= $('body')
+
+  selector.find('a.submit')
+    .click (e)->
+      form = $(this).closest('form')
+      form.submit()
+      e.preventDefault()
+
+window.initSavePopover = (selector) ->
+  link = selector.find('a.submit')
+  link.popover(placement: 'top', trigger: 'manual')
+
+  # initial delay
+  setTimeout ->
+    link.popover('show')
+    # fade out delay
+    setTimeout ->
+      link.popover('hide')
+    , 1500
+  , 50
+
 $(document).ajaxSuccess ->
   loadTextEditor($("body"))
   sortableBrick()
@@ -43,6 +65,7 @@ $(document).ready ->
   loadTextEditor($(document))
   checkPageType()
   sortableBrick()
+  initSubmitLinks()
   $('#page_page_type').change ->
     checkPageType()
 

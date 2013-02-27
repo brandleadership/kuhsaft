@@ -3,6 +3,7 @@ de:
     cms:
       bricks:
         brick_item:
-          save: 'Speichern ✔'
+          save: 'Speichern ...'
+          saved: 'Gespeichert! ✔'
           confirm: 'Wirklich löschen?'
           empty: 'Hier ist noch nichts.'
