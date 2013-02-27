@@ -2,10 +2,8 @@
   - if text_brick.read_more_text.present?
     = text_brick.text.html_safe
 
-    %p
-      %a{ :href => '#', :type => 'button', :class => 'btn btn-danger', 'data-toggle' => 'collapse', 'data-target' => '#' + text_brick.to_style_id }
-        = t('.read_more')
-    %div.collapse.in{ :id => text_brick.to_style_id }
+    = read_more_link("##{text_brick.to_style_id}")
+    %div.collapse{ :id => text_brick.to_style_id }
       = text_brick.read_more_text.to_s.html_safe
 
   - else
