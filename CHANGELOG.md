@@ -1,12 +1,15 @@
-## 1.2.2 - 2012-2-26
+## features/anchor_brick - 2013-02-27
+- Add AnchorBrick
+
+## 1.2.2 - 2013-02-26
 - migrate the brick types 'disabled' field to 'enabled'
 - use mysql2 as the default driver in our tests
 
-## 1.2.1 - 2012-2-26
+## 1.2.1 - 2013-02-26
 
 - fix SQL dialect issue in brick type filter
 
-## 1.2.0 - 2012-2-25
+## 1.2.0 - 2013-02-25
 
 - set custom buttons on redactor editor
 - add documentation which tags can be inserted by the editor and need styling
@@ -23,7 +26,7 @@
 - add success message when page is saved
 - fix: Do not switch to content tab for page when there are validation errors in the meta tab
 
-## 1.1.1 - 2012-2-06
+## 1.1.1 - 2013-02-06
 - Remove Kuhsaft::Cms::Admin seed
 - Fix Migration
 
