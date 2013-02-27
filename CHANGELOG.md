@@ -1,3 +1,6 @@
+## 1.2.4 - 2013-02-27
+- actually downgrade jquery-rails dependency
+
 ## 1.2.3 - 2013-02-27
 - Downgrade to jquery-rails 2.0.3 / jQuery 1.7.2
 - Fix text brick partial for collapsable layout
