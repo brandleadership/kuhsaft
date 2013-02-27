@@ -84,7 +84,7 @@ module Kuhsaft
 
     # Returns a css classname suitable for use in the frontend
     def to_style_class
-      self.class.to_s.underscore.dasherize.gsub('/', '-')
+      ([self.class.to_s.underscore.dasherize.gsub('/', '-')] + self.display_styles).join(' ')
     end
 
     # Returns a unique DOM id suitable for use in the frontend
