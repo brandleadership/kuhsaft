@@ -30,9 +30,15 @@ sortableBrick = ->
       handle: '.brick-item-header',
       axis: "y",
       update: (event, ui) ->
-         $(this).find(".brick-item").each (idx, elem) ->
+        idList = $(this).find("> .brick-item")
+          .each (idx, elem) ->
             $(this).find("input.position-field").val(idx+1)
-            $(this).children('form').trigger('submit')
+          .map ->
+            $(this).data('id')
+
+        sortForm = $('#bricks-sort-form form')
+        sortForm.find('input[name="bricks[ids]"]').val(idList.toArray().join(','))
+        sortForm.trigger('submit')
       )
 
 window.initSubmitLinks = (selector = null)->
