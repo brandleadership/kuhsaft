@@ -7,11 +7,14 @@ module Kuhsaft
     scope :localized, lambda { where(:locale => I18n.locale) }
     default_scope order('position ASC').localized
 
+    serialize :display_styles, Array
+
     attr_accessible :locale,
                     :position,
                     :type,
                     :brick_list_id,
-                    :brick_list_type
+                    :brick_list_type,
+                    :display_styles
 
     before_validation :set_locale
     before_validation :set_position
@@ -87,6 +90,11 @@ module Kuhsaft
     # Returns a unique DOM id suitable for use in the frontend
     def to_style_id
       "#{self.class.to_s.underscore.dasherize.gsub('/', '-')}-#{id}"
+    end
+
+    # return a list of css classnames that can be applied to the brick
+    def available_display_styles
+      []
     end
 
     def backend_label(options = {})
