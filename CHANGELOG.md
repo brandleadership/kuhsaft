@@ -1,5 +1,5 @@
-## features/anchor_brick - 2013-02-27
-- Add AnchorBrick
+## features/optimize-brick-sorting
+- optimize brick sorting with a single post to bricks_controller#sort
 
 ## 1.2.2 - 2013-02-26
 - migrate the brick types 'disabled' field to 'enabled'
