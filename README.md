@@ -152,6 +152,14 @@ The `name` option is a unique identifier, which is also used for translating the
 
     activerecord.attributes.kuhsaft/image_size.sizes.#{name}
 
+## Configuring custom styles for bricks
+
+Implement the `available_display_styles` on a brick model and return an array of css classnames: `['module-big', 'module-small']`. These styles can be applied to a brick instance through the UI. In the frontend, use `to_style_class` to get the configured styles:
+
+    %my-brick{ :class => brick.to_style_class}
+      = brick.text # ... etc
+
+
 ## Adding custom templates with placeholder bricks
 
 * Save your partial in `views/kuhsaft/placeholder_bricks/partials/_your_partial.html.haml`
