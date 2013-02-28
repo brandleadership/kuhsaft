@@ -60,6 +60,12 @@ module Dummy
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.to_prepare do
+      Kuhsaft::Engine.configure do
+        config.image_sizes.build_defaults! # creates 960x540 and 320x180 sizes
+      end
+    end
   end
 end
 
