@@ -1,3 +1,6 @@
+## master
+- optimize brick sorting with a single post to bricks_controller#sort
+
 ## 1.2.4 - 2013-02-27
 - actually downgrade jquery-rails dependency
 

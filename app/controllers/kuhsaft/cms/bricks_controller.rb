@@ -30,6 +30,15 @@ module Kuhsaft
         @brick.destroy
       end
 
+      def sort
+        if params[:bricks].present?
+          params[:bricks][:ids].split(',').each_with_index do |id, idx|
+            Kuhsaft::Brick.find(id).update_attribute(:position, idx.to_i + 1)
+          end
+        end
+        render :nothing => true
+      end
+
     end
   end
 end
