@@ -39,4 +39,10 @@ describe Kuhsaft::ImageBrick do
       image_brick.user_can_add_childs?.should be_false
     end
   end
+
+  describe '#uploader?' do
+    it 'returns true' do
+      image_brick.uploader?.should be_true
+    end
+  end
 end

@@ -122,4 +122,10 @@ describe Kuhsaft::Brick do
       brick.backend_label(:parenthesis => true).should == '(Text)'
     end
   end
+
+  describe '#uploader?' do
+    it 'returns false' do
+      brick.uploader?.should be_false
+    end
+  end
 end
