@@ -1,8 +1,13 @@
 %h1= controller.request.host
 .actions.row
-  .span9
+  .span5
   .span3
     = link_to kuhsaft.new_cms_page_path, :class => 'btn btn-primary' do
       %i.icon-plus-sign.icon-white
       = t('.add_page')
-= render :partial => 'branch', :locals => { :pages => @pages }
+  .span4
+
+.row
+  .span8.pages-list
+    = render :partial => 'branch', :locals => { :pages => @pages }
+  .span4

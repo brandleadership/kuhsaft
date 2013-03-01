@@ -1,6 +1,7 @@
 ## master
 - optimize brick sorting with a single post to bricks_controller#sort
 - add display_styles API to brick. implement `available_display_styles` on a brick to provide possible style classes
+- UI Tweaks: page list is narrower, top-level row is not fluid anymore
 
 ## 1.2.4 - 2013-02-27
 - actually downgrade jquery-rails dependency
