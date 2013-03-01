@@ -60,9 +60,9 @@ module PagesHelper
   end
 
   def read_more_link(id)
-    link_to(id, :'data-toggle' => 'collapse', :'data-target' => id, :class => 'button button-read-more') do
-      @content = content_tag(:p, t('.read_more'), :class => 'read-more-text')
-      @content << content_tag(:p, t('.read_less'), :class => 'read-less-text')
+    link_to(id, :'data-toggle' => 'collapse', :'data-target' => id, :class => 'collapsed button button-read-more') do
+      @content = content_tag(:p, t('kuhsaft.text_bricks.text_brick.read_more'), :class => 'read-more-text')
+      @content << content_tag(:p, t('kuhsaft.text_bricks.text_brick.read_less'), :class => 'read-less-text')
     end
   end
 end
