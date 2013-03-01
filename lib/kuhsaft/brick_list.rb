@@ -82,5 +82,9 @@ module Kuhsaft
       @brick_types ||= Kuhsaft::BrickTypeFilter.new(self)
     end
 
+    def uploader?
+      self.class.ancestors.include? CarrierWave::Mount::Extension
+    end
+
   end
 end
