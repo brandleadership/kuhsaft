@@ -1,3 +1,9 @@
+## 1.2.6 - 2013-03-04
+
+- change the way custom css and js is loaded. If you are upgrading, run
+  `rails generate kuhsaft:assets:install` to get the override files.
+  These files are now externally loaded and must be present!
+
 ## 1.2.5 - 2013-03-01 
 
 - optimize brick sorting with a single post to bricks_controller#sort

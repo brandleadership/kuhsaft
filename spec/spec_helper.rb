@@ -27,6 +27,8 @@ RSpec.configure do |config|
   # methods or matchers
   require 'rspec/expectations'
   require 'carrierwave/test/matchers'
+  require 'rails/generators'
+  
 
   config.include RSpec::Matchers
   config.include CarrierWave::Test::Matchers
@@ -37,6 +39,7 @@ RSpec.configure do |config|
 
     load File.expand_path("../dummy/Rakefile", __FILE__)
     Rake::Task['kuhsaft:install:migrations'].invoke
+    Rails::Generators.invoke('kuhsaft:install:assets')
 
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)

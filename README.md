@@ -42,6 +42,7 @@ Then install the assets and the migrations and run them:
     rake kuhsaft:install:migrations
     rake db:migrate
     rake db:seed
+    rails generate kuhsaft:assets:install
 
 You might want to change the language suffixes on the fields inside the create_kuhsaft_pages migration, depending on your app's default_locale.
 
@@ -75,11 +76,10 @@ end
 
 Also, be sure to have override the navigation partial in `app/views/kuhsaft/cms/admin/_main_navigation.html.haml` so you get a working logout button.
 
-## Modifying the backend CSS
-Simply override the custom css in your app with your own style at `assets/stylesheets/kuhsaft/cms/customizations.css.sass`
+## Extending the backend CSS/javascript
+Kuhsaft installs a sass file in `assets/stylesheets/kuhsaft/cms/customizations.css.sass` and a coffeescript file in `assets/javascripts/kuhsaft/cms/customizations.js.coffee` which are loaded by the backend layout. Those files can be installed by running `rails generate kuhsaft:assets:install`.
 
-## Modifying the backend javascript
-Simply override the custom javascript in your app with your own script at `assets/javascripts/kuhsaft/cms/customizations.js.coffee`
+Make sure they are in the `config.assets.precompile` array in environments like production where you usually precompile the assets. The generator will only add the necessary configs for the production env!
 
 ## Testing
 
