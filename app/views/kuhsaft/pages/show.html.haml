@@ -1,5 +1,12 @@
-- cache @page do
+- if @page.bricks.map(&:type).include? "Kuhsaft::PlaceholderBrick"
   - unless @page.blank?
     .page-content
       - @page.bricks.localized.each do |brick|
         = render brick
+
+- else
+  - cache @page do
+    - unless @page.blank?
+      .page-content
+        - @page.bricks.localized.each do |brick|
+          = render brick
