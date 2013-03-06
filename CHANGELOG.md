@@ -1,6 +1,8 @@
-## master
+## 1.2.7 - 2013-03-06
 
 - optimize/fix Brick UI dropdowns
+- do not cache pages with placeholder bricks
+- UI Tweak: read more link moves to bottom of collapsed content
 
 ## 1.2.6 - 2013-03-04
 
