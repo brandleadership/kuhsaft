@@ -8,24 +8,27 @@
         %span.muted
           = brick.backend_label(:parenthesis => true)
       .pull-right
-        .btn-group
+        .btn-toolbar
           - # delete button
           - if brick.persisted?
             - if brick.user_can_delete?
-              = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('kuhsaft.cms.bricks.brick_item.confirm'), :method => :delete, :remote => true do
-                %i.icon-trash.icon-white
+              .btn-group
+                = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('kuhsaft.cms.bricks.brick_item.confirm'), :method => :delete, :remote => true do
+                  %i.icon-trash.icon-white
 
             - # possible styles
             - unless brick.available_display_styles.empty?
-              %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
-                %i.icon-tint
-              %ul.dropdown-menu.pull-right
-                %li
-                  = form.input :display_styles, :collection => brick.available_display_styles, :as => :check_boxes
+              .btn-group
+                %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+                  %i.icon-tint
+                %ul.dropdown-menu.pull-right
+                  %li
+                    = form.input :display_styles, :collection => brick.available_display_styles, :as => :check_boxes
 
             - # addable child dropdown menu
             - if brick.respond_to?(:brick_list)
-              = render 'brick_type_dropdown', :brick_list => brick
+              .btn-group
+                = render 'brick_type_dropdown', :brick_list => brick
 
     - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)
     - if brick_content.present?
