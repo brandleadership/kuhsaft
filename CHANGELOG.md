@@ -1,3 +1,7 @@
+## 1.2.8 - 2013-03-06
+
+- remove foo postfix for asset path generator... doh!
+
 ## 1.2.7 - 2013-03-06
 
 - optimize/fix Brick UI dropdowns
