@@ -1,3 +1,7 @@
+## master
+
+- optimize/fix Brick UI dropdowns
+
 ## 1.2.6 - 2013-03-04
 
 - change the way custom css and js is loaded. If you are upgrading, run
