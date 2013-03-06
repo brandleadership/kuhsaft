@@ -6,8 +6,8 @@ module Kuhsaft
       source_root(File.join(Kuhsaft::Engine.root, '/lib/templates/kuhsaft/assets'))
 
       def copy_customizations
-        custom_css_folder = 'app/assets/stylesheets/kuhsaft/'
-        custom_js_folder = 'app/assets/javascripts/kuhsaft/'
+        custom_css_folder = 'app/assets/stylesheets/kuhsaft/cms/'
+        custom_js_folder = 'app/assets/javascripts/kuhsaft/cms/'
         empty_directory custom_css_folder
         empty_directory custom_js_folder
         copy_file 'customizations.css.sass', "#{custom_css_folder}/customizations.css.sass"

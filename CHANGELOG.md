@@ -1,3 +1,7 @@
+## 1.2.9 - 2013-03-06
+
+- ditto... doh!
+
 ## 1.2.8 - 2013-03-06
 
 - remove foo postfix for asset path generator... doh!
