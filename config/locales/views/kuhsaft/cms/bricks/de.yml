@@ -7,3 +7,8 @@ de:
           saved: 'Gespeichert! ✔'
           confirm: 'Wirklich löschen?'
           empty: 'Hier ist noch nichts.'
+
+    image_bricks:
+      image_brick:
+        edit:
+          image_preview: 'Vorschau'
