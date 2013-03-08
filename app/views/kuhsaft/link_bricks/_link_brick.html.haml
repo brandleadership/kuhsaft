@@ -1,3 +1,2 @@
 %div{ :class => link_brick.to_style_class }
-  %a{ :href => link_brick.href }
-    = link_brick.caption
+  = link_to link_brick.caption, link_brick.href, :target => link_brick.open_in_new_window? ? '_blank' : ''

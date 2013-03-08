@@ -1,11 +1,13 @@
 module Kuhsaft
-  class LinkBrick < Brick
-    attr_accessible :href, :caption, :link_style, :open_in_new_window
+  class AssetBrick < Brick
+    attr_accessible :caption, :link_style, :asset
 
-    validates :href, :caption, :presence => true
+    mount_uploader :asset, Kuhsaft::AssetBrickAssetUploader
+
+    validates :caption, :asset, :presence => true
 
     def self.styles
-      %w(pdf word excel button external)
+      %w(pdf word excel button)
     end
 
     def to_style_class
