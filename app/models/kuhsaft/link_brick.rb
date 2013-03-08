@@ -1,6 +1,6 @@
 module Kuhsaft
   class LinkBrick < Brick
-    attr_accessible :href, :caption, :link_style
+    attr_accessible :href, :caption, :link_style, :open_in_new_window
 
     validates :href, :caption, :presence => true
 

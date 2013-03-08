@@ -7,3 +7,4 @@ de:
         caption: 'Linktext'
         href: 'Link'
         link_style: 'Stil'
+        open_in_new_window: 'In neuem Fenster öffnen?'
