@@ -1,3 +1,8 @@
+## 1.2.10 - 2013-03-08
+
+- add checkbos on link Brick to trigger opening in new window/tab or not
+- add Asset Brick for pdf's doc's and xls'
+
 ## 1.2.9 - 2013-03-06
 
 - ditto... doh!
@@ -18,7 +23,7 @@
   `rails generate kuhsaft:assets:install` to get the override files.
   These files are now externally loaded and must be present!
 
-## 1.2.5 - 2013-03-01 
+## 1.2.5 - 2013-03-01
 
 - optimize brick sorting with a single post to bricks_controller#sort
 - add display_styles API to brick. implement `available_display_styles` on a brick to provide possible style classes
