@@ -1,3 +1,8 @@
+## master
+
+- updated readctor.js to 9.beta
+- fix remove_cms_admins migration for pg: Check if table exist before dropping
+
 ## 1.2.10 - 2013-03-08
 
 - add checkbos on link Brick to trigger opening in new window/tab or not

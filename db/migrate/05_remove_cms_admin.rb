@@ -1,8 +1,8 @@
 class RemoveCmsAdmin < ActiveRecord::Migration
   def change
-    begin
+    if ActiveRecord::Base.connection.table_exists?(:kuhsaft_cms_admins)
       drop_table :kuhsaft_cms_admins
-    rescue
+    else
       puts 'kuhsaft_cms_admins table does not exist, not deleting'
     end
   end
