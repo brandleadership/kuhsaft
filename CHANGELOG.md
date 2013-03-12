@@ -2,6 +2,7 @@
 
 - updated readctor.js to 9.beta
 - fix remove_cms_admins migration for pg: Check if table exist before dropping
+- fix pg error by not using grouped scope on brick_type
 
 ## 1.2.10 - 2013-03-08
 
