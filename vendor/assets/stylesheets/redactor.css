@@ -311,7 +311,7 @@ body .redactor_air .redactor_toolbar {
 	border-left: 1px solid #d8d8d8;
 	border-right-color: rgba(0, 0, 0, .12);
 	border-right: 1px solid #f4f4f4;
-	border-right-color:: rgba(255, 255, 255, .4);
+	border-right-color: rgba(255, 255, 255, .4);
 	padding: 0;
 	margin: 0 2px 0 3px !important;
 }
@@ -350,9 +350,9 @@ body .redactor_air .redactor_toolbar {
 
 .redactor_toolbar li a:hover {
 	border-color: #98a6ba;
-	border-color: rgb(162, 185, 208, .8);
+	border-color: rgba(162, 185, 208, .8);
 	background-color: #d4dce9;
-	background-color: rgb(176, 199, 223, .5);
+	background-color: rgba(176, 199, 223, .5);
 	outline: none;
 }
 .redactor_toolbar li a:active, .redactor_toolbar li a.redactor_act {
