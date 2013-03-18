@@ -14,7 +14,7 @@
 loadTextEditor = (elem) ->
   elem.find(".js-editor").redactor(
     buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'table', 'link']
-    formattingTags: ['h1', 'h2', 'h3', 'p']
+    formattingTags: ['h1', 'h2', 'h3', 'h4', 'p']
   )
 
 checkPageType = ->
