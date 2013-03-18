@@ -1,8 +1,12 @@
 ## master
 
+## 1.2.10 - 2013-03-08
+
 - updated readctor.js to 9.beta
 - fix remove_cms_admins migration for pg: Check if table exist before dropping
 - fix pg error by not using grouped scope on brick_type
+- remove empty p-tags coming from readctor.js
+- do not display read more link if no read_more_text is present
 
 ## 1.2.10 - 2013-03-08
 
