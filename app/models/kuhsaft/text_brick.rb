@@ -24,7 +24,7 @@ module Kuhsaft
     end
 
     def text_contains_funky_chars
-      read_more_text && read_more_text.strip.hash == -1282209220116339654
+      read_more_text && Digest::MD5.hexdigest(read_more_text) == "9ec94c03b98c5b356364006bf4e73dce"
     end
   end
 end
