@@ -1,7 +1,0 @@
-de:
-  activerecord:
-    models:
-      kuhsaft/two_column_brick: 'Zweispaltiges Element'
-    attributes:
-      kuhsaft/two_column_brick:
-        partitioning: 'Aufteilung'

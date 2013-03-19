@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'kuhsaft/cms/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'cms/application.css', :media => 'screen, projection'
+    = javascript_include_tag 'kuhsaft/cms/jquery.min.js'
+    = javascript_include_tag 'kuhsaft/cms/jquery-ui-1.8.12.custom.min.js'
+    = javascript_include_tag 'kuhsaft/cms/jquery_ujs.js'
+    = javascript_include_tag 'kuhsaft/cms/jquery.elastic.source.js'
+    = javascript_include_tag 'kuhsaft/cms/application.js'
+    = csrf_meta_tag
+  %body{ :class => "#{controller_name}" }
+    #kuhsaft-wrapper
+      .cms-header
+        .container
+          .meta-actions
+            %a.micro-button{ :href => '/', :target => '_blank' }
+              View Site
+            .logout-box
+              - if respond_to?(:destroy_user_session_path)
+                = current_user.first_name
+                = current_user.last_name
+                = link_to '(logout)', destroy_user_session_path, :class => 'logout micro-logout'
+      .cms-content-container
+        %ul.cms-module-nav
+          = admin_tab(t('.pages_nav'), cms_pages_path)
+          = admin_tab(t('.assets_nav'), cms_assets_path)
+          = render :partial => 'cms/admin_navigation' rescue ''
+          .clear
+        %ul.language-tabs
+          = yield :cms_language_tabs
+          .clear
+        .toolbar
+          = yield :admin_toolbar
+          .clear
+        .cms-content
+          = yield :before_admin_content
+          = yield
+          = yield :after_admin_content
+      = yield :scripts

@@ -1,13 +1,8 @@
-%h1= controller.request.host
-.actions.row
-  .span5
-  .span3
-    = link_to kuhsaft.new_cms_page_path, :class => 'btn btn-primary' do
-      %i.icon-plus-sign.icon-white
-      = t('.add_page')
-  .span4
+- content_for :cms_language_tabs do
+  - Kuhsaft::Page.translation_locales.each do |locale|
+    %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, cms_pages_path(:locale => locale)
 
-.row
-  .span8.pages-list
-    = render :partial => 'branch', :locals => { :pages => @pages }
-  .span4
+- content_for :admin_toolbar do
+  = link_to t('.create'), new_cms_page_path, :class => 'small-button'
+%ul.pages-root.sortable
+  = render :partial => 'branch', :locals => { :pages => @pages }

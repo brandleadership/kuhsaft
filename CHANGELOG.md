@@ -1,151 +1,68 @@
 ## master
 
-## 1.2.10 - 2013-03-08
+### Bug fixes
 
-- updated readctor.js to 9.beta
-- fix remove_cms_admins migration for pg: Check if table exist before dropping
-- fix pg error by not using grouped scope on brick_type
-- remove empty p-tags coming from readctor.js
-- do not display read more link if no read_more_text is present
+### Improvements
 
-## 1.2.10 - 2013-03-08
-
-- add checkbos on link Brick to trigger opening in new window/tab or not
-- add Asset Brick for pdf's doc's and xls'
-
-## 1.2.9 - 2013-03-06
-
-- ditto... doh!
-
-## 1.2.8 - 2013-03-06
-
-- remove foo postfix for asset path generator... doh!
-
-## 1.2.7 - 2013-03-06
-
-- optimize/fix Brick UI dropdowns
-- do not cache pages with placeholder bricks
-- UI Tweak: read more link moves to bottom of collapsed content
-
-## 1.2.6 - 2013-03-04
-
-- change the way custom css and js is loaded. If you are upgrading, run
-  `rails generate kuhsaft:assets:install` to get the override files.
-  These files are now externally loaded and must be present!
-
-## 1.2.5 - 2013-03-01
-
-- optimize brick sorting with a single post to bricks_controller#sort
-- add display_styles API to brick. implement `available_display_styles` on a brick to provide possible style classes
-- UI Tweaks: page list is narrower, top-level row is not fluid anymore
-- Disable remote form for Bricks with mounted uploader
-
-## 1.2.4 - 2013-02-27
-- actually downgrade jquery-rails dependency
-
-## 1.2.3 - 2013-02-27
-- Downgrade to jquery-rails 2.0.3 / jQuery 1.7.2
-- Fix text brick partial for collapsable layout
-- Implement necessary js files for collapsable content
-- Add AnchorBrick
-- Add visual feedback when saving a brick
-
-## 1.2.2 - 2013-02-26
-- migrate the brick types 'disabled' field to 'enabled'
-- use mysql2 as the default driver in our tests
-
-## 1.2.1 - 2013-02-26
-
-- fix SQL dialect issue in brick type filter
-
-## 1.2.0 - 2013-02-25
-
-- set custom buttons on redactor editor
-- add documentation which tags can be inserted by the editor and need styling
-- added api to brick list to allow bricks to constrain their child bricks by type
-- disable/enable redirect_url field depending on page type dynamically
-- show inactive state in page tree
-- fix: require current rails version:
-  - prevents vulnerable rails apps with kuhsaft
-  - fixes issue where rake spec would run in development instead of test
-    env.
-- fix misterious case where the ajaxSuccess event sometimes was not
-  triggered, leaving the textareas without readactor.js toolbar
-- make bricks sortable
-- add success message when page is saved
-- fix: Do not switch to content tab for page when there are validation errors in the meta tab
-
-## 1.1.1 - 2013-02-06
-- Remove Kuhsaft::Cms::Admin seed
-- Fix Migration
-
-## 1.1.0 - 2013-02-06
-- Remove devise from kuhsaft and provide instructions on how to protect the cms backend
-- fix: properly handle compass-rails dependency
-
-
-## 1.0.3 - 2013-02-04
-- fix: fixed position regression introduced in 1.0.2
-- fix: empty text brick doesn't fail
-
-## 1.0.2 - 2013-02-04
-
-- fix: brick position is properly incremented when created
-
-## 1.0.1 - 2013-02-04
-
-- bugfix: Add non-minified version of redactor.js ([@effkay][])
-
-## 1.0.0 - 2013-02-04
-
-### Major redesign
-* added new brick system
-* added new UI
-* integrated with shoestrap
-
-## 0.3.4 - January 27, 2012
-
-- Add styles for 2 additional nesting levels in list views ([@effkay][])
-- Refactor CSS into proper format ([@manufaktor][] & [@donaier][])
-- Migrate JS to asset pipeline/sprockets ([@effkay][])
-
-## 0.3.3 - November 10, 2011
-
-- Add german locale file for backend ([@jenzer][])
+### New features
 
 ## 0.3.2 - September 15, 2011
 
-**Development of Kuhsaft for Rails 3.1 moved to master, rails30 will
-maintain rails 3.0 compatibility**
+*Development of Kuhsaft for Rails 3.1 moved to master, rails30 will
+maintain rails 3.0 compatibility*
+
+### Bug fixes
 
 - fix asset pipeline compatibility when in production ([@effkay][])
+
+### Improvements
+
 - fix README on how to integrate devise ([@effkay][])
 
+
 ## 0.2.5 - August 29, 2011
+
+### Bug fixes
 
 - fix a bug where virtual page tree wasn't available ([@manufaktor][])
 
 ## 0.2.4 - August 29, 2011
+
+### Improvements
 
 - handle 404s with an ActionController::RoutingError, controllers can optionally implement a `handle_404` method to change behavior ([@manufaktor][])
 - Backend now shows the hierarchy breadcrumb when creating a new page ([@manufaktor][])
 
 ## 0.2.3 - August 19, 2011
 
+### Bug fixes
+
 - update gem versions of dependencies, because some contain bugfixes (linecache, carrierwave) ([@manufaktor][])
 
 ## 0.3.1 - August 9, 2011
 
+### Bug fixes
+
 - fix image paths and update readme concerning asset pipeline ([@effkay][])
+
+### Improvements
+
 - we have a changelog now! ([@effkay][])
 
 ## 0.3.0 - August 8, 2011
+
+### Improvements
 
 - moved assets to a rails 3.1 compatible location ([@effkay][])
 
 ## 0.2.2 - August 5, 2011
 
+### Bug fixes
+
 - `params[:locale]` is now recognized by the PagesController ([@manufaktor][])
+
+### Improvements
+
 - Lots of styling improvements for the backend ([@iphilgood][] & [melinda][])
 - Formatted Text textareas now resize smartly according to its content ([@iphilgood][] & [melinda][])
 - Added specific delete messages for pages and assets ([@manufaktor][])
@@ -153,9 +70,7 @@ maintain rails 3.0 compatibility**
 - Backend recognizes a current_user and will display a logout possibility ([@iphilgood][])
 
 [@manufaktor]: https://github.com/manufaktor
-[@donaier]: https://github.com/donaier
 [@effkay]: https://github.com/effkay
 [@iphilgood]: https://github.com/iphilgood
 [@tscholz]: https://github.com/tscholz
-[@jenzer]: https://github.com/jenzer
-[@lindimelindi]: http://www.melinda-lini.de/
+[melinda]: http://www.melinda-lini.de/

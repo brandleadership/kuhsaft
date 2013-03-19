@@ -1,30 +1,63 @@
-%ul.nav.nav-tabs.js-tabs
-  %li{ :class => metadata_tab_active(@page) }
-    = link_to t('.tab_metadata'), '#page-metadata', 'data-toggle' => :tab
-  %li{ :class => content_tab_active(@page) }
-    = link_to t('.tab_content'), '#page-content', 'data-toggle' => :tab
+= simple_form_for @page, :url => url do |page|
+  = page.fields_for :localized_pages, @localized_page do |localized|
+    
+    .lightened-box
+      %h1{ :class => "#{@page.persisted? ? 'edit' : 'new'}-page" }= page_title
+      = localized.input :locale, :as => :hidden
+      = localized.input :title, :required => false
+      = localized.input :slug, :required => false, :input_html => { :class => :dimmed }
+      .clear
+    
+    .page-part-list
+      - @localized_page.page_parts.each do |page_part_object|
+        .colored-box.draggable-box.page-part.can-drag{ :'data-id' => page_part_object.id, :'data-put-url' => cms_page_page_part_path(page_part_object, :page_id => @page) }
+          = localized.fields_for :page_parts, page_part_object do |page_part|
+            .actions
+              .drag-handler
+              - unless page_part.object.persisted?
+                = page_part.input :type, :as => :hidden, :input_html => { :value => page_part.object.class.to_s }
 
-.tab-content
-  #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }
-    = simple_form_for @page, :url => url, :html => { :class => 'form-horizontal' } do |form|
-      = form.input :title, :required => false, :input_html => { :class => :span5 }
-      = form.input :slug, :required => false, :input_html => { :class => :span5 }
-      = form.input :parent_id, :collection => Kuhsaft::Page.flat_tree, :label_method => :nesting_name, :selected => params[:parent_id].presence || @page.parent_id.presence, :prompt => 'None', :input_html => { :class => :span3 }
-      = form.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :input_html => { :class => :span3 }
-      = form.input :url, :as => :string
-      = form.input :keywords, :input_html => { :class => :span5 }
-      = form.input :description, :as => :text, :input_html => { :class => :span5, :rows => 4 }
-      = form.input :published, :as => :boolean
+            = render :partial => page_part.object.edit_partial_path, :locals => { :input_form => page_part }
+            = page_part.label :tag_list
+            .page-part-helpers
+              = page_part.text_field :tag_list, :placeholder => t('.separate_by_comma'), :class => 'page-part-tags string'
+            .actions
+              = page.button :submit, :class => 'small-input-button'
+              .destroy-handler
+                = link_to t('.destroy_page_part'), cms_page_page_part_path(page_part.object, :page_id => @page), :confirm => t('.confirm'), :method => :delete, :remote => true              
+            .clear
+    - if localized.object.persisted? && !@page.redirect?
+      .lightened-box.add-page-part
+        %label.string{ :for => :page_part_type }= t('.add_element')
+        = page.collection_select :page_part_type, Kuhsaft::PagePart::Content.page_part_types, :to_s, :to_name
+        = page.button :submit, :name => :add_page_part, :value => t('.add_page_part')
+        .clear
 
-      .form-actions
-        = form.button :submit, :class => 'btn btn-primary'
+    .darkened-box
+      %h3.toggle.closed= t('.metainformation')
+      .collapsable.hidden
+        = page.input :parent_id, :collection => Kuhsaft::Page.flat_tree(), :label_method => :nesting_name, :selected => params[:parent_id].presence || page.object.parent_id.presence, :prompt => 'None', :label_html => { :class => :string }
+        = localized.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :label_html => { :class => :string }
+        = localized.input :url, :as => :string if @page.redirect?
+        - unless localized.object.page_type == Kuhsaft::PageType::REDIRECT
+          = localized.input :keywords
+          = localized.input :description, :input_html => { :class => :small }, :label_html => { :class => :string }
+    .lightened-box.publish-information
+      .column.grid-3
+        = localized.radio_button :published, Kuhsaft::PublishState::UNPUBLISHED
+        = localized.label :published, t('.unpublished'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_0    
+      .column.grid-3
+        = localized.radio_button :published, Kuhsaft::PublishState::PUBLISHED
+        = localized.label :published, t('.published'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_1
+      .column.grid-5
+        = localized.radio_button :published, Kuhsaft::PublishState::PUBLISHED_AT
+        = localized.label :published, t('.published_at'), :class => :radio, :for => :kuhsaft_page_localized_pages_attributes_0_published_2
+        = localized.text_field :published_at, :class => 'small string', :placeholder => 'dd.mm.yyyy HH:MM'
+      .column.grid-2
+        = page.button :submit, :class => 'input-button'
+      .clear
 
-  #page-content.tab-pane{ :class => content_tab_active(@page) }
-    - if @page.persisted?
-      .clearfix
-        .actions
-          .btn-group
-            = render 'brick_type_dropdown', :brick_list => @page
-      = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page
-
-= render 'kuhsaft/cms/bricks/sort_form'
+:javascript
+  $(".toggle").click(function(){
+    $(this).toggleClass("closed").next(".collapsable").toggleClass("hidden")
+  })

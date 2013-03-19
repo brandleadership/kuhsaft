@@ -1,44 +1,47 @@
 module PagesHelper
   def current_page
-  #   page = @page
-  #   yield @page if block_given?
-  # rescue
+    lang = Kuhsaft::Page.current_translation_locale
+    page = Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.page
+    page.translation
+    yield page if block_given?
+    page
+  rescue
   end
-
+  
   def current_page_path(lang=nil)
-  #   if @page.present?
-  #     '/' + Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.url
-  #   else
-  #     root_path
-  #   end
-  # rescue
-  #   root_path
+    if @page.present?
+      '/' + Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.url
+    else
+      root_path
+    end
+  rescue
+    root_path
   end
 
   def asset_for id
     Kuhsaft::Asset.find(id)
   end
-
+  
   def render_markdown text
     RDiscount.new(text).to_html if text.present?
   end
 
   def navigation_for options
     if options.is_a?(Hash) && slug = options.delete(:slug)
-      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.children.current_locale.published rescue []
+      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.childs.current_locale.published rescue []
     elsif (options.is_a?(Fixnum) && id = options) ||  id = options.delete(:id)
       pages = Kuhsaft::Page.published.where('parent_id = ?', id)
     elsif options.nil?
-      pages = Kuhsaft::Page.published.roots
+      pages = Kuhsaft::Page.published.root_pages
     end
     yield pages if block_given? && pages.length > 0
     pages
   end
-
+  
   def homepage
-    Kuhsaft::Page.roots.first
+    Kuhsaft::Page.root_pages.first
   end
-
+  
   def page_for_level num
     input = controller.current_url if controller.respond_to? :current_url
     input ||= params[:url].presence || ''
@@ -57,12 +60,5 @@ module PagesHelper
 
   def current_page_class page
     :current if active_page_class(page) == :active
-  end
-
-  def read_more_link(id)
-    link_to(id, :'data-toggle' => 'collapse', :'data-target' => id, :class => 'collapsed button button-read-more') do
-      @content = content_tag(:p, t('kuhsaft.text_bricks.text_brick.read_more'), :class => 'read-more-text')
-      @content << content_tag(:p, t('kuhsaft.text_bricks.text_brick.read_less'), :class => 'read-less-text')
-    end
   end
 end

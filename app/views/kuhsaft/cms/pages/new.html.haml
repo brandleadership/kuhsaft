@@ -1,1 +1,10 @@
-= render :partial => 'form', :locals => { :url => kuhsaft.cms_pages_path, :page_title => t('.new') }
+- content_for :cms_language_tabs do
+  - Kuhsaft::Page.translation_locales.each do |locale|
+    %li{ :class => (:current if params[:locale] == locale.to_s) }= link_to locale.to_s, new_cms_page_path(:locale => locale)
+
+.page-tree-breadcrumb
+  - available_parent_pages.each do |parent_page|
+    = link_to((parent_page[:title].presence || parent_page.title), parent_page[:link].presence || edit_cms_page_path(parent_page))
+
+.box-container    
+  = render :partial => 'form', :locals => { :url => cms_pages_path, :page_title => t('.new') }

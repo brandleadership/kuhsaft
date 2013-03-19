@@ -9,9 +9,6 @@ en:
     page_part:
       markdown: 'Formatted Text'
     cms:
-      bricks:
-        brick_item:
-          confirm: 'Are you sure?'
       pages:
         index:
           create: 'Create new page'

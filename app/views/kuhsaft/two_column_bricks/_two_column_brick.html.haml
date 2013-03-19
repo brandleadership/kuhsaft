@@ -1,3 +1,0 @@
-%div{ :class => two_column_brick.to_style_class }
-  - two_column_brick.bricks.each_with_index do |column_brick, idx|
-    = render column_brick, :column_style => Kuhsaft::Partition.style_for_index(two_column_brick.partitioning, idx)

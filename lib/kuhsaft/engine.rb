@@ -1,23 +1,18 @@
+require 'rails'
 module Kuhsaft
-
-  class ImageSizeDelegator
-    def method_missing(method, *args, &block)
-      Kuhsaft::ImageSize.send(method, *args, &block)
-    rescue NoMethodError
-      super
+  class Engine < Rails::Engine
+    initializer 'kuhsaft.init_stylesheets' do |app|
+      Sass::Plugin.add_template_location File.join(Kuhsaft::Engine.root, 'app', 'stylesheets'), File.join(Rails.root, 'public', 'stylesheets')
     end
-  end
 
-  class Engine < ::Rails::Engine
-    isolate_namespace Kuhsaft
+    initializer 'kuhsaft.static_assets' do |app|
+      app.middleware.use ::ActionDispatch::Static, "#{Kuhsaft::Engine.root}/public"
+    end
 
-    config.i18n.fallbacks = [:de]
-    config.i18n.load_path += Dir[Kuhsaft::Engine.root.join('config', 'locales', '**', '*.{yml}').to_s]
-
-    # defaults to nil
-    config.sublime_video_token = nil
-
-    # delegate image size config to ImageSize class
-    config.image_sizes = ImageSizeDelegator.new
+    initializer 'kuhsaft.helpers' do |app|
+      # Include your helpers here or they won't be loaded
+      ActionView::Base.send :include, Kuhsaft::PagesHelper
+      ActionView::Base.send :include, Kuhsaft::CmsHelper
+    end
   end
 end

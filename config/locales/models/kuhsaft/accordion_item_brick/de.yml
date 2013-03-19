@@ -1,7 +1,0 @@
-de:
-  activerecord:
-    models:
-      kuhsaft/accordion_item_brick: 'Akkordeon Sektion'
-    attributes:
-      kuhsaft/accordion_item_brick:
-        caption: 'Titel'

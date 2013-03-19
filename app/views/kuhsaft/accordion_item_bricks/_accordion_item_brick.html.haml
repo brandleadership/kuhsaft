@@ -1,8 +1,0 @@
-%div{ :class => accordion_item_brick.to_style_class }
-  .accordion-heading
-    %a.accordion-toggle{ 'data-toggle' => 'collapse', 'data-parent' => "##{accordion_item_brick.brick_list.to_style_id}", :href => "##{accordion_item_brick.to_style_id}" }
-      = accordion_item_brick.caption
-  .accordion-body.collapse{ :id => accordion_item_brick.to_style_id, :class => (accordion_item_brick.brick_list.bricks.first == accordion_item_brick ? 'in' : '') }
-    .accordion-inner
-      - accordion_item_brick.bricks.each do |brick|
-        = render brick

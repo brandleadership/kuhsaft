@@ -1,9 +1,0 @@
-%div{ :class => image_brick.to_style_class }
-  = image_tag image_brick.image.converted.url
-  - if image_brick.caption.present?
-    .image-caption
-      - if image_brick.href.present?
-        = link_to image_brick.href do
-          = image_brick.caption
-      - else
-        = image_brick.caption

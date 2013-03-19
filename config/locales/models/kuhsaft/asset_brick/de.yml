@@ -1,9 +1,0 @@
-de:
-  activerecord:
-    models:
-      kuhsaft/asset_brick: 'Datei'
-    attributes:
-      kuhsaft/asset_brick:
-        caption: 'Anzeigetext'
-        link_style: 'Stil'
-        asset: 'Datei'

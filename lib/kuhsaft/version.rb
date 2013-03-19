@@ -1,3 +1,3 @@
 module Kuhsaft
-  VERSION = "1.2.11"
+  VERSION = "0.3.2"
 end

@@ -1,5 +1,0 @@
-- if brick.respond_to?(:bricks)
-  .row-fluid
-    - brick.bricks.each_with_index do |b, idx|
-      %div{ :class => Kuhsaft::Partition.style_for_index(brick.partitioning, idx) }
-        = render 'kuhsaft/cms/bricks/brick_item', :brick => b

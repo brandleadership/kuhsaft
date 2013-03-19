@@ -1,0 +1,335 @@
+$color1: #0c1550
+$color2: #1a2363
+$color3: #f7f8e6
+$color4: #263392
+$border-color: #cdcdcd
+
+body
+  line-height: 140%
+  color: #333
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif
+  background: #cccccb
+  
+#kuhsaft-wrapper
+  //background: #e9e9e9 image_url('kuhsaft/wrapper-bg.png') repeat-x left 100px
+  width: 960px
+  margin: 0 auto
+
+.hidden
+  display: none
+
+.cms-header
+  background: image_url('kuhsaft/header-bg.jpg')
+  border-bottom: 1px solid #cccccb
+  +min-height(150px)
+
+.meta-actions
+  +float_right
+  margin: 10px 25px 0px 0px
+
+.logout-box
+  +float_right
+  margin: 0px 10px 0px 0px
+  font-size: 11px
+
+.page-tree-breadcrumb
+  margin-bottom: 20px
+  background: image_url('kuhsaft/pages-breadcrumb-icon.png') no-repeat left 5px
+  padding-left: 18px
+  
+  a
+    background: image_url('kuhsaft/page-tree-breadcrumb-arrow.png') no-repeat right center
+    padding-right: 15px
+    
+  a:last-child
+    background: transparent
+    
+.cms-module-nav
+  +horizontal-list(0px)
+  +float_right
+  border:
+    top: 1px solid #7c7a7f
+    right: 1px solid #7c7a7f
+  margin: -41px 35px 0px 0px
+  
+  a
+    background: $color1
+    padding: 12px 15px
+    line-height: 40px
+    border-left: 1px solid #ccc
+    +link-colors(#fff, #fff, #fff, #fff, #fff)
+  
+  li
+    height: 40px
+    
+  li.current
+    border-left: 1px solid #7c7a7f
+    a
+      background: #cccccb image_url('kuhsaft/module-nav-tab-bg.png') repeat-x
+      border-left: 1px solid #e6e6e6
+      +text-shadow(#efefef, 0px, 1px, 0px)
+      +link-colors($color1, $color2, $color1, $color1, $color1)
+
+.cms-content-container
+  width: 960px
+
+.language-tabs
+  border:
+    bottom: 1px solid #cfcfcf
+  background: #e3e3e3 image_url('kuhsaft/tab-bg.png') repeat-x
+  height: 40px
+  
+  li
+    width: 100px
+    height: 40px
+    text-align: center
+    text-transform: uppercase
+    font-weight: bold
+    border:
+      right: 1px solid #cfcfcf
+    +float_left
+    
+  a
+    display: block
+    width: 99px
+    height: 100%
+    line-height: 40px
+    border-right: 1px solid #f0f0f0
+    +text-shadow(#fff, 0px, 1px, 0px)
+
+  .current
+    background: #f8f8f8
+    height: 41px
+
+.cms-content
+  background: #f8f8f8
+  padding: 35px
+  +min-height(500px)
+
+.box-container
+  border:
+    left: 1px solid $border-color
+    right: 1px solid $border-color
+    bottom: 1px solid $border-color
+
+.box
+  border-top: 1px solid $border-color
+  padding: 15px 25px
+  color: #7a7a7a
+
+.lightened-box
+  background: #f0f0f0
+  +text-shadow(#fff, 0px, 1px, 0px)
+  @extend .box
+  
+.darkened-box
+  background: #d5d5d5
+  +text-shadow(#efefef, 0px, 1px, 0px)
+  @extend .box
+  padding: 10px 25px
+  
+.colored-box
+  background: $color3
+  border:
+    left: 1px solid $color3
+    right: 1px solid $color3
+    bottom: 1px solid $color3
+  @extend .box
+
+.draggable-box 
+  position: relative
+
+h1
+  font-size: 36px
+  font-weight: bold
+  line-height: 46px
+  margin: 10px 0px 20px 0px
+  color: $color1
+  padding-left: 36px
+  
+  span
+    color: #858592
+  
+.new-page
+  background: image_url('kuhsaft/page-new-icon.png') no-repeat left 3px
+  
+.edit-page
+  background: image_url('kuhsaft/page-edit-icon.png') no-repeat left 7px
+  
+a
+  text-decoration: none
+  +link-colors($color1, $color4, $color1, $color1, $color2)
+  
+.clear
+  clear: both
+
+.clearfix
+  +clearfix
+
+.list
+  border-top: 1px solid #444
+  li
+    border-bottom: 1px solid #444
+    
+.publish-information
+  input[type="radio"], label
+    +float_left
+    
+.grid-3, .grid-5, .grid-2
+  +float_left
+  
+.grid-3
+  width: 180px
+  
+.grid-5
+  width: 300px
+
+.grid-2
+  width: 120px
+    
+.page-part-helpers
+  background: #e3e5c5
+  padding: 3px 6px
+  border: 
+    left: 1px solid #d2d3b9
+    right: 1px solid #fefff4
+    bottom: 1px solid #fefff4
+  +border-bottom-right-radius(3px)
+  +border-bottom-left-radius(3px)
+  +float-left
+  width: 619px
+  margin: -5px 0px 10px 0px
+
+
+.page-part-destroy
+  font-size: 12px
+  width: 180px
+  padding-left: 15px
+  +float_left
+  
+  input, label
+    +float_left
+
+.page-part-tags
+  &.string
+    width: 612px
+    
+.dimmed
+  background: #d5d5d5
+
+=nested-branch($depth)
+  $start-color: #f3f3f3
+  $stop-color: #e3e3e3
+  $calc-depth: $depth - 1
+  $padded-depth: (20px * $depth)
+  
+  background: darken($stop-color, $calc-depth*12.5%)
+  padding: 4px 4px 4px $padded-depth
+  border-top: 1px solid darken(#fff, 3%+($calc-depth*10%))
+  border-bottom: 1px solid darken($stop-color, 10% + ($calc-depth*10%))
+  +linear-gradient(color-stops(darken($start-color, $calc-depth*12.5%), darken($stop-color, $calc-depth*12.5%)))
+  +text-shadow(darken(#fff, $calc-depth*10%), 0px, 1px, 0px)
+
+li
+  .branch
+    +nested-branch(1)
+
+  li
+    .branch
+      +nested-branch(2)
+
+    li
+      .branch
+        +nested-branch(3)
+
+      li
+        .branch
+          +nested-branch(4)
+
+.icon
+  +float_right
+  
+.to-translate
+  color: #666
+  
+ul.pages-root
+  width: 560px
+  border: 1px solid #b2b2b2
+  border-bottom: 0px
+    
+.asset-pic
+  width: 102px
+  height: 160px
+  overflow: hidden
+  text-align: center
+  font-size: 11px
+  margin-right: 10px
+  +float_left
+  
+  a 
+    display: block
+  
+  input.string
+    width: 96px
+    margin-top: 3px
+  
+  .thumb
+    border: 1px solid #ccc
+    display: block
+    height: 100px
+    width: 100px
+    
+.fixed-width-image
+  img
+    max-width: 100%
+
+.icon
+  +hide-text
+  +float_right
+  display: block
+  height: 22px
+  padding: 0px 4px
+  border:
+    left: 1px solid #b2b2b2
+
+.icon.add-child-page
+  background: image_url('kuhsaft/add-child-page.png') no-repeat center center
+  width: 28px
+  border-right: 0px
+
+.icon.delete
+  background: image_url('kuhsaft/delete.png') no-repeat center center
+  width: 22px
+  border-left: 0px
+
+.actions
+  height: 30px
+  width: 100%
+  clear: both
+  margin: 0px 0px 0px 0px
+  input#kuhsaft_page_submit
+    +float_right
+
+.drag-handler
+  background: $color3 image_url('kuhsaft/page-part-draggable-area.png') no-repeat top right
+  width: 91px
+  height: 22px
+  margin: 0px 7px 0px 0px
+  float: right
+  cursor: image_url('kuhsaft/openhand.cur'), default !important
+  &:active
+    cursor: image_url('kuhsaft/closedhand.cur'), default !important
+
+.destroy-handler  
+  text-align: right
+  width: 100px
+  margin: 0px 10px 0px 0px
+  padding: 5px 0px 0px 0px
+  +float_right
+  
+.will-drag
+  border: 1px solid #666 !important
+  +single-box-shadow(rgba(0,0,0,0.2), 0px, 5px, 20px)
+  
+.container
+  width: 960px
