@@ -1,6 +1,11 @@
 ## master
 
-## 1.2.10 - 2013-03-18
+## 1.2.12 - 2013-03-20
+
+- add js function to remove empty read_more_text
+- remove before_save hook in TextBrick model
+
+## 1.2.11 - 2013-03-18
 
 - updated readctor.js to 9.beta
 - fix remove_cms_admins migration for pg: Check if table exist before dropping
