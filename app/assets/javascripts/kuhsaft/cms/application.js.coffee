@@ -41,6 +41,15 @@ sortableBrick = ->
         sortForm.trigger('submit')
       )
 
+removeEmptyParagraphs = ->
+  # Clear read_more_text field if it just contains an empty p tag
+  #
+  # readctor.js injects an almost empty p-tag into empty form fields.
+  # However, instead of being really empty, it currently contains the &#8203; (Zero width space) Character.
+  $('.brick_read_more_text .redactor_box textarea').each ->
+    if ($(this).val() == "<p>\u200b</p>")
+      $(this).val('')
+
 window.initSubmitLinks = (selector = null)->
   selector ||= $('body')
 
@@ -63,8 +72,13 @@ window.initSavePopover = (selector) ->
     , 1500
   , 50
 
+handleMagicReadMore = ->
+  $('.simple_form.edit_brick').submit ->
+  removeEmptyParagraphs()
+
 $(document).ajaxSuccess ->
   loadTextEditor($("body"))
+  handleMagicReadMore()
   sortableBrick()
 
 $(document).ready ->
@@ -72,6 +86,7 @@ $(document).ready ->
   checkPageType()
   sortableBrick()
   initSubmitLinks()
+  handleMagicReadMore()
+
   $('#page_page_type').change ->
     checkPageType()
-
