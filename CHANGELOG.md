@@ -1,5 +1,9 @@
 ## master
 
+## 1.2.13 - 2013-03-25
+
+- fix: solve the redactor.js problem a bit differently, should now always clear empty p tags from read more
+
 ## 1.2.12 - 2013-03-20
 
 - add js function to remove empty read_more_text

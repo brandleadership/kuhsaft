@@ -56,6 +56,7 @@ window.initSubmitLinks = (selector = null)->
   selector.find('a.submit')
     .click (e)->
       form = $(this).closest('form')
+      removeEmptyParagraphs()
       form.submit()
       e.preventDefault()
 
@@ -72,10 +73,6 @@ window.initSavePopover = (selector) ->
     , 1500
   , 50
 
-handleMagicReadMore = ->
-  $('.simple_form.edit_brick').submit ->
-  removeEmptyParagraphs()
-
 $(document).ajaxSuccess ->
   loadTextEditor($("body"))
   handleMagicReadMore()
@@ -86,7 +83,6 @@ $(document).ready ->
   checkPageType()
   sortableBrick()
   initSubmitLinks()
-  handleMagicReadMore()
 
   $('#page_page_type').change ->
     checkPageType()
