@@ -4,3 +4,6 @@ $("##{@brick.brick_list.to_brick_list_id}.brick-list").append("#{j(render('kuhsa
 var newlyInsertedBrick = $("##{@brick.to_brick_item_id}")
 initSavePopover(newlyInsertedBrick)
 initSubmitLinks(newlyInsertedBrick)
+initCKEditor("#{@brick.to_style_id}-text")
+initCKEditor("#{@brick.to_style_id}-read-more")
+
