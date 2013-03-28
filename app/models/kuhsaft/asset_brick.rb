@@ -21,5 +21,9 @@ module Kuhsaft
     def user_can_add_childs?
       false
     end
+
+    def asset_present?
+      asset.present?
+    end
   end
 end
