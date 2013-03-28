@@ -1,5 +1,5 @@
 %div{ :class => image_brick.to_style_class }
-  = image_tag image_brick.image.converted.url
+  = image_tag image_brick.image.converted.url if image_brick.image_present?
   - if image_brick.caption.present?
     .image-caption
       - if image_brick.href.present?
