@@ -1,4 +1,9 @@
-## master
+## hotfix/image_brick_image_upload
+
+- fix: image Size is not applied when uploading an image in the image brick
+- If you are upgrading, make sure to make following with all models which are using the ImageBrickImageUploader:
+  * remove before_save callback and add after_save callback
+  * add method image_present? to model an call it in the resize_image_if_size_changed-method as further if-statement
 
 ## 1.2.13 - 2013-03-25
 
