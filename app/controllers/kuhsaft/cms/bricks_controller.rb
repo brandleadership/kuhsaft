@@ -6,6 +6,7 @@ module Kuhsaft
 
       def create
         @brick = params[:brick][:type].constantize.new(params[:brick])
+        @brick.image_size = ImageSize.all.first.name.to_s
         @brick.save(:validate => false)
       end
 

@@ -9,7 +9,7 @@ module Kuhsaft
     before_save :resize_image_if_size_changed
 
     def resize_image_if_size_changed
-      image.recreate_versions! if image_size_changed?
+      image.recreate_versions! if image_size_changed? && image_present?
     end
 
     def collect_fulltext
@@ -18,6 +18,10 @@ module Kuhsaft
 
     def user_can_add_childs?
       false
+    end
+
+    def image_present?
+      self.image.present?
     end
   end
 end
