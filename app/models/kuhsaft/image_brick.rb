@@ -6,7 +6,7 @@ module Kuhsaft
     validates :image, :presence => true
     validates :image_size, :presence => true
 
-    before_save :resize_image_if_size_changed
+    after_save :resize_image_if_size_changed
 
     def resize_image_if_size_changed
       image.recreate_versions! if image_size_changed? && image_present?
