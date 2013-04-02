@@ -22,6 +22,7 @@ describe Kuhsaft::ImageBrick do
     context 'when changing the image size' do
       it 'regenerates the image version' do
         image_brick.stub(:image_size_changed?).and_return(true)
+        image_brick.stub(:image_present?).and_return(true)
         image_brick.image.should_receive(:recreate_versions!)
         image_brick.resize_image_if_size_changed
       end
