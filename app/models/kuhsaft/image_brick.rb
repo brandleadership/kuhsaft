@@ -19,5 +19,9 @@ module Kuhsaft
     def user_can_add_childs?
       false
     end
+
+    def image_present?
+      image.present?
+    end
   end
 end

@@ -1,4 +1,7 @@
-## master
+## hotfix/image_rendering
+
+- fix: add if-statements to asset and image bricks cause when a brick
+       is created with no image or asset the page on proudction will crash
 
 ## 1.2.13 - 2013-03-25
 
