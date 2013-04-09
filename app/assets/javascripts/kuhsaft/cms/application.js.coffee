@@ -45,11 +45,10 @@ window.initSubmitLinks = (selector = null)->
 
   selector.find('a.submit')
     .click (e)->
-      form = $(this).closest('form')
-
-      form.find('.editor').each (index, elem) ->
+      $('textarea.editor').each (index, elem) ->
         CKEDITOR.instances[elem.id].updateElement()
 
+      form = $(this).closest('form')
       form.submit()
       e.preventDefault()
 
