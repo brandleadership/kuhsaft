@@ -47,7 +47,6 @@ window.initSubmitLinks = (selector = null)->
 
       form.find('.editor').each (index, elem) ->
         CKEDITOR.instances[elem.id].updateElement()
-        #CKEDITOR.instances[elem.id].destroy()
 
       form.submit()
       e.preventDefault()
@@ -66,7 +65,6 @@ window.initSavePopover = (selector) ->
   , 50
 
 window.initCKEditor = (selector) ->
-  console.log(selector + " is going to be initialized")
   CKEDITOR.replace(selector)
 
 $(document).ajaxSuccess ->
