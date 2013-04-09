@@ -1,3 +1,7 @@
+## 1.2.15 - 2013-04-09
+
+- add column class to column brick
+
 ## 1.2.14 - 2013-04-02
 
 - fix: add if-statements to asset and image bricks cause when a brick is created with no image or asset the page on proudction will crash
