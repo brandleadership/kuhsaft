@@ -1,3 +1,7 @@
+## features/switch_to_ckedit - 2013-04-09
+
+- Replace redactor.js with CKEditor
+
 ## master
 
 ## 1.2.13 - 2013-03-25
