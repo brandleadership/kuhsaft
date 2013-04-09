@@ -11,7 +11,7 @@
 #= require ckeditor/init
 #= require_tree .
 
-CKEDITOR.config.customConfig = '../cms/kuhsaft/ck-config.js.coffee'
+CKEDITOR.config.customConfig = '/assets/kuhsaft/cms/ck-config.js.coffee'
 
 loadTextEditor = ->
   CKEDITOR.replaceAll('editor')
