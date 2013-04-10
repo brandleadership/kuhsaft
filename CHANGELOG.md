@@ -1,6 +1,8 @@
 ## features/switch_to_ckedit - 2013-04-09
 
-- Replace redactor.js with CKEditor
+- Replace redactor.js with CKEditor. To upgrade from previous versions:
+  * run `rails generate kuhsaft:assets:install`
+  * make sure you remove any code that references redactor, typically the editor settings in the customizations.js file
 
 ## master
 
