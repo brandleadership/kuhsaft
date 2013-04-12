@@ -1,4 +1,4 @@
-## 1.3.0 - 2013-04-12
+## 1.3.1 - 2013-04-12
 
 - Replace redactor.js with CKEditor. To upgrade from previous versions:
   * run `rails generate kuhsaft:assets:install`
