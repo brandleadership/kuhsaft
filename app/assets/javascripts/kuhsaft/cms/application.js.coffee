@@ -11,7 +11,7 @@
 #= require ckeditor/init
 #= require_tree .
 
-CKEDITOR.config.customConfig = '../cms/kuhsaft/ck-config.js.coffee'
+CKEDITOR.config.customConfig = '/assets/kuhsaft/cms/ck-config.js'
 
 loadTextEditor = ->
   CKEDITOR.replaceAll('editor')
@@ -45,11 +45,10 @@ window.initSubmitLinks = (selector = null)->
 
   selector.find('a.submit')
     .click (e)->
-      form = $(this).closest('form')
-
-      form.find('.editor').each (index, elem) ->
+      $('textarea.editor').each (index, elem) ->
         CKEDITOR.instances[elem.id].updateElement()
 
+      form = $(this).closest('form')
       form.submit()
       e.preventDefault()
 
