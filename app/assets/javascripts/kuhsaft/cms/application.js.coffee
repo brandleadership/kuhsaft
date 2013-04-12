@@ -7,15 +7,14 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
-#= require redactor
 #= require bootstrap
+#= require ckeditor/init
 #= require_tree .
 
-loadTextEditor = (elem) ->
-  elem.find(".js-editor").redactor(
-    buttons: ['html', '|', 'formatting', '|', 'bold', 'italic', 'deleted', '|', 'unorderedlist', 'orderedlist', 'outdent', 'indent', '|', 'table', 'link']
-    formattingTags: ['h1', 'h2', 'h3', 'h4', 'p']
-  )
+CKEDITOR.config.customConfig = '../cms/kuhsaft/ck-config.js.coffee'
+
+loadTextEditor = ->
+  CKEDITOR.replaceAll('editor')
 
 checkPageType = ->
   redirect_url_input = $('#page_url')
@@ -41,22 +40,16 @@ sortableBrick = ->
         sortForm.trigger('submit')
       )
 
-removeEmptyParagraphs = ->
-  # Clear read_more_text field if it just contains an empty p tag
-  #
-  # readctor.js injects an almost empty p-tag into empty form fields.
-  # However, instead of being really empty, it currently contains the &#8203; (Zero width space) Character.
-  $('.brick_read_more_text .redactor_box textarea').each ->
-    if ($(this).val() == "<p>\u200b</p>")
-      $(this).val('')
-
 window.initSubmitLinks = (selector = null)->
   selector ||= $('body')
 
   selector.find('a.submit')
     .click (e)->
       form = $(this).closest('form')
-      removeEmptyParagraphs()
+
+      form.find('.editor').each (index, elem) ->
+        CKEDITOR.instances[elem.id].updateElement()
+
       form.submit()
       e.preventDefault()
 
@@ -73,13 +66,14 @@ window.initSavePopover = (selector) ->
     , 1500
   , 50
 
+window.initCKEditor = (selector) ->
+  CKEDITOR.replace(selector)
+
 $(document).ajaxSuccess ->
-  loadTextEditor($("body"))
-  handleMagicReadMore()
   sortableBrick()
 
 $(document).ready ->
-  loadTextEditor($(document))
+  loadTextEditor()
   checkPageType()
   sortableBrick()
   initSubmitLinks()

@@ -1,3 +1,7 @@
+## 1.3.0 - 2013-04-12
+
+- Replace redactor.js with CKEditor
+
 ## 1.2.15 - 2013-04-09
 
 - add column class to column brick

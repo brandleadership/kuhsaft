@@ -4,3 +4,5 @@ $("##{@brick.to_brick_item_id}").replaceWith("#{j(render('kuhsaft/cms/bricks/bri
 var newlyInsertedBrick = $("##{@brick.to_brick_item_id}")
 initSavePopover(newlyInsertedBrick)
 initSubmitLinks(newlyInsertedBrick)
+initCKEditor("#{@brick.to_style_id}-text")
+initCKEditor("#{@brick.to_style_id}-read-more")
