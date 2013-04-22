@@ -189,7 +189,7 @@ Finally, add the new translation locale to your `available_locales` inside your 
 
 By default, the text editor lets you add the following tags, for which you should supply some styles in your app:
 
-    p, h1, h2, h3, ul, ol, table, a, strong, em
+    p, h1, h2, h3, h4, table, a, strong, em
 
 ## Building a navigation
 
