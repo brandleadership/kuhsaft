@@ -1,8 +1,9 @@
 %ul.nav.nav-tabs.js-tabs
   %li{ :class => metadata_tab_active(@page) }
     = link_to t('.tab_metadata'), '#page-metadata', 'data-toggle' => :tab
-  %li{ :class => content_tab_active(@page) }
-    = link_to t('.tab_content'), '#page-content', 'data-toggle' => :tab
+  - unless @page.redirect?
+    %li{ :class => content_tab_active(@page) }
+      = link_to t('.tab_content'), '#page-content', 'data-toggle' => :tab
 
 .tab-content
   #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }
@@ -19,12 +20,13 @@
       .form-actions
         = form.button :submit, :class => 'btn btn-primary'
 
-  #page-content.tab-pane{ :class => content_tab_active(@page) }
-    - if @page.persisted?
-      .clearfix
-        .actions
-          .btn-group
-            = render 'brick_type_dropdown', :brick_list => @page
-      = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page
+  - unless @page.redirect?
+    #page-content.tab-pane{ :class => content_tab_active(@page) }
+      - if @page.persisted?
+        .clearfix
+          .actions
+            .btn-group
+              = render 'brick_type_dropdown', :brick_list => @page
+        = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page
 
 = render 'kuhsaft/cms/bricks/sort_form'
