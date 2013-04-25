@@ -9,7 +9,7 @@ module Kuhsaft
       end
 
       def metadata_tab_active(page)
-        if page.errors.present? || !page.persisted?
+        if page.errors.present? || !page.persisted? || page.redirect?
           :active
         end
       end
