@@ -1,4 +1,4 @@
-## hotfix/wrong_helper
+## 1.4.1 - 2013-03-05
 
 - Correct file name of admin_helper.rb instead of application_helper.rb
 
