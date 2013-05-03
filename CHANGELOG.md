@@ -1,4 +1,4 @@
-## master
+## 1.4.0 - 2013-03-05
 
 - Reorg Frontend Controller Inheritance:
   - Kuhsaft Frontend Controllers inherit from ApplicationController in the host application
