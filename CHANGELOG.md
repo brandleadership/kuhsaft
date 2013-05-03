@@ -1,3 +1,7 @@
+## hotfix/wrong_helper
+
+- Correct file name of admin_helper.rb instead of application_helper.rb
+
 ## 1.4.0 - 2013-03-05
 
 - Reorg Frontend Controller Inheritance:
