@@ -1,5 +1,10 @@
 ## master
 
+- Reorg Frontend Controller Inheritance:
+  - Kuhsaft Frontend Controllers inherit from ApplicationController in the host application
+  - Kuhsaft's own ApplicationController not needed anymore
+  - **now you can use helpers defined in the guest application's ApplicationHelper on Kuhsaft Pages**
+
 - Fix Locale Handling:
   - in Backend, always pass around content_locale param, to keep the correct locale set
   - remove before_validate callback: obsoleted because we pass locale around in params

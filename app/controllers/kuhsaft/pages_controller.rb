@@ -1,5 +1,5 @@
 module Kuhsaft
-  class PagesController < ApplicationController
+  class PagesController < ::ApplicationController
     respond_to :html
 
     def show
