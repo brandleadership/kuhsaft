@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name        = "kuhsaft"
   s.version     = Kuhsaft::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Immanuel Häussermann", "Felipe Kaufmann", "Phil Schilter", "Donat Baier"]
+  s.authors     = ["Immanuel Häussermann", "Felipe Kaufmann", "Phil Schilter", "Donat Baier", "Franca Rast"]
   s.email       = "developers@screenconcept.ch"
   s.homepage    = "http://github.com/screenconcept/kuhsaft"
   s.summary     = %q{A tool that helps you to manage your content within your app.}
