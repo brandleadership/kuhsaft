@@ -6,11 +6,6 @@ describe Kuhsaft::Brick do
   end
 
   describe '#valid?' do
-    it 'sets a default locale' do
-      brick.should_receive(:set_locale)
-      brick.valid?
-    end
-
     it 'sets a default position' do
       brick.should_receive(:set_position)
       brick.valid?
@@ -29,22 +24,6 @@ describe Kuhsaft::Brick do
       it 'does not change' do
         brick.position = 3
         expect { brick.set_position }.to_not change(brick, :position)
-      end
-    end
-  end
-
-  describe '#set_locale' do
-    context 'witout a locale' do
-      it 'sets a default' do
-        brick.set_locale
-        brick.locale.should == I18n.locale
-      end
-    end
-
-    context 'with a locale' do
-      it 'does not change' do
-        brick.locale = 'de'
-        expect { brick.set_locale }.to_not change(brick, :locale)
       end
     end
   end

@@ -4,8 +4,8 @@ module Kuhsaft
 
     belongs_to :brick_list, :polymorphic => true, :touch => true
 
-    scope :localized, lambda { where(:locale => I18n.locale) }
-    default_scope order('position ASC').localized
+    scope :localized, -> { where(:locale => I18n.locale) }
+    default_scope -> { order('position ASC').localized }
 
     serialize :display_styles, Array
 
@@ -16,7 +16,6 @@ module Kuhsaft
                     :brick_list_type,
                     :display_styles
 
-    before_validation :set_locale
     before_validation :set_position
 
     validates :locale,
@@ -62,10 +61,6 @@ module Kuhsaft
         parent = parent.respond_to?(:brick_list) ? parent.brick_list : nil
       end
       p.reverse
-    end
-
-    def set_locale
-      self.locale = self.locale.presence || I18n.locale
     end
 
     def set_position

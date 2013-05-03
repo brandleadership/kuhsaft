@@ -1,3 +1,10 @@
+## master
+
+- Fix Locale Handling:
+  - in Backend, always pass around content_locale param, to keep the correct locale set
+  - remove before_validate callback: obsoleted because we pass locale around in params
+  - use lambda for default scope as well, switch to new syntax for lambda
+
 ## features/settings_redirect_pages
 
 - Do not show tab "Inhalt" when editing a redirect page
