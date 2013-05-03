@@ -1,6 +1,6 @@
 module Kuhsaft
   module Cms
-    module ApplicationHelper
+    module AdminHelper
 
       def render_language_switch?
         I18n.available_locales.size > 1

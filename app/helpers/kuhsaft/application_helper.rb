@@ -1,5 +1,5 @@
 module Kuhsaft
-  module ApplicationHelper
+  module AdminHelper
 
     #
     # When rendering the layout of our host application,

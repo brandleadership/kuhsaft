@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Cms::ApplicationHelper do
+describe Kuhsaft::Cms::AdminHelper do
   describe '#render_language_switch?' do
     context 'when there is one language' do
       before do
