@@ -5,7 +5,7 @@
         = render brick
 
 - else
-  - cache @page do
+  - cache [@page, I18n.locale] do
     - unless @page.blank?
       .page-content
         - @page.bricks.localized.each do |brick|

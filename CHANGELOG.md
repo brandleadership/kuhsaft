@@ -1,3 +1,7 @@
+## 1.4.2 - 2013-03-14
+
+- Fix page caching for localized pages by adding locale as cahe key
+
 ## 1.4.1 - 2013-03-05
 
 - Correct file name of admin_helper.rb instead of application_helper.rb
