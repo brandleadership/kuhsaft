@@ -12,14 +12,12 @@ class Kuhsaft::Page < ActiveRecord::Base
   default_scope order('position ASC')
 
   scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
-  scope :search, lambda{ |term| published.where("`#{locale_attr(:fulltext)}` LIKE ?", "%#{term}%") }
   scope :navigation, lambda{ |slug| where(locale_attr(:slug) => slug).where(locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
 
   before_validation :create_slug, :create_url, :collect_fulltext
 
   validates :title, :presence => true
   validates :slug, :presence => true
-  #validates :url, :uniqueness => true, :unless => :navigation?
 
   class << self
     def flat_tree(pages = nil)

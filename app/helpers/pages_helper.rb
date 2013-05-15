@@ -65,4 +65,15 @@ module PagesHelper
       @content << content_tag(:p, t('kuhsaft.text_bricks.text_brick.read_less'), :class => 'read-less-text')
     end
   end
+
+  def search_page_form
+    # TODO: -> pages_path in non Kuhsaft namespaces
+    form_tag '/pages', :method => :get, :class => 'form-inline' do |form|
+      if block_given?
+        yield(f)
+      else
+        render 'kuhsaft/search/form', :form => form
+      end
+    end
+  end
 end

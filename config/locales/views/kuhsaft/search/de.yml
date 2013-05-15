@@ -1,0 +1,11 @@
+de:
+  kuhsaft:
+    search:
+      results:
+        number-of-results:
+          one: '1 Resultat'
+          other: '%{count} Resultate'
+        no-results: 'Keine Resultate'
+      form:
+        placeholder: 'Suchbegriff eingeben'
+        search: 'Suchen'

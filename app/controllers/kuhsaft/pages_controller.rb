@@ -2,6 +2,15 @@ module Kuhsaft
   class PagesController < ::ApplicationController
     respond_to :html
 
+    def index
+      @search = params[:search]
+      if @search.present?
+        @pages = Kuhsaft::Page.basic_search(Kuhsaft::Page.locale_attr(:fulltext) => @search)
+      else
+        @pages = Kuhsaft::Page.all
+      end
+    end
+
     def show
       @url = "#{params[:locale]}/#{params[:url]}" if params[:url].present? && params[:locale].present?
       @page = Kuhsaft::Page.find_by_url(@url)

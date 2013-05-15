@@ -9,5 +9,6 @@ Kuhsaft::Engine.routes.draw do
     root :to => 'pages#index'
   end
 
+  resources :pages, :only => [:index]
   match '/:locale/*url' => 'pages#show'
 end

@@ -1,0 +1,8 @@
+- if @pages.present?
+  %h2.success
+    = t('.number-of-results', :count => @pages.count)
+  %ul.search-results.success
+    - @pages.each do |page|
+      %li= render 'kuhsaft/search/results_entry', :page => page
+- else
+  %h2.no-results= t('.no-results')
