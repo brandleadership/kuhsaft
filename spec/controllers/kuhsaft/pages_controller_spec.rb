@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe Kuhsaft::PagesController do
   describe '#show' do
     around(:each) do |example|
