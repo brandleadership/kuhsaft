@@ -8,7 +8,7 @@ module Kuhsaft
       if @page.present? && @page.redirect?
         redirect_to "/#{@page.redirect_url}"
       elsif @page.present?
-          respond_with @page
+        respond_with @page
       elsif @page.blank && respond_to?(:handle_404)
         handle_404
       else
