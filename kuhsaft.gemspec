@@ -40,4 +40,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'ancestry'
   s.add_dependency 'bootstrap-sass', '>= 2.2.2.0'
   s.add_dependency 'ckeditor', '4.0.2'
+  s.add_dependency 'textacular', '~> 3.0'
+
 end
