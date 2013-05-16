@@ -76,11 +76,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     if bricks.count == 0 && children.count > 0
       children.first.link
     else
-      if redirect?
-        "/#{redirect_url}"
-      else
-        "/#{url}"
-      end
+      "/#{url}"
     end
   end
 

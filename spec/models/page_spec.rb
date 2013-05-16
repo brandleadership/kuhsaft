@@ -254,8 +254,8 @@ describe Kuhsaft::Page do
     end
 
     context 'when it is a redirect? page' do
-      it 'returns the absolute redirect_url' do
-        page = create(:page, :page_type => Kuhsaft::PageType::REDIRECT, :redirect_url => 'en/news')
+      it 'returns the absolute url' do
+        page = create(:page, :page_type => Kuhsaft::PageType::REDIRECT, :url => 'en/news', :redirect_url => 'en/references')
         page.link.should eq('/en/news')
       end
     end
