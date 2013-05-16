@@ -19,7 +19,6 @@ class UpdateUrlAndRedirectUrlValue < ActiveRecord::Migration
       @redirect_pages.each do |redirect_page|
         redirect_url = redirect_page.url
         redirect_page.update_attributes(
-          :url => nil,
           :redirect_url => redirect_url
         ) if redirect_page
       end
