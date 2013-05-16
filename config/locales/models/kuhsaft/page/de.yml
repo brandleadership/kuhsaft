@@ -10,6 +10,7 @@ de:
         slug: 'URL Name'
         keywords: 'Stichwörter'
         description: 'Beschreibung'
+        redirect_url: 'Redirect URL'
         url: 'URL'
         published: 'Veröffentlicht'
         page_type: 'Seitentyp'

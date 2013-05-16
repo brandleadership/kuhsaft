@@ -13,7 +13,7 @@
       = form.input :parent_id, :collection => Kuhsaft::Page.flat_tree, :label_method => :nesting_name, :selected => params[:parent_id].presence || @page.parent_id.presence, :prompt => 'None', :input_html => { :class => :span3 }
       = form.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :input_html => { :class => :span3 }
       = form.input :redirect_url, :as => :string
-      = form.input :url, :as => :string
+      = form.input :url, :as => :string, :input_html => { :disabled => 'disabled' }
       = form.input :keywords, :input_html => { :class => :span5 }
       = form.input :description, :as => :text, :input_html => { :class => :span5, :rows => 4 }
       = form.input :published, :as => :boolean
