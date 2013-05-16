@@ -5,7 +5,7 @@ module Kuhsaft
     def show
       @url = "#{params[:locale]}/#{params[:url]}" if params[:url].present? && params[:locale].present?
       @page = Kuhsaft::Page.find_by_url(@url)
-      if @page.present? && @page.redirect?
+      if @page.present? && @page.redirect? && @page.redirect_url.present?
         redirect_to "/#{@page.redirect_url}"
       elsif @page.present?
         respond_with @page
