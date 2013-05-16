@@ -32,7 +32,7 @@ describe 'Cms/Pages' do
 
         it 'has a value in redirect_page' do
           fill_in 'Redirect URL', :with => 'target_page'
-          expect { click_on 'Update Seite' }.to change{ @page.reload.redirect_url }.to('redirect_page')
+          expect { click_on 'Update Seite' }.to change{ @page.reload.redirect_url }.to('target_page')
         end
 
         it 'is invalid when no value is in redirect_page' do

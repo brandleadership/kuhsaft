@@ -19,6 +19,7 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   validates :title, :presence => true
   validates :slug, :presence => true
+  validates :redirect_url, :presence => true, :if => :redirect?
   #validates :url, :uniqueness => true, :unless => :navigation?
 
   class << self
