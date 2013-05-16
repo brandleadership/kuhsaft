@@ -2,6 +2,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   include Kuhsaft::Orderable
   include Kuhsaft::Translatable
   include Kuhsaft::BrickList
+  include Kuhsaft::Searchable
 
   has_ancestry
   acts_as_brick_list
