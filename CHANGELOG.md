@@ -1,3 +1,7 @@
+## bugfixes/find_by_on_class
+
+- bugfix: Define translated `find_by_<attr>_<locale>` methods on class
+
 ## 1.4.1 - 2013-03-05
 
 - Correct file name of admin_helper.rb instead of application_helper.rb
