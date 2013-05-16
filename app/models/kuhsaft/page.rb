@@ -77,7 +77,7 @@ class Kuhsaft::Page < ActiveRecord::Base
       children.first.link
     else
       if redirect?
-        url
+        "/#{redirect_url}"
       else
         "/#{url}"
       end
