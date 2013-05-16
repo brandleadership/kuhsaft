@@ -1,3 +1,4 @@
+# This migration comes from kuhsaft (originally 11)
 class UpdateUrlAndRedirectUrlValue < ActiveRecord::Migration
   def up
     @redirect_pages = Kuhsaft::Page.where(:page_type => 'redirect')
@@ -18,9 +19,7 @@ class UpdateUrlAndRedirectUrlValue < ActiveRecord::Migration
     I18n.with_locale(locale) do
       @redirect_pages.each do |redirect_page|
         redirect_url = redirect_page.url
-        redirect_page.update_attributes(
-          :redirect_url => redirect_url
-        ) if redirect_page
+        redirect_page.update_attributes(:url => update_url(redirect_page), :redirect_url => redirect_url) if redirect_page
       end
     end
   end
@@ -29,10 +28,19 @@ class UpdateUrlAndRedirectUrlValue < ActiveRecord::Migration
     I18n.with_locale(locale) do
       @redirect_pages.each do |redirect_page|
         url = redirect_page.redirect_url
-        redirect_page.update_attributes(
-          :url => url
-        ) if redirect_page
+        redirect_page.update_attributes(:url => url) if redirect_page
       end
     end
+  end
+
+  def update_url(page)
+    complete_slug = ''
+    if page.parent.present?
+      complete_slug << page.parent.url.to_s
+    else
+      complete_slug = "#{I18n.locale}"
+    end
+    complete_slug << "/#{page.slug}"
+    complete_slug
   end
 end
