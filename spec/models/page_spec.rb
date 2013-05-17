@@ -255,7 +255,7 @@ describe Kuhsaft::Page do
 
     context 'when it is a redirect? page' do
       it 'returns the absolute url' do
-        page = create(:page, :page_type => Kuhsaft::PageType::REDIRECT, :url => 'en/news', :redirect_url => 'en/references')
+        page = create(:page, :page_type => Kuhsaft::PageType::REDIRECT, :redirect_url => 'en/references', :slug => 'news')
         page.link.should eq('/en/news')
       end
     end
@@ -322,6 +322,15 @@ describe Kuhsaft::Page do
       it 'converts all data to strings' do
         expect { page.collect_fulltext }.to_not raise_error
       end
+    end
+  end
+
+  describe '#before_validation' do
+    it 'generates url automatically' do
+      page = Kuhsaft::Page.new :slug => 'slug'
+      page.url.should be_nil
+      page.valid?
+      page.url.should be_present
     end
   end
 end

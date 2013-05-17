@@ -77,8 +77,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def create_url
-    return if redirect?
-
     complete_slug = ''
     if parent.present?
       complete_slug << parent.url.to_s
