@@ -9,7 +9,7 @@ describe Kuhsaft::PagesController do
     end
 
     context 'when page is not a redirect page' do
-      it 'respons with page' do
+      it 'responds with page' do
         page = FactoryGirl.create(:page, :slug => 'dumdidum', :url => 'de/dumdidum')
         get :show,  { :url => page.slug, :use_route => :kuhsaft, :locale => :de }
         assigns(:page).should eq(page)
