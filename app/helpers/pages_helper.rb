@@ -68,7 +68,7 @@ module PagesHelper
 
   def search_page_form
     # TODO: -> pages_path in non Kuhsaft namespaces
-    form_tag '/pages', :method => :get, :class => 'form-inline' do |form|
+    form_tag "#{locale}/pages", :method => :get, :class => 'form-inline' do |form|
       if block_given?
         yield(f)
       else
