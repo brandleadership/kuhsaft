@@ -1,10 +1,2 @@
-%p
-  %h5 kuhsaft search form
-  = text_field_tag 'search', params[:search], :placeholder => t('.placeholder')
-  = submit_tag t('.search')
-%hr
-%p
-  %h5 panorama search form
-  = text_field_tag 'search', params[:search], :class => 'input-small inline-label', :placeholder => t('.placeholder')
-  %button{ :class => 'button button-arrow', :value => '', :type => :submit }
-    %i.icon.icon-arrow-right-white
+= submit_tag t('.search')
+= text_field_tag 'search', params[:search], :placeholder => t('.placeholder')
