@@ -1,6 +1,11 @@
-## 1.4.2 - 2013-03-14
+## 1.4.3 - 2013-05-22
+
+- bugfix: Define translated `find_by_<attr>_<locale>` methods on class
+
+## 1.4.2 - 2013-05-14
 
 - Fix page caching for localized pages by adding locale as cahe key
+
 
 ## 1.4.1 - 2013-03-05
 
