@@ -1,8 +1,9 @@
-## features/simplify_routing
+## 1.5.0
 
 - Allow request with empty url splat to be handled by kuhsaft router
   - Allows root etries in host app: `root :to => 'kuhsaft/pages#show'`
-  - HomeConroller not needed anymore
+  - No HomeConroller needed anymore
+  - By default /:locale is handled by kuhsaft
 
 ## 1.4.1 - 2013-03-05
 
