@@ -1,4 +1,4 @@
-## 1.5.0
+## 1.5.0 - 2013-05-22
 
 - Allow request with empty url splat to be handled by kuhsaft router
   - Allows root etries in host app: `root :to => 'kuhsaft/pages#show'`
