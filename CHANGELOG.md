@@ -2,7 +2,18 @@
 
 - Implement real redirect in pages_controller for redirect pages
 
-## 1.4.2 - 2013-03-14
+## 1.5.0 - 2013-05-22
+
+- Allow request with empty url splat to be handled by kuhsaft router
+  - Allows root etries in host app: `root :to => 'kuhsaft/pages#show'`
+  - No HomeConroller needed anymore
+  - By default /:locale is handled by kuhsaft
+
+## 1.4.3 - 2013-05-22
+
+- bugfix: Define translated `find_by_<attr>_<locale>` methods on class
+
+## 1.4.2 - 2013-05-14
 
 - Fix page caching for localized pages by adding locale as cahe key
 

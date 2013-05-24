@@ -3,8 +3,10 @@ module Kuhsaft
     respond_to :html
 
     def show
-      @url = "#{params[:locale]}/#{params[:url]}" if params[:url].present? && params[:locale].present?
-      @page = Kuhsaft::Page.find_by_url(@url)
+      url = locale.to_s
+      url += "/#{params[:url]}" if params[:url].present?
+      @page = Kuhsaft::Page.find_by_url(url)
+
       if @page.present? && @page.redirect? && @page.redirect_url.present?
         redirect_to "/#{@page.redirect_url}"
       elsif @page.present?

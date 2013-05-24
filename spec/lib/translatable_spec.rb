@@ -61,8 +61,8 @@ describe Kuhsaft::Translatable do
       end
 
       it 'delegates simple dynamic finders' do
-        model.should_receive(:find_by_name_en).with('Max')
-        model.find_by_name('Max')
+        Demo.should_receive(:find_by_name_en).with('Max')
+        Demo.find_by_name('Max')
       end
     end
 
