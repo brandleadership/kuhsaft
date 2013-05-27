@@ -1,4 +1,4 @@
-## features/optimize_redirect_page
+## 1.6.0 - 2013-05-27
 
 - Implement real redirect in pages_controller for redirect pages
 
