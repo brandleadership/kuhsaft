@@ -26,7 +26,12 @@ module Kuhsaft
           if query.is_a? Hash
             where("#{query.first[0]} LIKE ?", "%#{query.first[1]}%")
           else
-            where("#{locale_attr(:fulltext)} LIKE ?", "%#{query}%")
+            stmt = ""
+            stmt += "#{locale_attr(:keywords)} LIKE ? OR "
+            stmt += "#{locale_attr(:title)} LIKE ? OR "
+            stmt += "#{locale_attr(:description)} LIKE ? OR "
+            stmt += "#{locale_attr(:fulltext)} LIKE ?"
+            where(stmt, *(["%#{query}%"] * 4))
           end
         }
       end
