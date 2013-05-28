@@ -91,10 +91,6 @@ class Kuhsaft::Page < ActiveRecord::Base
     self.slug = title.downcase.parameterize if has_slug
   end
 
-  def collect_fulltext
-    self.fulltext =[super, title.to_s, keywords.to_s, description.to_s].join(' ')
-  end
-
   def nesting_name
     num_dashes = parent_pages.size
     num_dashes = 0 if num_dashes < 0
