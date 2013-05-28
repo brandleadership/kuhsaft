@@ -10,24 +10,20 @@ describe Kuhsaft::Page do
       create :page
     end
 
-    let :attr do
-      Kuhsaft::Page.locale_attr :fulltext
-    end
-
     it 'should find any containing the search term' do
-      Kuhsaft::Page.search(attr => 'lorem').should have_at_least(0).items
+      Kuhsaft::Page.search('lorem').should have_at_least(0).items
     end
 
     it 'should find with "English Title"' do
-      Kuhsaft::Page.search(attr => 'English Title').should have_at_least(1).item
+      Kuhsaft::Page.search('English Title').should have_at_least(1).item
     end
 
     it 'should only find published results' do
-      Kuhsaft::Page.search(attr => 'English Title').should be_all { |p| p.published? == true }
+      Kuhsaft::Page.search('English Title').should be_all { |p| p.published? == true }
     end
 
     it 'should find by using the old api' do
-      Kuhsaft::Page.search('English').should == Kuhsaft::Page.search(attr => 'English')
+      Kuhsaft::Page.search('English').should == Kuhsaft::Page.search('English')
     end
   end
 
