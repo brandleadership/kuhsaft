@@ -7,7 +7,11 @@ module Kuhsaft
     end
 
     def collect_fulltext
-      [super, text, read_more_text].join(' ')
+      ActionView::Base.full_sanitizer.sanitize([
+        super,
+        text,
+        read_more_text
+      ].compact.join(' ').strip.gsub(/ +/, ' '))
     end
   end
 end
