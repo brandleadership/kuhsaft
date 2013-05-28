@@ -5,9 +5,7 @@ module Kuhsaft
     def index
       @search = params[:search]
       if @search.present?
-        @pages = Kuhsaft::Page.search(@search)
-      else
-        @pages = Kuhsaft::Page.all
+        @pages = Kuhsaft::Page.unscoped.published.content_page.search(@search)
       end
     end
 
