@@ -17,7 +17,7 @@ loadTextEditor = ->
   CKEDITOR.replaceAll('editor')
 
 checkPageType = ->
-  redirect_url_input = $('#page_url')
+  redirect_url_input = $('#page_redirect_url')
   if ($('#page_page_type option:selected').val() == 'redirect')
     redirect_url_input.removeAttr('disabled')
   else

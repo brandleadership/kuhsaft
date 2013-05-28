@@ -7,8 +7,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   has_ancestry
   acts_as_brick_list
 
-  translate :title, :slug, :keywords, :description, :body, :url, :fulltext
-  attr_accessible :title, :slug, :url, :page_type, :parent_id, :keywords, :description, :published
+  translate :title, :slug, :keywords, :description, :body, :redirect_url, :url, :fulltext
+  attr_accessible :title, :slug, :redirect_url, :url, :page_type, :parent_id, :keywords, :description, :published
 
   default_scope order('position ASC')
 
@@ -19,6 +19,7 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   validates :title, :presence => true
   validates :slug, :presence => true
+  validates :redirect_url, :presence => true, :if => :redirect?
 
   class << self
     def flat_tree(pages = nil)
@@ -70,17 +71,11 @@ class Kuhsaft::Page < ActiveRecord::Base
     if bricks.count == 0 && children.count > 0
       children.first.link
     else
-      if redirect?
-        url
-      else
-        "/#{url}"
-      end
+      "/#{url}"
     end
   end
 
   def create_url
-    return if redirect?
-
     complete_slug = ''
     if parent.present?
       complete_slug << parent.url.to_s

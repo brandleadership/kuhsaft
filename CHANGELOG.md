@@ -2,7 +2,11 @@
 
 - Postgres fulltext search
 
-## 1.5.0
+## 1.6.0 - 2013-05-27
+
+- Implement real redirect in pages_controller for redirect pages
+
+## 1.5.0 - 2013-05-22
 
 - Allow request with empty url splat to be handled by kuhsaft router
   - Allows root etries in host app: `root :to => 'kuhsaft/pages#show'`
