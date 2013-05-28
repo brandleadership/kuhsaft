@@ -30,6 +30,7 @@ module Kuhsaft
     end
 
     after_save do
+      # TODO: replace callback
       brick_list.collect_fulltext
       brick_list.save!
     end
