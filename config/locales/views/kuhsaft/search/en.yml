@@ -1,0 +1,11 @@
+en:
+  kuhsaft:
+    search:
+      results:
+        number-of-results:
+          one: '1 result'
+          other: '%{count} results'
+        no-results: 'No results'
+      form:
+        placeholder: 'Enter search term'
+        search: 'Search'
