@@ -5,7 +5,7 @@ module Kuhsaft
     def index
       @search = params[:search]
       if @search.present?
-        @pages = Kuhsaft::Page.search(Kuhsaft::Page.locale_attr(:fulltext) => @search)
+        @pages = Kuhsaft::Page.search(@search)
       else
         @pages = Kuhsaft::Page.all
       end
