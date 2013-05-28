@@ -12,11 +12,11 @@ module Kuhsaft
     end
 
     def show
-      @url = "#{params[:locale]}/#{params[:url]}" if params[:url].present? && params[:locale].present?
-      @page = Kuhsaft::Page.find_by_url(@url)
-      if @page.present?
-        respond_with @page
-      else
+      url = locale.to_s
+      url += "/#{params[:url]}" if params[:url].present?
+      @page = Kuhsaft::Page.find_by_url(url)
+
+      unless @page.present?
         if respond_to?(:handle_404)
           handle_404
         else

@@ -36,10 +36,6 @@ class Kuhsaft::Page < ActiveRecord::Base
 
       arr
     end
-
-    def find_by_url(url)
-      send "find_by_#{locale_attr(:url)}", url
-    end
   end
 
   def without_self
