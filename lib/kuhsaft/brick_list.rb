@@ -3,7 +3,10 @@ module Kuhsaft
 
     def self.included(base)
       def base.acts_as_brick_list
-        self.has_many :bricks, :class_name => 'Kuhsaft::Brick', :dependent => :destroy, :as => :brick_list
+        self.has_many :bricks,
+          :class_name => 'Kuhsaft::Brick',
+          :dependent => :destroy,
+          :as => :brick_list
       end
     end
 
