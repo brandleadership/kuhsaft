@@ -3,8 +3,9 @@
     %h4= page.title
   %h5= URI.join(root_url, page.link)
 .summary
+  -if page.fulltext.present?
+    %span.fulltext!= page.fulltext
   -if page.keywords.present?
     %span.keywords
       Keywords:
       = page.keywords
-  %p.fulltext= page.fulltext
