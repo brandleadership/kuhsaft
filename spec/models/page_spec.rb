@@ -303,20 +303,9 @@ describe Kuhsaft::Page do
 
     context 'when saved' do
       it 'it collects and assigns the fulltext' do
-        page.should_receive(:collect_fulltext)
+        # 1x page itself, 1x brick after_save callback
+        page.should_receive(:collect_fulltext).twice
         page.save
-      end
-
-      it 'contains the title' do
-        page.fulltext.should include('my title')
-      end
-
-      it 'contains the keywords' do
-        page.fulltext.should include('key words')
-      end
-
-      it 'contains the description' do
-        page.fulltext.should include('descrip tion')
       end
 
       it 'contains the page part content' do
