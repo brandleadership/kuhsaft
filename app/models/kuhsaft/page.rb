@@ -13,9 +13,14 @@ class Kuhsaft::Page < ActiveRecord::Base
   default_scope order('position ASC')
 
   scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
+  scope :content_page, where(:page_type => Kuhsaft::PageType::CONTENT)
   scope :navigation, lambda{ |slug| where(locale_attr(:slug) => slug).where(locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
 
-  before_validation :create_slug, :create_url, :collect_fulltext
+  before_validation :create_slug, :create_url
+
+  before_validation :collect_fulltext do
+    self.fulltext = collect_fulltext
+  end
 
   validates :title, :presence => true
   validates :slug, :presence => true
