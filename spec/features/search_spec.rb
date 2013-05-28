@@ -16,7 +16,7 @@ describe 'pages#index' do
 
     context 'with multiple matches' do
       before do
-        visit kuhsaft.pages_path(:search => 'Chromodorididae')
+        visit kuhsaft.pages_path(:locale => :en, :search => 'Chromodorididae')
       end
 
       it 'renders match count' do
@@ -41,7 +41,7 @@ describe 'pages#index' do
 
     context 'without matches' do
       before do
-        visit kuhsaft.pages_path(:search => 'foobar')
+        visit kuhsaft.pages_path(:locale => :en, :search => 'foobar')
       end
 
       it 'renders match count' do
