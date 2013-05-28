@@ -1,2 +1,10 @@
-= link_to page.link do
-  %p= page.title
+.link
+  = link_to page.link do
+    %h4= page.title
+  %h5= URI.join(root_url, page.link)
+.summary
+  -if page.keywords.present?
+    %span.keywords
+      Keywords:
+      = page.keywords
+  %p.fulltext= page.fulltext
