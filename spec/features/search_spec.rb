@@ -3,15 +3,15 @@ require 'spec_helper'
 describe 'pages#index' do
   context 'with search parameter' do
     let! :page1 do
-      create :page, :title => 'Chromodorididae Ardeadoris'
+      create :page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :title => 'Chromodorididae Ardeadoris'
     end
 
     let! :page2 do
-      create :page, :title => 'Chromodorididae Berlanguella'
+      create :page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :title => 'Chromodorididae Berlanguella'
     end
 
     let! :page3 do
-      create :page, :title => 'Gastropoda'
+      create :page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :title => 'Gastropoda'
     end
 
     context 'with multiple matches' do
@@ -20,7 +20,7 @@ describe 'pages#index' do
       end
 
       it 'renders match count' do
-        page.should have_content("2 Resultate")
+        page.should have_content("2 results")
       end
 
       it 'renders the search results list' do
@@ -45,7 +45,7 @@ describe 'pages#index' do
       end
 
       it 'renders match count' do
-        page.should have_content("Keine Resultate")
+        page.should have_content("No results")
       end
     end
   end
