@@ -19,7 +19,7 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   before_validation :create_slug, :create_url
 
-  before_validation :collect_fulltext do
+  before_validation do
     self.fulltext = collect_fulltext
   end
 
