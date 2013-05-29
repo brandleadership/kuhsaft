@@ -3,15 +3,43 @@ require 'spec_helper'
 describe 'pages#index' do
   context 'with search parameter' do
     let! :page1 do
-      create :page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :title => 'Chromodorididae Ardeadoris'
+      p = create :page,
+        :page_type => Kuhsaft::PageType::CONTENT,
+        :published => true,
+        :title => 'Chromodorididae Ardeadoris'
+      p.bricks << Kuhsaft::TextBrick.new(:locale => I18n.locale, :text => "#{'foo bar' * 300} Chromodorididae #{'foo bar' * 300}")
+      p.save!
+      p
     end
 
     let! :page2 do
-      create :page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :title => 'Chromodorididae Berlanguella'
+      create :page,
+        :page_type => Kuhsaft::PageType::CONTENT,
+        :published => true,
+        :title => 'Chromodorididae Berlanguella'
     end
 
     let! :page3 do
-      create :page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :title => 'Gastropoda'
+      create :page,
+        :page_type => Kuhsaft::PageType::CONTENT,
+        :published => true,
+        :title => 'Gastropoda'
+    end
+
+    context 'with fulltext' do
+      before do
+        visit kuhsaft.pages_path(:locale => :en, :search => 'Chromodorididae')
+      end
+
+      it 'highlights search term in preview' do
+        within("ul.search-results strong.highlight") do
+          page.should have_content('Chromodorididae')
+        end
+      end
+
+      it 'truncates the text' do
+        find('.summary .fulltext').text.length.should < 200
+      end
     end
 
     context 'with multiple matches' do
