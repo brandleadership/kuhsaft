@@ -226,6 +226,29 @@ Simply override the default partial for the main navigation in your app with you
 * Implement the `fulltext` method on your brick, return anything you want to be searchable.
 * Customize the edit form behaviour of your brick by overriding methods like `to_style_class?`. See the `Brick` and `BrickList` files for more methods.
 
+## Integrating search
+
+Kuhsaft supports fulltext search when using PostgreSQL with a simple
+LIKE fallback for any other ActiveRecord DB.
+
+Add a call to the `search_page_form` helper in your views. This renders
+the default search form. The query will be executed by kuhsaft.
+
+    # e.g. _footer.html.haml
+    = search_page_form
+
+To customize the search and result views you can add your own partials
+to your rails app. The following partials are overridable.
+
+    app/views/kuhsaft/search
+    ├── _form.html.haml           # Search form
+    ├── _results.html.haml        # Results list (@pages)
+    └── _results_entry.html.haml  # Single result entry (@page)
+
+When using PostgreSQL, an additional attribute `excerpt` will be
+available on the page model. It includes a highlighted excerpt of the
+matching `fulltext` column.
+
 # LICENSE
 
 See the file LICENSE.
