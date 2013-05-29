@@ -263,6 +263,13 @@ describe Kuhsaft::Page do
         page.link.should eq('/en/news')
       end
     end
+
+    context 'when url part is empty' do
+      it 'strips the trailing slash' do
+        page = create(:page, :page_type => Kuhsaft::PageType::NAVIGATION)
+        page.link.should eq('/en')
+      end
+    end
   end
 
   describe '#navigation?' do

@@ -77,7 +77,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     if bricks.count == 0 && children.count > 0
       children.first.link
     else
-      "/#{url}"
+      url_with_locale
     end
   end
 
@@ -92,8 +92,15 @@ class Kuhsaft::Page < ActiveRecord::Base
     path_segments.join('/')
   end
 
+  def url_with_locale
+    opts = { :locale => I18n.locale }
+    url = url_without_locale
+    opts[:url] = url if url.present?
+    page_path(opts)
+  end
+
   def create_url
-    self.url = page_path(:locale => I18n.locale, :url => url_without_locale)[1..-1]
+    self.url = url_with_locale[1..-1]
   end
 
   def create_slug
