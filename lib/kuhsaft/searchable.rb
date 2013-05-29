@@ -3,6 +3,11 @@ require 'pg_search'
 
 module Kuhsaft
   module Searchable
+    DICTIONARIES = {
+      :en => 'english',
+      :de => 'german',
+    }
+
     extend ActiveSupport::Concern
 
     included do
@@ -17,7 +22,7 @@ module Kuhsaft
               locale_attr(:fulltext)    => 'C',
             },
             :query => query,
-            :using => { :tsearch => { :dictionary => 'english' }}
+            :using => { :tsearch => { :dictionary => DICTIONARIES[I18n.locale] || 'simple' }}
           }
         end
         pg_search_scope :search, cb
