@@ -6,14 +6,16 @@ describe Kuhsaft::PagesController do
   describe '#index' do
     before do
       @pages = [
-        create(:page, :title => 'foo'),
-        create(:page, :title => 'bar')
+        create(:page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :fulltext_de => 'foobar'),
+        create(:page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :fulltext_de => 'barfoo')
       ]
     end
 
     context 'with search parameter' do
       it 'assigns the search results' do
-        get(:index, { :use_route => :kuhsaft, :search => 'foo' })
+        I18n.with_locale :de do
+          get(:index, { :use_route => :kuhsaft, :search => 'foobar' })
+        end
         assigns(:pages).should eq([@pages.first])
       end
     end
@@ -30,7 +32,7 @@ describe Kuhsaft::PagesController do
       context 'when page is not a redirect page' do
         it 'responds with page' do
           page = FactoryGirl.create(:page, :slug => 'dumdidum', :url => 'de/dumdidum')
-          get :show,  { :url => page.slug, :use_route => :kuhsaft, :locale => :de }
+          get :show,  { :url => page.slug, :use_route => :kuhsaft }
           assigns(:page).should eq(page)
         end
       end
@@ -38,7 +40,7 @@ describe Kuhsaft::PagesController do
       context 'when page is a redirect page' do
         it 'redirects to the redirected url' do
           page = FactoryGirl.create(:page, :page_type => 'redirect', :slug => 'dumdidum', :url => 'de/dumdidum', :redirect_url => 'de/redirect_page')
-          get :show,  { :url => page.slug, :use_route => :kuhsaft, :locale => :de }
+          get :show,  { :url => page.slug, :use_route => :kuhsaft }
           expect(response).to redirect_to("/de/redirect_page")
         end
       end
@@ -79,7 +81,7 @@ describe Kuhsaft::PagesController do
       context 'when page is not a redirect page' do
         it 'responds with page' do
           page = FactoryGirl.create(:page, :slug => 'dumdidum', :url => 'de/dumdidum')
-          get :show,  { :url => page.slug, :use_route => :kuhsaft, :locale => :de }
+          get :show,  { :url => page.slug, :use_route => :kuhsaft }
           assigns(:page).should eq(page)
         end
       end
@@ -87,7 +89,7 @@ describe Kuhsaft::PagesController do
       context 'when page is a redirect page' do
         it 'redirects to the redirected url' do
           page = FactoryGirl.create(:page, :page_type => 'redirect', :slug => 'dumdidum', :url => 'de/dumdidum', :redirect_url => 'de/redirect_page')
-          get :show,  { :url => page.slug, :use_route => :kuhsaft, :locale => :de }
+          get :show,  { :url => page.slug, :use_route => :kuhsaft }
           expect(response).to redirect_to("/de/redirect_page")
         end
       end
