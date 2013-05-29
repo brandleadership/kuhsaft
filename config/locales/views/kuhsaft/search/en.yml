@@ -2,6 +2,7 @@ en:
   kuhsaft:
     search:
       results:
+        title: Search results
         number-of-results:
           one: '1 result'
           other: '%{count} results'

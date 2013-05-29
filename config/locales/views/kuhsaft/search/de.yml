@@ -2,6 +2,7 @@ de:
   kuhsaft:
     search:
       results:
+        title: 'Suchresultate'
         number-of-results:
           one: '1 Resultat'
           other: '%{count} Resultate'
