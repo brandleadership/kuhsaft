@@ -3,8 +3,11 @@
     %h4= page.title
   %h5= kuhsaft.page_url(:url => page.url_without_locale)
 .summary
-  -if page.fulltext.present?
-    %span.fulltext!= page.fulltext
+  -if page.excerpt.present?
+    .excerpt!= page.excerpt
+  -elsif page.fulltext.present?
+    .fulltext!= page.fulltext
+
   -if page.keywords.present?
-    %span.keywords
+    .keywords
       = page.keywords

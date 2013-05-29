@@ -25,8 +25,18 @@ module Kuhsaft
             :using => { :tsearch => { :dictionary => DICTIONARIES[I18n.locale] || 'simple' }}
           }
         end
-        pg_search_scope :search, cb
+        pg_search_scope :search_without_excerpt, cb
+        scope :search, lambda { |query|
+          ts_headline = sanitize_sql_array([
+            "ts_headline(%s, plainto_tsquery('%s')) AS excerpt",
+            locale_attr(:fulltext),
+            query
+          ])
+          search_without_excerpt(query).select(ts_headline)
+        }
       else
+        # define empty fallback excerpt attribute
+        attr_reader :excerpt
         scope :search, lambda { |query|
           if query.is_a? Hash
             where("#{query.first[0]} LIKE ?", "%#{query.first[1]}%")

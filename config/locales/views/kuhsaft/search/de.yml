@@ -7,5 +7,5 @@ de:
           other: '%{count} Resultate'
         no-results: 'Keine Resultate'
       form:
-        placeholder: 'Suchbegriff eingeben'
+        placeholder: 'Ihre Suche'
         search: 'Suchen'
