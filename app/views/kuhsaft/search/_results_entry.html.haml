@@ -6,7 +6,7 @@
   -if page.excerpt.present?
     .excerpt!= page.excerpt
   -elsif page.fulltext.present?
-    .fulltext!= page.fulltext
+    .fulltext!= excerpt(highlight(page.fulltext, @search), @search)
 
   -if page.keywords.present?
     .keywords
