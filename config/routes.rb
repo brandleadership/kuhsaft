@@ -11,6 +11,6 @@ Kuhsaft::Engine.routes.draw do
 
   scope ":locale", :locale => /#{I18n.available_locales.join('|')}/ do
     resources :pages, :only => [:index]
-    match '*url' => 'pages#show'
+    match '(*url)' => 'pages#show', :as => :page
   end
 end

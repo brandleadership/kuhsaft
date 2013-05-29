@@ -1,4 +1,5 @@
 class Kuhsaft::Page < ActiveRecord::Base
+  include Kuhsaft::Engine.routes.url_helpers
   include Kuhsaft::Orderable
   include Kuhsaft::Translatable
   include Kuhsaft::BrickList
@@ -80,15 +81,19 @@ class Kuhsaft::Page < ActiveRecord::Base
     end
   end
 
+  # TODO: needs naming and routing refactoring (url/locale/path/slug)
+  def path_segments
+    paths = parent.present? ? parent.path_segments : []
+    paths << slug unless navigation?
+    paths
+  end
+
+  def url_without_locale
+    path_segments.join('/')
+  end
+
   def create_url
-    complete_slug = ''
-    if parent.present?
-      complete_slug << parent.url.to_s
-    else
-      complete_slug = "#{I18n.locale}"
-    end
-    complete_slug << "/#{self.slug}" unless navigation?
-    self.url = complete_slug
+    self.url = page_path(:locale => I18n.locale, :url => url_without_locale)[1..-1]
   end
 
   def create_slug

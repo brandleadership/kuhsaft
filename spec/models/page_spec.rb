@@ -326,4 +326,56 @@ describe Kuhsaft::Page do
       page.url.should be_present
     end
   end
+
+  describe '#url_without_locale' do
+    let :page do
+      create(:page, :slug => 'page')
+    end
+
+    context 'without parent' do
+      it 'returns url without leading /' do
+        page.url_without_locale.should_not start_with '/'
+      end
+
+      it 'returns a single slug' do
+        page.url_without_locale.should == 'page'
+      end
+    end
+
+    context 'when parent is navigation' do
+      let :parent do
+        create(:page, :page_type => Kuhsaft::PageType::NAVIGATION)
+      end
+
+      let :child do
+        create(:page, :slug => 'child', :parent => parent)
+      end
+
+      it 'returns url without leading /' do
+        child.url_without_locale.should_not start_with '/'
+      end
+
+      it 'does not concatenate the parent slug' do
+        child.url_without_locale.should == 'child'
+      end
+    end
+
+    context 'when parent is normal page' do
+      let :parent do
+        create(:page, :slug => 'parent')
+      end
+
+      let :child do
+        create(:page, :slug => 'child', :parent => parent)
+      end
+
+      it 'returns url without leading /' do
+        child.url_without_locale.should_not start_with '/'
+      end
+
+      it 'does not concatenate the parent slug' do
+        child.url_without_locale.should == 'parent/child'
+      end
+    end
+  end
 end

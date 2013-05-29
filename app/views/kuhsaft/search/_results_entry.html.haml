@@ -1,7 +1,7 @@
 .link
   = link_to page.link do
     %h4= page.title
-  %h5= URI.join(root_url, page.link)
+  %h5= kuhsaft.page_url(:url => page.url_without_locale)
 .summary
   -if page.fulltext.present?
     %span.fulltext!= page.fulltext
