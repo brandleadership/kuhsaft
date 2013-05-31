@@ -13,12 +13,27 @@ describe 'Cms/Pages' do
     end
 
     describe '#create' do
-      it 'creates a new page' do
-        expect { click_on 'Create Seite' }.to change(Kuhsaft::Page, :count).by(1)
+      context 'when page is valid' do
+        it 'creates a new page' do
+          expect { click_on 'Create Seite' }.to change(Kuhsaft::Page, :count).by(1)
+        end
+
+        it 'is not possible to change the value in url' do
+          page.find('#page_url')['disabled'].should be_true
+        end
       end
 
-      it 'is not possible to change the value in url' do
-        page.find('#page_url')['disabled'].should be_true
+      context 'when page is invalid' do
+        it 'does not create a routing error by switching the locale' do
+          @page = FactoryGirl.create(:page, :title => 'DummyPage', :title_en => 'DummyEN', :slug => 'dummy_page')
+          visit kuhsaft.edit_cms_page_path(@page)
+          fill_in 'page_title', :with => ''
+          click_on 'Update Seite'
+          within '.nav-pills' do
+            click_on 'EN'
+          end
+          page.should have_content(@page.title_en)
+        end
       end
     end
 
