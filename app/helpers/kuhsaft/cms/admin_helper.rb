@@ -6,13 +6,16 @@ module Kuhsaft
         I18n.available_locales.size > 1
       end
 
-      def link_to_other_locale(locale)
-        if @page.present? && @page.invalid? && @page.id.present?
-          path = kuhsaft.edit_cms_page_path(@page, :content_locale => locale)
-        else
-          path = url_for(:content_locale => locale)
+      def link_to_content_locale(locale)
+        action = params[:action]
+        if params[:action] == 'create'
+          action = 'new'
+        elsif params[:action] == 'update'
+          action = 'edit'
         end
-        link_to locale.to_s.upcase, path
+
+        link_to locale.to_s.upcase, url_for(
+          :action => action, :content_locale => locale)
       end
     end
   end
