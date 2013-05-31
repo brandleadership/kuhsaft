@@ -1,0 +1,13 @@
+.link
+  = link_to page.link do
+    %h4= page.title
+  %h5= kuhsaft.page_url(:url => page.url_without_locale)
+.summary
+  -if page.excerpt.present?
+    .excerpt!= page.excerpt
+  -elsif page.fulltext.present?
+    .fulltext!= excerpt(highlight(page.fulltext, @search), @search)
+
+  -if page.keywords.present?
+    .keywords
+      = page.keywords

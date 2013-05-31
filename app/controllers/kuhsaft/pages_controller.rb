@@ -2,6 +2,13 @@ module Kuhsaft
   class PagesController < ::ApplicationController
     respond_to :html
 
+    def index
+      @search = params[:search]
+      if @search.present?
+        @pages = Kuhsaft::Page.unscoped.published.content_page.search(@search)
+      end
+    end
+
     def show
       url = locale.to_s
       url += "/#{params[:url]}" if params[:url].present?

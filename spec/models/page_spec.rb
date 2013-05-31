@@ -21,6 +21,10 @@ describe Kuhsaft::Page do
     it 'should only find published results' do
       Kuhsaft::Page.search('English Title').should be_all { |p| p.published? == true }
     end
+
+    it 'should find by using the old api' do
+      Kuhsaft::Page.search('English').should == Kuhsaft::Page.search('English')
+    end
   end
 
   describe '.position_of' do
@@ -69,6 +73,15 @@ describe Kuhsaft::Page do
       p1, p2, p3 = 3.times.map { create(:page) }
       p2.update_attribute :published, Kuhsaft::PublishState::UNPUBLISHED
       Kuhsaft::Page.published.should be_all { |p| p.published?.should be_true }
+    end
+  end
+
+  describe '#content_page' do
+    it 'returns only content pages ("" or nil)' do
+      p1, p2, p3 = 3.times.map { create(:page) }
+      p2.update_attribute :page_type, Kuhsaft::PageType::REDIRECT
+      p3.update_attribute :page_type, nil
+      Kuhsaft::Page.content_page.should == [p1, p3]
     end
   end
 
@@ -259,6 +272,13 @@ describe Kuhsaft::Page do
         page.link.should eq('/en/news')
       end
     end
+
+    context 'when url part is empty' do
+      it 'strips the trailing slash' do
+        page = create(:page, :page_type => Kuhsaft::PageType::NAVIGATION)
+        page.link.should eq('/en')
+      end
+    end
   end
 
   describe '#navigation?' do
@@ -303,18 +323,6 @@ describe Kuhsaft::Page do
         page.save
       end
 
-      it 'contains the title' do
-        page.fulltext.should include('my title')
-      end
-
-      it 'contains the keywords' do
-        page.fulltext.should include('key words')
-      end
-
-      it 'contains the description' do
-        page.fulltext.should include('descrip tion')
-      end
-
       it 'contains the page part content' do
         page.fulltext.should include('oh la la')
       end
@@ -331,6 +339,58 @@ describe Kuhsaft::Page do
       page.url.should be_nil
       page.valid?
       page.url.should be_present
+    end
+  end
+
+  describe '#url_without_locale' do
+    let :page do
+      create(:page, :slug => 'page')
+    end
+
+    context 'without parent' do
+      it 'returns url without leading /' do
+        page.url_without_locale.should_not start_with '/'
+      end
+
+      it 'returns a single slug' do
+        page.url_without_locale.should == 'page'
+      end
+    end
+
+    context 'when parent is navigation' do
+      let :parent do
+        create(:page, :page_type => Kuhsaft::PageType::NAVIGATION)
+      end
+
+      let :child do
+        create(:page, :slug => 'child', :parent => parent)
+      end
+
+      it 'returns url without leading /' do
+        child.url_without_locale.should_not start_with '/'
+      end
+
+      it 'does not concatenate the parent slug' do
+        child.url_without_locale.should == 'child'
+      end
+    end
+
+    context 'when parent is normal page' do
+      let :parent do
+        create(:page, :slug => 'parent')
+      end
+
+      let :child do
+        create(:page, :slug => 'child', :parent => parent)
+      end
+
+      it 'returns url without leading /' do
+        child.url_without_locale.should_not start_with '/'
+      end
+
+      it 'does not concatenate the parent slug' do
+        child.url_without_locale.should == 'parent/child'
+      end
     end
   end
 end

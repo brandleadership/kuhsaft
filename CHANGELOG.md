@@ -1,6 +1,10 @@
-## features/language_switch_optimizing
+## 1.7.0 - 2013-05-31
 
 - Avoid routing error when editing a invalid page and change locale
+
+- Postgres fulltext search
+  - For details see README
+  - Important: Please install and run the new migrations with `rake kuhsaft:install:migrations db:migrate`
 
 ## 1.6.0 - 2013-05-27
 

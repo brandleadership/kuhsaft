@@ -1,26 +1,49 @@
 class Kuhsaft::Page < ActiveRecord::Base
+  include Kuhsaft::Engine.routes.url_helpers
   include Kuhsaft::Orderable
   include Kuhsaft::Translatable
   include Kuhsaft::BrickList
+  include Kuhsaft::Searchable
 
   has_ancestry
   acts_as_brick_list
 
-  translate :title, :slug, :keywords, :description, :body, :redirect_url, :url, :fulltext
-  attr_accessible :title, :slug, :redirect_url, :url, :page_type, :parent_id, :keywords, :description, :published
+  translate :title,
+    :slug,
+    :keywords,
+    :description,
+    :body,
+    :redirect_url,
+    :url
+
+  attr_accessible :title,
+    :slug,
+    :redirect_url,
+    :url,
+    :page_type,
+    :parent_id,
+    :keywords,
+    :description,
+    :published
 
   default_scope order('position ASC')
 
   scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
-  scope :search, lambda{ |term| published.where("`#{locale_attr(:fulltext)}` LIKE ?", "%#{term}%") }
-  scope :navigation, lambda{ |slug| where(locale_attr(:slug) => slug).where(locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
 
-  before_validation :create_slug, :create_url, :collect_fulltext
+  # TODO: cleanup page_types (content pages => nil or PageType::CONTENT
+  scope :content_page, where(
+    ["page_type is NULL or page_type = ?",
+     Kuhsaft::PageType::CONTENT])
+
+  scope :navigation, lambda{ |slug|
+    where(locale_attr(:slug) => slug).where(
+      locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
+
+  before_validation :create_slug, :create_url
 
   validates :title, :presence => true
   validates :slug, :presence => true
   validates :redirect_url, :presence => true, :if => :redirect?
-  #validates :url, :uniqueness => true, :unless => :navigation?
 
   class << self
     def flat_tree(pages = nil)
@@ -72,28 +95,35 @@ class Kuhsaft::Page < ActiveRecord::Base
     if bricks.count == 0 && children.count > 0
       children.first.link
     else
-      "/#{url}"
+      url_with_locale
     end
   end
 
+  # TODO: needs naming and routing refactoring (url/locale/path/slug)
+  def path_segments
+    paths = parent.present? ? parent.path_segments : []
+    paths << slug unless navigation?
+    paths
+  end
+
+  def url_without_locale
+    path_segments.join('/')
+  end
+
+  def url_with_locale
+    opts = { :locale => I18n.locale }
+    url = url_without_locale
+    opts[:url] = url if url.present?
+    page_path(opts)
+  end
+
   def create_url
-    complete_slug = ''
-    if parent.present?
-      complete_slug << parent.url.to_s
-    else
-      complete_slug = "#{I18n.locale}"
-    end
-    complete_slug << "/#{self.slug}" unless navigation?
-    self.url = complete_slug
+    self.url = url_with_locale[1..-1]
   end
 
   def create_slug
     has_slug = title.present? && slug.blank?
     self.slug = title.downcase.parameterize if has_slug
-  end
-
-  def collect_fulltext
-    self.fulltext =[super, title.to_s, keywords.to_s, description.to_s].join(' ')
   end
 
   def nesting_name

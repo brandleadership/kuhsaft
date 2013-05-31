@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'rake'
 
-  s.add_dependency 'rails', '~>3.2.11'
+  s.add_dependency 'rails', '~> 3.2.11'
   s.add_dependency 'haml', '>= 3.1'
   s.add_dependency 'compass', '>= 0.11.1'
   s.add_dependency 'compass-rails'
@@ -40,4 +40,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'ancestry'
   s.add_dependency 'bootstrap-sass', '>= 2.2.2.0'
   s.add_dependency 'ckeditor', '4.0.2'
+  s.add_dependency 'pg_search'
+  s.add_dependency 'htmlentities'
 end

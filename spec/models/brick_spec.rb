@@ -107,4 +107,28 @@ describe Kuhsaft::Brick do
       brick.uploader?.should be_false
     end
   end
+
+  describe '#after_save' do
+    describe 'update_fulltext' do
+      let! :brick do
+        Kuhsaft::Brick.new.tap do |b|
+          b.type = Kuhsaft::BrickType.new
+        end
+      end
+
+      let! :brick_list do
+        p = create(:page)
+        p.bricks << brick
+        p.save
+        p
+      end
+
+      it 'updates fulltext on bricklist after saving a single brick' do
+        brick.brick_list.should_receive(:update_fulltext)
+        brick.brick_list.should_receive(:save!)
+        brick.text = 'foobar'
+        brick.save
+      end
+    end
+  end
 end

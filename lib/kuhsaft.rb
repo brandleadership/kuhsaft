@@ -2,6 +2,7 @@ module Kuhsaft
   require 'kuhsaft/engine'
   require 'kuhsaft/orderable'
   require 'kuhsaft/translatable'
+  require 'kuhsaft/searchable'
   require 'kuhsaft/brick_list'
   require 'kuhsaft/partial_extractor'
   require 'simple_form'
