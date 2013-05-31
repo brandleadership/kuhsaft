@@ -79,9 +79,9 @@ describe Kuhsaft::Page do
   describe '#content_page' do
     it 'returns only content pages ("" or nil)' do
       p1, p2, p3 = 3.times.map { create(:page) }
-      p2.update_attribute :page_type, Kuhsaft::PageType::Redirect
+      p2.update_attribute :page_type, Kuhsaft::PageType::REDIRECT
       p3.update_attribute :page_type, nil
-      Kuhsaft::Page.published.should be [p1, p3]
+      Kuhsaft::Page.content_page.should == [p1, p3]
     end
   end
 
@@ -319,8 +319,7 @@ describe Kuhsaft::Page do
 
     context 'when saved' do
       it 'it collects and assigns the fulltext' do
-        # 1x page itself, 1x brick after_save callback
-        page.should_receive(:collect_fulltext).twice
+        page.should_receive(:collect_fulltext)
         page.save
       end
 
