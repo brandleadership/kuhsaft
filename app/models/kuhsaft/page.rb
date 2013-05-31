@@ -15,6 +15,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     :body,
     :redirect_url,
     :url
+
   attr_accessible :title,
     :slug,
     :redirect_url,
