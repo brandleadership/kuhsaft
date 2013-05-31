@@ -17,9 +17,9 @@ class Kuhsaft::Page < ActiveRecord::Base
   scope :content_page, where(:page_type => Kuhsaft::PageType::CONTENT)
   scope :navigation, lambda{ |slug| where(locale_attr(:slug) => slug).where(locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
 
-  before_validation :create_slug, :create_url
+  before_validation :create_slug, :create_url, :update_fulltext
 
-  before_validation do
+  def update_fulltext
     self.fulltext = collect_fulltext
   end
 

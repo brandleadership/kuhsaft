@@ -31,7 +31,7 @@ module Kuhsaft
 
     after_save do
       # TODO: replace callback
-      brick_list.collect_fulltext
+      brick_list.update_fulltext
       brick_list.save!
     end
 
