@@ -3,14 +3,30 @@ require 'pg_search'
 
 module Kuhsaft
   module Searchable
+    extend ActiveSupport::Concern
+
     DICTIONARIES = {
       :en => 'english',
       :de => 'german',
     }
 
-    extend ActiveSupport::Concern
+    def update_fulltext
+      self.fulltext = collect_fulltext
+    end
 
     included do
+      unless included_modules.include?(BrickList)
+        raise 'Kuhsaft::Searchable needs Kuhsaft::BrickList to be included'
+      end
+
+      if included_modules.include?(Translatable)
+        translate :fulltext
+      else
+        attr_accessible :fulltext
+      end
+
+      before_validation :update_fulltext
+
       if ActiveRecord::Base.connection.instance_values['config'][:adapter] == 'postgresql'
         include ::PgSearch
         cb = lambda do |query|
