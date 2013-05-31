@@ -1,3 +1,7 @@
+## features/language_switch_optimizing
+
+- Avoid routing error when editing a invalid page and change locale
+
 ## 1.6.0 - 2013-05-27
 
 - Implement real redirect in pages_controller for redirect pages
