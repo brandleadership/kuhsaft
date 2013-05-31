@@ -45,6 +45,19 @@ describe 'Cms/Pages' do
           expect { click_on 'Update Seite' }.to_not change{ @page.reload.url }
         end
       end
+
+      context 'when page is invalid' do
+        it 'does not create a routing error by switching the locale' do
+          @page = FactoryGirl.create(:page, :title => 'DummyPage', :title_en => 'DummyEN', :slug => 'dummy_page')
+          visit kuhsaft.edit_cms_page_path(@page)
+          fill_in 'page_title', :with => ''
+          click_on 'Update Seite'
+          within '.nav-pills' do
+            click_on 'EN'
+          end
+          page.should have_content(@page.title_en)
+        end
+      end
     end
   end
 end
