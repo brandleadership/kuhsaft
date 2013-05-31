@@ -1,6 +1,8 @@
 ## features/search
 
 - Postgres fulltext search
+  - For details see README
+  - Important: Please install and run the new migrations with `rake kuhsaft:install:migrations db:migrate`
 
 ## 1.6.0 - 2013-05-27
 
