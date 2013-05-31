@@ -51,6 +51,7 @@ module Kuhsaft
           search_without_excerpt(query).select(ts_headline)
         }
       else
+        # TODO: Tests run in this branch because dummy app uses mysql. Change it!
         # define empty fallback excerpt attribute
         attr_reader :excerpt
         scope :search, lambda { |query|
