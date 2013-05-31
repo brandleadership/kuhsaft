@@ -8,8 +8,22 @@ class Kuhsaft::Page < ActiveRecord::Base
   has_ancestry
   acts_as_brick_list
 
-  translate :title, :slug, :keywords, :description, :body, :redirect_url, :url, :fulltext
-  attr_accessible :title, :slug, :redirect_url, :url, :page_type, :parent_id, :keywords, :description, :published
+  translate :title,
+    :slug,
+    :keywords,
+    :description,
+    :body,
+    :redirect_url,
+    :url
+  attr_accessible :title,
+    :slug,
+    :redirect_url,
+    :url,
+    :page_type,
+    :parent_id,
+    :keywords,
+    :description,
+    :published
 
   default_scope order('position ASC')
 
