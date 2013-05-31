@@ -29,10 +29,12 @@ class Kuhsaft::Page < ActiveRecord::Base
   default_scope order('position ASC')
 
   scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
+
   # TODO: cleanup page_types (content pages => nil or PageType::CONTENT
   scope :content_page, where(
     ["page_type is NULL or page_type = ?",
      Kuhsaft::PageType::CONTENT])
+
   scope :navigation, lambda{ |slug|
     where(locale_attr(:slug) => slug).where(
       locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
