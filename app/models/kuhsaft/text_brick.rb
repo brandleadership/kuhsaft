@@ -14,7 +14,6 @@ module Kuhsaft
     def collect_fulltext
       HTML_ENTITIES.decode(
         strip_tags([
-          super,
           text,
           read_more_text
         ].compact.join(' ')).squish
