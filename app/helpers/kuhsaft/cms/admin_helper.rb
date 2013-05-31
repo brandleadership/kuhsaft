@@ -7,7 +7,7 @@ module Kuhsaft
       end
 
       def link_to_other_locale(locale)
-        if @page.present? && @page.invalid?
+        if @page.present? && @page.invalid? && @page.id.present?
           path = kuhsaft.edit_cms_page_path(@page, :content_locale => locale)
         else
           path = url_for(:content_locale => locale)
