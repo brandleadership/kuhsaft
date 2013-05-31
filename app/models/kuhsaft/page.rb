@@ -28,7 +28,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   default_scope order('position ASC')
 
   scope :published, where(:published => Kuhsaft::PublishState::PUBLISHED)
-  scope :content_page, where(:page_type => Kuhsaft::PageType::CONTENT)
   scope :navigation, lambda{ |slug| where(locale_attr(:slug) => slug).where(locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
 
   before_validation :create_slug, :create_url, :update_fulltext
@@ -36,6 +35,10 @@ class Kuhsaft::Page < ActiveRecord::Base
   def update_fulltext
     self.fulltext = collect_fulltext
   end
+  # TODO: cleanup page_types (content pages => nil or PageType::CONTENT
+  scope :content_page, where(
+    ["page_type is NULL or page_type = ?",
+     Kuhsaft::PageType::CONTENT])
 
   validates :title, :presence => true
   validates :slug, :presence => true

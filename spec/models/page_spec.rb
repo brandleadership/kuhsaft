@@ -76,6 +76,15 @@ describe Kuhsaft::Page do
     end
   end
 
+  describe '#content_page' do
+    it 'returns only content pages ("" or nil)' do
+      p1, p2, p3 = 3.times.map { create(:page) }
+      p2.update_attribute :page_type, Kuhsaft::PageType::Redirect
+      p3.update_attribute :page_type, nil
+      Kuhsaft::Page.published.should be [p1, p3]
+    end
+  end
+
   describe "#state_class" do
 
     let(:page) { Kuhsaft::Page.new }
