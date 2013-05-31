@@ -1,5 +1,10 @@
+require 'htmlentities'
+
 module Kuhsaft
   class TextBrick < Brick
+    include ActionView::Helpers::SanitizeHelper
+    HTML_ENTITIES = HTMLEntities.new
+
     attr_accessible :text, :read_more_text
 
     def user_can_add_childs?
@@ -7,11 +12,13 @@ module Kuhsaft
     end
 
     def collect_fulltext
-      ActionView::Base.full_sanitizer.sanitize([
-        super,
-        text,
-        read_more_text
-      ].compact.join(' ').strip.gsub(/ +/, ' '))
+      HTML_ENTITIES.decode(
+        strip_tags([
+          super,
+          text,
+          read_more_text
+        ].compact.join(' ')).squish
+      )
     end
   end
 end
