@@ -36,6 +36,15 @@ module Kuhsaft
       brick_list.save!
     end
 
+    # TODO: yes. temporary workaround. see above
+    def update_fulltext
+      if brick_list.is_a? Page
+        brick_list.update_fulltext
+      else
+        brick_list.brick_list.update_fulltext
+      end
+    end
+
     def to_edit_partial_path
       path = self.to_partial_path.split '/'
       path << 'edit'
