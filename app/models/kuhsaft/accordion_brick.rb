@@ -1,7 +1,6 @@
 module Kuhsaft
   class AccordionBrick < ColumnBrick
     attr_accessible :caption
-    validates :caption, :presence => true
 
     # TODO: validate only accept AccordionItem as child
 
