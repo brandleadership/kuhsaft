@@ -1,3 +1,8 @@
+## 1.7.1 - 2013-06-06
+
+- remove validation on caption for accordion brick.
+- add workaround for failing save of nested bricks due to after_save callback
+
 ## 1.7.0 - 2013-05-31
 
 - Avoid routing error when editing a invalid page and change locale
