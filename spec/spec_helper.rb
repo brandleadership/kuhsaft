@@ -38,8 +38,10 @@ RSpec.configure do |config|
   config.before :suite do
 
     load File.expand_path("../dummy/Rakefile", __FILE__)
-    Rake::Task['kuhsaft:install:migrations'].invoke
-    Rails::Generators.invoke('kuhsaft:install:assets')
+    Dir.chdir(File.join(File.dirname(__FILE__), './dummy')) do
+      Rake::Task['kuhsaft:install:migrations'].invoke
+      Rails::Generators.invoke('kuhsaft:install:assets')
+    end
 
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
