@@ -1,18 +1,7 @@
-#!/usr/bin/env rake
-begin
-  require 'bundler/setup'
-rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
-end
 
-require 'rspec'
+require "bundler/gem_tasks"
+require 'rake/testtask'
 require 'rspec/core/rake_task'
-
-RSpec::Core::RakeTask.new(:spec) do |specs|
-  specs.rspec_opts = %w{--color}
-end
-
-task :default => :spec
 
 begin
   require 'rdoc/task'
@@ -22,6 +11,9 @@ rescue LoadError
   RDoc::Task = Rake::RDocTask
 end
 
+desc "Run specs"
+RSpec::Core::RakeTask.new
+
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'Kuhsaft'
@@ -30,4 +22,4 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-Bundler::GemHelper.install_tasks
+task :default => [:spec]
