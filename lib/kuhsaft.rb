@@ -11,8 +11,10 @@ module Kuhsaft
   require 'compass'
   require 'compass-rails'
   require 'jquery-rails'
+  require 'jquery-ui-rails'
   require 'ancestry'
   require 'bootstrap-sass'
   require 'haml'
   require 'ckeditor'
+  require 'protected_attributes'
 end
