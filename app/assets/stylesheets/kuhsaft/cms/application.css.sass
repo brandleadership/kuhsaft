@@ -10,9 +10,6 @@ $borderRadiusLarge: 0px
 $borderRadiusSmall: 0px
 
 @import bootstrap
-@import compass/css3
-@import nestable
-
 // base styles
 
 body
@@ -32,7 +29,8 @@ form
 .breadcrumb
   background: #fff
   opacity: 0.4
-  +single-transition(all, 0.3s)
+  // removed compass
+  //+single-transition(all, 0.3s)
 
 .breadcrumb:hover
   opacity: 1
@@ -58,8 +56,9 @@ form
   padding: 0.5em
 
   .btn
-    +opacity(0)
-    +single-transition(oapcity, 0.2s)
+    //removed compass
+    //+opacity(0)
+    //+single-transition(oapcity, 0.2s)
 
   &:hover
     .btn
