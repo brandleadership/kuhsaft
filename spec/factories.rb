@@ -2,6 +2,7 @@ FactoryGirl.define do
   sequence(:title) { |n| n }
 
   factory :page, :class => 'Kuhsaft::Page' do |p|
+    p.parent nil
     p.position 1
     p.title { "English Title #{FactoryGirl.generate(:title)}" }
     p.published 1
