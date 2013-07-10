@@ -24,7 +24,8 @@ class Kuhsaft::Page < ActiveRecord::Base
     :parent_id,
     :keywords,
     :description,
-    :published
+    :published,
+    :position
 
   default_scope order('position ASC')
 

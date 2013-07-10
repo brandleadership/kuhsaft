@@ -1,3 +1,5 @@
+require 'kuhsaft/page_tree'
+
 module Kuhsaft
   module Cms
     class PagesController < AdminController
@@ -48,6 +50,10 @@ module Kuhsaft
         @page = Kuhsaft::Page.find(params[:id])
         @page.destroy
         redirect_to kuhsaft.cms_pages_path
+      end
+
+      def sort
+        Kuhsaft::PageTree.update(params[:page_tree])
       end
     end
   end

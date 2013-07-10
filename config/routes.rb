@@ -1,6 +1,8 @@
 Kuhsaft::Engine.routes.draw do
   namespace :cms do
-    resources :pages, :except => :show
+    resources :pages, :except => :show do
+      post :sort, :on => :collection
+    end
     resources :bricks, :except => [:new, :edit, :index] do
       post :sort, :on => :collection
     end

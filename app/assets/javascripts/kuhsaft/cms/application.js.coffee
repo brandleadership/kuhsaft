@@ -85,3 +85,9 @@ $(document).ready ->
     collapseBtnHTML: '<button data-action="collapse"><i class="icon-minus-sign"></i></button>'
     expandBtnHTML: '<button data-action="expand"><i class="icon-plus-sign"></i></button>'
   )
+
+  $('.dd').on('change', ->
+    pageTree = $('.dd').nestable('serialize')
+    url = '/cms/pages/sort'
+    $.post(url, { page_tree: pageTree }, "json")
+  )
