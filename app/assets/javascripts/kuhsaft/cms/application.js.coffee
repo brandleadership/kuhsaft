@@ -9,6 +9,7 @@
 #= require jquery_ujs
 #= require bootstrap
 #= require ckeditor/init
+#= require jquery.nestable
 #= require_tree .
 
 CKEDITOR.config.customConfig = '/assets/kuhsaft/cms/ck-config.js'
@@ -79,3 +80,8 @@ $(document).ready ->
 
   $('#page_page_type').change ->
     checkPageType()
+
+  $('.dd').nestable(
+    collapseBtnHTML: '<button data-action="collapse"><i class="icon-minus-sign"></i></button>'
+    expandBtnHTML: '<button data-action="expand"><i class="icon-plus-sign"></i></button>'
+  )

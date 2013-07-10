@@ -2,12 +2,13 @@
 .actions.row
   .span5
   .span3
-    = link_to kuhsaft.new_cms_page_path, :class => 'btn btn-primary' do
+    = link_to kuhsaft.new_cms_page_path, class: 'btn btn-primary' do
       %i.icon-plus-sign.icon-white
       = t('.add_page')
   .span4
 
 .row
   .span8.pages-list
-    = render :partial => 'branch', :locals => { :pages => @pages }
+    .dd
+      = render partial: 'branch', locals: { pages: @pages }
   .span4

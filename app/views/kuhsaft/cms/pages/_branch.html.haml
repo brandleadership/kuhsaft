@@ -1,12 +1,13 @@
 - unless pages.blank?
-  - pages.each do |page|
-    .branch-group{ :'data-id' => page.id, :'data-put-url' => kuhsaft.cms_page_path(page) }
-      .row-fluid.branch{ :class => page.state_class }
-        .span9
-          .branch-title
-            = link_to page.title.presence, kuhsaft.edit_cms_page_path(page), :class => 'btn btn-link'
-        .span3
-          .pull-right
+  %ol.dd-list
+    - pages.each do |page|
+      %li.dd-item.dd3-item{ 'data-id' => page.id }
+        .dd-handle.dd3-handle
+          handle
+        .dd3-content{ class: page.state_class }
+          = link_to page.title.presence, kuhsaft.edit_cms_page_path(page)
+
+          .button-group
             - if page.children.empty?
               = link_to kuhsaft.cms_page_path(page), :confirm => t('kuhsaft.cms.admin.confirm_delete', :name => page.title), :method => :delete, :class => 'btn btn-small btn-danger' do
                 %i.icon-trash.icon-white
@@ -15,5 +16,5 @@
               %i.icon-plus-sign
               = t('kuhsaft.cms.pages.index.add_page')
 
-      - unless page.children.empty?
-        = render :partial => 'branch', :locals => { :pages => page.children }
+        - unless page.children.empty?
+          = render partial: 'branch', locals: { pages:  page.children }
