@@ -1,3 +1,7 @@
+## features/1685_sortable_page_tree
+
+- Implement nested sortable list: Pages can be reordered by drag and drop
+
 ## 1.7.1 - 2013-06-06
 
 - remove validation on caption for accordion brick.
