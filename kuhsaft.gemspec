@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'rake'
 
-  s.add_dependency 'compass-rails'
   s.add_dependency 'coffee-rails'
   s.add_dependency 'haml', '>= 4.0.3'
   s.add_dependency 'carrierwave'#, '>= 0.7.1'
@@ -45,4 +44,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form', '3.0.0.rc'
   s.add_dependency 'protected_attributes'
   s.add_dependency 'jquery-ui-rails'
+  s.add_dependency 'bourbon'
 end
