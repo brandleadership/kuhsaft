@@ -1,3 +1,13 @@
+## features/rails4
+
+- Make Kuhsaft Rails 4 Compatible
+  - replace compass with bourbon
+  - use lambdas in scopes
+  - use jquery-ui-rails and protected_attributes
+
+
+  **CAUTION WHEN MERGING INTO MASTER: This branch will not work with rails < 4**
+
 ## 1.8.0 - 2013-07-15
 
 - Implement nested sortable list: Pages can be reordered by drag and drop
