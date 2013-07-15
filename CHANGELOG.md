@@ -1,4 +1,4 @@
-## features/1685_sortable_page_tree
+## 1.8.0 - 2013-07-15
 
 - Implement nested sortable list: Pages can be reordered by drag and drop
 
