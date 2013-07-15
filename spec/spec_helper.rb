@@ -28,7 +28,6 @@ RSpec.configure do |config|
   require 'rspec/expectations'
   require 'carrierwave/test/matchers'
   require 'rails/generators'
-  
 
   config.include RSpec::Matchers
   config.include CarrierWave::Test::Matchers
