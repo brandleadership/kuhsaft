@@ -22,4 +22,12 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+task :setup do
+  Dir.chdir('spec/dummy') do
+    `bundle exec rake db:create`
+    `bundle exec rake db:migrate`
+    `bundle exec rake db:test:prepare`
+  end
+end
+
 task :default => [:spec]

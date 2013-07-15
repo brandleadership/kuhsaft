@@ -4,6 +4,7 @@ rvm:
 - 1.9.2
 - 1.9.3
 - 2.0.0
+before_script: bundle exec rake setup
 notifactions:
   hipchat:
     secure: "l+Mrl7/cIBzmlPVm3j3CpCz3d8vZN8/q7SPW/0UDLyQc+parjg3o2mkFPuBfw+9QOw2Ian0dlmnUhtFbAf4w/IXrNqnIshXNSsHlSjJ2dtrsYxfKqxOIxxXeIMAuB0eBqEj75oB7OPwYMIB1LHr/RP7RIFhufB7PkxkJ4+FZG0s="
