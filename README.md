@@ -61,6 +61,18 @@ Load the Kuhsaft assets into your app, so you have working grids, widgets etc:
     # application.js.coffee
     //= require 'kuhsaft/application'
 
+Finally, you need to define the image sizes for the image brick or use
+the defaults:
+
+    # your_app/config/initializers/kuhsaft.rb
+    Rails.application.config.to_prepare do
+      Kuhsaft::Engine.configure do
+        config.image_sizes.build_defaults! # creates 960x540 and 320x180 sizes
+      end
+    end
+
+See "Customizing The Image Brick" for more details.
+
 ## Authentication
 
 Kuhsaft itself does not ship with any form of authentication. However, it is fairly easy to add by plugging into the Kuhsaft::Cms::AdminController. An example with devise:
