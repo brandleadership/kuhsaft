@@ -1,4 +1,6 @@
-[![Build Status](https://api.travis-ci.org/screenconcept/kuhsaft.png)](http://travis-ci.org/screenconcept/kuhsaft)
+[![Build Status](https://travis-ci.org/screenconcept/kuhsaft.png)](https://travis-ci.org/screenconcept/kuhsaft)
+[![Code Climate](https://codeclimate.com/github/screenconcept/kuhsaft.png)](https://codeclimate.com/github/screenconcept/kuhsaft)
+[![Gem Version](https://badge.fury.io/rb/kuhsaft.png)](http://badge.fury.io/rb/kuhsaft)
 
 # Kuhsaft. A CMS as simple as it could be
 
