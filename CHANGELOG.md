@@ -1,3 +1,7 @@
+## 2.0.1 / 1.8.1 - 2013-07-16
+
+- Bugfix: Explicitly require nestable css, fixes missing styling of pages index
+
 ## 2.0.0 - 2013-07-15
 
 - Make Kuhsaft Rails 4 Compatible
