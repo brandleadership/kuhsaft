@@ -1,3 +1,7 @@
+## 1.8.1 - 2013-07-16
+
+- Bugfix: Explicitly require nestable css, fixes missing styling of pages index
+
 ## 1.8.0 - 2013-07-15
 
 - Implement nested sortable list: Pages can be reordered by drag and drop
