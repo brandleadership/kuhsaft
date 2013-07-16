@@ -1,12 +1,9 @@
 ---
 language: ruby
 rvm:
-- 1.9.2
-- 1.9.3
+- 2.0.0
+before_script: bundle exec rake setup
+script: bundle exec rake
 notifactions:
-  campfire:
-  - secret: ! 'QrdlvBVmKlkrBSYBMrJ0MbQWGbacMsN0j+rPZGN0tgGZpyoiMhq10ismUxrR
-
-      uAU1OXS+B5RxwVmrdd4F4MvNUDECE8NYqefKOZaXd1uIcG129ORlO3dNmvVg
-
-      wSvFY5D6Fb9dSrBbwhMQrgpBC/djyxkMLorkqh2iDARty+/TVR4='
+  hipchat:
+    secure: "l+Mrl7/cIBzmlPVm3j3CpCz3d8vZN8/q7SPW/0UDLyQc+parjg3o2mkFPuBfw+9QOw2Ian0dlmnUhtFbAf4w/IXrNqnIshXNSsHlSjJ2dtrsYxfKqxOIxxXeIMAuB0eBqEj75oB7OPwYMIB1LHr/RP7RIFhufB7PkxkJ4+FZG0s="
