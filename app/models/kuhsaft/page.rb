@@ -9,7 +9,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   acts_as_brick_list
 
   translate :title,
-    :page_title,
+    :navigation_name,
     :slug,
     :keywords,
     :description,
@@ -18,7 +18,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     :url
 
   attr_accessible :title,
-    :page_title,
+    :navigation_name,
     :slug,
     :redirect_url,
     :url,
@@ -44,7 +44,7 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   before_validation :create_slug, :create_url
 
-  validates :title, :presence => true
+  validates :navigation_name, :presence => true
   validates :slug, :presence => true
   validates :redirect_url, :presence => true, :if => :redirect?
 
@@ -125,14 +125,14 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def create_slug
-    has_slug = title.present? && slug.blank?
-    self.slug = title.downcase.parameterize if has_slug
+    has_slug = navigation_name.present? && slug.blank?
+    self.slug = navigation_name.downcase.parameterize if has_slug
   end
 
   def nesting_name
     num_dashes = parent_pages.size
     num_dashes = 0 if num_dashes < 0
-    "#{'-' * num_dashes} #{self.title}".strip
+    "#{'-' * num_dashes} #{self.navigation_name}".strip
   end
 
   def brick_list_type

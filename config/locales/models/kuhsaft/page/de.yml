@@ -6,9 +6,9 @@ de:
         other: 'Seiten'
     attributes:
       kuhsaft/page:
-        title: 'Titel'
+        navigation_name: 'Name (Navigation)'
         slug: 'URL Name'
-        page_title: 'Seitentitel (im Browser)'
+        page_title: 'Seitentitel'
         keywords: 'Stichwörter'
         description: 'Beschreibung'
         redirect_url: 'Redirect URL'

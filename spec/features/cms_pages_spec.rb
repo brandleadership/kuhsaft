@@ -25,14 +25,14 @@ describe 'Cms/Pages' do
 
       context 'when page is invalid' do
         it 'does not create a routing error by switching the locale' do
-          @page = FactoryGirl.create(:page, :title => 'DummyPage', :title_en => 'DummyEN', :slug => 'dummy_page')
+          @page = FactoryGirl.create(:page, :navigation_name => 'DummyPage', :navigation_name_en => 'DummyEN', :slug => 'dummy_page')
           visit kuhsaft.edit_cms_page_path(@page)
           fill_in 'page_title', :with => ''
           click_on 'Update Seite'
           within '.nav-pills' do
             click_on 'EN'
           end
-          page.should have_content(@page.title_en)
+          page.should have_content(@page.navigation_name_en)
         end
       end
     end

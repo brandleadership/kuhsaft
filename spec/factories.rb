@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :page, :class => 'Kuhsaft::Page' do |p|
     p.parent nil
     p.position 1
-    p.title { "English Title #{FactoryGirl.generate(:title)}" }
+    p.navigation_name { "English Title #{FactoryGirl.generate(:title)}" }
     p.published 1
     p.body 'lorem ipsum'
     p.url ''

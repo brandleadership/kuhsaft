@@ -213,10 +213,10 @@ Building a navigation is simple, access to the page tree is available through th
       navigation.items do |primary|
         # build first level
         Kuhsaft::Page.roots.published.each do |page|
-          primary.item page.id, page.title, page.link do |sub_item|
+          primary.item page.id, page.navigation_name, page.link do |sub_item|
             # build second level
             page.children.published.each do |subpage|
-              sub_item.item subpage.id, subpage.title, subpage.link
+              sub_item.item subpage.id, subpage.navigation_name, subpage.link
             end
           end
         end
