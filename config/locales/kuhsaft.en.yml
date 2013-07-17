@@ -5,6 +5,9 @@ en:
       admin:
         pages_nav: 'Pages'
         assets_nav: 'Assets'
+      cms:
+        flash:
+          success: 'Page was updated successfully'
   kuhsaft:
     page_part:
       markdown: 'Formatted Text'
