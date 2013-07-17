@@ -8,4 +8,6 @@ de:
           add_specific_element: '%{name} hinzufügen'
         empty_state:
           empty: 'Hier ist bisher noch nichts...'
+        main_navigation:
+          logout: 'Abmelden'
 
