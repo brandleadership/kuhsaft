@@ -8,6 +8,7 @@ de:
       kuhsaft/page:
         title: 'Titel'
         slug: 'URL Name'
+        page_title: 'Seitentitel (im Browser)'
         keywords: 'Stichwörter'
         description: 'Beschreibung'
         redirect_url: 'Redirect URL'
