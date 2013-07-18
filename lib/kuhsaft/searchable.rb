@@ -33,6 +33,7 @@ module Kuhsaft
           {
             :against => {
               locale_attr(:title)       => 'A',
+              locale_attr(:page_title)  => 'A',
               locale_attr(:keywords)    => 'B',
               locale_attr(:description) => 'C',
               locale_attr(:fulltext)    => 'C',
@@ -61,9 +62,10 @@ module Kuhsaft
             stmt = ""
             stmt += "#{locale_attr(:keywords)} LIKE ? OR "
             stmt += "#{locale_attr(:title)} LIKE ? OR "
+            stmt += "#{locale_attr(:page_title)} LIKE ? OR "
             stmt += "#{locale_attr(:description)} LIKE ? OR "
             stmt += "#{locale_attr(:fulltext)} LIKE ?"
-            where(stmt, *(["%#{query}%"] * 4))
+            where(stmt, *(["%#{query}%"] * 5))
           end
         }
       end
