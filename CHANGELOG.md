@@ -1,3 +1,8 @@
+## 2.0.1 - in development
+
+- Fix redirect handling:
+  - remove any preceding slashes first, then redirect to page link with one preceding front slash
+
 ## 2.0.1 / 1.8.1 - 2013-07-16
 
 - Bugfix: Explicitly require nestable css, fixes missing styling of pages index
