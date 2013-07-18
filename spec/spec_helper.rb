@@ -36,16 +36,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.before :suite do
-
-    load File.expand_path("../dummy/Rakefile", __FILE__)
-    Rake::Task['kuhsaft:install:migrations'].invoke
-    Rails::Generators.invoke('kuhsaft:install:assets')
-
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
-    # Drop all records and run any available migration
-    ActiveRecord::Base.connection.tables.each { |table| ActiveRecord::Base.connection.drop_table(table) }
-    ActiveRecord::Migrator.migrate File.expand_path("../dummy/db/migrate/", __FILE__)
   end
 
   config.after :suite do
