@@ -1,6 +1,6 @@
 .link
   = link_to page.link do
-    %h4= page.title
+    %h4= page.navigation_name
   %h5= kuhsaft.page_url(:url => page.url_without_locale)
 .summary
   -if page.excerpt.present?

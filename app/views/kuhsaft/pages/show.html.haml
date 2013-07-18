@@ -1,3 +1,6 @@
+= content_for :head do
+  %title= @page.title.present? ? @page.title : @page.navigation_name
+
 - if @page.bricks.map(&:type).include? "Kuhsaft::PlaceholderBrick"
   - unless @page.blank?
     .page-content

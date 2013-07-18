@@ -6,11 +6,11 @@
     %li
       - if @page.parent_pages.last == parent_page
         .active
-          = parent_page.title
+          = parent_page.navigation_name
       - else
-        = link_to parent_page.title, kuhsaft.edit_cms_page_path(parent_page)
+        = link_to parent_page.navigation_name, kuhsaft.edit_cms_page_path(parent_page)
         %span.divider /
 
-%h1= @page.title
+%h1= @page.navigation_name
 .box-container
-  = render :partial => 'form', :locals => { :url => kuhsaft.cms_page_path(@page), :page_title => t('.edit_html', :title => @page.title ) }
+  = render :partial => 'form', :locals => { :url => kuhsaft.cms_page_path(@page), :page_title => t('.edit_html', :title => @page.navigation_name ) }

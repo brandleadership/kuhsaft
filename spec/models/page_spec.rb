@@ -58,8 +58,8 @@ describe Kuhsaft::Page do
         page.valid?
       end
 
-      it 'has a mandatory title' do
-        page.should have(1).error_on(:title)
+      it 'has a mandatory navigation_name' do
+        page.should have(1).error_on(:navigation_name)
       end
 
       it 'has a mandatory slug' do
@@ -123,19 +123,19 @@ describe Kuhsaft::Page do
 
     context 'on the topmost level' do
       it 'has a label representing it\'s nesting depth without a leading dash' do
-        page.nesting_name.should eq(page.title)
+        page.nesting_name.should eq(page.navigation_name)
       end
     end
 
     context 'on the first level' do
       it 'should have a label with one dash' do
-        child_page.nesting_name.should eq("- #{child_page.title}")
+        child_page.nesting_name.should eq("- #{child_page.navigation_name}")
       end
     end
 
     context 'on the second level' do
       it 'should have a label with two dashes' do
-        child_child_page.nesting_name.should eq("-- #{child_child_page.title}")
+        child_child_page.nesting_name.should eq("-- #{child_child_page.navigation_name}")
       end
     end
   end
@@ -230,7 +230,7 @@ describe Kuhsaft::Page do
 
     it 'has a slug by default' do
       page.save
-      page.slug.should eq(page.title.parameterize)
+      page.slug.should eq(page.navigation_name.parameterize)
     end
 
     context 'when it is empty' do
@@ -311,7 +311,7 @@ describe Kuhsaft::Page do
 
   describe '#fulltext' do
     let :page do
-      p = create(:page, :keywords => 'key words', :description => 'descrip tion', :title => 'my title')
+      p = create(:page, :keywords => 'key words', :description => 'descrip tion', :navigation_name => 'my title')
       p.bricks << Kuhsaft::TextBrick.new(:locale => I18n.locale, :text => 'oh la la')
       p.save
       p
