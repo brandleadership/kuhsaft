@@ -32,10 +32,11 @@ module Kuhsaft
         cb = lambda do |query|
           {
             :against => {
-              locale_attr(:title)       => 'A',
-              locale_attr(:keywords)    => 'B',
-              locale_attr(:description) => 'C',
-              locale_attr(:fulltext)    => 'C',
+              locale_attr(:navigation_name) => 'A',
+              locale_attr(:title)           => 'A',
+              locale_attr(:keywords)        => 'B',
+              locale_attr(:description)     => 'C',
+              locale_attr(:fulltext)        => 'C',
             },
             :query => query,
             :using => { :tsearch => { :dictionary => DICTIONARIES[I18n.locale] || 'simple' }}
@@ -60,10 +61,11 @@ module Kuhsaft
           else
             stmt = ""
             stmt += "#{locale_attr(:keywords)} LIKE ? OR "
+            stmt += "#{locale_attr(:navigation_name)} LIKE ? OR "
             stmt += "#{locale_attr(:title)} LIKE ? OR "
             stmt += "#{locale_attr(:description)} LIKE ? OR "
             stmt += "#{locale_attr(:fulltext)} LIKE ?"
-            where(stmt, *(["%#{query}%"] * 4))
+            where(stmt, *(["%#{query}%"] * 5))
           end
         }
       end

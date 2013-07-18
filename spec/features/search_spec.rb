@@ -6,7 +6,8 @@ describe 'pages#index' do
       p = create :page,
         :page_type => Kuhsaft::PageType::CONTENT,
         :published => true,
-        :title => 'Chromodorididae Ardeadoris'
+        :navigation_name => 'Chromodorididae Ardeadoris',
+        :title => 'Animalia - Ardeadoris'
       p.bricks << Kuhsaft::TextBrick.new(:locale => I18n.locale, :text => "#{'foo bar' * 300} Chromodorididae #{'foo bar' * 300}")
       p.save!
       p
@@ -16,14 +17,15 @@ describe 'pages#index' do
       create :page,
         :page_type => Kuhsaft::PageType::CONTENT,
         :published => true,
-        :title => 'Chromodorididae Berlanguella'
+        :navigation_name => 'Chromodorididae Berlanguella',
+        :title => 'Animalia - Berlanguella'
     end
 
     let! :page3 do
       create :page,
         :page_type => Kuhsaft::PageType::CONTENT,
         :published => true,
-        :title => 'Gastropoda'
+        :navigation_name => 'Gastropoda'
     end
 
     context 'with fulltext' do
@@ -44,7 +46,7 @@ describe 'pages#index' do
 
     context 'with multiple matches' do
       before do
-        visit kuhsaft.pages_path(:locale => :en, :search => 'Chromodorididae')
+        visit kuhsaft.pages_path(:locale => :en, :search => 'Animalia')
       end
 
       it 'renders match count' do
