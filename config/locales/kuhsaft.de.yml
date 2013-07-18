@@ -5,6 +5,9 @@ de:
       admin:
         pages_nav: 'Seiten'
         assets_nav: 'Assets'
+      cms:
+        flash:
+          success: 'Seite wurde erfolgreich aktualisiert'
   kuhsaft:
     page_part:
       markdown: 'Formatierter Text'
