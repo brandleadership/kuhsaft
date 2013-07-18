@@ -13,8 +13,10 @@ end
 
 def move_title_data_to_navigation_name
   I18n.available_locales.each do |locale|
-    Kuhsaft::Page.all.each do |page|
-      page.update_attribute(navigation_name: page.title)
+    I18n.with_locale(locale) do
+      Kuhsaft::Page.all.each do |page|
+        page.update_attributes(navigation_name: page.title)
+      end
     end
   end
 end
