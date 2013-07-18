@@ -12,7 +12,7 @@ rescue LoadError
 end
 
 desc "Run specs"
-RSpec::Core::RakeTask.new
+RSpec::Core::RakeTask.new(:spec => :setup)
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
@@ -24,6 +24,8 @@ end
 
 task :setup do
   Dir.chdir('spec/dummy') do
+    `bundle exec rake kuhsaft:install:migrations`
+    `bundle exec rails generate kuhsaft:install:assets`
     `bundle exec rake db:create`
     `bundle exec rake db:migrate`
     `bundle exec rake db:test:prepare`
