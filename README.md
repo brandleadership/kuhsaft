@@ -223,6 +223,13 @@ Building a navigation is simple, access to the page tree is available through th
       end
     end
 
+## Use the `page_title` attribute in your app
+
+Kuhsaft::Pages will provide a `%title` tag containing its `page_title` (or the required `title`if no title is present). Simply yield for `:head` in your `application.html` to use it.
+
+    %head
+      = yield(:head)
+
 ## Modifying the backend navigation
 
 Simply override the default partial for the main navigation in your app with your own file at `kuhsaft/cms/admin/_main_navigation.html.haml`

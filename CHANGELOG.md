@@ -1,8 +1,20 @@
-## rails3
+## 1.8.3 - 2013-07-18
 
 Fix redirect handling:
-  - remove any preceding slashes first, then redirect to page link with one preceding front slash
-  - do not set locale through url_options in admin controller on every request
+
+- remove any preceding slashes first, then redirect to page link with one preceding front slash
+
+Locale Handling
+
+- do not set locale through url_options in admin controller on every request
+
+Add Page Title
+
+- page_title added
+
+Test Setup
+
+- fixed
 
 ## 1.8.1 - 2013-07-16
 

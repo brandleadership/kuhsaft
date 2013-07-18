@@ -9,6 +9,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   acts_as_brick_list
 
   translate :title,
+    :page_title,
     :slug,
     :keywords,
     :description,
@@ -17,6 +18,7 @@ class Kuhsaft::Page < ActiveRecord::Base
     :url
 
   attr_accessible :title,
+    :page_title,
     :slug,
     :redirect_url,
     :url,
