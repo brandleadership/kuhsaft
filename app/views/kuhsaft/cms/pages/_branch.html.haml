@@ -3,7 +3,6 @@
     - pages.each do |page|
       %li.dd-item.dd3-item{ 'data-id' => page.id }
         .dd-handle.dd3-handle
-          handle
         .dd3-content{ class: page.state_class }
           = link_to page.title.presence, kuhsaft.edit_cms_page_path(page)
 
