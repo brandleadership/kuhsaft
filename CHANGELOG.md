@@ -1,9 +1,20 @@
-## 2.0.1 - in development
+# CHANGELOG
 
-- Fix redirect handling:
-  - remove any preceding slashes first, then redirect to page link with one preceding front slash
+## 2.0.2 - 2013-07-22
+
+- Fix styling bug in FF for sortable pages view
+
+## 1.8.3 - 2013-07-18
+
+- Redirect Handling: remove any preceding slashes first, then redirect to page link with one preceding front slash
+- do not set locale through url_options in admin controller on every request
+- page_title added
+- Test Setup fixed
 
 ## 2.0.1 / 1.8.1 - 2013-07-16
+
+- Fix redirect handling: remove any preceding slashes first
+  then redirect to page link with one preceding front slash
 
 - Bugfix: Explicitly require nestable css, fixes missing styling of pages index
 
