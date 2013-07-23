@@ -4,12 +4,14 @@
 - if @page.bricks.map(&:type).include? "Kuhsaft::PlaceholderBrick"
   - unless @page.blank?
     .page-content
-      - @page.bricks.localized.each do |brick|
+      -# TODO: refactor into scopes or simplify otherwise:
+      - @page.bricks.localized.select(&:valid?).each do |brick|
         = render brick
 
 - else
   - cache [@page, I18n.locale] do
     - unless @page.blank?
       .page-content
-        - @page.bricks.localized.each do |brick|
+        -# TODO: refactor into scopes or simplify otherwise:
+        - @page.bricks.localized.select(&:valid?).each do |brick|
           = render brick
