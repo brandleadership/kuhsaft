@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.0.3 / 1.8.5 - 2013-07-23
+
+- Revert locale handling changes in 1.8.3
+- Do not show invalid bricks in frontend
+
 ## 2.0.2 - 2013-07-22
 
 - Fix styling bug in FF for sortable pages view
