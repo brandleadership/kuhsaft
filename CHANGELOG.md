@@ -5,6 +5,11 @@
 - Revert locale handling changes in 1.8.3
 - Do not show invalid bricks in frontend
 
+For 2.0.3 only:
+  - remove attr_accessible calls, removes the need to
+    use protected_attributes.
+  - add page_title from 1.8.1
+
 ## 2.0.2 - 2013-07-22
 
 - Fix styling bug in FF for sortable pages view
