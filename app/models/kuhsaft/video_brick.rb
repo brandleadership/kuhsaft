@@ -5,7 +5,6 @@ module Kuhsaft
     VIMEO = 'vimeo'
     EXTERNAL = 'external'
 
-    attr_accessible :video, :embed_src, :href
     validates :any_source, :presence => true
 
     # a video id, an embed code or a link to a video is required

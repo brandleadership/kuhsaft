@@ -1,9 +1,5 @@
 module Kuhsaft
   class AccordionBrick < ColumnBrick
-    attr_accessible :caption
-
-    # TODO: validate only accept AccordionItem as child
-
     def user_can_delete?
       true
     end

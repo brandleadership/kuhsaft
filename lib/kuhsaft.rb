@@ -15,5 +15,4 @@ module Kuhsaft
   require 'bootstrap-sass'
   require 'haml'
   require 'ckeditor'
-  require 'protected_attributes'
 end

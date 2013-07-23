@@ -5,8 +5,6 @@ module Kuhsaft
     include ActionView::Helpers::SanitizeHelper
     HTML_ENTITIES = HTMLEntities.new
 
-    attr_accessible :text, :read_more_text
-
     def user_can_add_childs?
       false
     end

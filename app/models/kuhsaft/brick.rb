@@ -9,13 +9,6 @@ module Kuhsaft
 
     serialize :display_styles, Array
 
-    attr_accessible :locale,
-                    :position,
-                    :type,
-                    :brick_list_id,
-                    :brick_list_type,
-                    :display_styles
-
     before_validation :set_position
 
     validates :locale,

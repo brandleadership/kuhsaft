@@ -1,7 +1,5 @@
 module Kuhsaft
   class AnchorBrick < Brick
-    attr_accessible :caption
-
     validates :caption, :presence => true
 
     def user_can_add_childs?

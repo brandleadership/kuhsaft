@@ -1,6 +1,5 @@
 module Kuhsaft
   class ImageBrick < Brick
-    attr_accessible :image, :caption, :href, :image_size
     mount_uploader :image, Kuhsaft::ImageBrickImageUploader
 
     validates :image, :presence => true

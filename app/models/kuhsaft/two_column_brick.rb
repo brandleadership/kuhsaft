@@ -3,8 +3,6 @@ module Kuhsaft
 
     before_create :add_columns
 
-    attr_accessible :partitioning
-
     #
     # Childs should only contain ColumnBricks, therefore we
     # don't want the user to mess with it

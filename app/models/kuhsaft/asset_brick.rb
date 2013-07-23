@@ -1,7 +1,5 @@
 module Kuhsaft
   class AssetBrick < Brick
-    attr_accessible :caption, :link_style, :asset
-
     mount_uploader :asset, Kuhsaft::AssetBrickAssetUploader
 
     validates :caption, :asset, :presence => true

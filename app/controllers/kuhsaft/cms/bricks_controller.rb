@@ -5,14 +5,14 @@ module Kuhsaft
       respond_to :html, :js
 
       def create
-        @brick = params[:brick][:type].constantize.new(params[:brick])
+        @brick = params[:brick][:type].constantize.new(brick_params)
         @brick.image_size = ImageSize.all.first.name.to_s
         @brick.save(:validate => false)
       end
 
       def update
         @brick = Kuhsaft::Brick.find(params[:id])
-        @brick.update_attributes(params[:brick])
+        @brick.update_attributes(brick_params)
 
         #
         # rails will fall back to html if ajax can't be used
@@ -40,6 +40,11 @@ module Kuhsaft
         render :nothing => true
       end
 
+      private
+
+      def brick_params
+        params.require(:brick).permit!
+      end
     end
   end
 end

@@ -17,18 +17,6 @@ class Kuhsaft::Page < ActiveRecord::Base
     :redirect_url,
     :url
 
-  attr_accessible :title,
-    :page_title,
-    :slug,
-    :redirect_url,
-    :url,
-    :page_type,
-    :parent_id,
-    :keywords,
-    :description,
-    :published,
-    :position
-
   default_scope { order('position ASC') }
 
   scope :published, -> { where(:published => Kuhsaft::PublishState::PUBLISHED) }

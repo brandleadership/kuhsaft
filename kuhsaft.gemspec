@@ -43,7 +43,6 @@ Gem::Specification.new do |s|
   # Rails 4 compatibility
   s.add_dependency 'rails', '~> 4.0.0'
   s.add_dependency 'simple_form', '3.0.0.rc'
-  s.add_dependency 'protected_attributes'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'bourbon'
 end

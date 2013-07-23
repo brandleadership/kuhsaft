@@ -21,8 +21,6 @@ module Kuhsaft
 
       if included_modules.include?(Translatable)
         translate :fulltext
-      else
-        attr_accessible :fulltext
       end
 
       before_validation :update_fulltext
