@@ -199,6 +199,79 @@ Finally, add the new translation locale to your `available_locales` inside your 
 
     config.available_locales = [:en, :fr]
 
+## Adding a language switch
+
+Add scope around routes:
+
+    scope "(:locale)", locale: /de|en|fr/ do
+      root 'kuhsaft/pages#show'
+    end
+
+Set the locale in the ApplicationController in a before_action and set default url options:
+
+    before_action :set_locale
+
+    def set_locale
+      if I18n.available_locales.map{|sym| sym.to_s }.include?(params[:locale])
+        I18n.locale = params[:locale]
+      else
+        I18n.locale = I18n.default_locale
+      end
+    end
+
+    def default_url_options(options={})
+      { locale: I18n.locale }
+    end
+
+Add method to ApplicationHelper which redirects to homepage when current page is not translated.
+Make sure to have the homepage translated in every available languages.
+
+    def localized_url(url, target_locale)
+      page = Kuhsaft::Page.find_by_url("#{I18n.locale}/#{url}")
+      I18n.with_locale target_locale do
+        translated_url = page.presence && page.url
+        if translated_url.present?
+          "/#{translated_url}"
+        else
+          root_path(locale: target_locale)
+        end
+      end
+    end
+
+    def language_link(url, locale)
+      localized_url(params[:url], locale)
+    end
+
+Add language switch to navigation:
+
+    SimpleNavigation::Configuration.run do |navigation|
+      I18n.available_locales.each do |locale|
+        primary.item locale, locale.to_s.upcase, language_link(params[:url], locale), highlights_on: Proc.new { I18n.locale == locale }
+      end
+    end
+
+Make sure to render only pages in navigation which have an url cause pages, so pages without translation will not be displayed in the navigation.
+Here is an example of a possible navigation:
+
+    SimpleNavigation::Configuration.run do |navigation|
+      navigation.items do |primary|
+        primary.dom_class = 'right'
+        primary.selected_class = 'active'
+        Kuhsaft::Page.find_by(slug_de: 'meta-navigation').children.published.each do |page|
+          unless page.url.blank?
+            primary.item page.id, page.title, page.link, class: 'contact icon'
+          end
+        end
+
+        primary.item '', 'Sprache', '#', class: 'language icon has-dropdown'do |language|
+          I18n.available_locales.each do |locale|
+            language.dom_class = 'dropdown'
+            language.item locale, language_text(locale), language_link(params[:url], locale), highlights_on: Proc.new { I18n.locale == locale }, class: "icon lang-#{locale}"
+          end
+        end
+      end
+    end
+
 ## Styling the content
 
 By default, the text editor lets you add the following tags, for which you should supply some styles in your app:
