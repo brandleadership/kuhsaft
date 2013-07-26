@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/readme_language_switch
+
+- add language-switch how-to to readme
+
 ## 2.0.3 / 1.8.5 - 2013-07-23
 
 - Revert locale handling changes in 1.8.3
