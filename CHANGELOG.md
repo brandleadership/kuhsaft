@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/seeds_optimizing
+
+- optimize seeds to be able to run multiple times
+
 ## features/readme_language_switch
 
 - add language-switch how-to to readme
