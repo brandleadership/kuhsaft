@@ -40,6 +40,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg_search'
   s.add_dependency 'htmlentities'
 
+  s.add_dependency 'jquery-rails'
+  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'pry-rails'
+  s.add_development_dependency 'pry-debugger'
+  s.add_dependency 'sass-rails'
+  s.add_dependency 'inherited_resources'
+
   # Rails 4 compatibility
   s.add_dependency 'rails', '~> 4.0.0'
   s.add_dependency 'simple_form', '3.0.0.rc'
