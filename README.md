@@ -10,7 +10,7 @@ Kuhsaft is made by some Rails developers at Screen Concept that got tired of
 fiddling with unusable content management sytems. We are trying hard to make a
 minimalistic and developer friendly CMS. Our goal is to provide a system for
 ourselves and our customers that makes the of-the-shelf website project a
-hasselfree thing. On one side easy to set up, integrate and customize (good for
+hasslefree thing. On one side easy to set up, integrate and customize (good for
 devs) on the other hand it should be easily usable by anyone.
 
 ## What's in it
@@ -224,7 +224,7 @@ Set the locale in the ApplicationController in a before_action and set default u
     end
 
 Add method to ApplicationHelper which redirects to homepage when current page is not translated.
-Make sure to have the homepage translated in every available languages.
+Make sure to have the homepage translated in every available language.
 
     def localized_url(url, target_locale)
       page = Kuhsaft::Page.find_by_url("#{I18n.locale}/#{url}")
