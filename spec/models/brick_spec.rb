@@ -36,7 +36,7 @@ describe Kuhsaft::Brick do
 
   describe '#parents' do
     it 'returns the chain of parents' do
-      item1, item2, item3 = mock, mock, Kuhsaft::Brick.new
+      item1, item2, item3 = double, double, Kuhsaft::Brick.new
       item2.stub(:brick_list).and_return(item1)
       item3.stub(:brick_list).and_return(item2)
       item3.parents.should == [item1, item2]
@@ -56,7 +56,7 @@ describe Kuhsaft::Brick do
     end
 
     it 'returns true if the brick has siblings' do
-      item1, item2, item3 = mock, mock, Kuhsaft::Brick.new
+      item1, item2, item3 = double, double, Kuhsaft::Brick.new
       item1.stub(:bricks).and_return([item2, item3])
       item2.stub(:brick_list).and_return(item1)
       item3.stub(:brick_list).and_return(item1)
