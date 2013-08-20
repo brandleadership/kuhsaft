@@ -6,6 +6,7 @@
 - add language-switch how-to to readme
 - use inherited_resource
 - remove deprecations
+- add rake task to start dummy app
 
 ## 2.0.3 / 1.8.5 - 2013-07-23
 
