@@ -250,7 +250,7 @@ Add language switch to navigation:
       end
     end
 
-Make sure to render only pages in navigation which have an url cause pages, so pages without translation will not be displayed in the navigation.
+Make sure to render only pages in navigation which have an url, so pages without translation will not be displayed in the navigation.
 Here is an example of a possible navigation:
 
     SimpleNavigation::Configuration.run do |navigation|
