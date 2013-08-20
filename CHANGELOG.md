@@ -1,12 +1,20 @@
 # CHANGELOG
 
-## 2.1.0 - 2013-08-20
+
+## master
 
 - optimize seeds to be able to run multiple times
 - add language-switch how-to to readme
 - use inherited_resource
 - remove deprecations
 - add rake task to start dummy app
+
+## 1.8.6 - 2013-08-20
+
+- Keep assets in cms subdir, not kuhsaft. Added a migration that
+  should automatically move the assets.
+
+  *run rake kuhsaft:install:migrations when updating*
 
 ## 2.0.3 / 1.8.5 - 2013-07-23
 
