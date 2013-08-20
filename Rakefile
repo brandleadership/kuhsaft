@@ -18,7 +18,7 @@ module Postgres
     end
 
     def user_exists?(username)
-      exec("SELECT 1 FROM pg_roles WHERE rolname='#{username}'").strip == '1'
+      exec("SELECT 1 FROM pg_user WHERE username='#{username}'").strip == '1'
     end
 
     def drop_user(username)
