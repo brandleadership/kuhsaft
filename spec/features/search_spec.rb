@@ -32,13 +32,13 @@ describe 'pages#index' do
       end
 
       it 'highlights search term in preview' do
-        within("ul.search-results mark") do
+        within("ul.search-results.success") do
           page.should have_content('Chromodorididae')
         end
       end
 
       it 'truncates the text' do
-        find('.summary .fulltext').text.length.should == 208
+        find('.summary .excerpt').text.length.should == 110
       end
     end
 

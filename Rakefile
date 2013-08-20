@@ -22,6 +22,7 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+desc 'set up the dummy app for testing'
 task :setup do
   Dir.chdir('spec/dummy') do
     `bundle exec rake kuhsaft:install:migrations`
@@ -34,6 +35,7 @@ end
 
 task :default => [:spec]
 
+desc 'start the dummy app'
 task :start_dummy do
   Dir.chdir('spec/dummy') do
     ENV['BUNDLE_GEMFILE'] = '../../Gemfile'

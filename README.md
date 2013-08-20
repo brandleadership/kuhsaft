@@ -99,11 +99,10 @@ Make sure they are in the `config.assets.precompile` array in environments like 
 
 There's a dummy app inside spec/dummy. Get it running by executing the following steps:
 
-* remove eventual migrations inside `spec/dummy/db/migrate`
-* run `rake kuhsaft:install:migrations` again
-* run `rake db:migrate` and `rake db:seed`
-
-Start up the dummy app. The first two steps also make sure you're ready to run `rspec spec` to run the test suite. (Todo: This workflow must be improved))
+```
+rake setup
+rake start_dummy
+```
 
 # Usage
 
