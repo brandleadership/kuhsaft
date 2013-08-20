@@ -33,3 +33,10 @@ task :setup do
 end
 
 task :default => [:spec]
+
+task :start_dummy do
+  Dir.chdir('spec/dummy') do
+    ENV['BUNDLE_GEMFILE'] = '../../Gemfile'
+    `bundle exec rails server`
+  end
+end
