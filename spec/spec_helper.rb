@@ -1,11 +1,9 @@
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-require 'rails/test_help'
-require 'rspec/rails'
-require 'factory_girl'
-require 'capybara/rails'
-require 'rake'
+[ 'rails/test_help', 'rspec/rails', 'factory_girl', 'capybara/rails',
+  'rake', 'database_cleaner', 'pry-debugger'
+  ].each{|lib| require lib }
 
 FactoryGirl.find_definitions
 

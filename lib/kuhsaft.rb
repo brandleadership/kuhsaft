@@ -15,4 +15,5 @@ module Kuhsaft
   require 'bootstrap-sass'
   require 'haml'
   require 'ckeditor'
+  require 'inherited_resources'
 end
