@@ -1,12 +1,11 @@
 # CHANGELOG
 
-## features/seeds_optimizing
+## 2.1.0 - 2013-08-20
 
 - optimize seeds to be able to run multiple times
-
-## features/readme_language_switch
-
 - add language-switch how-to to readme
+- use inherited_resource
+- remove deprecations
 
 ## 2.0.3 / 1.8.5 - 2013-07-23
 
