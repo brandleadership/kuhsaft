@@ -11,6 +11,27 @@ rescue LoadError
   RDoc::Task = Rake::RDocTask
 end
 
+module Postgres
+  class << self
+    def exec(query)
+      `psql postgres -tAc "#{query}"`
+    end
+
+    def user_exists?(username)
+      exec("SELECT 1 FROM pg_user WHERE username='#{username}'").strip == '1'
+    end
+
+    def drop_user(username)
+      puts "dropping user #{username}"
+      puts exec("DROP USER #{username}").inspect
+    end
+
+    def create_user(username)
+      user_exists?(username) ? false : `createuser -s #{username}`
+    end
+  end
+end
+
 desc "Run specs"
 RSpec::Core::RakeTask.new(:spec => :setup)
 
@@ -22,7 +43,9 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+desc 'set up the dummy app for testing'
 task :setup do
+  Postgres.create_user 'screenconcept'
   Dir.chdir('spec/dummy') do
     `bundle exec rake kuhsaft:install:migrations`
     `bundle exec rails generate kuhsaft:install:assets`
@@ -34,6 +57,7 @@ end
 
 task :default => [:spec]
 
+desc 'start the dummy app'
 task :start_dummy do
   Dir.chdir('spec/dummy') do
     ENV['BUNDLE_GEMFILE'] = '../../Gemfile'

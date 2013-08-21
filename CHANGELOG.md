@@ -8,6 +8,8 @@
 - use inherited_resource
 - remove deprecations
 - add rake task to start dummy app
+- document helper tasks
+- fix dummy app loading
 
 ## 1.8.6 - 2013-08-20
 
