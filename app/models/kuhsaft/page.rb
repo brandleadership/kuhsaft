@@ -20,6 +20,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   default_scope { order('position ASC') }
 
   scope :published, -> { where(:published => Kuhsaft::PublishState::PUBLISHED) }
+  scope :translated, -> { where("url_#{I18n.locale} is not null") }
 
   # TODO: cleanup page_types (content pages => nil or PageType::CONTENT
   scope :content_page, -> { where(
