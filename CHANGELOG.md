@@ -1,9 +1,5 @@
 # CHANGELOG
 
-## features/scope_for_translated_pages
-
-- add scope to select only translated pages
-
 ## 2.1.0 - 2013-08-21
 
 - optimize seeds to be able to run multiple times
@@ -13,7 +9,7 @@
 - add rake task to start dummy app
 - document helper tasks
 - fix dummy app loading
-
+- add scope to select only translated pages
 - Keep assets in cms subdir, not kuhsaft. Added a migration that
   should automatically move the assets.
 
