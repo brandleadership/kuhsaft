@@ -4,7 +4,7 @@
 
 - add scope to select only translated pages
 
-## master
+## 2.1.0 - 2013-08-21
 
 - optimize seeds to be able to run multiple times
 - add language-switch how-to to readme
@@ -13,6 +13,11 @@
 - add rake task to start dummy app
 - document helper tasks
 - fix dummy app loading
+
+- Keep assets in cms subdir, not kuhsaft. Added a migration that
+  should automatically move the assets.
+
+  *run rake kuhsaft:install:migrations when updating*
 
 ## 1.8.6 - 2013-08-20
 
