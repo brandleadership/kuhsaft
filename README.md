@@ -249,17 +249,16 @@ Add language switch to navigation:
       end
     end
 
-Make sure to render only pages in navigation which have an url, so pages without translation will not be displayed in the navigation.
+Make sure to render only pages which are translated and published by using `published` and `translated` scope, so pages
+without translation and which are not published will not be displayed in the navigation.
 Here is an example of a possible navigation:
 
     SimpleNavigation::Configuration.run do |navigation|
       navigation.items do |primary|
         primary.dom_class = 'right'
         primary.selected_class = 'active'
-        Kuhsaft::Page.find_by(slug_de: 'meta-navigation').children.published.each do |page|
-          unless page.url.blank?
-            primary.item page.id, page.title, page.link, class: 'contact icon'
-          end
+        Kuhsaft::Page.find_by(slug_de: 'meta-navigation').children.published.translated.each do |page|
+          primary.item page.id, page.title, page.link, class: 'contact icon'
         end
 
         primary.item '', 'Sprache', '#', class: 'language icon has-dropdown'do |language|
@@ -279,17 +278,19 @@ By default, the text editor lets you add the following tags, for which you shoul
 
 ## Building a navigation
 
-Building a navigation is simple, access to the page tree is available through the common methods built into the ancestry gem. Just make sure you are only accessing published pages for your production site, using the `published` scope.
+Building a navigation is simple, access to the page tree is available through the common methods built into the ancestry gem.
+Just make sure you are only accessing published pages for your production site, using the `published` scope.
+Or if your page is translated, using the `translated` scope and the `published` scope.
 
 ### 2 level navigation example using simple-navigation
 
     SimpleNavigation::Configuration.run do |navigation|
       navigation.items do |primary|
         # build first level
-        Kuhsaft::Page.roots.published.each do |page|
+        Kuhsaft::Page.roots.published.translated.each do |page|
           primary.item page.id, page.title, page.link do |sub_item|
             # build second level
-            page.children.published.each do |subpage|
+            page.children.published.translated.each do |subpage|
               sub_item.item subpage.id, subpage.title, subpage.link
             end
           end

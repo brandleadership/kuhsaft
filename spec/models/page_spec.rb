@@ -393,4 +393,23 @@ describe Kuhsaft::Page do
       end
     end
   end
+
+  describe '#translated' do
+    before :each do
+      @page_1 = create(:page, title: 'Page 1', slug: 'page1')
+      @page_2 = create(:page, title: 'Page 2', slug: 'page1')
+      @page_3 = create(:page, title: 'Page 3', slug: 'page1')
+    end
+
+    it 'returns all pages that have a translation' do
+      expect(Kuhsaft::Page.translated).to eq [@page_1, @page_2, @page_3]
+    end
+
+    it 'does not return untranslated pages' do
+      I18n.with_locale :de do
+        @page_1.update(title: 'Page 1 fr', slug: 'page_1_fr')
+        expect(Kuhsaft::Page.translated).to eq [@page_1]
+      end
+    end
+  end
 end

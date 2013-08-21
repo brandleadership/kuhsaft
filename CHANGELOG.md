@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## features/scope_for_translated_pages
+
+- add scope to select only translated pages
 
 ## master
 
