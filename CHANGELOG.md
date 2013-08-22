@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# master
+
+- include page children in cache key for pages#show
+
 ## 2.1.0 - 2013-08-21
 
 - optimize seeds to be able to run multiple times
