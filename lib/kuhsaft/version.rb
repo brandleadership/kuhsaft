@@ -1,3 +1,3 @@
 module Kuhsaft
-  VERSION = "0.2.legacy"
+  VERSION = "0.2.legacy2"
 end
