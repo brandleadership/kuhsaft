@@ -9,5 +9,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  match '/*url' => 'kuhsaft/pages#show', :constraints => { :locale => /\w{2}/ }
+  match '/:locale/*url' => 'kuhsaft/pages#show', :constraints => { :locale => /\w{2}/ }
 end
