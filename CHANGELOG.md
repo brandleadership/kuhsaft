@@ -2,7 +2,7 @@
 
 # features/cms_tab_nav_optimizing
 
-- show "Inhalt"-Tab only when bricks can be saved
+- show "Inhalt"-Tab only when page is translated
 
 # master
 
