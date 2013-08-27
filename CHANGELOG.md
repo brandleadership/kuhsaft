@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# features/cms_tab_nav_optimizing
+
+- show "Inhalt"-Tab only when bricks can be saved
+
 # master
 
 - include page children in cache key for pages#show
