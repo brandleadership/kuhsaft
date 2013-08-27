@@ -1,7 +1,7 @@
 %ul.nav.nav-tabs.js-tabs
   %li{ :class => metadata_tab_active(@page) }
     = link_to t('.tab_metadata'), '#page-metadata', 'data-toggle' => :tab
-  - unless @page.redirect?
+  - unless @page.redirect? || @page.translated?
     %li{ :class => content_tab_active(@page) }
       = link_to t('.tab_content'), '#page-content', 'data-toggle' => :tab
 
@@ -22,7 +22,7 @@
       .form-actions
         = form.button :submit, :class => 'btn btn-primary'
 
-  - unless @page.redirect?
+  - unless @page.redirect? || @page.translated?
     #page-content.tab-pane{ :class => content_tab_active(@page) }
       - if @page.persisted?
         .clearfix
