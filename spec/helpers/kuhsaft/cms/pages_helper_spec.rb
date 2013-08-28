@@ -23,4 +23,23 @@ describe Kuhsaft::Cms::PagesHelper do
       end
     end
   end
+
+  describe '#hide_content_tab?' do
+    it 'has a page without translations' do
+      @page = create(:page, title: 'Page 1', slug: 'page1')
+      I18n.with_locale :de do
+        expect(helper.hide_content_tab?(@page)).to be_true
+      end
+    end
+
+    it 'has a redirect page' do
+      @page = create(:page, title: 'Page 1', slug: 'page1', page_type: Kuhsaft::PageType::REDIRECT, redirect_url: 'en/references')
+      expect(helper.hide_content_tab?(@page)).to be_true
+    end
+
+    it 'has a not saved page' do
+      @page = Kuhsaft::Page.new
+      expect(helper.hide_content_tab?(@page)).to be_true
+    end
+  end
 end
