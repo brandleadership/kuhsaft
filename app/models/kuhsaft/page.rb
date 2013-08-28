@@ -84,7 +84,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def translated?
-    url.present? || title.present? || slug.present?
+    url.present? && title.present? && slug.present?
   end
 
   def link

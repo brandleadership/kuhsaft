@@ -309,19 +309,9 @@ describe Kuhsaft::Page do
     end
   end
 
-  describe 'translated?' do
-    it 'returns true when page has a title' do
-      @page = Kuhsaft::Page.new(title: 'Dummy Page')
-      expect(@page.translated?).to be_true
-    end
-
-    it 'returns true when page has a slug' do
-      @page = Kuhsaft::Page.new(slug: 'dummy_page')
-      expect(@page.translated?).to be_true
-    end
-
-    it 'returns true when page has an url' do
-      @page = Kuhsaft::Page.new(url: 'en/dummy_page')
+  describe '#translated?' do
+    it 'returns true when page is translated' do
+      @page = create(:page, title: 'Page 1', slug: 'page1')
       expect(@page.translated?).to be_true
     end
 
