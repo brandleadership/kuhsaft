@@ -8,7 +8,7 @@
 #= require jquery_ujs
 #= require jquery.ui.all
 #= require bootstrap
-#= require ckeditor/init
+#= require ckeditor-jquery
 #= require jquery.nestable
 #= require_tree .
 
