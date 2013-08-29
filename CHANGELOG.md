@@ -1,5 +1,10 @@
 # CHANGELOG
 
+
+# hotfix/ckeditor_rails_4
+
+- replaced ckeditor gem with ckeditor_rails gem
+
 # features/cms_tab_nav_optimizing
 
 - show "Inhalt"-Tab only when page is translated
