@@ -83,6 +83,10 @@ class Kuhsaft::Page < ActiveRecord::Base
     ancestors
   end
 
+  def translated?
+    url.present? && title.present? && slug.present?
+  end
+
   def link
     if bricks.count == 0 && children.count > 0
       children.first.link

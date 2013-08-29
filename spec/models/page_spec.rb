@@ -309,6 +309,20 @@ describe Kuhsaft::Page do
     end
   end
 
+  describe '#translated?' do
+    it 'returns true when page is translated' do
+      @page = create(:page, title: 'Page 1', slug: 'page1')
+      expect(@page.translated?).to be_true
+    end
+
+    it 'returns false when page has no translation' do
+      @page = create(:page, title: 'Page 1', slug: 'page1')
+      I18n.with_locale :de do
+        expect(@page.translated?).to be_false
+      end
+    end
+  end
+
   describe '#fulltext' do
     let :page do
       p = create(:page, :keywords => 'key words', :description => 'descrip tion', :title => 'my title')

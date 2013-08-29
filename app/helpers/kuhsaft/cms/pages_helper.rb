@@ -3,15 +3,19 @@ module Kuhsaft
     module PagesHelper
 
       def content_tab_active(page)
-        if page.errors.blank?
-          :active if page.persisted?
+        unless hide_content_tab?(page)
+          :active
         end
       end
 
       def metadata_tab_active(page)
-        if page.errors.present? || !page.persisted? || page.redirect?
+        if hide_content_tab?(page)
           :active
         end
+      end
+
+      def hide_content_tab?(page)
+        page.redirect? || !page.translated? || !page.persisted? || page.errors.present?
       end
     end
   end

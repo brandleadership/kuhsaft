@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# features/cms_tab_nav_optimizing
+
+- show "Inhalt"-Tab only when page is translated
+
 # master
 
 - include page children in cache key for pages#show
