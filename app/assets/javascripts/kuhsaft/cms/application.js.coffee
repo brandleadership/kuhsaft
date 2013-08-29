@@ -12,10 +12,13 @@
 #= require jquery.nestable
 #= require_tree .
 
-CKEDITOR.config.customConfig = '/assets/kuhsaft/cms/ck-config.js'
+CKEDITOR.config.customConfig = '/assets/ckeditor/config.js.coffee'
 
 loadTextEditor = ->
-  CKEDITOR.replaceAll('editor')
+  console.log('load text editor')
+  $(".ckeditor").ckeditor {}
+
+CKEDITOR.replaceAll('ckeditor')
 
 checkPageType = ->
   redirect_url_input = $('#page_redirect_url')
@@ -46,7 +49,7 @@ window.initSubmitLinks = (selector = null)->
 
   selector.find('a.submit')
     .click (e)->
-      $('textarea.editor').each (index, elem) ->
+      $('textarea.ckeditor').each (index, elem) ->
         CKEDITOR.instances[elem.id].updateElement()
 
       form = $(this).closest('form')

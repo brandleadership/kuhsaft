@@ -14,6 +14,6 @@ module Kuhsaft
   require 'ancestry'
   require 'bootstrap-sass'
   require 'haml'
-  require 'ckeditor'
+  require 'ckeditor_rails'
   require 'inherited_resources'
 end
