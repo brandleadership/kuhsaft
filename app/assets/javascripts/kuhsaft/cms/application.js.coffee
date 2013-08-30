@@ -12,7 +12,7 @@
 #= require jquery.nestable
 #= require_tree .
 
-CKEDITOR.config.customConfig = '/assets/kuhsaft/cms/ck-config.js.coffee'
+CKEDITOR.config.customConfig = asset_path('/assets/kuhsaft/cms/ck-config.js.coffee')
 
 loadTextEditor = ->
   CKEDITOR.replaceAll('ckeditor')
