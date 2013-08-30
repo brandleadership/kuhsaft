@@ -12,13 +12,10 @@
 #= require jquery.nestable
 #= require_tree .
 
-CKEDITOR.config.customConfig = '/assets/ckeditor/config.js.coffee'
+CKEDITOR.config.customConfig = '/assets/kuhsaft/cms/ck-config.js.coffee'
 
 loadTextEditor = ->
-  console.log('load text editor')
-  $(".ckeditor").ckeditor {}
-
-CKEDITOR.replaceAll('ckeditor')
+  CKEDITOR.replaceAll('ckeditor')
 
 checkPageType = ->
   redirect_url_input = $('#page_redirect_url')

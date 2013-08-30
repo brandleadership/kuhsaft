@@ -5,6 +5,8 @@
 
 - replaced ckeditor gem with ckeditor_rails gem
 
+  *run `rails generate kuhsaft:assets:install` when updating*
+
 # features/cms_tab_nav_optimizing
 
 - show "Inhalt"-Tab only when page is translated
