@@ -12,7 +12,7 @@
 #= require jquery.nestable
 #= require_tree .
 
-CKEDITOR.config.customConfig = "<%= Rails.env.development? ? asset_path('kuhsaft/cms/ck-config.js') : asset_path("assets/#{Rails.application.assets.find_asset('kuhsaft/cms/ck-config.js').digest_path}") %>"
+CKEDITOR.config.customConfig = "<%= Rails.env.development? ? asset_path('kuhsaft/cms/ck-config.js') : asset_path('assets/' + Rails.application.assets.find_asset('kuhsaft/cms/ck-config.js').digest_path) %>"
 
 loadTextEditor = ->
   CKEDITOR.replaceAll('ckeditor')
