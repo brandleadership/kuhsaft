@@ -5,4 +5,4 @@ var newlyInsertedBrick = $("##{@brick.to_brick_item_id}")
 initSavePopover(newlyInsertedBrick)
 initSubmitLinks(newlyInsertedBrick)
 
-$(newlyInsertedBrick).find('textarea.editor').each(function (index, elem) { initCKEditor(elem.id) })
+$(newlyInsertedBrick).find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) })

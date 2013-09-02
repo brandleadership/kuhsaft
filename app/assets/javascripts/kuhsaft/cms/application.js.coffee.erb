@@ -8,14 +8,14 @@
 #= require jquery_ujs
 #= require jquery.ui.all
 #= require bootstrap
-#= require ckeditor/init
+#= require ckeditor-jquery
 #= require jquery.nestable
 #= require_tree .
 
-CKEDITOR.config.customConfig = '/assets/kuhsaft/cms/ck-config.js'
+CKEDITOR.config.customConfig = "<%= Rails.env.development? ? asset_path('kuhsaft/cms/ck-config.js') : asset_path('assets/' + Rails.application.assets.find_asset('kuhsaft/cms/ck-config.js').digest_path) %>"
 
 loadTextEditor = ->
-  CKEDITOR.replaceAll('editor')
+  CKEDITOR.replaceAll('ckeditor')
 
 checkPageType = ->
   redirect_url_input = $('#page_redirect_url')
@@ -46,7 +46,7 @@ window.initSubmitLinks = (selector = null)->
 
   selector.find('a.submit')
     .click (e)->
-      $('textarea.editor').each (index, elem) ->
+      $('textarea.ckeditor').each (index, elem) ->
         CKEDITOR.instances[elem.id].updateElement()
 
       form = $(this).closest('form')
