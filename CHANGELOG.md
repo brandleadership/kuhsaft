@@ -4,6 +4,7 @@
 # hotfix/ckeditor_rails_4
 
 - replaced ckeditor gem with ckeditor_rails gem
+- temporarily removed 'inherited_resources'
 
   *run `rails generate kuhsaft:assets:install` when updating*
 
