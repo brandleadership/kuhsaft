@@ -1,20 +1,13 @@
 # CHANGELOG
 
-
-# hotfix/ckeditor_rails_4
+## 2.1.1 - 2013-09-03
 
 - replaced ckeditor gem with ckeditor_rails gem
 - temporarily removed 'inherited_resources'
-
-  *run `rails generate kuhsaft:assets:install` when updating*
-
-# features/cms_tab_nav_optimizing
-
+- include page children in cache key for pages#show
 - show "Inhalt"-Tab only when page is translated
 
-# master
-
-- include page children in cache key for pages#show
+  *run `rails generate kuhsaft:assets:install` when updating*
 
 ## 2.1.0 - 2013-08-21
 
