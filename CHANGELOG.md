@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## hotfix/order_of_column_bricks
+
+- optimize method to set position of two_column_bricks
+
 ## 2.1.1 - 2013-09-03
 
 - replaced ckeditor gem with ckeditor_rails gem
