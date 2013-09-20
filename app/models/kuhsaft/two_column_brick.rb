@@ -41,7 +41,7 @@ module Kuhsaft
     private
 
     def add_columns
-      bricks << 2.times.map { |position| Kuhsaft::ColumnBrick.new(position: position + 1) }
+      bricks << 2.times.map { |p| Kuhsaft::ColumnBrick.new(position: p + 1) }
     end
   end
 end

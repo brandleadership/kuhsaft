@@ -69,4 +69,14 @@ describe Kuhsaft::TwoColumnBrick do
       Kuhsaft::TwoColumnBrick.new.to_style_class.should == 'kuhsaft-two-column-brick row-fluid'
     end
   end
+
+  describe '#add_columns' do
+    it 'sets the position of the first column brick to 1' do
+      Kuhsaft::TwoColumnBrick.new.send(:add_columns).to_a.first.position.should == 1
+    end
+
+    it 'sets the position of the second column brick to 2' do
+      Kuhsaft::TwoColumnBrick.new.send(:add_columns).to_a.second.position.should == 2
+    end
+  end
 end
