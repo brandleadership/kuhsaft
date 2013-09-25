@@ -1,8 +1,12 @@
 # CHANGELOG
 
-## hotfix/order_of_column_bricks
+## master
 
-- optimize method to set position of two_column_bricks
+- re-added inherited_resources
+- explicitly tell simple_form to use the :bootstrap wrapper in forms
+- upgrade to simple_form 3.0.0
+- optimize method to set position of two_column_bricks, fixes inconsistent
+  ordering
 
 ## 2.1.1 - 2013-09-03
 
