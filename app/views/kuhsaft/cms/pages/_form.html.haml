@@ -7,7 +7,7 @@
 
 .tab-content
   #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }
-    = simple_form_for @page, :url => url, :html => { :class => 'form-horizontal' } do |form|
+    = simple_form_for @page, :url => url, :html => { :class => 'form-horizontal' }, :wrapper => :bootstrap do |form|
       = form.input :title, :required => false, :input_html => { :class => :span5 }
       = form.input :slug, :required => false, :input_html => { :class => :span5 }
       = form.input :page_title, :required => false, :input_html => { :class => :span5 }

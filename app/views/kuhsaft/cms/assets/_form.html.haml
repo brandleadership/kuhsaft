@@ -1,4 +1,4 @@
-= simple_form_for @asset, :url => url, :html => { :multipart => true } do |f|
+= simple_form_for @asset, :url => url, :html => { :multipart => true }, :wrapper => :bootstrap do |f|
   .lightened-box
     %h1= page_title
     = f.input :file, :as => :file

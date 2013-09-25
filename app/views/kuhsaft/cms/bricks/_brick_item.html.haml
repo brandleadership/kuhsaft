@@ -1,5 +1,5 @@
 .brick-item{ :id => brick.to_brick_item_id, :class => brick.to_style_class, 'data-id' => brick.id }
-  = simple_form_for brick, :as => :brick, :url => kuhsaft.cms_brick_path(brick), :remote => !brick.uploader?, :html => { :id => nil } do |form|
+  = simple_form_for brick, :as => :brick, :url => kuhsaft.cms_brick_path(brick), :remote => !brick.uploader?, :html => { :id => nil }, :wrapper => :bootstrap do |form|
     = form.hidden_field :position, :class => 'position-field'
     .brick-item-header.clearfix
       .pull-left
