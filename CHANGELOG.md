@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## master
+## 2.1.2 - 2013-09-25
 
 - re-added inherited_resources
 - explicitly tell simple_form to use the :bootstrap wrapper in forms
