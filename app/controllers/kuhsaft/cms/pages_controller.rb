@@ -33,7 +33,7 @@ module Kuhsaft
       def edit
         @page = Kuhsaft::Page.find(params[:id])
         @page.published ||= Kuhsaft::PublishState::UNPUBLISHED
-        @page.bricks.map { |brick| brick.invalid? }
+        @page.bricks.each { |brick| brick.invalid? }
         respond_with @page
       end
 
