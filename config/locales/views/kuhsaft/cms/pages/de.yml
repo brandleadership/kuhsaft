@@ -10,14 +10,19 @@ de:
           hint_keywords: |
             Geben Sie hier 2 - 6 zentrale Begriffe, welche für diese Seite gelten, als Stichwörter an.
             </br>
-            Zum Beispiel:
+            <strong>Zum Beispiel:</strong>
             </br>
+            <em>
             Stichwort1, Stichwort2, Stichwort3
+            </em>
           hint_description: |
             Geben Sie Hier eine Seitenbeschreibung von ca 140 Zeichen an.
             </br>
             Die Beschreibung wird oft in den Suchergebnissen der Suchmaschinen ausgegeben.
             </br>
-            Zum Beispiel:
+            <strong>Zum Beispiel:</strong>
             </br>
-            Beschreibung des Inhaltes dieser Seite. Diese Beschreibung ist einmalig und nur auf dieser Seite vorhanden. Auf den anderen Seiten hat es andere Beschreibungen.
+            <em>
+            Beschreibung des Inhaltes dieser Seite. Diese Beschreibung ist einmalig und nur auf dieser Seite
+            vorhanden. Auf den anderen Seiten hat es andere Beschreibungen.
+            </em>
