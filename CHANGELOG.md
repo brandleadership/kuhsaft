@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/add_hints
+
+- Add hints to input field of page settings
+
 ## 2.2.0 - 2013-10-02
 
 - Extend meta tag definitions in `content_for :head` block
