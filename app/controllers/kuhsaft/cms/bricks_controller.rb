@@ -26,14 +26,12 @@ module Kuhsaft
       end
 
       def destroy
-        binding.pry
         @brick = Kuhsaft::Brick.find(params[:id])
         @parent_brick = @brick.brick_list
         @brick.destroy
       end
 
       def sort
-        binding.pry
         if params[:bricks].present?
           params[:bricks][:ids].split(',').each_with_index do |id, idx|
             Kuhsaft::Brick.find(id).update_attribute(:position, idx.to_i + 1)
