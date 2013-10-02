@@ -31,9 +31,9 @@ module Kuhsaft
       end
 
       def edit
-        binding.pry
         @page = Kuhsaft::Page.find(params[:id])
         @page.published ||= Kuhsaft::PublishState::UNPUBLISHED
+        @page.bricks.map { |brick| brick.invalid? }
         respond_with @page
       end
 
