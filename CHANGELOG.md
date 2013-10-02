@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## features/add_hints
+## 2.2.1 - 2013-10-02
 
 - Add hints to input field of page settings
 
