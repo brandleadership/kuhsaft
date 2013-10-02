@@ -2,7 +2,8 @@ module Kuhsaft
   class ImageBrick < Brick
     mount_uploader :image, Kuhsaft::ImageBrickImageUploader
 
-    validates :image, :presence => true
+    validates_presence_of :image
+    #validates :image, :presence => true
     validates :image_size, :presence => true
 
     after_save :resize_image_if_size_changed
