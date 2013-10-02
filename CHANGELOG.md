@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.0 - 2013-10-02
+
+- Extend meta tag definitions in `content_for :head` block
+
 ## 2.1.2 - 2013-09-25
 
 - re-added inherited_resources
