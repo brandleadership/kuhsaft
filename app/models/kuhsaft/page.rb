@@ -37,15 +37,6 @@ class Kuhsaft::Page < ActiveRecord::Base
   validates :slug, :presence => true
   validates :redirect_url, :presence => true, :if => :redirect?
 
-  #validate do |page|
-  #  page.bricks.each do | brick|
-  #    next if brick.valid?
-  #    brick.errors.full_messages.each do |msg|
-  #      errors[:base] << "Student Error: #{msg}"
-  #    end
-  #  end
-  #end
-
   class << self
     def flat_tree(pages = nil)
       arrange_as_array
