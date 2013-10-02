@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/show_error_messages
+
+- Add feature to dispaly error messages on bricks, when they are invalid
+
 ## 2.1.2 - 2013-09-25
 
 - re-added inherited_resources
