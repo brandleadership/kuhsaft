@@ -1,5 +1,7 @@
 = content_for :head do
   %title= @page.page_title.present? ? @page.page_title : @page.title
+  %meta{ name: 'keywords', content: @page.keywords }
+  %meta{ name: 'description', content: @page.description }
 
 - if @page.bricks.map(&:type).include? "Kuhsaft::PlaceholderBrick"
   - unless @page.blank?
