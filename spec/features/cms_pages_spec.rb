@@ -62,4 +62,15 @@ describe 'Cms/Pages' do
       end
     end
   end
+
+  describe '#edit' do
+    it 'shows error messages on invalid bricks' do
+      @page = FactoryGirl.create(:page)
+      invalid_brick = FactoryGirl.build(:text_brick, text: nil, brick_list: @page)
+      invalid_brick.save(validate: false)
+
+      visit kuhsaft.edit_cms_page_path(@page)
+      page.should have_css('.error', :count => 1)
+    end
+  end
 end

@@ -10,6 +10,11 @@ FactoryGirl.define do
     p.url ''
   end
 
+  factory :text_brick, :class => 'Kuhsaft::TextBrick' do |tb|
+    tb.type 'Kuhsaft::TextBrick'
+    tb.text 'DummyText'
+  end
+
   factory :asset, :class => Kuhsaft::Asset do |a|
     a.file File.open("#{Kuhsaft::Engine.root}/spec/dummy/app/assets/images/spec-image.png")
   end
