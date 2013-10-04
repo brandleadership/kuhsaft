@@ -75,7 +75,7 @@ describe Kuhsaft::PagesController do
           expect(response).to redirect_to('/de/redirect_page')
         end
 
-        it 'redirects to root' do 
+        it 'redirects to root' do
           page = FactoryGirl.create(:page, :page_type => 'redirect', :slug => 'dumdidum', :url => 'de/dumdidum', :redirect_url => '/')
           get :show,  { :url => page.slug, :use_route => :kuhsaft }
           expect(response).to redirect_to('/')

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## master
+
+- Dispaly error messages for bricks, when they are updated/saved
+
 ## 2.2.1 - 2013-10-02
 
 - Add hints to input field of page settings
