@@ -73,7 +73,7 @@ the defaults:
       end
     end
 
-See "Customizing The Image Brick" for more details.
+See "Configuring the image brick" for more details.
 
 ## Authentication
 
@@ -321,6 +321,24 @@ Simply override the default partial for the main navigation in your app with you
 * Add the `childs` partial to your views, if you want to render your bricks childs with your own html: `app/views/caption_bricks/caption_brick/_childs.html.haml`
 * Implement the `fulltext` method on your brick, return anything you want to be searchable.
 * Customize the edit form behaviour of your brick by overriding methods like `to_style_class?`. See the `Brick` and `BrickList` files for more methods.
+
+### Use Kuhsaft ImageBrickImageUploader for your own Brick
+
+Mount the uploader in your own Model, for example `mount_uploader :image, Kuhsaft::ImageBrickImageUploader`
+Do not forget to add the callback method `resize_image_if_size_changed`, for example:
+
+    after_save :resize_image_if_size_changed
+
+    def resize_image_if_size_changed
+      image.recreate_versions! if image_size_changed? && image_present?
+    end
+
+    def image_present?
+      image.present?
+    end
+
+If u do not add this callback, then the images will not be changed when selecting one of your own image
+sizes. See "Configuring the image brick" for more details on creating your own image sizes.
 
 ## Integrating search
 

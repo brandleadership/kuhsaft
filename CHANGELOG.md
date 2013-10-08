@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## hotfix/image_sizes
+
+- Add Hint into README to use callbacks when creating bricks with mulitple image sizes
+
 ## master
 
 - Dispaly error messages for bricks, when they are updated/saved
