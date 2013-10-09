@@ -2,7 +2,7 @@
 
 ## hotfix/image_sizes
 
-- Add Hint into README to use callbacks when creating bricks with mulitple image sizes
+- Create module for kuhsaft image uploader
 
 ## master
 
