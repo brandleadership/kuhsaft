@@ -1,6 +1,6 @@
 module Kuhsaft
   class ImageBrick < Brick
-
+    include Kuhsaft::ImageUploaderNotesImageSizes
 
     validates :image, :presence => true
     validates :image_size, :presence => true
