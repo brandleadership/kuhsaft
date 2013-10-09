@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## hotfix/order_of_value_dropdown_two_column_brick
+
+* correct order in classes for two column brick partitioning
+
 ## master
 
 - Dispaly error messages for bricks, when they are updated/saved
