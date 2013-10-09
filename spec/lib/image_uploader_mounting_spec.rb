@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::ImageUploaderNotesImageSizes do
+describe Kuhsaft::ImageUploaderMounting do
 
   let :brick do
     Kuhsaft::ImageBrick.new

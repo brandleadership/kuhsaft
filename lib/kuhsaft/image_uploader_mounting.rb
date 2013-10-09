@@ -2,7 +2,7 @@ require 'carrierwave'
 require 'active_support/concern'
 
 module Kuhsaft
-  module ImageUploaderNotesImageSizes
+  module ImageUploaderMounting
     extend ActiveSupport::Concern
 
     included do
