@@ -1,6 +1,7 @@
 module Kuhsaft
   require 'kuhsaft/engine'
   require 'kuhsaft/orderable'
+  require 'kuhsaft/image_uploader_notes_image_sizes'
   require 'kuhsaft/translatable'
   require 'kuhsaft/searchable'
   require 'kuhsaft/brick_list'

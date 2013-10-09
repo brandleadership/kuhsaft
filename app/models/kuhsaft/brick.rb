@@ -2,8 +2,6 @@ module Kuhsaft
   class Brick < ActiveRecord::Base
     include Kuhsaft::BrickList
 
-    mount_uploader :image, Kuhsaft::ImageBrickImageUploader
-
     belongs_to :brick_list, :polymorphic => true, :touch => true
 
     scope :localized, -> { where(:locale => I18n.locale) }
@@ -24,14 +22,12 @@ module Kuhsaft
       self.position ||= has_siblings? ? brick_list.bricks.maximum(:position).to_i + 1 : 1
     end
 
-    after_save :resize_image_if_size_changed
 
-    after_save do
-      # TODO: replace callback with fulltext row on each
-      # searchable model
-      brick_list.update_fulltext
-      brick_list.save!
-    end
+
+
+    #mount_uploader :image, Kuhsaft::ImageBrickImageUploader
+
+    after_save :resize_image_if_size_changed
 
     def resize_image_if_size_changed
       image.recreate_versions! if image_size_changed? && image_present?
@@ -39,6 +35,16 @@ module Kuhsaft
 
     def image_present?
       image.present?
+    end
+
+
+
+
+    after_save do
+      # TODO: replace callback with fulltext row on each
+      # searchable model
+      brick_list.update_fulltext
+      brick_list.save!
     end
 
     # TODO: yes. temporary workaround. see above
