@@ -322,22 +322,17 @@ Simply override the default partial for the main navigation in your app with you
 * Implement the `fulltext` method on your brick, return anything you want to be searchable.
 * Customize the edit form behaviour of your brick by overriding methods like `to_style_class?`. See the `Brick` and `BrickList` files for more methods.
 
-### Use Kuhsaft ImageBrickImageUploader for your own Brick
+### Use the Kuhsaft ImageBrickImageUploader for your own Brick
 
-Mount the uploader in your own Model, for example `mount_uploader :image, Kuhsaft::ImageBrickImageUploader`
-Do not forget to add the callback method `resize_image_if_size_changed`, for example:
+Kuhsaft has a modul called `ImageUploaderMounting`. This modul mounts the ImageBrickImageUploader
+and includes a callback method which handles that the image sizes will be updated after save.
 
-    after_save :resize_image_if_size_changed
-
-    def resize_image_if_size_changed
-      image.recreate_versions! if image_size_changed? && image_present?
+    class CustomBrick < Brick
+      include Kuhsaft::ImageUploaderMounting
+      ...
     end
 
-    def image_present?
-      image.present?
-    end
-
-If u do not add this callback, then the images will not be changed when selecting one of your own image
+If u do not include this modul, then the images will not be changed when selecting one of your own image
 sizes. See "Configuring the image brick" for more details on creating your own image sizes.
 
 ## Integrating search
