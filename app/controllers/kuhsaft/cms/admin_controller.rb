@@ -1,7 +1,6 @@
 module Kuhsaft
   module Cms
     class AdminController < ActionController::Base
-      inherit_resources
       respond_to :html
       layout 'kuhsaft/cms/application'
       before_filter :set_content_locale
