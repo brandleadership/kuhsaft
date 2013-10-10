@@ -1,11 +1,9 @@
 # CHANGELOG
 
-## hotfix/order_of_value_dropdown_two_column_brick
+## 2.2.2 - 2013-10-10
 
-* correct order in classes for two column brick partitioning
-
-## master
-
+- do not use inherited_resources
+- correct order in classes for two column brick partitioning
 - Dispaly error messages for bricks, when they are updated/saved
 
 ## 2.2.1 - 2013-10-02
