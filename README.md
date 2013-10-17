@@ -324,7 +324,7 @@ Simply override the default partial for the main navigation in your app with you
 
 ### Use the Kuhsaft ImageBrickImageUploader for your own Brick
 
-Kuhsaft has a modul called `ImageUploaderMounting`. This modul mounts the ImageBrickImageUploader
+Kuhsaft has a module called `ImageUploaderMounting`. This module mounts the ImageBrickImageUploader
 and includes a callback method which handles that the image sizes will be updated after save.
 
     class CustomBrick < Brick
@@ -332,7 +332,7 @@ and includes a callback method which handles that the image sizes will be update
       ...
     end
 
-If u do not include this modul, then the images will not be changed when selecting one of your own image
+If you do not include this module, then the images will not be changed when selecting one of your own image
 sizes. See "Configuring the image brick" for more details on creating your own image sizes.
 
 ## Integrating search
