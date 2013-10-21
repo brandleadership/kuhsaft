@@ -6,6 +6,10 @@
 
 ## master
 
+## 2.2.2 - 2013-10-10
+
+- do not use inherited_resources
+- correct order in classes for two column brick partitioning
 - Dispaly error messages for bricks, when they are updated/saved
 
 ## 2.2.1 - 2013-10-02

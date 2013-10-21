@@ -9,9 +9,9 @@ module Kuhsaft
 
       def self.style_for_index(style, idx)
         [
-          ['span4', 'span8'],
+          ['span8', 'span4'],
           ['span6', 'span6'],
-          ['span8', 'span4']
+          ['span4', 'span8']
         ][style][idx]
       end
     end
