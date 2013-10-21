@@ -1,10 +1,8 @@
 # CHANGELOG
 
-## hotfix/image_sizes
+## 2.2.3 - 2013-10-21
 
 - Create module for kuhsaft image uploader
-
-## master
 
 ## 2.2.2 - 2013-10-10
 
