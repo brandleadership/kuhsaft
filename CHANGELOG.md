@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## 2.2.3 - 2013-10-21
+## 2.2.3 - 2013-11-20
 
+- fix bootstrap-sass issue by locking to newest compatible version
 - Create module for kuhsaft image uploader
 
 ## 2.2.2 - 2013-10-10
