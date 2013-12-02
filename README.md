@@ -23,7 +23,7 @@ devs) on the other hand it should be easily usable by anyone.
 
 Kuhsaft requires:
 
-* A Rails 3.2 app to be integrated into
+* A Rails 4 app to be integrated into
 * ImageMagick
 * An ActiveRecord compatible DB
 
@@ -185,7 +185,7 @@ de:
 
 ## Adding additional content languages
 
-If you wan't to translate your pages into another language, generate a new translation migration:
+If you want to translate your pages into another language, generate a new translation migration:
 
     # translate your pages into french
     rails g kuhsaft:translations:add fr
