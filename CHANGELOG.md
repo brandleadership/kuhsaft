@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.5 - 2013-12-02
+
+- fix: make simple_form version constraint more future-proof
+
 ## 2.2.4 - 2013-12-02
 
 - Update simple_form dependency due to XSS vulnerability:
