@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.2.4 - 2013-12-02
+
+- Update simple_form dependency due to XSS vulnerability:
+  http://blog.plataformatec.com.br/2013/11/xss-vulnerability-on-simple-form/
+
 ## 2.2.3 - 2013-11-20
 
 - fix bootstrap-sass issue by locking to newest compatible version
