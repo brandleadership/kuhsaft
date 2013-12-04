@@ -47,7 +47,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
 
   # Rails 4 compatibility
-  s.add_dependency 'rails', '~> 4.0.0'
+  s.add_dependency 'rails', '~> 4.0.2'
   s.add_dependency 'simple_form', '~> 3.0.1'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'bourbon'

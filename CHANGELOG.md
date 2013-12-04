@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.2.6 - 2013-12-02
+
+- Bump Rails dependency up to 4.0.2 due to multimple security issues
+
 ## 2.2.5 - 2013-12-02
 
 - fix: make simple_form version constraint more future-proof
