@@ -20,12 +20,24 @@ CKEDITOR.config.customConfig = "<%= Rails.env.development? ? asset_path('kuhsaft
 loadTextEditor = ->
   CKEDITOR.replaceAll('ckeditor')
 
+updateInputsForRedirectPage = (redirect_url, keywords, description) ->
+  redirect_url.removeAttr('disabled')
+  keywords.attr('disabled', 'disabled')
+  description.attr('disabled', 'disabled')
+
+clearInputsFromRedirectPage = (redirect_url, keywords, description) ->
+  redirect_url.attr('disabled', 'disabled')
+  keywords.removeAttr('disabled')
+  description.removeAttr('disabled')
+
 checkPageType = ->
-  redirect_url_input = $('#page_redirect_url')
+  redirect_url = $('#page_redirect_url')
+  keywords = $('#page_keywords')
+  description = $('#page_description')
   if ($('#page_page_type option:selected').val() == 'redirect')
-    redirect_url_input.removeAttr('disabled')
+    updateInputsForRedirectPage(redirect_url, keywords, description)
   else
-    redirect_url_input.attr('disabled', 'disabled')
+    clearInputsFromRedirectPage(redirect_url, keywords, description)
 
 sortableBrick = ->
   $(".brick-list").each (idx, elem) ->

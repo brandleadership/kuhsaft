@@ -15,8 +15,8 @@
       = form.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :input_html => { :class => :span3 }
       = form.input :redirect_url, :as => :string
       = form.input :url, :as => :string, :input_html => { :disabled => 'disabled' }
-      = form.input :keywords, :input_html => { :class => :span5 }, hint: t('.hint_keywords')
-      = form.input :description, :as => :text, :input_html => { :class => :span5, :rows => 4 }, hint: t('.hint_description')
+      = form.input :keywords, :input_html => { :class => :span5 }, hint: t('.hint_keywords').html_safe
+      = form.input :description, :as => :text, :input_html => { :class => :span5, :rows => 4 }, hint: t('.hint_description').html_safe
       = form.input :published, :as => :boolean
 
       .form-actions
