@@ -49,7 +49,6 @@ de:
       page_part_type: 'Element hinzufügen'
       _destroy: 'Diese Element löschen'
 
-
   activerecord:
     errors:
       messages:
