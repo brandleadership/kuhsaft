@@ -48,3 +48,9 @@ de:
       slug: 'URL Segment'
       page_part_type: 'Element hinzufügen'
       _destroy: 'Diese Element löschen'
+
+
+  activerecord:
+    errors:
+      messages:
+        too_long: 'ist zu lang (maximum 255 Zeichen)'
