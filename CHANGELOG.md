@@ -5,6 +5,10 @@
 - add rake task which renames precompiled assets from ck-editor config to make
   sure that the newest config file is load in backend on staging and production
 
+## features/2985_warning_on_too_long_string
+
+- add string length validation cause of postgres string limit
+
 ## 2.2.6 - 2013-12-02
 
 - Bump Rails dependency up to 4.0.2 due to multimple security issues
