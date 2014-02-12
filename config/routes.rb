@@ -17,4 +17,6 @@ Kuhsaft::Engine.routes.draw do
       :defaults => { :locale => I18n.locale }
     get '(*url)' => 'pages#show', :as => :page
   end
+
+  get '/sitemap.:format' => 'sitemaps#index', format: 'xml'
 end
