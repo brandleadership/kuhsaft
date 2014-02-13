@@ -1,10 +1,10 @@
-require 'spec_helper'
+require "spec_helper"
 include SitemapsHelper
 
 describe 'kuhsaft/sitemaps/index.xml.haml' do
   describe 'structure' do
     before :each do
-      @page = FactoryGirl.create(:page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :fulltext_de => 'foobar')
+      @page = create(:page)
       @pages = [@page]
       render
     end
@@ -35,15 +35,17 @@ describe 'kuhsaft/sitemaps/index.xml.haml' do
   end
 
   describe 'count of records'do
-    before :each do
+    before do
+      I18n.stub(:available_locales).and_return([:de, :en])
+
       I18n.with_locale(:de) do
-        @page    = FactoryGirl.create(:page, :published => true, title: 'Dummy Page 1 DE', slug: 'dummy-page-1', url: 'de/dummy-page-1')
-        @page_de = FactoryGirl.create(:page, :published => true, title: 'German Page', slug: 'german-page', url: 'de/german-page')
+        @page    = create(:page, title: 'Dummy Page 1 DE')
+        @page_de = create(:page, title: 'German Page')
       end
 
       I18n.with_locale(:en) do
-        @page.update_attributes(title: 'Dummy Page 1 EN', slug: 'dummy-page-1', slug: 'dummy-page-1', url: 'en/dummy-page-1')
-        @page_en = FactoryGirl.create(:page, :published => true, title: 'English Page', slug: 'english-page', url: 'de/english-page')
+        @page.update_attributes(title: 'Dummy Page 1 EN')
+        @page_en = create(:page, title: 'English Page')
       end
 
       @pages = [@page, @page_de, @page_en]
@@ -51,18 +53,15 @@ describe 'kuhsaft/sitemaps/index.xml.haml' do
     end
 
     it 'has the same count of entry as pages are there' do
-      response.body.should have_xpath("//url", :count => 4)
+      response.body.should have_xpath("//url", count: 4)
     end
 
     it 'has a record for the german url' do
-      expect(rendered).to include "<loc>http://#{@request.host}/de/dummy-page-1</loc>"
+      expect(rendered).to include "<loc>http://#{@request.host}/de/dummy-page-1-de</loc>"
     end
 
     it 'has a record for the english url' do
-      locale = I18n.locale
-      I18n.locale = :en
-      expect(rendered).to include "<loc>http://#{@request.host}/en/dummy-page-1</loc>"
-      I18n.locale = locale
+      expect(rendered).to include "<loc>http://#{@request.host}/en/dummy-page-1-en</loc>"
     end
   end
 end
