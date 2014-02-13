@@ -13,7 +13,7 @@
           - if brick.persisted?
             - if brick.user_can_delete?
               .btn-group
-                = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', :confirm => t('kuhsaft.cms.bricks.brick_item.confirm'), :method => :delete, :remote => true do
+                = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', data: { confirm: t('kuhsaft.cms.bricks.brick_item.confirm') }, :method => :delete, :remote => true do
                   %i.icon-trash.icon-white
 
             - # possible styles
