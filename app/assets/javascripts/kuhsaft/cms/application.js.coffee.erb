@@ -106,3 +106,16 @@ $(document).ready ->
     url = '/cms/pages/sort'
     $.post(url, { page_tree: pageTree }, "json")
   )
+
+  # initialize collapse on accordion elements
+  $('.brick-item-content').each (index, elem) ->
+    $(elem).collapse('show')
+
+  # collapse / expand all
+  $('#expand-all').click ->
+    $('.brick-item-content').each (index, elem) ->
+      $(elem).collapse('show')
+
+  $('#collapse-all').click ->
+    $('.brick-item-content').each (index, elem) ->
+      $(elem).collapse('hide')

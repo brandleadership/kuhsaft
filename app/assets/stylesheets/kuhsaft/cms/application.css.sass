@@ -63,6 +63,20 @@ form
     opacity: 0
     @include transition(opacity, 0.2s)
 
+    &.resize-toggler
+      opacity: 1
+
+      .icon-resize-small
+        display: block
+      .icon-resize-full
+        display: none
+
+      &.collapsed
+        .icon-resize-small
+          display: none
+        .icon-resize-full
+          display: block
+
   &:hover
     .btn
       opacity: 1
@@ -83,6 +97,7 @@ form
     > .brick-list
       padding-left: 0
 #page-content
+  padding-bottom: 6em
   > .brick-list
     padding-left: 0
 
@@ -96,7 +111,7 @@ form
   margin: -1px
   background: #fff
 
-  .brick-item-content
+  .brick-item-content.in
     padding: 1em
 
 .empty-state
