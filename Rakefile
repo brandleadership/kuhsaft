@@ -66,15 +66,3 @@ task :start_dummy do
   end
 end
 
-desc "Create nondigest versions of all ckeditor digest assets"
-task "assets:precompile" do
-  binding.pry
-  fingerprint = /\-[0-9a-f]{32}\./
-  for file in Dir["public/assets/kuhsaft/cms/ck-config.*"]
-    next unless file =~ fingerprint
-    nondigest = file.sub fingerprint, '.'
-    if !File.exist?(nondigest) or File.mtime(file) > File.mtime(nondigest)
-      FileUtils.cp file, nondigest, verbose: true
-    end
-  end
-end
