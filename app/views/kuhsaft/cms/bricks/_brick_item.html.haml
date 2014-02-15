@@ -36,7 +36,7 @@
                 = render 'brick_type_dropdown', :brick_list => brick
 
     - if brick_content.present?
-      .brick-item-content.collapse{ :id => "brick-content-#{brick.id}" }
+      .brick-item-content.collapse.in{ :id => "brick-content-#{brick.id}", 'data-toggle' => true }
         = brick_content
         - if brick.user_can_save?
           - # save button

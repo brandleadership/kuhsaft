@@ -107,15 +107,15 @@ $(document).ready ->
     $.post(url, { page_tree: pageTree }, "json")
   )
 
-  # initialize collapse on accordion elements
-  $('.brick-item-content').each (index, elem) ->
-    $(elem).collapse('show')
-
   # collapse / expand all
   $('#expand-all').click ->
     $('.brick-item-content').each (index, elem) ->
       $(elem).collapse('show')
+    $('.resize-toggler').each (index, elem) ->
+      $(elem).removeClass('collapsed')
 
   $('#collapse-all').click ->
     $('.brick-item-content').each (index, elem) ->
       $(elem).collapse('hide')
+    $('.resize-toggler').each (index, elem) ->
+      $(elem).addClass('collapsed')
