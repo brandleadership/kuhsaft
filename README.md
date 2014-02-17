@@ -314,6 +314,8 @@ Simply override the default partial for the main navigation in your app with you
 ## Adding your own Bricks
 
 * Create your Brick model in `app/models`, for example `CaptionBrick`, which inherits from `Kuhsaft::Brick`.
+* If u use a string field add a max-length validation of 255 characters.
+  To prevent a `ActiveRecord::StatementInvalid` Error.
 * Create a migration which adds the necessary fields to the `kuhsaft_bricks` table.
 * If your brick should be accessible via UI, add a BrickType into the seeds or add a migration:
     `Kuhsaft::BrickType.create(:class_name => 'CaptionBrick', :group => 'elements')`

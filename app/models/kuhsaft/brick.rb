@@ -18,6 +18,16 @@ module Kuhsaft
               :brick_list_type,
               :presence => true
 
+    validates :template_name,
+              :type,
+              :locale,
+              :caption,
+              :link_style,
+              :image,
+              :image_size,
+              :video,
+              length: { maximum: 255 }
+
     after_initialize do
       self.position ||= has_siblings? ? brick_list.bricks.maximum(:position).to_i + 1 : 1
     end

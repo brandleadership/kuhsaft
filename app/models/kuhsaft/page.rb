@@ -36,6 +36,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   validates :title, :presence => true
   validates :slug, :presence => true
   validates :redirect_url, :presence => true, :if => :redirect?
+  validates :title, :slug, :keywords, :page_type, length: { maximum: 255 }
 
   class << self
     def flat_tree(pages = nil)
