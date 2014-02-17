@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## features/2988_ck_js_config
+
+- add rake task which renames precompiled assets from ck-editor config to make
+  sure that the newest config file is load in backend on staging and production
+
 ## 2.2.6 - 2013-12-02
 
 - Bump Rails dependency up to 4.0.2 due to multimple security issues

@@ -2,6 +2,7 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
 require 'rspec/core/rake_task'
+require 'fileutils'
 
 begin
   require 'rdoc/task'
@@ -64,3 +65,4 @@ task :start_dummy do
     `bundle exec rails server`
   end
 end
+

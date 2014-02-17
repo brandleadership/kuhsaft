@@ -15,7 +15,7 @@
 # As @ryabrody & @k-graefenhain found out there is obviously a bug which causes the asset_path_helper to return paths always without digest:
 # https://github.com/rails/sprockets-rails/issues/66
 # That's why we need the environment switch here:
-CKEDITOR.config.customConfig = "<%= Rails.env.development? ? asset_path('kuhsaft/cms/ck-config.js') : asset_path('assets/' + Rails.application.assets.find_asset('kuhsaft/cms/ck-config.js').digest_path) %>"
+CKEDITOR.config.customConfig = "<%= asset_path('kuhsaft/cms/ck-config.js') %>"
 
 loadTextEditor = ->
   CKEDITOR.replaceAll('ckeditor')
