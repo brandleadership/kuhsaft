@@ -23,6 +23,7 @@
         = form.button :submit, :class => 'btn btn-primary'
 
   - unless hide_content_tab?(@page)
+    #form-container
     #page-content.tab-pane{ :class => content_tab_active(@page) }
       - if @page.persisted?
         .clearfix

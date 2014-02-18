@@ -15,6 +15,10 @@ en:
       bricks:
         brick_item:
           confirm: 'Are you sure?'
+        new:
+          create_new: 'Create %{brick}'
+          save: Save
+          no_content: 'This Brick has no own content. You can create more bricks within after saving.'
       pages:
         index:
           create: 'Create new page'
