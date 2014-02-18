@@ -23,7 +23,6 @@ module Kuhsaft
               :locale,
               :caption,
               :link_style,
-              :image,
               :image_size,
               :video,
               length: { maximum: 255 }
