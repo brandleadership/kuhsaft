@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## issue #189
+
+- backend brick view
+
 ## features/2988_ck_js_config
 
 - add rake task which renames precompiled assets from ck-editor config to make
