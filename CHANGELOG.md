@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/3045 iframe in ckeditor
+
+- allow iframes to be saved in ckeditor
+
 ## features/2988_ck_js_config
 
 - add rake task which renames precompiled assets from ck-editor config to make
