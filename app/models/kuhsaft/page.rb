@@ -84,6 +84,10 @@ module Kuhsaft
       url.present? && title.present? && slug.present?
     end
 
+    def translated_to?(locale)
+      self.send("url_#{locale}").present? && self.send("title_#{locale}").present? && self.send("slug_#{locale}").present?
+    end
+
     def link
       if bricks.count == 0 && children.count > 0
         children.first.link

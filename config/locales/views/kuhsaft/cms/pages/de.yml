@@ -7,6 +7,7 @@ de:
         form:
           tab_metadata: 'Einstellungen'
           tab_content: 'Inhalt'
+          not_translated: 'Übersetzungen fehlen'
           hint_keywords: |
             Geben Sie hier 2 - 6 zentrale Begriffe, welche für diese Seite gelten, als Stichwörter an.
             </br>
