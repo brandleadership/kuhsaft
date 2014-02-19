@@ -6,5 +6,6 @@
         = image_tag brick.image.thumb
 = form.input :image, :as => :file, :input_html => { :class => 'span3' }
 = form.input :image_size, :collection => Kuhsaft::ImageSize.all, :label_method => :label, :value_method => :name, :input_html => { :class => 'span3' }, :include_blank => false
+= form.input :alt_text, :as => :string, :input_html => { :class => 'span6' }
 = form.input :caption, :as => :string, :input_html => { :class => 'span6' }
 = form.input :href, :as => :string, :input_html => { :class => 'span6' }
