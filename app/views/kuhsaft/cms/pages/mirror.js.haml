@@ -1,0 +1,6 @@
+$("#modal-hook #brick-clone").modal('hide')
+$("#modal-hook #brick-clone").remove()
+
+$("#modal-hook").append("#{j(render('kuhsaft/cms/pages/mirror_modal', :page => @page, :format => :html))}")
+
+$("#brick-clone").modal()

@@ -27,6 +27,8 @@ de:
             Diese Funktion dient zum initialen Setup der Seiten.
             </br>
             Eventuell vorhandene Bricks auf der Zielseite werden überschrieben!
+          modal_header: Bricks kopieren
+          modal_body: 'Kopiere %{brick_count} Brick(s) von %{from_locale} nach %{to_locale}'
         empty_state:
           empty: 'Hier ist bisher noch nichts...'
         main_navigation:

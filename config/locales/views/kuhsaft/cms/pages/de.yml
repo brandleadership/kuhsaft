@@ -30,3 +30,13 @@ de:
           expand_all: Alle aufklappen
           collapse_all: Alle zuklappen
           none: Keine
+
+        mirror_modal:
+          bricks_cloned: '%{brick_count} Brick(s) erfolgreich kopiert.'
+          target_page_contains_bricks: |
+            <strong>Achtung:</strong>
+            Die Zielseite enthält %{brick_count} Brick(s). Diese werden überschrieben.
+          abort: Abbrechen
+          proceed_replace: 'Kopieren & Ersetzen'
+          okay: OK
+          edit_language: '%{language} Bricks bearbeiten'

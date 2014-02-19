@@ -31,6 +31,7 @@
 
   - unless hide_content_tab?(@page)
     #brick-form.modal.hide.fade{ :tabindex => '-1', :role => 'dialog' }
+    #modal-hook
     #page-content.tab-pane{ class: content_tab_active(@page) }
       - if @page.persisted?
         .clearfix

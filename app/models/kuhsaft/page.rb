@@ -161,4 +161,8 @@ module Kuhsaft
       end
     end
   end
+
+  def clone_bricks_to(locale)
+
+  end
 end
