@@ -44,9 +44,9 @@
                 %i.icon-resize-small
                 = t('.collapse_all')
 
-            .btn-group
-              = render 'brick_type_dropdown', brick_list: @page
+            = render 'brick_clone_menu'
+            = render 'brick_type_dropdown', :brick_list => @page
 
-        = render 'kuhsaft/cms/bricks/brick_list', brick_list: @page
+        = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page
 
 = render 'kuhsaft/cms/bricks/sort_form'
