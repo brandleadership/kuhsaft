@@ -162,7 +162,9 @@ module Kuhsaft
     end
   end
 
-  def clone_bricks_to(locale)
-
+  def clone_bricks_to(locale, rutheless)
+    self.bricks.each do |brick|
+      brick.dup.update_attributes(:locale => locale)
+    end
   end
 end

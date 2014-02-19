@@ -59,9 +59,9 @@ module Kuhsaft
 
       def mirror
         @page = Kuhsaft::Page.find(params[:page_id])
-        # @page.clone_bricks_to(params[:target_locale], :rutheless => params[:rutheless])
 
         respond_to :js, :html
+        @page.clone_bricks_to(params[:target_locale], :rutheless => params[:rutheless])
       end
 
       private
