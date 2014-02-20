@@ -1,5 +1,4 @@
-
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rspec/core/rake_task'
 require 'fileutils'
@@ -33,7 +32,7 @@ module Postgres
   end
 end
 
-desc "Run specs"
+desc 'Run specs'
 RSpec::Core::RakeTask.new(:spec => :setup)
 
 RDoc::Task.new(:rdoc) do |rdoc|
@@ -66,4 +65,3 @@ task :start_dummy do
     `bundle exec rails server`
   end
 end
-
