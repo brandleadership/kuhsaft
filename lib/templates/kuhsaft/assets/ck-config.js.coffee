@@ -1,5 +1,6 @@
 CKEDITOR.editorConfig = (config) ->
   config.language = "de"
+  config.extraAllowedContent = 'iframe[*]'
   config.removeButtons = "Anchor,Underline,Strike,Subscript,Superscript"
   config.format_tags = "p;h1;h2;h3;h4;pre"
   config.toolbar = [["Format"],

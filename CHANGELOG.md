@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## features/3045 iframe in ckeditor
+
+- allow iframes to be saved in ckeditor
+
+  *If you already have a customized ck-config just add `config.extraAllowedContent = 'iframe[*]'` to your ck-config.js.coffee when updating*
+
 ## features/2988_ck_js_config
 
 - add rake task which renames precompiled assets from ck-editor config to make
