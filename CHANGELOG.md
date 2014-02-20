@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/dummy_seeds
+
+- Add `bundle exec rake db:seed` to setup rake task. It's easier for developing
+
 ## features/2988_ck_js_config
 
 - add rake task which renames precompiled assets from ck-editor config to make
