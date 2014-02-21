@@ -85,6 +85,12 @@ window.initSavePopover = (selector) ->
 window.initCKEditor = (selector) ->
   CKEDITOR.replace(selector)
 
+window.toggleCollapseBricksNav = (bool = false) ->
+  if bool
+    $('#collapse-bricks-nav').removeClass('hidden')
+  else
+    $('#collapse-bricks-nav').addClass('hidden')
+
 $(document).ajaxSuccess ->
   sortableBrick()
 

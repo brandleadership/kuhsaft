@@ -28,7 +28,7 @@
       - if @page.persisted?
         .clearfix
           .actions
-            .btn-group.pull-left
+            .btn-group.pull-left#collapse-bricks-nav{ class: @page.bricks.present? ? '' : 'hidden' }
               .btn.btn-small#expand-all
                 %i.icon-resize-full
                 = t('.expand_all')
