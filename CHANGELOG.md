@@ -1,8 +1,10 @@
 # CHANGELOG
 
-## issue #189
+## features/backend_brick_view - issue #199
 
-- backend brick view
+- Collapsable backend brick view
+- Add image_cache field to image brick edit partial to cache image
+- Although the length of string fields are validated, do not validate file strings like the image attribute in the image brick
 
 ## features/2988_ck_js_config
 
