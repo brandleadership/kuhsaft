@@ -7,6 +7,7 @@
 - Add remotipart gem to handle remote: :true forms with file uploads
 - Only show collapse/expand toggle if bricks exist
 - Add image_cache field to handle the cached image in ImageBrick
+- Add asset_cache field to handle the cached asset in AssetBrick
 
 ## features/2988_ck_js_config
 
