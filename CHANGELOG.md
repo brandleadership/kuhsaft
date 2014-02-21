@@ -3,8 +3,10 @@
 ## features/backend_brick_view - issue #199
 
 - Collapsable backend brick view
-- Add image_cache field to image brick edit partial to cache image
 - Although the length of string fields are validated, do not validate file strings like the image attribute in the image brick
+- Add remotipart gem to handle remote: :true forms with file uploads
+- Only show collapse/expand toggle if bricks exist
+- Add image_cache field to handle the cached image in ImageBrick
 
 ## features/2988_ck_js_config
 
