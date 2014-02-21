@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
 
   s.add_dependency 'coffee-rails'
+  s.add_dependency 'remotipart'
   s.add_dependency 'haml', '>= 4.0.3'
   s.add_dependency 'carrierwave'#, '>= 0.7.1'
   s.add_dependency 'mini_magick'#, '>= 3.4'

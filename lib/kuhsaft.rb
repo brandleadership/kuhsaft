@@ -12,6 +12,7 @@ module Kuhsaft
   require 'bourbon'
   require 'jquery-rails'
   require 'jquery-ui-rails'
+  require 'remotipart'
   require 'ancestry'
   require 'bootstrap-sass'
   require 'haml'
