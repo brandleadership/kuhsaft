@@ -1,7 +1,8 @@
-= form.input :caption, :as => :string, :input_html => { :class => 'span6' }
+= form.input :caption, as: :string, input_html: { :class => 'span6' }
 = form.input :asset
+= form.input :asset_cache, as: :hidden
 - if brick.asset.present?
   .countrol-group
     %label
       = link_to File.basename(brick.asset.url), brick.asset.url
-= form.input :link_style, :collection => Kuhsaft::AssetBrick.styles
+= form.input :link_style, collection: Kuhsaft::AssetBrick.styles
