@@ -61,7 +61,9 @@ module Kuhsaft
         @page = Kuhsaft::Page.find(params[:page_id])
 
         respond_to :js, :html
-        @page.clone_bricks_to(params[:target_locale], :rutheless => params[:rutheless])
+        if @page.bricks.unscoped.where(:locale => params[:target_locale], :brick_list_id => @page.id).empty? || params[:rutheless] == 'true'
+          @page.clone_bricks_to(params[:target_locale])
+        end
       end
 
       private

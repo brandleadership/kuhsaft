@@ -162,9 +162,17 @@ module Kuhsaft
     end
   end
 
-  def clone_bricks_to(locale, rutheless)
+  def clone_bricks_to(locale)
+    self.bricks.unscoped.where(:locale => locale).destroy_all
+
     self.bricks.each do |brick|
-      brick.dup.update_attributes(:locale => locale)
+      new_brick = brick.dup
+
+      if brick.uploader?
+        # reupload images/assets
+      end
+
+      new_brick.update_attributes(:locale => locale.to_sym)
     end
   end
 end
