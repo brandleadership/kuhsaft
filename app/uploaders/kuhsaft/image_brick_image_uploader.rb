@@ -11,8 +11,8 @@ module Kuhsaft
     end
 
     def full_filename(for_file)
-        for_file.pathmap("%n") + for_file.pathmap("%x")
-      end
+      for_file.pathmap("%n") + for_file.pathmap("%x")
+    end
 
     version :converted do
       process :process_brick_image_size
