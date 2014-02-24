@@ -23,10 +23,18 @@
         = form.button :submit, :class => 'btn btn-primary'
 
   - unless hide_content_tab?(@page)
+    #form-container
     #page-content.tab-pane{ :class => content_tab_active(@page) }
       - if @page.persisted?
         .clearfix
           .actions
+            .btn-group.pull-left#collapse-bricks-nav{ class: @page.bricks.present? ? '' : 'hidden' }
+              .btn.btn-small#expand-all
+                %i.icon-resize-full
+                = t('.expand_all')
+              .btn.btn-small#collapse-all
+                %i.icon-resize-small
+                = t('.collapse_all')
             .btn-group
               = render 'brick_type_dropdown', :brick_list => @page
         = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page

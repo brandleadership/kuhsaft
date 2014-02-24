@@ -5,9 +5,21 @@ module Kuhsaft
       respond_to :html, :js
 
       def create
-        @brick = params[:brick][:type].constantize.new(brick_params)
+        @brick = params[:brick][:type].constantize.create(brick_params)
         @brick.image_size = ImageSize.all.first.name.to_s
-        @brick.save(:validate => false)
+
+        if @brick.valid?
+          respond_with @brick do |format|
+            format.js
+            format.html { redirect_to edit_cms_page_path(@brick.parents.first) }
+          end
+        else
+          render 'new'
+        end
+      end
+
+      def new
+        @brick = Kuhsaft::Brick.new(brick_params)
       end
 
       def update

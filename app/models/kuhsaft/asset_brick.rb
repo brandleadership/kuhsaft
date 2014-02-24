@@ -2,7 +2,8 @@ module Kuhsaft
   class AssetBrick < Brick
     mount_uploader :asset, Kuhsaft::AssetBrickAssetUploader
 
-    validates :caption, :asset, :presence => true
+    validates :caption,
+              :asset, :presence => true
 
     def self.styles
       %w(pdf word excel button)

@@ -4,7 +4,8 @@
     .controls
       = link_to brick.image.converted.url do
         = image_tag brick.image.thumb
-= form.input :image, :as => :file, :input_html => { :class => 'span3' }
-= form.input :image_size, :collection => Kuhsaft::ImageSize.all, :label_method => :label, :value_method => :name, :input_html => { :class => 'span3' }, :include_blank => false
-= form.input :caption, :as => :string, :input_html => { :class => 'span6' }
-= form.input :href, :as => :string, :input_html => { :class => 'span6' }
+= form.input :image, as: :file, input_html: { :class => 'span3' }
+= form.input :image_cache, as: :hidden
+= form.input :image_size, collection: Kuhsaft::ImageSize.all, label_method: :label, value_method: :name, input_html: { :class => 'span3' }, include_blank: false
+= form.input :caption, as: :string, input_html: { :class => 'span6' }
+= form.input :href, as: :string, input_html: { :class => 'span6' }

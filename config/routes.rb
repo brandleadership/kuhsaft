@@ -3,7 +3,7 @@ Kuhsaft::Engine.routes.draw do
     resources :pages, :except => :show do
       post :sort, :on => :collection
     end
-    resources :bricks, :except => [:new, :edit, :index] do
+    resources :bricks, :except => [:edit, :index] do
       post :sort, :on => :collection
     end
 

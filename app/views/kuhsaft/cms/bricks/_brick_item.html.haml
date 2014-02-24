@@ -1,8 +1,13 @@
 .brick-item{ :id => brick.to_brick_item_id, :class => brick.to_style_class, 'data-id' => brick.id }
   = simple_form_for brick, :as => :brick, :url => kuhsaft.cms_brick_path(brick), :remote => !brick.uploader?, :html => { :id => nil }, :wrapper => :bootstrap do |form|
     = form.hidden_field :position, :class => 'position-field'
+    - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)
     .brick-item-header.clearfix
       .pull-left
+        - if brick_content.present?
+          .resize-toggler.btn.btn-small{ 'data-toggle' => 'collapse', 'data-target' => "#brick-content-#{brick.id}" }
+            %i.icon-resize-full
+            %i.icon-resize-small
         - if brick.caption.present?
           = brick.caption
         %span.muted
@@ -30,9 +35,8 @@
               .btn-group
                 = render 'brick_type_dropdown', :brick_list => brick
 
-    - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)
     - if brick_content.present?
-      .brick-item-content
+      .brick-item-content.collapse.in{ :id => "brick-content-#{brick.id}", 'data-toggle' => true }
         = brick_content
         - if brick.user_can_save?
           - # save button
