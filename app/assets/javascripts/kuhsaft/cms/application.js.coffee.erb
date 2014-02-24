@@ -6,6 +6,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require jquery.remotipart
 #= require jquery.ui.all
 #= require bootstrap
 #= require ckeditor-jquery
@@ -84,6 +85,12 @@ window.initSavePopover = (selector) ->
 window.initCKEditor = (selector) ->
   CKEDITOR.replace(selector)
 
+window.toggleCollapseBricksNav = (bool = false) ->
+  if bool
+    $('#collapse-bricks-nav').removeClass('hidden')
+  else
+    $('#collapse-bricks-nav').addClass('hidden')
+
 $(document).ajaxSuccess ->
   sortableBrick()
 
@@ -106,3 +113,16 @@ $(document).ready ->
     url = '/cms/pages/sort'
     $.post(url, { page_tree: pageTree }, "json")
   )
+
+  # collapse / expand all
+  $('#expand-all').click ->
+    $('.brick-item-content').each (index, elem) ->
+      $(elem).collapse('show')
+    $('.resize-toggler').each (index, elem) ->
+      $(elem).removeClass('collapsed')
+
+  $('#collapse-all').click ->
+    $('.brick-item-content').each (index, elem) ->
+      $(elem).collapse('hide')
+    $('.resize-toggler').each (index, elem) ->
+      $(elem).addClass('collapsed')

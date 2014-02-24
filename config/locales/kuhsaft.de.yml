@@ -12,6 +12,13 @@ de:
     page_part:
       markdown: 'Formatierter Text'
     cms:
+      bricks:
+        brick_item:
+          confirm: 'Sind Sie sicher?'
+        new:
+          create_new: '%{brick} erstellen'
+          save: Speichern
+          no_content: 'Dieser Brick hat keinen eigenen Inhalt. Nach dem Speichern, können darin weitere Bricks erstellt werden.'
       pages:
         index:
           create: 'Neue Seite erstellen'

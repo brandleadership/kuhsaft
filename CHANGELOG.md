@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## features/backend_brick_view - issue #199
+
+- Collapsable backend brick view
+- Although the length of string fields are validated, do not validate file strings like the image attribute in the image brick
+- Add remotipart gem to handle remote: :true forms with file uploads
+- Only show collapse/expand toggle if bricks exist
+- Add image_cache field to handle the cached image in ImageBrick
+- Add asset_cache field to handle the cached asset in AssetBrick
+
+## features/dummy_seeds
+
+- Add `bundle exec rake db:seed` to setup rake task. It is easier for developing
+
+## features/3045 iframe in ckeditor
+
+- allow iframes to be saved in ckeditor
+
+  *If you already have a customized ck-config just add ``config.extraAllowedContent = 'iframe[*]'`` to your ck-config.js.coffee when updating*
+
 ## features/2988_ck_js_config
 
 - add rake task which renames precompiled assets from ck-editor config to make

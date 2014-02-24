@@ -6,3 +6,9 @@ initSavePopover(newlyInsertedBrick)
 initSubmitLinks(newlyInsertedBrick)
 
 $(newlyInsertedBrick).find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) })
+
+$("#form-container #brick-form").modal('hide')
+
+-# Toggle collapse-bricks-nav
+var showCollapseBricksNav = "#{@brick.brick_list.bricks.present?}" == 'true'
+toggleCollapseBricksNav(showCollapseBricksNav)
