@@ -17,7 +17,12 @@ module Kuhsaft
     # defaults to nil
     config.sublime_video_token = nil
 
-    # delegate image size config to ImageSize class
+    # delegate image size config to ImageSize classj
     config.image_sizes = ImageSizeDelegator.new
+
+    initializer 'kuhsaft.initialize_haml_dependency_tracker' do |app|
+      require 'action_view/dependency_tracker'
+      ActionView::DependencyTracker.register_tracker :haml, ActionView::DependencyTracker::ERBTracker
+	  end
   end
 end
