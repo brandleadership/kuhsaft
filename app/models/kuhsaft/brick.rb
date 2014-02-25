@@ -118,5 +118,13 @@ module Kuhsaft
         label
       end
     end
+
+    def partial_digest(name)
+      ActionView::Digestor.digest(name, 'haml',  ApplicationController.new.lookup_context, partial: true)
+    end
+
+    def cache_key
+      super +  partial_digest(to_partial_path)
+    end
   end
 end

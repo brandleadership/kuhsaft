@@ -140,4 +140,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   def allowed_brick_types
     Kuhsaft::BrickType.enabled.pluck(:class_name) - ['Kuhsaft::AccordionItemBrick']
   end
+
+  def cache_key
+    super + bricks.map(&:cache_key).join
+  end
 end
