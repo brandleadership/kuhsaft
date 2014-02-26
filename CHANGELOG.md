@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/3083_dynamic_translation_page_fields
+
+- make migration for additional content languages be generated dynamic
+
 ## features/backend_brick_view - issue #199
 
 - Collapsable backend brick view
