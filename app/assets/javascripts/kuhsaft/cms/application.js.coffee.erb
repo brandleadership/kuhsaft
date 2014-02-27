@@ -126,3 +126,7 @@ $(document).ready ->
       $(elem).collapse('hide')
     $('.resize-toggler').each (index, elem) ->
       $(elem).addClass('collapsed')
+
+  # Stop propagation for display styles
+  $('#display-styles').click (e) ->
+    e.stopPropagation()
