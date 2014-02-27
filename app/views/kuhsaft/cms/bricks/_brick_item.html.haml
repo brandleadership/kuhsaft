@@ -14,7 +14,7 @@
           = brick.backend_label(:parenthesis => true)
       .pull-right
         .btn-toolbar
-          - # delete button
+          -# delete button
           - if brick.persisted?
             - if brick.user_can_delete?
               .btn-group
@@ -24,11 +24,13 @@
             - # possible styles
             - unless brick.available_display_styles.empty?
               .btn-group
-                %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+                .btn.btn-small
                   %i.icon-tint
-                %ul.dropdown-menu.pull-right
+                %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+                  %span.caret
+                %ul#display-styles.dropdown-menu.pull-right
                   %li
-                    = form.input :display_styles, :collection => brick.available_display_styles, :as => :check_boxes
+                    = form.input :display_styles, :collection => brick.translated_available_display_styles, :as => :check_boxes
 
             - # addable child dropdown menu
             - if brick.respond_to?(:brick_list)

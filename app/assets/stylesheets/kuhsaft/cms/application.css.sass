@@ -60,12 +60,7 @@ form
   padding: 0.5em
 
   .btn
-    opacity: 0
-    @include transition(opacity, 0.2s)
-
     &.resize-toggler
-      opacity: 1
-
       .icon-resize-small
         display: block
       .icon-resize-full
@@ -76,10 +71,6 @@ form
           display: none
         .icon-resize-full
           display: block
-
-  &:hover
-    .btn
-      opacity: 1
 
 .btn-toolbar
   margin-top: 0
@@ -96,6 +87,7 @@ form
   > .brick-item-childs
     > .brick-list
       padding-left: 0
+
 #page-content
   padding-bottom: 6em
   > .brick-list
@@ -182,10 +174,6 @@ textarea.ckeditor
   display: block !important
   visibility: show !important
   position: absolute
-
-.kuhsaft-text-brick
-  .controls
-    min-height: 271px
 
 @import nestable
 @import bootstrap-responsive
