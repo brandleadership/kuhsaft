@@ -111,6 +111,12 @@ module Kuhsaft
       []
     end
 
+    def translated_available_display_styles
+      styles = []
+      available_display_styles.each { |style| styles << [I18n.t("#{self.class.to_s.demodulize.underscore}.display_styles.#{style}"), style] }
+      styles
+    end
+
     def backend_label(options = {})
       label = self.class.model_name.human
       if options[:parenthesis] == true
