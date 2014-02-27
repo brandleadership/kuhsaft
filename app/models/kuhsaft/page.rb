@@ -162,17 +162,29 @@ module Kuhsaft
     end
   end
 
-  def clone_bricks_to(locale)
+  def clear_bricks_for_locale(locale)
     self.bricks.unscoped.where(:locale => locale).destroy_all
+  end
+
+  def clone_brick_to(brick, locale)
+    new_brick = brick.dup
+
+    if brick.uploader?
+      brick.attribute_names.each do |attribute_name|
+        if brick.class.uploaders.keys.include?(attribute_name.to_sym)
+          new_brick.update_attribute(attribute_name, File.open(brick.send(attribute_name).file.file))
+        end
+      end
+    end
+    new_brick.update_attributes(:locale => locale.to_sym)
+  end
+
+  def clone_bricks_to(locale)
+    failed_to_clone = []
 
     self.bricks.each do |brick|
-      new_brick = brick.dup
-
-      if brick.uploader?
-        # reupload images/assets
-      end
-
-      new_brick.update_attributes(:locale => locale.to_sym)
+      failed_to_clone << brick unless clone_brick_to(brick, locale)
     end
+    failed_to_clone
   end
 end

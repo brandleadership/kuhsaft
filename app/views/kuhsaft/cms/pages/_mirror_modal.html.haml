@@ -19,7 +19,16 @@
   - else
     .modal-body
       .alert.alert-info
-        = t('.bricks_cloned', :brick_count => page.bricks.count)
+        = t('.bricks_cloned', :brick_count => (page.bricks.count - params[:failed_bricks].count))
+      - if params[:failed_bricks].any?
+        .alert.alert-error
+          = t('.failed_to_clone_folowwing_bricks')
+          %ul
+            - params[:failed_bricks].each do |failed_brick|
+              %li
+                = failed_brick.caption
+                = failed_brick.type
+                = "(Position: #{failed_brick.position})"
 
     .modal-footer
       .clearfix

@@ -40,3 +40,4 @@ de:
           proceed_replace: 'Kopieren & Ersetzen'
           okay: OK
           edit_language: '%{language} Bricks bearbeiten'
+          failed_to_clone_folowwing_bricks: 'Folgende Bricks konnten nicht kopiert werden:'
