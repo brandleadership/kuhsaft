@@ -25,6 +25,7 @@ module Kuhsaft
               :link_style,
               :image_size,
               :video,
+              :alt_text,
               length: { maximum: 255 }
 
     after_initialize do
