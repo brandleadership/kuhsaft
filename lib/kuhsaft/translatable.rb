@@ -37,12 +37,6 @@ module Kuhsaft
       end
     end
 
-    def locale_for_attr_name
-      I18n.locale.to_s.gsub('-', '_').downcase
-    end
-
-    def locale_attr(attr_name)
-      "#{attr_name}_#{locale_for_attr_name}"
-    end
+    include ClassMethods
   end
 end
