@@ -172,6 +172,16 @@ Implement the `available_display_styles` on a brick model and return an array of
     %my-brick{ :class => brick.to_style_class}
       = brick.text # ... etc
 
+After setting up display styles in specific model add your translations
+for the UI dropdown. E.g. you've added display styles to the TextBrick model:
+
+```
+de:
+  text_brick:
+    display_styles:
+      style1: 'My Style 1'
+      style2: 'My Style 2'
+```
 
 ## Adding custom templates with placeholder bricks
 
