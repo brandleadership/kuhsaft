@@ -113,11 +113,11 @@ describe Kuhsaft::Page do
     end
 
     let :child_page do
-      create(:page, :parent => page)
+      create(:page, parent: page)
     end
 
     let :child_child_page do
-      create(:page, :parent => child_page)
+      create(:page, parent: child_page)
     end
 
     context 'on the topmost level' do
@@ -145,7 +145,7 @@ describe Kuhsaft::Page do
     end
 
     let :child_page do
-      create(:page, :parent => page)
+      create(:page, parent: page)
     end
 
     it 'has a list of parent pages' do
@@ -161,7 +161,7 @@ describe Kuhsaft::Page do
     context 'when it has no content' do
       it 'should return the link of it\'s first child' do
         page = create(:page)
-        child = create(:page, :parent => page)
+        child = create(:page, parent: page)
         page.body = nil
         page.save
         page.link.should == child.link
@@ -251,30 +251,30 @@ describe Kuhsaft::Page do
   describe '#url' do
     context 'when it is a normal page' do
       it 'returns the concatenated slug of the whole child/parent tree' do
-        page = create(:page, :slug => 'parent-slug')
-        child = create(:page, :slug => 'child-slug', :parent => page)
+        page = create(:page, slug: 'parent-slug')
+        child = create(:page, slug: 'child-slug', parent: page)
         child.url.should == 'en/parent-slug/child-slug'
       end
     end
 
     context 'when it is a navigation? page' do
       it 'returns without the parent page slug' do
-        page = create(:page, :slug => 'parent-slug', :page_type => Kuhsaft::PageType::NAVIGATION)
-        child = create(:page, :slug => 'child-slug', :parent => page)
+        page = create(:page, slug: 'parent-slug', page_type: Kuhsaft::PageType::NAVIGATION)
+        child = create(:page, slug: 'child-slug', parent: page)
         child.url.should == 'en/child-slug'
       end
     end
 
     context 'when it is a redirect? page' do
       it 'returns the absolute url' do
-        page = create(:page, :page_type => Kuhsaft::PageType::REDIRECT, :redirect_url => 'en/references', :slug => 'news')
+        page = create(:page, page_type: Kuhsaft::PageType::REDIRECT, redirect_url: 'en/references', slug: 'news')
         page.link.should eq('/en/news')
       end
     end
 
     context 'when url part is empty' do
       it 'strips the trailing slash' do
-        page = create(:page, :page_type => Kuhsaft::PageType::NAVIGATION)
+        page = create(:page, page_type: Kuhsaft::PageType::NAVIGATION)
         page.link.should eq('/en')
       end
     end
@@ -283,13 +283,13 @@ describe Kuhsaft::Page do
   describe '#navigation?' do
     context 'when the page_type is navigation' do
       it 'returns true if the page_type is PageType::NAVIGATION' do
-        Kuhsaft::Page.new(:page_type => Kuhsaft::PageType::NAVIGATION).navigation?.should be_true
+        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).navigation?.should be_true
       end
     end
 
     context 'when the page_type is anything else' do
       it 'returns false' do
-        Kuhsaft::Page.new(:page_type => Kuhsaft::PageType::REDIRECT).navigation?.should be_false
+        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).navigation?.should be_false
       end
     end
   end
@@ -297,13 +297,13 @@ describe Kuhsaft::Page do
   describe '#redirect?' do
     context 'when the page_type is a redirect' do
       it 'returns true' do
-        Kuhsaft::Page.new(:page_type => Kuhsaft::PageType::REDIRECT).redirect?.should be_true
+        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).redirect?.should be_true
       end
     end
 
     context 'when the page type is anything else' do
       it 'returns false' do
-        Kuhsaft::Page.new(:page_type => Kuhsaft::PageType::NAVIGATION).redirect?.should be_false
+        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).redirect?.should be_false
       end
     end
   end
@@ -338,8 +338,8 @@ describe Kuhsaft::Page do
 
   describe '#fulltext' do
     let :page do
-      p = create(:page, :keywords => 'key words', :description => 'descrip tion', :title => 'my title')
-      p.bricks << Kuhsaft::TextBrick.new(:locale => I18n.locale, :text => 'oh la la')
+      p = create(:page, keywords: 'key words', description: 'descrip tion', title: 'my title')
+      p.bricks << Kuhsaft::TextBrick.new(locale: I18n.locale, text: 'oh la la')
       p.save
       p
     end
@@ -362,7 +362,7 @@ describe Kuhsaft::Page do
 
   describe '#before_validation' do
     it 'generates url automatically' do
-      page = Kuhsaft::Page.new :slug => 'slug'
+      page = Kuhsaft::Page.new slug: 'slug'
       page.url.should be_nil
       page.valid?
       page.url.should be_present
@@ -371,7 +371,7 @@ describe Kuhsaft::Page do
 
   describe '#url_without_locale' do
     let :page do
-      create(:page, :slug => 'page')
+      create(:page, slug: 'page')
     end
 
     context 'without parent' do
@@ -386,11 +386,11 @@ describe Kuhsaft::Page do
 
     context 'when parent is navigation' do
       let :parent do
-        create(:page, :page_type => Kuhsaft::PageType::NAVIGATION)
+        create(:page, page_type: Kuhsaft::PageType::NAVIGATION)
       end
 
       let :child do
-        create(:page, :slug => 'child', :parent => parent)
+        create(:page, slug: 'child', parent: parent)
       end
 
       it 'returns url without leading /' do
@@ -404,11 +404,11 @@ describe Kuhsaft::Page do
 
     context 'when parent is normal page' do
       let :parent do
-        create(:page, :slug => 'parent')
+        create(:page, slug: 'parent')
       end
 
       let :child do
-        create(:page, :slug => 'child', :parent => parent)
+        create(:page, slug: 'child', parent: parent)
       end
 
       it 'returns url without leading /' do
