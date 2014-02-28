@@ -204,7 +204,7 @@ Finally, add the new translation locale to your `available_locales` inside your 
     config.available_locales = [:en, :fr]
 Or
 
-    config.available_locales = [:en, :de-CH]
+    config.available_locales = [:en, 'de-CH']
 
 ## Adding a language switch
 
