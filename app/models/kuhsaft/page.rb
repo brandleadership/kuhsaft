@@ -22,10 +22,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   scope :published, -> { where(:published => Kuhsaft::PublishState::PUBLISHED) }
   scope :translated, -> { where("url_#{I18n.locale} is not null") }
 
-  # TODO: cleanup page_types (content pages => nil or PageType::CONTENT
-  scope :content_page, -> { where(
-    ["page_type is NULL or page_type = ?",
-     Kuhsaft::PageType::CONTENT]) }
+  scope :content_page, -> {
+    where( page_type: Kuhsaft::PageType::CONTENT) }
 
   scope :navigation, ->(slug) {
     where(locale_attr(:slug) => slug).where(
