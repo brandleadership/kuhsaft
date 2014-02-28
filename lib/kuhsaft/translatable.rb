@@ -11,19 +11,19 @@ module Kuhsaft
       def translate(*args)
         args.each do |attr_name|
           define_method attr_name do
-            send "#{attr_name}_#{Kuhsaft::Translatable::locale_for_attr_name}"
+            send "#{attr_name}_#{locale_for_attr_name}"
           end
 
           define_method "#{attr_name}?" do
-            send "#{attr_name}_#{Kuhsaft::Translatable::locale_for_attr_name}?"
+            send "#{attr_name}_#{locale_for_attr_name}?"
           end
 
           define_method "#{attr_name}=" do |val|
-            send "#{attr_name}_#{Kuhsaft::Translatable::locale_for_attr_name}=", val
+            send "#{attr_name}_#{locale_for_attr_name}=", val
           end
 
           define_singleton_method "find_by_#{attr_name}" do |val|
-            send "find_by_#{attr_name}_#{Kuhsaft::Translatable::locale_for_attr_name}", val
+            send "find_by_#{attr_name}_#{locale_for_attr_name}", val
           end
         end
       end
