@@ -308,6 +308,20 @@ describe Kuhsaft::Page do
     end
   end
 
+  describe 'page types' do
+    it 'returns content by default' do
+      expect(Kuhsaft::Page.new.page_type).to eq('content')
+    end
+
+    it 'returns navigation if set' do
+      expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).page_type).to eq('navigation')
+    end
+
+    it 'returns redirect if set' do
+      expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).page_type).to eq('redirect')
+    end
+  end
+
   describe '#translated?' do
     it 'returns true when page is translated' do
       @page = create(:page, title: 'Page 1', slug: 'page1')
