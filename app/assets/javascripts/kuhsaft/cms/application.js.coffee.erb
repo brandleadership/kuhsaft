@@ -91,6 +91,11 @@ window.toggleCollapseBricksNav = (bool = false) ->
   else
     $('#collapse-bricks-nav').addClass('hidden')
 
+# Stop propagation for display styles dropdown
+window.stopPropagationOfDisplayStyles = (selector) ->
+  selector.click (e) ->
+    e.stopPropagation()
+
 $(document).ajaxSuccess ->
   sortableBrick()
 
@@ -99,6 +104,7 @@ $(document).ready ->
   checkPageType()
   sortableBrick()
   initSubmitLinks()
+  stopPropagationOfDisplayStyles($('#display-styles ul'))
 
   $('#page_page_type').change ->
     checkPageType()
@@ -126,7 +132,3 @@ $(document).ready ->
       $(elem).collapse('hide')
     $('.resize-toggler').each (index, elem) ->
       $(elem).addClass('collapsed')
-
-  # Stop propagation for display styles
-  $('#display-styles').click (e) ->
-    e.stopPropagation()
