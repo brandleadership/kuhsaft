@@ -14,12 +14,14 @@
       - brick_content = render(@brick.to_edit_partial_path, :brick => @brick, :form => form)
 
       - unless @brick.available_display_styles.empty?
-        .btn-group.pull-right
-          %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+        #display-styles.btn-group.pull-right
+          .btn.btn-small
             %i.icon-tint
+          %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+            %span.caret
           %ul.dropdown-menu.pull-right
             %li
-              = form.input :display_styles, :collection => @brick.available_display_styles, :as => :check_boxes
+              = form.input :display_styles, :collection => @brick.translated_available_display_styles, :as => :check_boxes
 
       - if brick_content.present?
         = brick_content

@@ -5,4 +5,7 @@ $("#form-container").append("#{j(render('kuhsaft/cms/bricks/new', :brick => @bri
 
 $("#form-container").find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) })
 
+-# Stop propagation of display styles dropdown
+stopPropagationOfDisplayStyles($('#display-styles ul'))
+
 $("#brick-form").modal()
