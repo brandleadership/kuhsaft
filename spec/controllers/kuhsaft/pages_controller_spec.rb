@@ -6,8 +6,8 @@ describe Kuhsaft::PagesController do
   describe '#index' do
     before do
       @pages = [
-        create(:page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :fulltext_de => 'foobar'),
-        create(:page, :page_type => Kuhsaft::PageType::CONTENT, :published => true, :fulltext_de => 'barfoo')
+        create(:page, :published => true, :fulltext_de => 'foobar'),
+        create(:page, :published => true, :fulltext_de => 'barfoo')
       ]
     end
 

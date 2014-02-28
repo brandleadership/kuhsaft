@@ -4,7 +4,6 @@ describe 'pages#index' do
   context 'with search parameter' do
     let! :page1 do
       p = create :page,
-        :page_type => Kuhsaft::PageType::CONTENT,
         :published => true,
         :title => 'Chromodorididae Ardeadoris'
       p.bricks << Kuhsaft::TextBrick.new(:locale => I18n.locale, :text => "#{'foo bar' * 300} Chromodorididae #{'foo bar' * 300}")
@@ -14,14 +13,12 @@ describe 'pages#index' do
 
     let! :page2 do
       create :page,
-        :page_type => Kuhsaft::PageType::CONTENT,
         :published => true,
         :title => 'Chromodorididae Berlanguella'
     end
 
     let! :page3 do
       create :page,
-        :page_type => Kuhsaft::PageType::CONTENT,
         :published => true,
         :title => 'Gastropoda'
     end
