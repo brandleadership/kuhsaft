@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/3089_country_specific_locale
+
+- add getter and setter for country specific translated pages
+
 ## features/backend_brick_view - issue #199
 
 - Collapsable backend brick view
