@@ -190,6 +190,10 @@ If you want to translate your pages into another language, generate a new transl
     # translate your pages into french
     rails g kuhsaft:translations:add fr
 
+    # translate your pages into swiss german
+    rails g kuhsaft:translations:add de-CH
+
+
 This creates a new migration file inside `db/migrate` of your app. Run the migration as you normally do:
 
     rake db:migrate
@@ -197,6 +201,8 @@ This creates a new migration file inside `db/migrate` of your app. Run the migra
 Finally, add the new translation locale to your `available_locales` inside your apps `application.rb`:
 
     config.available_locales = [:en, :fr]
+Or
+    config.available_locales = [:en, :de-CH]
 
 ## Adding a language switch
 
