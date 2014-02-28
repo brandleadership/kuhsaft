@@ -194,7 +194,6 @@ Or
     # translate your pages into swiss german
     rails g kuhsaft:translations:add de-CH
 
-
 This creates a new migration file inside `db/migrate` of your app. Run the migration as you normally do:
 
     rake db:migrate
