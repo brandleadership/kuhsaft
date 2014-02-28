@@ -77,10 +77,9 @@ describe Kuhsaft::Page do
   end
 
   describe '#content_page' do
-    it 'returns only content pages ("" or nil)' do
+    it 'returns only content pages' do
       p1, p2, p3 = 3.times.map { create(:page) }
       p2.update_attribute :page_type, Kuhsaft::PageType::REDIRECT
-      p3.update_attribute :page_type, nil
       Kuhsaft::Page.content_page.should == [p1, p3]
     end
   end
@@ -252,8 +251,8 @@ describe Kuhsaft::Page do
   describe '#url' do
     context 'when it is a normal page' do
       it 'returns the concatenated slug of the whole child/parent tree' do
-        page = create(:page, :slug => 'parent-slug', :page_type => '')
-        child = create(:page, :slug => 'child-slug', :page_type => '', :parent => page)
+        page = create(:page, :slug => 'parent-slug')
+        child = create(:page, :slug => 'child-slug', :parent => page)
         child.url.should == 'en/parent-slug/child-slug'
       end
     end
@@ -261,7 +260,7 @@ describe Kuhsaft::Page do
     context 'when it is a navigation? page' do
       it 'returns without the parent page slug' do
         page = create(:page, :slug => 'parent-slug', :page_type => Kuhsaft::PageType::NAVIGATION)
-        child = create(:page, :slug => 'child-slug', :page_type => '', :parent => page)
+        child = create(:page, :slug => 'child-slug', :parent => page)
         child.url.should == 'en/child-slug'
       end
     end
