@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## features/3094_set_page_type_to_content_automatically - issue #137
+
+- There is no empty page type field anymore
+- Default value of page type field is now set to content
+
+  *run rake kuhsaft:install:migrations when updating*
+
 ## features/backend_brick_view - issue #199
 
 - Collapsable backend brick view
