@@ -19,5 +19,10 @@ module Kuhsaft
 
     # delegate image size config to ImageSize class
     config.image_sizes = ImageSizeDelegator.new
+
+    initializer 'kuhsaft.initialize_haml_dependency_tracker' do |app|
+      require 'action_view/dependency_tracker'
+      ActionView::DependencyTracker.register_tracker :haml, ActionView::DependencyTracker::ERBTracker
+    end
   end
 end

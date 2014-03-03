@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/3083_caching_optimizing
+
+- optimize caching of pages and their bricks
+
 ## features/backend_brick_view - issue #199
 
 - Collapsable backend brick view
