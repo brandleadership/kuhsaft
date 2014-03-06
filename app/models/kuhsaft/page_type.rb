@@ -2,7 +2,7 @@ module Kuhsaft
   class PageType
     REDIRECT = 'redirect'
     NAVIGATION = 'navigation'
-    CONTENT = ''
+    CONTENT = 'content'
 
     def self.all
       [CONTENT, REDIRECT, NAVIGATION]

@@ -1,30 +1,30 @@
 %ul.nav.nav-tabs.js-tabs
-  %li{ :class => metadata_tab_active(@page) }
+  %li{ class: metadata_tab_active(@page) }
     = link_to t('.tab_metadata'), '#page-metadata', 'data-toggle' => :tab
   - unless hide_content_tab?(@page)
-    %li{ :class => content_tab_active(@page) }
+    %li{ class: content_tab_active(@page) }
       = link_to t('.tab_content'), '#page-content', 'data-toggle' => :tab
 
 .tab-content
-  #page-metadata.tab-pane{ :class => metadata_tab_active(@page) }
-    = simple_form_for @page, :url => url, :html => { :class => 'form-horizontal' }, :wrapper => :bootstrap do |form|
-      = form.input :title, :required => false, :input_html => { :class => :span5 }
-      = form.input :slug, :required => false, :input_html => { :class => :span5 }
-      = form.input :page_title, :required => false, :input_html => { :class => :span5 }
-      = form.input :parent_id, :collection => Kuhsaft::Page.flat_tree, :label_method => :nesting_name, :selected => params[:parent_id].presence || @page.parent_id.presence, :prompt => 'None', :input_html => { :class => :span3 }
-      = form.input :page_type, :collection => Kuhsaft::PageType.all, :prompt => false, :input_html => { :class => :span3 }
-      = form.input :redirect_url, :as => :string
-      = form.input :url, :as => :string, :input_html => { :disabled => 'disabled' }
-      = form.input :keywords, :input_html => { :class => :span5 }, hint: t('.hint_keywords').html_safe
-      = form.input :description, :as => :text, :input_html => { :class => :span5, :rows => 4 }, hint: t('.hint_description').html_safe
-      = form.input :published, :as => :boolean
+  #page-metadata.tab-pane{ class: metadata_tab_active(@page) }
+    = simple_form_for @page, url: url, html: { class: 'form-horizontal' }, wrapper: :bootstrap do |form|
+      = form.input :title, required: false, input_html: { class: :span5 }
+      = form.input :slug, required: false, input_html: { class: :span5 }
+      = form.input :page_title, required: false, input_html: { class: :span5 }
+      = form.input :parent_id, collection: Kuhsaft::Page.flat_tree, label_method: :nesting_name, selected: params[:parent_id].presence || @page.parent_id.presence, prompt: 'None', input_html: { class: :span3 }
+      = form.input :page_type, collection: Kuhsaft::PageType.all, prompt: false, default: Kuhsaft::PageType::CONTENT, input_html: { class: :span3 }
+      = form.input :redirect_url, as: :string
+      = form.input :url, as: :string, input_html: { disabled: 'disabled' }
+      = form.input :keywords, input_html: { class: :span5 }, hint: t('.hint_keywords').html_safe
+      = form.input :description, as: :text, input_html: { class: :span5, rows: 4 }, hint: t('.hint_description').html_safe
+      = form.input :published, as: :boolean
 
       .form-actions
-        = form.button :submit, :class => 'btn btn-primary'
+        = form.button :submit, class: 'btn btn-primary'
 
   - unless hide_content_tab?(@page)
     #form-container
-    #page-content.tab-pane{ :class => content_tab_active(@page) }
+    #page-content.tab-pane{ class: content_tab_active(@page) }
       - if @page.persisted?
         .clearfix
           .actions
@@ -32,11 +32,14 @@
               .btn.btn-small#expand-all
                 %i.icon-resize-full
                 = t('.expand_all')
+
               .btn.btn-small#collapse-all
                 %i.icon-resize-small
                 = t('.collapse_all')
+
             .btn-group
-              = render 'brick_type_dropdown', :brick_list => @page
-        = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page
+              = render 'brick_type_dropdown', brick_list: @page
+
+        = render 'kuhsaft/cms/bricks/brick_list', brick_list: @page
 
 = render 'kuhsaft/cms/bricks/sort_form'
