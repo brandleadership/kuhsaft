@@ -8,6 +8,11 @@
 
 - make migration for additional content languages be generated dynamic
 
+## features/3093_translated_display_styles - issue #179
+
+- Translatable display styles
+- Update display style dropdown
+
 ## features/backend_brick_view - issue #199
 
 - Collapsable backend brick view

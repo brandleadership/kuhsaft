@@ -14,21 +14,24 @@
           = brick.backend_label(:parenthesis => true)
       .pull-right
         .btn-toolbar
-          - # delete button
           - if brick.persisted?
+
+            - # possible styles
+            - unless brick.available_display_styles.empty?
+              #display-styles.btn-group
+                .btn.btn-small
+                  %i.icon-tint
+                %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+                  %span.caret
+                %ul.dropdown-menu.pull-right
+                  %li
+                    = form.input :display_styles, :collection => brick.translated_available_display_styles, :as => :check_boxes
+
+            -# delete button
             - if brick.user_can_delete?
               .btn-group
                 = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', data: { confirm: t('kuhsaft.cms.bricks.brick_item.confirm') }, :method => :delete, :remote => true do
                   %i.icon-trash.icon-white
-
-            - # possible styles
-            - unless brick.available_display_styles.empty?
-              .btn-group
-                %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
-                  %i.icon-tint
-                %ul.dropdown-menu.pull-right
-                  %li
-                    = form.input :display_styles, :collection => brick.available_display_styles, :as => :check_boxes
 
             - # addable child dropdown menu
             - if brick.respond_to?(:brick_list)
