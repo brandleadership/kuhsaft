@@ -29,7 +29,7 @@ module Kuhsaft
       end
 
       def locale_for_attr_name
-        I18n.locale.to_s.downcase.underscore
+        I18n.locale.to_s.underscore
       end
 
       def locale_attr attr_name
