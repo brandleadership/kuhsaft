@@ -37,7 +37,7 @@ class UpdateUrlAndRedirectUrlValue < ActiveRecord::Migration
     if page.parent.present?
       complete_slug << page.parent.url.to_s
     else
-      complete_slug = "#{I18n.locale.to_s.underscore}"
+      complete_slug = I18n.locale.to_s.underscore
     end
     complete_slug << "/#{page.slug}"
     complete_slug
