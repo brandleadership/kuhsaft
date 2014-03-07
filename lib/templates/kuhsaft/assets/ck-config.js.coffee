@@ -10,6 +10,9 @@ CKEDITOR.editorConfig = (config) ->
                     ["Source", "-", "ShowBlocks", "-", "About"],
                     ["Maximize"]]
 
+  config.linkShowAdvancedTab = false
+  config.linkShowTargetTab = false
+
   true
 
 # FULL OPTIONS:
