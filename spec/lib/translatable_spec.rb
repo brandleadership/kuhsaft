@@ -24,23 +24,23 @@ describe Kuhsaft::Translatable do
 
     describe '.translate' do
       it 'defines a getter for each attribute' do
-        model.should respond_to(:name)
+        expect(model).to respond_to(:name)
       end
 
       it 'defines a setter for each attributes' do
-        model.should respond_to(:name=)
+        expect(model).to respond_to(:name=)
       end
     end
 
     describe '.locale_attr' do
       it 'returns a suffixed attribute name' do
-        Demo.locale_attr('text').should == 'text_en'
+        expect(Demo.locale_attr('text')).to eq('text_en')
       end
     end
 
     describe '#locale_attr' do
       it 'returns a suffixed attribute name' do
-        model.locale_attr('text').should == 'text_en'
+        expect(model.locale_attr('text')).to eq('text_en')
       end
     end
 
@@ -98,23 +98,23 @@ describe Kuhsaft::Translatable do
 
     describe '.translate' do
       it 'defines a getter for each attribute' do
-        model.should respond_to(:name)
+        expect(model).to respond_to(:name)
       end
 
       it 'defines a setter for each attributes' do
-        model.should respond_to(:name=)
+        expect(model).to respond_to(:name=)
       end
     end
 
     describe '.locale_attr' do
       it 'returns a suffixed attribute name' do
-        Demo.locale_attr('text').should == 'text_de_ch'
+        expect(Demo.locale_attr('text')).to eq('text_de_ch')
       end
     end
 
     describe '#locale_attr' do
       it 'returns a suffixed attribute name' do
-        model.locale_attr('text').should == 'text_de_ch'
+        expect(Demo.locale_attr('text')).to eq('text_de_ch')
       end
     end
 
