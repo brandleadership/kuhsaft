@@ -142,4 +142,11 @@ class Kuhsaft::Page < ActiveRecord::Base
   def cache_key
     super + bricks.map(&:cache_key).join
   end
+
+  def as_json(options={})
+    json ||= {}
+    json['title'] = self.title
+    json['url'] = self.url
+    json
+  end
 end
