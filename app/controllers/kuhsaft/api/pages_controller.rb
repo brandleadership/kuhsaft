@@ -6,7 +6,7 @@ module Kuhsaft
 
       def index
         @pages = Kuhsaft::Page.unscoped.published.content_page
-        render :json => @pages.as_json
+        render json: @pages.as_json
       end
 
     end

@@ -9,13 +9,13 @@ class Kuhsaft::Page < ActiveRecord::Base
   acts_as_brick_list
 
   translate :title,
-    :page_title,
-    :slug,
-    :keywords,
-    :description,
-    :body,
-    :redirect_url,
-    :url
+            :page_title,
+            :slug,
+            :keywords,
+            :description,
+            :body,
+            :redirect_url,
+            :url
 
   default_scope { order('position ASC') }
 
@@ -31,9 +31,9 @@ class Kuhsaft::Page < ActiveRecord::Base
 
   before_validation :create_slug, :create_url
 
-  validates :title, :presence => true
-  validates :slug, :presence => true
-  validates :redirect_url, :presence => true, :if => :redirect?
+  validates :title, presence: true
+  validates :slug, presence: true
+  validates :redirect_url, presence: true, if: :redirect?
   validates :title, :slug, :keywords, :page_type, length: { maximum: 255 }
 
   class << self
@@ -106,7 +106,7 @@ class Kuhsaft::Page < ActiveRecord::Base
   end
 
   def url_with_locale
-    opts = { :locale => I18n.locale }
+    opts = { locale: I18n.locale }
     url = url_without_locale
     opts[:url] = url if url.present?
     page_path(opts)
