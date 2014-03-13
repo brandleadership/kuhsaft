@@ -374,13 +374,12 @@ CKEDITOR.dialog.add( 'link', function( editor ) {
                   // ajax call indpired from http://stackoverflow.com/questions/5293920/ckeditor-dynamic-select-in-a-dialog
                   $.ajax({
                       type: 'GET',
-                      url: '/cms/api/pages.json',
                       //contentType: 'application/json; charset=utf-8',
+                      url: '/' + I18n + '/api/pages.json',
                       dataType: 'json',
                       async: false,
                       success: function(data) {
                         $.each(data, function(index, item) {
-                              console.log(data)
                               $(element_id).get(0).options[$(element_id).get(0).options.length] = new Option(decodeURIComponent(item.title), item.url);
                           });
                       },
