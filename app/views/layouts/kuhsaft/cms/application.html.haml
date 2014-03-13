@@ -21,8 +21,5 @@
           = render 'flash', :flash => flash
           = yield
 
-    :coffee
-      window.I18n = "#{escape_javascript params[:content_locale]}"
-
     = javascript_include_tag 'kuhsaft/cms/application.js'
     = javascript_include_tag 'kuhsaft/cms/customizations.js'
