@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/3147_CKEditor_link_enhancement - issue #209
+
+- It is now possible to link via dialogue to other CMS Pages within current locale
+
 ## features/3083_caching_optimizing
 
 - optimize caching of pages and their bricks
