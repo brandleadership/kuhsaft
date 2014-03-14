@@ -370,6 +370,24 @@ When using PostgreSQL, an additional attribute `excerpt` will be
 available on the page model. It includes a highlighted excerpt of the
 matching `fulltext` column.
 
+## Selecting CMS pages in CKEditor (API)
+
+The pages API is available under `/:locale/api/pages.json`. Only the
+title and url attribute is rendered in the json.
+
+### Usage
+Add the following lines to your `ck-config.js` file. The first line
+disables the standard link plugin. The second line enables the adv_link
+plugin, which we need for the CMS Page link dialogue in CKEditor.
+
+```
+config.removePlugins = 'link'
+config.extraPlugins = 'adv_link'
+```
+
+Do not forget to update your `config.assets.precompile` array. Add the
+following to your existing array `ckeditor/adv_link/*`.
+
 # LICENSE
 
 See the file LICENSE.
