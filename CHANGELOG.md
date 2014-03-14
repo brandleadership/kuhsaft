@@ -1,56 +1,37 @@
 # CHANGELOG
 
-## features/3147_CKEditor_link_enhancement - issue #209
+## 3.0.0 - 2013-12-03
 
 - It is now possible to link via dialogue to other CMS Pages within current locale
 
   *update your `config.assets.precompile` array with `ckeditor/adv_link/*`*
 
-## features/3083_caching_optimizing
-
-- optimize caching of pages and their bricks
-
-## features/3083_dynamic_translation_page_fields
-
-- make migration for additional content languages be generated dynamic
-
-## features/3093_translated_display_styles - issue #179
-
-- Translatable display styles
-- Update display style dropdown
-
-## features/3094_set_page_type_to_content_automatically - issue #137
-
-- There is no empty page type field anymore
 - Default value of page type field is now set to content
 
   *run rake kuhsaft:install:migrations when updating*
 
-## features/backend_brick_view - issue #199
+- optimize caching of pages and their bricks
+- make migration for additional content languages be generated dynamic
+- Translatable display styles
+- Update display style dropdown
+- There is no empty page type field anymore
+- add getter and setter for country specific translated pages
 
 - Collapsable backend brick view
-- Although the length of string fields are validated, do not validate file strings like the image attribute in the image brick
-- Add remotipart gem to handle remote: :true forms with file uploads
-- Only show collapse/expand toggle if bricks exist
-- Add image_cache field to handle the cached image in ImageBrick
-- Add asset_cache field to handle the cached asset in AssetBrick
-
-## features/dummy_seeds
+  - Although the length of string fields are validated, do not validate file strings like the image attribute in the image brick
+  - Add remotipart gem to handle remote: :true forms with file uploads
+  - Only show collapse/expand toggle if bricks exist
+  - Add image_cache field to handle the cached image in ImageBrick
+  - Add asset_cache field to handle the cached asset in AssetBrick
 
 - Add `bundle exec rake db:seed` to setup rake task. It is easier for developing
-
-## features/3045 iframe in ckeditor
 
 - allow iframes to be saved in ckeditor
 
   *If you already have a customized ck-config just add ``config.extraAllowedContent = 'iframe[*]'`` to your ck-config.js.coffee when updating*
 
-## features/2988_ck_js_config
-
 - add rake task which renames precompiled assets from ck-editor config to make
   sure that the newest config file is load in backend on staging and production
-
-## features/2985_warning_on_too_long_string
 
 - add string length validation cause of postgres string limit
 

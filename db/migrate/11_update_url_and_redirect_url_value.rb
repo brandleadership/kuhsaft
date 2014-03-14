@@ -2,14 +2,14 @@ class UpdateUrlAndRedirectUrlValue < ActiveRecord::Migration
   def up
     @redirect_pages = Kuhsaft::Page.where(:page_type => 'redirect')
     I18n.available_locales.each do |locale|
-      move_url_to_redirect_url(locale)
+      move_url_to_redirect_url(locale.to_s.underscore)
     end
   end
 
   def down
     @redirect_pages = Kuhsaft::Page.where(:page_type => 'redirect')
     I18n.available_locales.each do |locale|
-      move_redirect_url_to_url(locale)
+      move_redirect_url_to_url(locale.to_s.underscore)
     end
 
   end
@@ -37,7 +37,7 @@ class UpdateUrlAndRedirectUrlValue < ActiveRecord::Migration
     if page.parent.present?
       complete_slug << page.parent.url.to_s
     else
-      complete_slug = "#{I18n.locale}"
+      complete_slug = I18n.locale.to_s.underscore
     end
     complete_slug << "/#{page.slug}"
     complete_slug

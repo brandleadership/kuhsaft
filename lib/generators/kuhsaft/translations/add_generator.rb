@@ -19,7 +19,7 @@ module Kuhsaft
       end
 
       def get_locale
-        locale.downcase.underscore
+        locale.underscore
       end
 
       def create_locale_migration_file
