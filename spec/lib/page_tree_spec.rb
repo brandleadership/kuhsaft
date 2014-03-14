@@ -6,8 +6,8 @@ require_relative '../../app/models/kuhsaft/page'
 
 module Kuhsaft
   describe PageTree do
-    let(:page_tree) { {"0"=>{"id"=>"1", "children"=>{"0"=>{"id"=>"2"}}},
-                 "1"=>{"id"=>"3"}}}
+    let(:page_tree) do { '0' => { 'id' => '1', 'children' => { '0' => { 'id' => '2' } } },
+                         '1' => { 'id' => '3' } }end
 
     before :each do
       @page1 = FactoryGirl.create(:page, id: 1, position: 10)

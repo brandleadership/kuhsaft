@@ -24,7 +24,7 @@ describe Kuhsaft::Asset do
     uploader.should respond_to(:thumb)
   end
 
-  it "makes the image readable only to the owner and not executable" do
+  it 'makes the image readable only to the owner and not executable' do
     pending 'how and where do we ensure permissions?'
     uploader.should have_permissions(0600)
   end

@@ -1,11 +1,8 @@
 module Kuhsaft
   module Translatable
-
     def self.included(base)
       base.extend ClassMethods
     end
-
-    extend self
 
     module ClassMethods
       def translate(*args)
@@ -32,11 +29,9 @@ module Kuhsaft
         I18n.locale.to_s.underscore
       end
 
-      def locale_attr attr_name
-        "#{attr_name}_#{locale_for_attr_name}"
+      def locale_attr(attr_name)
+        "#{attr_name}_#{I18n.locale}"
       end
     end
-
-    include ClassMethods
   end
 end

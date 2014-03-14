@@ -1,15 +1,15 @@
-ENV["RAILS_ENV"] = "test"
+ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path("../dummy/config/environment.rb",  __FILE__)
-[ 'rails/test_help', 'rspec/rails', 'factory_girl', 'capybara/rails',
-  'rake', 'database_cleaner', 'pry-debugger'
-  ].each{|lib| require lib }
+require File.expand_path('../dummy/config/environment.rb',  __FILE__)
+['rails/test_help', 'rspec/rails', 'factory_girl', 'capybara/rails',
+ 'rake', 'database_cleaner', 'pry-debugger'
+  ].each { |lib| require lib }
 
 FactoryGirl.find_definitions
 
 ActionMailer::Base.delivery_method = :test
 ActionMailer::Base.perform_deliveries = true
-ActionMailer::Base.default_url_options[:host] = "test.com"
+ActionMailer::Base.default_url_options[:host] = 'test.com'
 
 Rails.backtrace_cleaner.remove_silencers!
 

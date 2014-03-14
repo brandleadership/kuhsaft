@@ -4,11 +4,11 @@ describe Kuhsaft::Searchable do
 
   context 'with missing includes' do
     it 'raises exteption when class does not include Kuhsaft::Bricklist' do
-      expect {
+      expect do
         class Foo
           include Kuhsaft::Searchable
         end
-      }.to raise_error(/needs Kuhsaft::BrickList to be included/)
+      end.to raise_error(/needs Kuhsaft::BrickList to be included/)
     end
   end
 
@@ -26,5 +26,5 @@ describe Kuhsaft::Searchable do
         end
       end
     end
-  end 
+  end
 end

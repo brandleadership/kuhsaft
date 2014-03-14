@@ -84,7 +84,7 @@ describe Kuhsaft::Page do
     end
   end
 
-  describe "#state_class" do
+  describe '#state_class' do
 
     let(:page) { Kuhsaft::Page.new }
 

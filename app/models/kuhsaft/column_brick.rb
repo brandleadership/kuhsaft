@@ -18,6 +18,5 @@ module Kuhsaft
     def renders_own_childs?
       false
     end
-
   end
 end

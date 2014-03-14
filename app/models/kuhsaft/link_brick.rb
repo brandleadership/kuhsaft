@@ -1,6 +1,6 @@
 module Kuhsaft
   class LinkBrick < Brick
-    validates :href, :caption, :presence => true
+    validates :href, :caption, presence: true
 
     def self.styles
       %w(pdf word excel button external)

@@ -23,8 +23,8 @@ module Kuhsaft
         @page = Kuhsaft::Page.create(page_params)
 
         if @page.valid?
-          flash[:success] = t('layouts.kuhsaft.cms.flash.success', :subject => Kuhsaft::Page.model_name.human)
-          respond_with @page, :location => kuhsaft.edit_cms_page_path(@page)
+          flash[:success] = t('layouts.kuhsaft.cms.flash.success', subject: Kuhsaft::Page.model_name.human)
+          respond_with @page, location: kuhsaft.edit_cms_page_path(@page)
         else
           render 'new'
         end
@@ -40,8 +40,8 @@ module Kuhsaft
       def update
         @page = Kuhsaft::Page.find(params[:id])
         if @page.update_attributes(page_params)
-          flash[:success] = t('layouts.kuhsaft.cms.flash.success', :subject => Kuhsaft::Page.model_name.human)
-          respond_with @page, :location => kuhsaft.edit_cms_page_path(@page)
+          flash[:success] = t('layouts.kuhsaft.cms.flash.success', subject: Kuhsaft::Page.model_name.human)
+          respond_with @page, location: kuhsaft.edit_cms_page_path(@page)
         else
           render 'edit'
         end

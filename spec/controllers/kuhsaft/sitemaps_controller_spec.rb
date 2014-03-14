@@ -7,7 +7,7 @@ describe Kuhsaft::SitemapsController do
     end
 
     it 'should be able to send a xml file' do
-      get(:index, { :use_route => :kuhsaft, :format => 'xml' })
+      get(:index,  use_route: :kuhsaft, format: 'xml')
     end
   end
 end

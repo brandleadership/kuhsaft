@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Kuhsaft::AnchorBrick do
 
   let :anchor_brick do
-    Kuhsaft::AnchorBrick.new(:caption => 'test-anchor')
+    Kuhsaft::AnchorBrick.new(caption: 'test-anchor')
   end
 
   describe '#bricks' do

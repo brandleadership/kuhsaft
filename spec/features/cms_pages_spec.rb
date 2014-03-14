@@ -7,9 +7,9 @@ describe 'Cms/Pages' do
   context '#new' do
     before do
       visit kuhsaft.new_cms_page_path
-      fill_in 'Titel', :with => 'The Title of the page'
-      fill_in 'Stichwörter', :with => 'My keywords'
-      fill_in 'Beschreibung', :with => 'My Description'
+      fill_in 'Titel', with: 'The Title of the page'
+      fill_in 'Stichwörter', with: 'My keywords'
+      fill_in 'Beschreibung', with: 'My Description'
     end
 
     describe '#create' do
@@ -25,9 +25,9 @@ describe 'Cms/Pages' do
 
       context 'when page is invalid' do
         it 'does not create a routing error by switching the locale' do
-          @page = FactoryGirl.create(:page, :title => 'DummyPage', :title_en => 'DummyEN', :slug => 'dummy_page')
+          @page = FactoryGirl.create(:page, title: 'DummyPage', title_en: 'DummyEN', slug: 'dummy_page')
           visit kuhsaft.edit_cms_page_path(@page)
-          fill_in 'page_title', :with => ''
+          fill_in 'page_title', with: ''
           click_on 'Update Seite'
           within '.nav-pills' do
             click_on 'EN'
@@ -40,24 +40,24 @@ describe 'Cms/Pages' do
     describe '#update' do
       context 'when creating a redirect page' do
         before do
-          @page = FactoryGirl.create(:page, :url => 'de/dumdidum')
+          @page = FactoryGirl.create(:page, url: 'de/dumdidum')
           visit kuhsaft.edit_cms_page_path(@page)
-          select 'redirect', :from => 'Seitentyp'
+          select 'redirect', from: 'Seitentyp'
         end
 
         it 'has a value in redirect_page' do
-          fill_in 'Redirect URL', :with => 'target_page'
-          expect { click_on 'Update Seite' }.to change{ @page.reload.redirect_url }.to('target_page')
+          fill_in 'Redirect URL', with: 'target_page'
+          expect { click_on 'Update Seite' }.to change { @page.reload.redirect_url }.to('target_page')
         end
 
         it 'is invalid when no value is in redirect_page' do
           click_on 'Update Seite'
-          page.should have_css('.error', :count => 1)
+          page.should have_css('.error', count: 1)
         end
 
         it 'does not change the value in url' do
-          fill_in 'Redirect URL', :with => 'target_page'
-          expect { click_on 'Update Seite' }.to_not change{ @page.reload.url }
+          fill_in 'Redirect URL', with: 'target_page'
+          expect { click_on 'Update Seite' }.to_not change { @page.reload.url }
         end
       end
     end
@@ -70,7 +70,7 @@ describe 'Cms/Pages' do
       invalid_brick.save(validate: false)
 
       visit kuhsaft.edit_cms_page_path(@page)
-      page.should have_css('.error', :count => 1)
+      page.should have_css('.error', count: 1)
     end
   end
 end
