@@ -1,6 +1,6 @@
 module Kuhsaft
   class AccordionItemBrick < ColumnBrick
-    validates :caption, :presence => true
+    validates :caption, presence: true
 
     def user_can_delete?
       true

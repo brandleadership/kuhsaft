@@ -98,7 +98,7 @@ describe Kuhsaft::Brick do
 
     context 'with the parenthesis option given' do
       brick = Kuhsaft::TextBrick.new
-      brick.backend_label(:parenthesis => true).should == '(Text)'
+      brick.backend_label(parenthesis: true).should == '(Text)'
     end
   end
 

@@ -47,6 +47,5 @@ module Kuhsaft
         end
       end
     end
-
   end
 end

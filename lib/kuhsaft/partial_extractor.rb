@@ -7,7 +7,7 @@ module Kuhsaft
         filename.slice!(0)
         partials << filename
       end
-      partials.collect {|d| [I18n.t(d), d]}
+      partials.map { |d| [I18n.t(d), d] }
     end
 
     def collect_partials(path)

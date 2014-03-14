@@ -1,6 +1,5 @@
 module Kuhsaft
   module AdminHelper
-
     #
     # When rendering the layout of our host application,
     # the paths of the host application are not visible to the engine

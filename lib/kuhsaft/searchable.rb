@@ -6,8 +6,8 @@ module Kuhsaft
     extend ActiveSupport::Concern
 
     DICTIONARIES = {
-      :en => 'english',
-      :de => 'german',
+      en: 'english',
+      de: 'german'
     }
 
     def update_fulltext
@@ -29,15 +29,15 @@ module Kuhsaft
         include ::PgSearch
         cb = lambda do |query|
           {
-            :against => {
+            against: {
               locale_attr(:title)       => 'A',
               locale_attr(:page_title)  => 'A',
               locale_attr(:keywords)    => 'B',
               locale_attr(:description) => 'C',
-              locale_attr(:fulltext)    => 'C',
+              locale_attr(:fulltext)    => 'C'
             },
-            :query => query,
-            :using => { :tsearch => { :dictionary => DICTIONARIES[I18n.locale] || 'simple' }}
+            query: query,
+            using: { tsearch: { dictionary: DICTIONARIES[I18n.locale] || 'simple' } }
           }
         end
         pg_search_scope :search_without_excerpt, cb
@@ -57,7 +57,7 @@ module Kuhsaft
           if query.is_a? Hash
             where("#{query.first[0]} LIKE ?", "%#{query.first[1]}%")
           else
-            stmt = ""
+            stmt = ''
             stmt += "#{locale_attr(:keywords)} LIKE ? OR "
             stmt += "#{locale_attr(:title)} LIKE ? OR "
             stmt += "#{locale_attr(:page_title)} LIKE ? OR "

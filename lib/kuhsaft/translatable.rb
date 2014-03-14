@@ -1,12 +1,11 @@
 module Kuhsaft
   module Translatable
-
     def self.included(base)
       base.extend ClassMethods
     end
 
     module ClassMethods
-      def translate *args
+      def translate(*args)
         args.each do |attr_name|
           define_method attr_name do
             send "#{attr_name}_#{I18n.locale}"
@@ -26,12 +25,12 @@ module Kuhsaft
         end
       end
 
-      def locale_attr attr_name
+      def locale_attr(attr_name)
         "#{attr_name}_#{I18n.locale}"
       end
     end
 
-    def locale_attr attr_name
+    def locale_attr(attr_name)
       "#{attr_name}_#{I18n.locale}"
     end
   end

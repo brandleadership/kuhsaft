@@ -8,7 +8,7 @@ module Kuhsaft
       include Rails::Generators::Migration
 
       source_root(File.join(Kuhsaft::Engine.root, '/lib/templates/kuhsaft/translations'))
-      argument :locale, :type => :string
+      argument :locale, type: :string
 
       def self.next_migration_number(dirname)
         ActiveRecord::Generators::Base.next_migration_number(dirname)

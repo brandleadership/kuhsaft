@@ -1,7 +1,6 @@
 module Kuhsaft
   module Cms
     module PagesHelper
-
       def content_tab_active(page)
         unless hide_content_tab?(page)
           :active

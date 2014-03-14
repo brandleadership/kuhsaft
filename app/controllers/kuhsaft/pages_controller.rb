@@ -15,7 +15,7 @@ module Kuhsaft
       @page = Kuhsaft::Page.find_by_url(url)
 
       if @page.present? && @page.redirect? && @page.redirect_url.present?
-        redirect_url = @page.redirect_url.sub(/\A\/+/,'') # remove all preceding slashes
+        redirect_url = @page.redirect_url.sub(/\A\/+/, '') # remove all preceding slashes
         redirect_to "/#{redirect_url}"
       elsif @page.present?
         respond_with @page

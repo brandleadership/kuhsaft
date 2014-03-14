@@ -16,11 +16,10 @@ module Kuhsaft
         copy_file 'customizations.js.coffee', "#{custom_js_folder}/customizations.js.coffee"
         copy_file 'ck-config.js.coffee', "#{custom_js_folder}/ck-config.js.coffee"
 
-        inject_into_file 'config/environments/production.rb', :after => /config\.assets\.precompile.*$/ do
+        inject_into_file 'config/environments/production.rb', after: /config\.assets\.precompile.*$/ do
           "\n  config.assets.precompile += %w( kuhsaft/cms/customizations.css kuhsaft/cms/customizations.js kuhsaft/cms/ck-config.js )"
         end
       end
     end
   end
 end
-

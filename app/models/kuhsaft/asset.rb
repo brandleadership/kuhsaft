@@ -16,7 +16,7 @@ class Kuhsaft::Asset < ActiveRecord::Base
     file.url
   end
 
-  def path=val
+  def path=(val)
     # do nothing
   end
 

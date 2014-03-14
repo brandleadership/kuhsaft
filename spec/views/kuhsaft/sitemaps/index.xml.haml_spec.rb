@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 include SitemapsHelper
 
 describe 'kuhsaft/sitemaps/index.xml.haml' do
@@ -9,11 +9,11 @@ describe 'kuhsaft/sitemaps/index.xml.haml' do
       render
     end
 
-    it "renders valid xml" do
-      expect{ Hash.from_xml(rendered) }.not_to raise_error
+    it 'renders valid xml' do
+      expect { Hash.from_xml(rendered) }.not_to raise_error
     end
 
-    it "renders the XML template" do
+    it 'renders the XML template' do
       expect(rendered).to include "<?xml version='1.0' encoding='utf-8' ?>"
     end
 
@@ -26,11 +26,11 @@ describe 'kuhsaft/sitemaps/index.xml.haml' do
     end
 
     it 'includes the changefreq tag content' do
-      expect(rendered).to include "<changefreq>monthly</changefreq>"
+      expect(rendered).to include '<changefreq>monthly</changefreq>'
     end
 
     it 'includes the priority tag content' do
-      expect(rendered).to include "<priority>0.5</priority>"
+      expect(rendered).to include '<priority>0.5</priority>'
     end
   end
 
@@ -53,7 +53,7 @@ describe 'kuhsaft/sitemaps/index.xml.haml' do
     end
 
     it 'has the same count of entry as pages are there' do
-      response.body.should have_xpath("//url", count: 4)
+      response.body.should have_xpath('//url', count: 4)
     end
 
     it 'has a record for the german url' do

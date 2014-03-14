@@ -1,7 +1,6 @@
 module Kuhsaft
   module Cms
     class BricksController < AdminController
-
       respond_to :html, :js
 
       def create
@@ -49,7 +48,7 @@ module Kuhsaft
             Kuhsaft::Brick.find(id).update_attribute(:position, idx.to_i + 1)
           end
         end
-        render :nothing => true
+        render nothing: true
       end
 
       private

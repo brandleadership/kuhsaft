@@ -2,9 +2,9 @@ module Kuhsaft
   class Brick < ActiveRecord::Base
     include Kuhsaft::BrickList
 
-    belongs_to :brick_list, :polymorphic => true, :touch => true
+    belongs_to :brick_list, polymorphic: true, touch: true
 
-    scope :localized, -> { where(:locale => I18n.locale) }
+    scope :localized, -> { where(locale: I18n.locale) }
     default_scope -> { order('position ASC').localized }
 
     serialize :display_styles, Array
@@ -16,7 +16,7 @@ module Kuhsaft
               :type,
               :brick_list_id,
               :brick_list_type,
-              :presence => true
+              presence: true
 
     validates :template_name,
               :type,
@@ -49,7 +49,7 @@ module Kuhsaft
     end
 
     def to_edit_partial_path
-      path = self.to_partial_path.split '/'
+      path = to_partial_path.split '/'
       path << 'edit'
       path.join '/'
     end
@@ -66,7 +66,7 @@ module Kuhsaft
     # Returns the path to this partial.
     #
     def to_edit_childs_partial_path
-      path = self.to_partial_path.split '/'
+      path = to_partial_path.split '/'
       path << 'childs'
       path.join '/'
     end
@@ -84,9 +84,9 @@ module Kuhsaft
 
     def set_position
       self.position = if self.position.present?
-        self.position
-      elsif self.respond_to?(:brick_list) && self.brick_list.respond_to?(:bricks)
-        brick_list.bricks.maximum(:position).to_i + 1
+                        self.position
+      elsif self.respond_to?(:brick_list) && brick_list.respond_to?(:bricks)
+                        brick_list.bricks.maximum(:position).to_i + 1
       else
         1
       end
@@ -98,7 +98,7 @@ module Kuhsaft
 
     # Returns a css classname suitable for use in the frontend
     def to_style_class
-      ([self.class.to_s.underscore.dasherize.gsub('/', '-')] + self.display_styles).join(' ')
+      ([self.class.to_s.underscore.dasherize.gsub('/', '-')] + display_styles).join(' ')
     end
 
     # Returns a unique DOM id suitable for use in the frontend

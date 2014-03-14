@@ -1,50 +1,50 @@
 module Kuhsaft
   # If you use this mixin, your class must implement the following methods
   # siblings(), returns the siblings of the same type of object
-  
+
   module Orderable
-    def self.included base
+    def self.included(base)
       base.extend(ClassMethods)
       base.send :include, InstanceMethods
       base.after_create :set_position
     end
-    
+
     module InstanceMethods
       def increment_position
         update_attribute :position, position + 1
       end
-  
+
       def decrement_position
         update_attribute :position, position - 1
       end
-  
+
       def preceding_sibling
         siblings.where('position = ?', position - 1).first
       end
-  
+
       def succeeding_sibling
         siblings.where('position = ?', position + 1).first
       end
-  
+
       def preceding_siblings
         siblings.where('position <= ?', position).where('id != ?', id)
       end
-  
+
       def succeeding_siblings
         siblings.where('position >= ?', position).where('id != ?', id)
       end
-  
+
       def position_to_top
         update_attribute :position, 1
         recount_siblings_position_from 1
       end
-  
-      def recount_siblings_position_from position
+
+      def recount_siblings_position_from(position)
         counter = position
         succeeding_siblings.each { |s| counter += 1; s.update_attribute(:position, counter) }
       end
-  
-      def reposition before_id
+
+      def reposition(before_id)
         if before_id.blank?
           position_to_top
         else
@@ -52,16 +52,16 @@ module Kuhsaft
           recount_siblings_position_from position
         end
       end
-  
+
       def set_position
         initial_position = siblings.blank? ? 1 : siblings.count + 1
         update_attribute(:position, initial_position)
       end
     end
-    
+
     module ClassMethods
-      def position_of id
-        self.find(id).position rescue 1
+      def position_of(id)
+        find(id).position rescue 1
       end
     end
   end

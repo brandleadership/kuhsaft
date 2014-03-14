@@ -1,5 +1,4 @@
 module Kuhsaft
-
   class ImageSizeDelegator
     def method_missing(method, *args, &block)
       Kuhsaft::ImageSize.send(method, *args, &block)

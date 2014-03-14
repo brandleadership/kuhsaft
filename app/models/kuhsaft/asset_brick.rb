@@ -3,7 +3,7 @@ module Kuhsaft
     mount_uploader :asset, Kuhsaft::AssetBrickAssetUploader
 
     validates :caption,
-              :asset, :presence => true
+              :asset, presence: true
 
     def self.styles
       %w(pdf word excel button)

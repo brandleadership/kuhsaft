@@ -13,7 +13,7 @@ describe Kuhsaft::BrickList do
   describe '#collect_fulltext' do
     context 'with bricks' do
       it 'collects its childs fulltext' do
-        brick.stub_chain(:bricks, :localized).and_return([mock_model(Kuhsaft::Brick, :collect_fulltext => 'hallo')])
+        brick.stub_chain(:bricks, :localized).and_return([mock_model(Kuhsaft::Brick, collect_fulltext: 'hallo')])
         brick.collect_fulltext.should == 'hallo'
       end
     end
