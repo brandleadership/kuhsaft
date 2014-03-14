@@ -32,7 +32,7 @@ module Kuhsaft
       end
 
       def locale_attr(attr_name)
-        "#{attr_name}_#{I18n.locale}"
+        "#{attr_name}_#{I18n.locale.to_s.underscore}"
       end
     end
 
