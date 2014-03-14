@@ -49,9 +49,9 @@ describe Kuhsaft::Api::PagesController do
       end
     end
 
-    it 'contains the url' do
+    it 'contains the url with page ID' do
       I18n.with_locale :de do
-        expect(@page_hash['url']).to eq('/' + @page1.url)
+        expect(@page_hash['url']).to eq('/pages/' + @page1.id.to_s)
       end
     end
 
