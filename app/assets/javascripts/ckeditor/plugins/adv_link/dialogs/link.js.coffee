@@ -376,7 +376,7 @@ CKEDITOR.dialog.add "link", (editor) ->
                 async: false
                 success: (data) ->
                   $.each data, (index, item) ->
-                    $(element_id).get(0).options[$(element_id).get(0).options.length] = new Option(decodeURIComponent(item.title), item.url)
+                    $(element_id).get(0).options[$(element_id).get(0).options.length] = new Option(decodeURIComponent(item.title) + ': ' + item.pretty_url, item.url)
                     return
 
                   return

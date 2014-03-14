@@ -24,5 +24,6 @@ Kuhsaft::Engine.routes.draw do
     get '(*url)' => 'pages#show', as: :page
   end
 
+  get '/pages/:id' => 'pages#lookup_by_id'
   get '/sitemap.format' => 'sitemaps#index', format: 'xml'
 end

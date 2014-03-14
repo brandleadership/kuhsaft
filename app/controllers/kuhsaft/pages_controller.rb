@@ -25,5 +25,10 @@ module Kuhsaft
         raise ActionController::RoutingError.new('Not Found')
       end
     end
+
+    def lookup_by_id
+      @page = Page.find(params[:id])
+      redirect_to "/#{@page.url}"
+    end
   end
 end

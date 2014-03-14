@@ -146,7 +146,8 @@ class Kuhsaft::Page < ActiveRecord::Base
   def as_json(options={})
     json ||= {}
     json['title'] = self.send("title_#{I18n.locale}")
-    json['url'] = '/' + self.send("url_#{I18n.locale}")
+    json['pretty_url'] = '/' + self.send("url_#{I18n.locale}")
+    json['url'] = '/pages/' + self.id.to_s
     json
   end
 end
