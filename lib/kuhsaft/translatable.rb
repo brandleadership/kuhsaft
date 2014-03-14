@@ -4,6 +4,8 @@ module Kuhsaft
       base.extend ClassMethods
     end
 
+    extend self
+
     module ClassMethods
       def translate(*args)
         args.each do |attr_name|
@@ -33,5 +35,7 @@ module Kuhsaft
         "#{attr_name}_#{I18n.locale}"
       end
     end
+
+    include ClassMethods
   end
 end
