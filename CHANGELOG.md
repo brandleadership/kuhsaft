@@ -6,34 +6,27 @@
 
   *update your `config.assets.precompile` array with `ckeditor/adv_link/*`*
 
+- Collapsable brick view
+- Caching optimizations for pages and bricks
+- Cleaned up brick validations: Save only valid Bricks and cleaned up brick forms
 - Default value of page type field is now set to content
 
   *run rake kuhsaft:install:migrations when updating*
 
-- optimize caching of pages and their bricks
+
+- add rake task which renames precompiled assets from ck-editor config to make
+  sure that the newest config file is load in backend on staging and production
+- add string length validation to prevent exceptions due to postgres string limit
 - make migration for additional content languages be generated dynamic
 - Translatable display styles
 - Update display style dropdown
-- There is no empty page type field anymore
 - add getter and setter for country specific translated pages
-
-- Collapsable backend brick view
-  - Although the length of string fields are validated, do not validate file strings like the image attribute in the image brick
-  - Add remotipart gem to handle remote: :true forms with file uploads
-  - Only show collapse/expand toggle if bricks exist
-  - Add image_cache field to handle the cached image in ImageBrick
-  - Add asset_cache field to handle the cached asset in AssetBrick
-
-- Add `bundle exec rake db:seed` to setup rake task. It is easier for developing
+- Added `bundle exec rake db:seed` to setup rake task for easier development.
 
 - allow iframes to be saved in ckeditor
 
   *If you already have a customized ck-config just add ``config.extraAllowedContent = 'iframe[*]'`` to your ck-config.js.coffee when updating*
 
-- add rake task which renames precompiled assets from ck-editor config to make
-  sure that the newest config file is load in backend on staging and production
-
-- add string length validation cause of postgres string limit
 
 ## 2.2.6 - 2013-12-02
 
