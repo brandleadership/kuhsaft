@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/wrong_available_locales_in_dummy_app
+
+- remove unwanted locale from application.rb
+
 ## 3.0.0 - 2013-12-03
 
 - It is now possible to link via dialogue to other CMS Pages within current locale
