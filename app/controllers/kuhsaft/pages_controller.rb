@@ -21,6 +21,8 @@ module Kuhsaft
         respond_with @page
       elsif @page.blank? && respond_to?(:handle_404)
         handle_404
+      elsif no_kuhsaft_pages_yet?
+        render inline: 'This Website does not have any content yet.'
       else
         raise ActionController::RoutingError.new('Not Found')
       end
@@ -29,6 +31,10 @@ module Kuhsaft
     def lookup_by_id
       @page = Page.find(params[:id])
       redirect_to "/#{@page.url}"
+    end
+
+    def no_kuhsaft_pages_yet?
+      Kuhsaft::Page.published.translated.empty?
     end
   end
 end
