@@ -64,6 +64,9 @@ HashMethods:
   # value? instead of has_value?
   Enabled: false
 
+PredicateName:
+  Enabled: false
+
 # don't prefer 'fail' over raise
 SignalException:
   Description: 'Checks for proper usage of fail and raise.'

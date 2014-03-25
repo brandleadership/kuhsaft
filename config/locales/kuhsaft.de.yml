@@ -18,7 +18,7 @@ de:
         new:
           create_new: '%{brick} erstellen'
           save: Speichern
-          no_content: 'Dieser Brick hat keinen eigenen Inhalt. Nach dem Speichern, können darin weitere Bricks erstellt werden.'
+          no_content: 'Dieser Brick hat keinen eigenen Inhalt. Nach dem Speichern können darin weitere Bricks erstellt werden.'
       pages:
         index:
           create: 'Neue Seite erstellen'
@@ -49,6 +49,13 @@ de:
         list:
           confirm: 'Soll das Asset "%{filename}" entgültig entfernt werden?'
           delete: 'Asset löschen'
+  helpers:
+    select:
+      prompt: Bitte wählen
+    submit:
+      create: '%{model} erstellen'
+      submit: '%{model} speichern'
+      update: '%{model} aktualisieren'
   simple_form:
     labels:
       title: 'Seiten Titel'
