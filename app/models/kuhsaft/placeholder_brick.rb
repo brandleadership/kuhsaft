@@ -11,7 +11,7 @@ module Kuhsaft
     end
 
     def partial_name
-      "kuhsaft/placeholder_bricks/partials/#{self.template_name}"
+      "kuhsaft/placeholder_bricks/partials/#{template_name}"
     end
 
     def cache_key

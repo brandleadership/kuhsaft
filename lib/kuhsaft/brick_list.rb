@@ -55,7 +55,7 @@ module Kuhsaft
 
     #
     # Return relevant fulltext information for this brick (e.g: it's name, description etc ).
-    #  It will be stored in the related Page.
+    # It will be stored in the related Page.
     # Implement how you see fit.
     #
     def collect_fulltext

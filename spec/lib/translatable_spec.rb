@@ -13,7 +13,6 @@ describe Kuhsaft::Translatable do
 
   describe 'normal locale' do
     before do
-      I18n.available_locales = [:en, :de]
       I18n.locale = :en
     end
 

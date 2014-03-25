@@ -2,15 +2,11 @@ module Kuhsaft
   module Cms
     module PagesHelper
       def content_tab_active(page)
-        unless hide_content_tab?(page)
-          :active
-        end
+        :active unless hide_content_tab?(page)
       end
 
       def metadata_tab_active(page)
-        if hide_content_tab?(page)
-          :active
-        end
+        :active if hide_content_tab?(page)
       end
 
       def hide_content_tab?(page)

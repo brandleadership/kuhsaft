@@ -33,7 +33,7 @@ module Postgres
 end
 
 desc 'Run specs'
-RSpec::Core::RakeTask.new(:spec => :setup)
+RSpec::Core::RakeTask.new(spec: :setup)
 
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
@@ -56,7 +56,7 @@ task :setup do
   end
 end
 
-task :default => [:spec]
+task default: [:spec]
 
 desc 'start the dummy app'
 task :start_dummy do

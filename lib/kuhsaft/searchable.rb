@@ -19,10 +19,7 @@ module Kuhsaft
         raise 'Kuhsaft::Searchable needs Kuhsaft::BrickList to be included'
       end
 
-      if included_modules.include?(Translatable)
-        translate :fulltext
-      end
-
+      translate :fulltext if included_modules.include?(Translatable)
       before_validation :update_fulltext
 
       if ActiveRecord::Base.connection.instance_values['config'][:adapter] == 'postgresql'

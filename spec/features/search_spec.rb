@@ -6,7 +6,8 @@ describe 'pages#index' do
       p = create :page,
                  published: true,
                  title: 'Chromodorididae Ardeadoris'
-      p.bricks << Kuhsaft::TextBrick.new(locale: I18n.locale, text: "#{'foo bar' * 300} Chromodorididae #{'foo bar' * 300}")
+      p.bricks << Kuhsaft::TextBrick.new(locale: I18n.locale,
+                                         text: "#{'foo bar' * 300} Chromodorididae #{'foo bar' * 300}")
       p.save!
       p
     end

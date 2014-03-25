@@ -11,7 +11,7 @@
       = form.input :title, required: false, input_html: { class: :span5 }
       = form.input :slug, required: false, input_html: { class: :span5 }
       = form.input :page_title, required: false, input_html: { class: :span5 }
-      = form.input :parent_id, collection: Kuhsaft::Page.flat_tree, label_method: :nesting_name, selected: params[:parent_id].presence || @page.parent_id.presence, prompt: 'None', input_html: { class: :span3 }
+      = form.input :parent_id, collection: Kuhsaft::Page.flat_tree, label_method: :nesting_name, selected: params[:parent_id].presence || @page.parent_id.presence, prompt: t('none'), input_html: { class: :span3 }
       = form.input :page_type, collection: Kuhsaft::PageType.all, prompt: false, default: Kuhsaft::PageType::CONTENT, input_html: { class: :span3 }
       = form.input :redirect_url, as: :string
       = form.input :url, as: :string, input_html: { disabled: 'disabled' }

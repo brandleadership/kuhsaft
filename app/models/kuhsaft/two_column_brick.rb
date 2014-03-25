@@ -1,6 +1,5 @@
 module Kuhsaft
   class TwoColumnBrick < ColumnBrick
-
     before_create :add_columns
 
     #
