@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'i18n-tasks'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'nyan-cat-formatter'
 
   s.add_dependency 'coffee-rails'
   s.add_dependency 'remotipart'
