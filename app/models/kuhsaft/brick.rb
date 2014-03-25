@@ -84,7 +84,7 @@ module Kuhsaft
       self.position = if self.position.present?
                         self.position
                       elsif self.respond_to?(:brick_list) && brick_list.respond_to?(:bricks)
-                                        brick_list.bricks.maximum(:position).to_i + 1
+                        brick_list.bricks.maximum(:position).to_i + 1
                       else
                         1
                       end
