@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project = 'kuhsaft'
 
   s.files         = Dir['{app,config,db,lib,vendor}/**/*'] + ['Rakefile', 'README.md']
-  s.test_files    = `git ls-files -- {spec,features}/*`.split('\n')
-  s.executables   = `git ls-files -- bin/*`.split('\n').map{ |f| File.basename(f) }
+  s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
   s.license = 'MIT'
 
