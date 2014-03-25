@@ -5,9 +5,7 @@ describe Kuhsaft::Page do
 
   describe '.search' do
     before do
-      create :page
-      create :page
-      create :page
+      3.times { create :page }
     end
 
     it 'should find any containing the search term' do
@@ -70,7 +68,7 @@ describe Kuhsaft::Page do
 
   describe '#published' do
     it 'returns only published pages' do
-      p1, p2, p3 = 3.times.map { create(:page) }
+      _p1, p2, _p3 = 3.times.map { create(:page) }
       p2.update_attribute :published, Kuhsaft::PublishState::UNPUBLISHED
       Kuhsaft::Page.published.should be_all { |p| p.published?.should be_true }
     end
@@ -89,13 +87,13 @@ describe Kuhsaft::Page do
     let(:page) { Kuhsaft::Page.new }
 
     it 'returns publsihed as string when page is published' do
-      page.published == Kuhsaft::PublishState::PUBLISHED
-      page.state_class == 'published'
+      page.published = Kuhsaft::PublishState::PUBLISHED
+      expect(page.state_class).to eq 'published'
     end
 
     it 'returns unpublsihed as string when page is unpublished' do
-      page.published == Kuhsaft::PublishState::UNPUBLISHED
-      page.state_class == 'unpublished'
+      page.published = Kuhsaft::PublishState::UNPUBLISHED
+      expect(page.state_class).to eq 'unpublished'
     end
   end
 
@@ -189,7 +187,7 @@ describe Kuhsaft::Page do
 
   describe '#preceding_sibling' do
     it 'finds the predecing sibling' do
-      page1 = create :page
+      _page1 = create :page
       page2 = create :page
       page3 = create :page
       page3.preceding_sibling.id.should == page2.id
@@ -198,7 +196,7 @@ describe Kuhsaft::Page do
 
   describe '#succeeding_sibling' do
     it 'finds the succeeding sibling' do
-      page1 = create :page
+      _page1 = create :page
       page2 = create :page
       page3 = create :page
       page2.succeeding_sibling.id.should == page3.id
@@ -208,14 +206,14 @@ describe Kuhsaft::Page do
   describe '#reposition' do
     it 'repositions before a page, specified by id' do
       page1 = create :page
-      page2 = create :page
+      _page2 = create :page
       page3 = create :page
       page3.reposition page1.id
       page3.preceding_sibling.id.should == page1.id
     end
 
     it 'repositions before all siblings, specified by nil' do
-      page1 = create :page
+      _page1 = create :page
       page2 = create :page
       page2.reposition nil
       page2.position.should == 1

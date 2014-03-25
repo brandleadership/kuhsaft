@@ -14,7 +14,5 @@ module Kuhsaft
     def allowed_brick_types
       %w(Kuhsaft::ImageBrick Kuhsaft::VideoBrick)
     end
-
   end
 end
-

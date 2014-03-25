@@ -55,9 +55,7 @@ module Kuhsaft
     end
 
     def has_siblings?
-      if brick_list
-        brick_list.bricks.any?
-      end
+      brick_list.present? && brick_list.bricks.any?
     end
 
     #
@@ -85,11 +83,11 @@ module Kuhsaft
     def set_position
       self.position = if self.position.present?
                         self.position
-      elsif self.respond_to?(:brick_list) && brick_list.respond_to?(:bricks)
+                      elsif self.respond_to?(:brick_list) && brick_list.respond_to?(:bricks)
                         brick_list.bricks.maximum(:position).to_i + 1
-      else
-        1
-      end
+                      else
+                        1
+                      end
     end
 
     def brick_list_type
@@ -112,9 +110,9 @@ module Kuhsaft
     end
 
     def translated_available_display_styles
-      styles = []
-      available_display_styles.each { |style| styles << [I18n.t("#{self.class.to_s.demodulize.underscore}.display_styles.#{style}"), style] }
-      styles
+      available_display_styles.map do |style|
+        [I18n.t("#{self.class.to_s.demodulize.underscore}.display_styles.#{style}"), style]
+      end
     end
 
     def backend_label(options = {})

@@ -1,24 +1,24 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
 
-require "kuhsaft/version"
+require 'kuhsaft/version'
 
 Gem::Specification.new do |s|
-  s.name        = "kuhsaft"
+  s.name        = 'kuhsaft'
   s.version     = Kuhsaft::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Immanuel Häussermann", "Felipe Kaufmann", "Phil Schilter", "Donat Baier", "Franca Rast"]
-  s.email       = "developers@screenconcept.ch"
-  s.homepage    = "http://github.com/screenconcept/kuhsaft"
+  s.authors     = ['Immanuel Häussermann', 'Felipe Kaufmann', 'Phil Schilter', 'Donat Baier', 'Franca Rast']
+  s.email       = 'developers@screenconcept.ch'
+  s.homepage    = 'http://github.com/screenconcept/kuhsaft'
   s.summary     = %q{A tool that helps you to manage your content within your app.}
   s.description = %q{Kuhsaft is a Rails engine that offers a simple CMS.}
 
-  s.rubyforge_project = "kuhsaft"
+  s.rubyforge_project = 'kuhsaft'
 
-  s.files         = Dir["{app,config,db,lib,vendor}/**/*"] + ["Rakefile", "README.md"]
+  s.files         = Dir['{app,config,db,lib,vendor}/**/*'] + ['Rakefile', 'README.md']
   s.test_files    = `git ls-files -- {spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  s.require_paths = ['lib']
   s.license = 'MIT'
 
   s.add_development_dependency 'rspec'
@@ -27,7 +27,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara', '>= 2.0'
   s.add_development_dependency 'pg'
   s.add_development_dependency 'launchy'
+  s.add_development_dependency 'i18n-tasks'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'nyan-cat-formatter'
 
   s.add_dependency 'coffee-rails'
   s.add_dependency 'remotipart'
@@ -48,7 +50,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'
   s.add_development_dependency 'rubocop'
-  s.add_dependency 'sass-rails'
+  s.add_dependency 'sass-rails', '~> 4.0.0'
 
   # Rails 4 compatibility
   s.add_dependency 'rails', '~> 4.0.2'

@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      kuhsaft/video_brick: 'Video'
+    attributes:
+      kuhsaft/video_brick:
+        video: 'Source'
+        embed_src: 'Embed Code'
+        href: 'Video'
+  kuhsaft:
+    video_bricks:
+      video_brick:
+        edit:
+          any_source_error: 'Any source error'
+          embed_src_optional: 'Embed src optional'

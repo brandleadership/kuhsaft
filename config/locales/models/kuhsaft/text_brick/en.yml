@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      kuhsaft/text_brick: 'Text'
+    attributes:
+      kuhsaft/text_brick:
+        text: 'Text'
+        read_more_text: 'Read more'
+  errors:
+    messages:
+      blank: "%{attribute} can't be blank"
+  kuhsaft:
+    text_bricks:
+      text_brick:
+        read_less: 'Read less'
+        read_more: 'Read more'

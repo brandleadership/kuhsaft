@@ -49,6 +49,62 @@ en:
         list:
           confirm: 'Are you sure you want to delete the asset "%{filename}"?'
           delete: 'Delete asset'
+      admin:
+        brick_type_dropdown:
+          add_element: Add element
+          add_specific_element: Add specific element
+        confirm_delete: Confirm delete
+        empty_state:
+          empty: Empty
+        main_navigation:
+          logout: Logout
+      assets:
+        edit:
+          edit: Edit
+        index:
+          create: Create
+        list:
+          confirm: Confirm
+          delete: Delete
+        new:
+          new: New
+      bricks:
+        brick_item:
+          confirm: Confirm
+          save: Save
+          saved: Saved
+        new:
+          create_new: Create new
+          no_content: No content
+          save: Save
+      pages:
+        edit:
+          edit_html: Edit html
+        form:
+          collapse_all: Collapse all
+          expand_all: Expand all
+          hint_description: Hint description
+          hint_keywords: Hint keywords
+          tab_content: Tab content
+          tab_metadata: Tab metadata
+        index:
+          add_page: Add page
+        new:
+          new: New
+          new_page: New page
+          pages: Pages
+    search:
+      form:
+        placeholder: Placeholder
+        search: Search
+      results:
+        title: Title
+  layouts:
+    kuhsaft:
+      cms:
+        flash:
+          success: Success
+  title: Title
   simple_form:
     labels:
       title: 'Page title'

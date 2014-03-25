@@ -19,7 +19,7 @@ describe Kuhsaft::Searchable do
 
     context 'without postgresql' do
       it 'initializes scope' do
-        ActiveRecord::Base.connection.instance_values.should_not == 'postgresql'
+        expect(ActiveRecord::Base.connection.instance_values).not_to eq('postgresql')
         SearchableDemo.should_receive :scope
         SearchableDemo.class_eval do
           include Kuhsaft::Searchable

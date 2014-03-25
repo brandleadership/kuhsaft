@@ -33,7 +33,8 @@ describe Kuhsaft::Cms::PagesHelper do
     end
 
     it 'has a redirect page' do
-      @page = create(:page, title: 'Page 1', slug: 'page1', page_type: Kuhsaft::PageType::REDIRECT, redirect_url: 'en/references')
+      @page = create(:page, title: 'Page 1', slug: 'page1',
+                            page_type: Kuhsaft::PageType::REDIRECT, redirect_url: 'en/references')
       expect(helper.hide_content_tab?(@page)).to be_true
     end
 

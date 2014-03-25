@@ -1,25 +1,25 @@
 # encoding: utf-8
 module Kuhsaft
   class ImageBrickImageUploader < CarrierWave::Uploader::Base
-
     include CarrierWave::MiniMagick
 
     storage :file
 
     def store_dir
-      "uploads/#{model.class.name.underscore.gsub(/^kuhsaft/,'cms')}/#{mounted_as}/#{model.id}/#{version_name.to_s}"
+      model_identifier = model.class.name.underscore.gsub(/^kuhsaft/, 'cms')
+      "uploads/#{model_identifier}/#{mounted_as}/#{model.id}/#{version_name}"
     end
 
     def full_filename(for_file)
-      for_file.pathmap("%n") + for_file.pathmap("%x")
+      for_file.pathmap('%n') + for_file.pathmap('%x')
     end
 
     version :converted do
       process :process_brick_image_size
     end
 
-    version :thumb, :from_version => :converted do
-      process :resize_to_fill => [160, 90]
+    version :thumb, from_version: :converted do
+      process resize_to_fill: [160, 90]
     end
 
     def extension_white_list

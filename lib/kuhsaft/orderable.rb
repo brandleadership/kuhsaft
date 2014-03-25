@@ -41,7 +41,10 @@ module Kuhsaft
 
       def recount_siblings_position_from(position)
         counter = position
-        succeeding_siblings.each { |s| counter += 1; s.update_attribute(:position, counter) }
+        succeeding_siblings.each do |s|
+          counter += 1
+          s.update_attribute(:position, counter)
+        end
       end
 
       def reposition(before_id)

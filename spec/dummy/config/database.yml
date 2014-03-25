@@ -10,7 +10,7 @@ development:
 
 test:
   adapter: postgresql
-  database: kuhsaft_development
+  database: kuhsaft_test
   username: screenconcept
   password:
   host: localhost
