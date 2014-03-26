@@ -2,18 +2,32 @@
 
 ## 2.3.0 - 2013-26-03
 
+### HOWTO Upgrade
+
+* `bundle update kuhsaft`
+* `rake kuhsaft:install:migrations`
+* `rake db:migrate`
+* recreate versions for all bricks with uploaders:
+
+  ```ruby
+    Kuhsaft::ImageBrick.all.each { |b| b.image.recreate_versions! }
+    Kuhsaft::AssetBrick.all.each { |b| b.asset.recreate_versions! }
+    Kuhsaft::Asset.all.each { |b| b.file.recreate_versions! }
+  ```
+
+* update your `config.assets.precompile` array with `ckeditor/adv_link/*` if you would
+  like to use the new CK extension for internal links
+
+* If you already have a customized ck-config just add ``config.extraAllowedContent = 'iframe[*]'`` to your ck-config.js.coffee
+  if you would like to allow iframes in bricks with ck-editor
+
+### Notable Changes
+
 - It is now possible to link via dialogue to other CMS Pages within current locale
-
-  *update your `config.assets.precompile` array with `ckeditor/adv_link/*`*
-
 - Collapsable brick view
 - Caching optimizations for pages and bricks
 - Cleaned up brick validations: Save only valid Bricks and cleaned up brick forms
 - Default value of page type field is now set to content
-
-  *run rake kuhsaft:install:migrations when updating*
-
-
 - add rake task which renames precompiled assets from ck-editor config to make
   sure that the newest config file is load in backend on staging and production
 - add string length validation to prevent exceptions due to postgres string limit
@@ -22,11 +36,7 @@
 - Update display style dropdown
 - add getter and setter for country specific translated pages
 - Added `bundle exec rake db:seed` to setup rake task for easier development.
-
 - allow iframes to be saved in ckeditor
-
-  *If you already have a customized ck-config just add ``config.extraAllowedContent = 'iframe[*]'`` to your ck-config.js.coffee when updating*
-
 
 ## 2.2.6 - 2013-12-02
 
