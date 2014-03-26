@@ -11,7 +11,7 @@ module Kuhsaft
     end
 
     def full_filename(for_file)
-      for_file.pathmap('%n') + for_file.pathmap('%x')
+      File.basename for_file
     end
 
     version :converted do
