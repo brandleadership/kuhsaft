@@ -8,12 +8,15 @@ module PagesHelper
   end
 
   def navigation_for(options)
-    if options.is_a?(Hash) && slug = options.delete(:slug)
+    # FIXME: \o/ omg, refactor and clean up needed!
+    if options.is_a?(Hash) && options[:slug].present?
       pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.children.current_locale.published rescue []
-    elsif (options.is_a?(Fixnum) && id = options) ||  id = options.delete(:id)
-      pages = Kuhsaft::Page.published.where('parent_id = ?', id)
+    elsif options.is_a?(Fixnum)
+      pages = Kuhsaft::Page.published.where('parent_id = ?', options)
     elsif options.nil?
       pages = Kuhsaft::Page.published.roots
+    elsif options[:id].present?
+      pages = Kuhsaft::Page.published.where('parent_id = ?', options[:id])
     end
     yield pages if block_given? && pages.length > 0
     pages
@@ -30,7 +33,6 @@ module PagesHelper
     page = Kuhsaft::Page.find_by_url(url)
     yield page if block_given?
     page
-  rescue
   end
 
   def active_page_class(page)
