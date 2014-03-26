@@ -7,21 +7,6 @@ module PagesHelper
     RDiscount.new(text).to_html if text.present?
   end
 
-  def navigation_for(options)
-    # FIXME: \o/ omg, refactor and clean up needed!
-    if options.is_a?(Hash) && options[:slug].present?
-      pages = Kuhsaft::LocalizedPage.navigation(slug).first.page.children.current_locale.published rescue []
-    elsif options.is_a?(Fixnum)
-      pages = Kuhsaft::Page.published.where('parent_id = ?', options)
-    elsif options.nil?
-      pages = Kuhsaft::Page.published.roots
-    elsif options[:id].present?
-      pages = Kuhsaft::Page.published.where('parent_id = ?', options[:id])
-    end
-    yield pages if block_given? && pages.length > 0
-    pages
-  end
-
   def homepage
     Kuhsaft::Page.roots.first
   end
