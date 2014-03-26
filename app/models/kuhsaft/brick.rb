@@ -5,7 +5,7 @@ module Kuhsaft
     belongs_to :brick_list, polymorphic: true, touch: true
 
     scope :localized, -> { where(locale: I18n.locale) }
-    default_scope -> { order('position ASC').localized }
+    default_scope { order('position ASC').localized }
 
     serialize :display_styles, Array
 

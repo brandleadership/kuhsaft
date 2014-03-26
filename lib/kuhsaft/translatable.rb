@@ -9,21 +9,34 @@ module Kuhsaft
     module ClassMethods
       def translate(*args)
         args.each do |attr_name|
-          define_method attr_name do
-            send "#{attr_name}_#{locale_for_attr_name}"
-          end
+          define_localized_attr_getter attr_name
+          define_localized_attr_setter attr_name
+          define_localized_attr_finder attr_name
+          define_localized_attr_predicate_method attr_name
+        end
+      end
 
-          define_method "#{attr_name}?" do
-            send "#{attr_name}_#{locale_for_attr_name}?"
-          end
+      def define_localized_attr_getter(attr_name)
+        define_method attr_name do
+          send "#{attr_name}_#{locale_for_attr_name}"
+        end
+      end
 
-          define_method "#{attr_name}=" do |val|
-            send "#{attr_name}_#{locale_for_attr_name}=", val
-          end
+      def define_localized_attr_predicate_method(attr_name)
+        define_method "#{attr_name}?" do
+          send "#{attr_name}_#{locale_for_attr_name}?"
+        end
+      end
 
-          define_singleton_method "find_by_#{attr_name}" do |val|
-            send "find_by_#{attr_name}_#{locale_for_attr_name}", val
-          end
+      def define_localized_attr_setter(attr_name)
+        define_method "#{attr_name}=" do |val|
+          send "#{attr_name}_#{locale_for_attr_name}=", val
+        end
+      end
+
+      def define_localized_attr_finder(attr_name)
+        define_singleton_method "find_by_#{attr_name}" do |val|
+          send "find_by_#{attr_name}_#{locale_for_attr_name}", val
         end
       end
 

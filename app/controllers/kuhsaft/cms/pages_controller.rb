@@ -60,17 +60,10 @@ module Kuhsaft
       private
 
       def page_params
-        safe_params = [:title,
-                       :page_title,
-                       :slug,
-                       :redirect_url,
-                       :url,
-                       :page_type,
-                       :parent_id,
-                       :keywords,
-                       :description,
-                       :published,
-                       :position]
+        safe_params = [
+          :title, :page_title, :slug, :redirect_url, :url, :page_type, :parent_id,
+          :keywords, :description, :published, :position
+        ]
         params.require(:page).permit(*safe_params)
       end
     end

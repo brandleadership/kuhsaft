@@ -4,9 +4,10 @@ module Kuhsaft
     mount_uploader :file, Kuhsaft::AssetUploader
 
     def file_type
-      if file.path.present? && ext = File.extname(file.path).split('.').last
-        ext.to_sym unless ext.blank?
-      end
+      return unless file.path.present?
+
+      ext = File.extname(file.path).split('.').last
+      ext.to_sym if ext.present?
     end
 
     def name

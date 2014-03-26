@@ -9,14 +9,8 @@ module Kuhsaft
     has_ancestry
     acts_as_brick_list
 
-    translate :title,
-              :page_title,
-              :slug,
-              :keywords,
-              :description,
-              :body,
-              :redirect_url,
-              :url
+    translate :title, :page_title, :slug, :keywords, :description,
+              :body, :redirect_url, :url
 
     default_scope { order 'position ASC' }
 
@@ -25,7 +19,11 @@ module Kuhsaft
 
     scope :content_page, -> { where page_type: Kuhsaft::PageType::CONTENT }
 
-    scope :navigation, -> (slug) { where(locale_attr(:slug) => slug, locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION) }
+    scope :navigation, lambda { |slug|
+      where(
+        locale_attr(:slug) => slug,
+        locale_attr(:page_type) => Kuhsaft::PageType::NAVIGATION)
+    }
 
     before_validation :create_slug, :create_url
 
@@ -52,7 +50,6 @@ module Kuhsaft
       end
     end
 
-    #
     def without_self
       self.class.where 'id != ?', id
     end

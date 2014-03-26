@@ -23,6 +23,8 @@ AllCops:
     - config/initializers/devise.rb
     - script/rails
     - db/seeds.rb
+    - lib/generators/kuhsaft/assets/install_generator.rb
+    - spec/views/kuhsaft/sitemaps/index.xml.haml_spec.rb
   # By default, the rails cops are not run. Override in project or home
   # directory .rubocop.yml files, or by giving the -R/--rails option.
   RunRailsCops: true
@@ -81,7 +83,7 @@ BracesAroundHashParameters:
 
 ClassLength:
   CountComments: false  # count full line comments?
-  Max: 100
+  Max: 120
 
 # Align with the style guide.
 CollectionMethods:

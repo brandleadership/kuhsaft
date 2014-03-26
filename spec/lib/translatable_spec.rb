@@ -16,11 +16,6 @@ describe Kuhsaft::Translatable do
       I18n.locale = :en
     end
 
-    after do
-      I18n.available_locales = [:en]
-      I18n.locale = :en
-    end
-
     describe '.translate' do
       it 'defines a getter for each attribute' do
         expect(model).to respond_to(:name)

@@ -1,20 +1,4 @@
 module PagesHelper
-  def current_page
-  #   page = @page
-  #   yield @page if block_given?
-  # rescue
-  end
-
-  def current_page_path(lang = nil)
-  #   if @page.present?
-  #     '/' + Kuhsaft::Page.find(@page.id).localized_pages.where('locale = ?', lang).first.url
-  #   else
-  #     root_path
-  #   end
-  # rescue
-  #   root_path
-  end
-
   def asset_for(id)
     Kuhsaft::Asset.find(id)
   end
