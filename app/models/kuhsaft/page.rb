@@ -31,6 +31,7 @@ module Kuhsaft
     validates :slug, presence: true
     validates :redirect_url, presence: true, if: :redirect?
     validates :title, :slug, :keywords, :page_type, length: { maximum: 255 }
+    validates :identifier, uniqueness: true, allow_blank: true
 
     class << self
       def flat_tree(pages = nil)
@@ -47,6 +48,10 @@ module Kuhsaft
         end
 
         arr
+      end
+
+      def by_identifier(identifier)
+        where(identifier: identifier).first
       end
     end
 
