@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'rspec-rails', '~> 2.14.2'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'capybara', '>= 2.0'
   s.add_development_dependency 'pg'
@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'better_errors'
   s.add_development_dependency 'binding_of_caller'
   s.add_development_dependency 'rubocop'
-  s.add_dependency 'sass-rails', '~> 4.0.0'
+  s.add_dependency 'sass-rails', '~> 4.0.2'
 
   # Rails 4 compatibility
   s.add_dependency 'rails', '~> 4.0.2'
