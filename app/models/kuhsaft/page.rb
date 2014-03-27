@@ -166,7 +166,7 @@ module Kuhsaft
     self.bricks.unscoped.where(:locale => locale).destroy_all
   end
 
-  def clone_brick_to(brick, locale, brick_list_id)
+  def clone_brick_to(brick, to_locale, new_brick_list_id)
     new_brick = brick.dup
 
     if brick.uploader?
@@ -177,17 +177,16 @@ module Kuhsaft
       end
     end
 
-    binding.pry
-    new_brick.update_attributes(locale: locale.to_sym, brick_list_id: brick_list_id)
+    new_brick.update_attribute(:locale, to_locale)
+    new_brick.update_attribute(:brick_list_id, new_brick_list_id)
 
     if brick.respond_to?(:bricks)
-      binding.pry
       brick.bricks.each do |nested_brick|
-        clone_brick_to(nested_brick, locale, new_brick.id)
+        clone_brick_to(nested_brick, to_locale, new_brick.id)
       end
     end
 
-    new_brick.valid?
+    new_brick.save
   end
 
   def clone_bricks_to(locale)

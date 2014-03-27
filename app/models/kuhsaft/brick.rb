@@ -35,6 +35,7 @@ module Kuhsaft
     end
 
     after_save do
+      binding.pry
       # TODO: replace callback with fulltext row on each
       # searchable model
       brick_list.update_fulltext
