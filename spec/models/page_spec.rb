@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Kuhsaft::Page do
-  subject { described_class }
+  # subject { described_class }
 
   describe '.search' do
     before do
@@ -336,10 +336,10 @@ describe Kuhsaft::Page do
 
   describe '#fulltext' do
     let :page do
-      p = create(:page, keywords: 'key words', description: 'descrip tion', title: 'my title')
-      p.bricks << Kuhsaft::TextBrick.new(locale: I18n.locale, text: 'oh la la')
-      p.save
-      p
+      create(:page, keywords: 'key words', description: 'descrip tion', title: 'my title').tap do |p|
+        p.bricks << Kuhsaft::TextBrick.new(locale: I18n.locale, text: 'oh la la')
+        p.save
+      end
     end
 
     context 'when saved' do
@@ -435,6 +435,18 @@ describe Kuhsaft::Page do
         @page_1.update(title: 'Page 1 fr', slug: 'page_1_fr')
         expect(Kuhsaft::Page.translated).to eq [@page_1]
       end
+    end
+  end
+
+  describe '#identifier' do
+    let(:cat_page) { create :page, identifier: 'cat_content' }
+
+    it 'should check for uniqueness' do
+      expect(build(:page, identifier: cat_page.identifier)).to be_invalid
+    end
+
+    it 'should be findable via scope' do
+      expect(Kuhsaft::Page.by_identifier(cat_page.identifier)).to eq(cat_page)
     end
   end
 end

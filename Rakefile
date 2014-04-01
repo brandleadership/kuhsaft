@@ -32,6 +32,13 @@ module Postgres
   end
 end
 
+def within_dummy_app
+  Dir.chdir('spec/dummy') do
+    ENV['BUNDLE_GEMFILE'] = File.join File.dirname(__FILE__), 'Gemfile'
+    yield
+  end
+end
+
 desc 'Run specs'
 RSpec::Core::RakeTask.new(spec: :setup)
 
@@ -46,7 +53,7 @@ end
 desc 'set up the dummy app for testing'
 task :setup do
   Postgres.create_user 'screenconcept'
-  Dir.chdir('spec/dummy') do
+  within_dummy_app do
     `bundle exec rake kuhsaft:install:migrations`
     `bundle exec rails generate kuhsaft:install:assets`
     `bundle exec rake db:create`
@@ -60,8 +67,16 @@ task default: [:spec]
 
 desc 'start the dummy app'
 task :start_dummy do
-  Dir.chdir('spec/dummy') do
-    ENV['BUNDLE_GEMFILE'] = '../../Gemfile'
+  within_dummy_app do
     `bundle exec rails server`
+  end
+end
+
+namespace :dummy_db do
+  desc 'migrate in dummy app'
+  task :migrate do
+    within_dummy_app do
+      `bundle exec rake db:migrate 2>&1`
+    end
   end
 end
