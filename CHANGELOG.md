@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## features/touch_templates
+## 2.3.1 - 2014-04-01
 
 * New Module added that simplifies invalidating cached placeholder bricks when a non-kuhsaft model changes. Consult the readme for instructions!
 
