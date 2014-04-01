@@ -1,3 +1,5 @@
+require_relative '../../../lib/kuhsaft/brick_list'
+
 module Kuhsaft
   class Brick < ActiveRecord::Base
     include Kuhsaft::BrickList

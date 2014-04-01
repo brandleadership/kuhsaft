@@ -15,6 +15,11 @@ FactoryGirl.define do
     tb.text 'DummyText'
   end
 
+  factory :placeholder_brick, class: 'Kuhsaft::PlaceholderBrick' do |tb|
+    tb.type 'Kuhsaft::PlaceholderBrick'
+    tb.template_name 'foo'
+  end
+
   factory :asset, class: Kuhsaft::Asset do |a|
     a.file File.open("#{Kuhsaft::Engine.root}/spec/dummy/app/assets/images/spec-image.png")
   end
