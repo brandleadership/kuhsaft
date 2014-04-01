@@ -34,7 +34,7 @@ end
 
 def within_dummy_app
   Dir.chdir('spec/dummy') do
-    # ENV['BUNDLE_GEMFILE'] = '../../Gemfile'
+    ENV['BUNDLE_GEMFILE'] = '../../Gemfile'
     yield
   end
 end
@@ -76,8 +76,7 @@ namespace :dummy_db do
   desc 'migrate in dummy app'
   task :migrate do
     within_dummy_app do
-      # binding.pry
-      pp `bundle exec rake db:migrate 2>&1`
+      `bundle exec rake db:migrate 2>&1`
     end
   end
 end
