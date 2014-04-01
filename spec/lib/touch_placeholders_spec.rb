@@ -30,7 +30,7 @@ describe Kuhsaft::TouchPlaceholders do
   describe 'placeholder_templates class method' do
     it 'returns the attribute names defined with class macro' do
       DummyModel.class_eval { placeholder_templates 'key_benefit_slider', 'key_benefit_grid' }
-      expect(DummyModel.placeholder_templates).to eq %w[key_benefit_slider key_benefit_grid]
+      expect(DummyModel.placeholder_templates).to eq %w(key_benefit_slider key_benefit_grid)
     end
   end
 
