@@ -34,7 +34,7 @@ end
 
 def within_dummy_app
   Dir.chdir('spec/dummy') do
-    ENV['BUNDLE_GEMFILE'] = Rails.root.join 'Gemfile'
+    ENV['BUNDLE_GEMFILE'] = File.join File.dirname(__FILE__), 'Gemfile'
     yield
   end
 end
