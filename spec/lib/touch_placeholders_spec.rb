@@ -14,20 +14,23 @@ describe Kuhsaft::TouchPlaceholders do
       include Kuhsaft::TouchPlaceholders
     end
 
-    page = FactoryGirl.create(:page)
-    FactoryGirl.create(:placeholder_brick, brick_list: page, template_name: 'foo')
+    @page = FactoryGirl.create(:page)
+    @placeholder = FactoryGirl.create(:placeholder_brick, brick_list: @page, template_name: 'foo')
   end
 
   after :all do
     m = ActiveRecord::Migration.new
     m.verbose = false
     m.drop_table :dummy_models
+
+    @page.destroy
+    @placeholder.destroy
   end
 
   describe 'placeholder_templates class method' do
     it 'returns the attribute names defined with class macro' do
       DummyModel.class_eval { placeholder_templates 'key_benefit_slider', 'key_benefit_grid' }
-      expect(DummyModel.placeholder_templates).to eq ['key_benefit_slider', 'key_benefit_grid']
+      expect(DummyModel.placeholder_templates).to eq %w[key_benefit_slider key_benefit_grid]
     end
   end
 
