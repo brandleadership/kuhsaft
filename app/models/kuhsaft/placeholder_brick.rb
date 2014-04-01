@@ -1,3 +1,5 @@
+require_relative './brick'
+
 module Kuhsaft
   class PlaceholderBrick < Brick
     PARTIAL_PATH = '/app/views/kuhsaft/placeholder_bricks/partials/_*.haml'
