@@ -193,6 +193,18 @@ de:
   your_partial: Your Partial
 ```
 
+## Invalidating placeholder bricks containing other models on model changes
+
+Include the TouchPlaceholders module if your model is used within a
+placeholder brick and define which templates it appears in:
+
+```ruby
+class Dummy < ActiveRecord::Base
+  include Kuhsaft::TouchPlaceholders
+  placeholder_templates 'some_template', 'some_other_template'
+end
+```
+
 ## Adding additional content languages
 
 If you want to translate your pages into another language, generate a new translation migration:
