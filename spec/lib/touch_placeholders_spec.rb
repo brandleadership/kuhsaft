@@ -15,7 +15,7 @@ describe Kuhsaft::TouchPlaceholders do
     end
 
     page = FactoryGirl.create(:page)
-    @placeholder = FactoryGirl.create(:placeholder_brick, brick_list: page, template_name: 'key_benefit_slider')
+    FactoryGirl.create(:placeholder_brick, brick_list: page, template_name: 'foo')
   end
 
   after :all do
@@ -33,8 +33,8 @@ describe Kuhsaft::TouchPlaceholders do
 
   describe 'after_save_callback' do
     it 'looks for the bricks with affected templates and touches them' do
-      DummyModel.class_eval { placeholder_templates 'key_benefit_slider', 'key_benefit_grid' }
-      expect(@placeholder).to receive(:touch)
+      DummyModel.class_eval { placeholder_templates 'foo' }
+      expect_any_instance_of(Kuhsaft::PlaceholderBrick).to receive(:touch)
       DummyModel.create
     end
   end
