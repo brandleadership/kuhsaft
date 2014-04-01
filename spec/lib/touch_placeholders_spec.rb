@@ -14,8 +14,8 @@ describe Kuhsaft::TouchPlaceholders do
       include Kuhsaft::TouchPlaceholders
     end
 
-    page = FactoryGirl.build(:page)
-    @placeholder = FactoryGirl.build(:placeholder_brick, brick_list: page, template_name: 'key_benefit_slider')
+    page = FactoryGirl.create(:page)
+    @placeholder = FactoryGirl.create(:placeholder_brick, brick_list: page, template_name: 'key_benefit_slider')
   end
 
   after :all do

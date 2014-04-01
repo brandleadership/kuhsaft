@@ -14,6 +14,7 @@ module Kuhsaft
       if self.class.placeholder_templates.present?
         self.class.placeholder_templates.each do |template_name|
           related_templates = Kuhsaft::PlaceholderBrick.where(template_name: template_name)
+          binding.pry
           related_templates.each { |p| p.touch } if related_templates.any?
         end
       end
