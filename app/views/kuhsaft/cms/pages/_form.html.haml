@@ -23,7 +23,7 @@
         = form.button :submit, class: 'btn btn-primary'
 
   - unless hide_content_tab?(@page)
-    #form-container
+    #brick-form.modal.hide.fade{ :tabindex => '-1', :role => 'dialog' }
     #page-content.tab-pane{ class: content_tab_active(@page) }
       - if @page.persisted?
         .clearfix
