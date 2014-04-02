@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.3.2 - 2014-04-02
+
+* fixed/refactored new brick modals to fit smaller screens/bigger forms
+
 ## 2.3.1 - 2014-04-01
 
 * New Module added that simplifies invalidating cached placeholder bricks when a non-kuhsaft model changes. Consult the readme for instructions!
