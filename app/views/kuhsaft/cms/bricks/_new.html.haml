@@ -1,34 +1,33 @@
-#brick-form.modal.hide.fade{ :tabindex => '-1', :role => 'dialog' }
-  .modal-header
-    %button.close{ 'data-dismiss' => 'modal' }
-      ×
-    %h3= t('.create_new', :brick => @brick.backend_label)
+.modal-header
+  %button.close{ 'data-dismiss' => 'modal' }
+    ×
+  %h3= t('.create_new', :brick => @brick.backend_label)
 
-  = simple_form_for @brick, :as => :brick, :url => kuhsaft.cms_bricks_path, :method => :post, :remote => true, :html => { :id => nil }, :wrapper => :bootstrap do |form|
-    .modal-body
-      = form.hidden_field :position, :class => 'position-field'
-      = form.hidden_field :type
-      = form.hidden_field :brick_list_id
-      = form.hidden_field :brick_list_type
+= simple_form_for @brick, :as => :brick, :url => kuhsaft.cms_bricks_path, :method => :post, :remote => true, :html => { :id => nil }, :wrapper => :bootstrap do |form|
+  .modal-body
+    = form.hidden_field :position, :class => 'position-field'
+    = form.hidden_field :type
+    = form.hidden_field :brick_list_id
+    = form.hidden_field :brick_list_type
 
-      - brick_content = render(@brick.to_edit_partial_path, :brick => @brick, :form => form)
+    - brick_content = render(@brick.to_edit_partial_path, :brick => @brick, :form => form)
 
-      - unless @brick.available_display_styles.empty?
-        #display-styles.btn-group.pull-right
-          .btn.btn-small
-            %i.icon-tint
-          %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
-            %span.caret
-          %ul.dropdown-menu.pull-right
-            %li
-              = form.input :display_styles, :collection => @brick.translated_available_display_styles, :as => :check_boxes
+    - unless @brick.available_display_styles.empty?
+      #display-styles.btn-group.pull-right
+        .btn.btn-small
+          %i.icon-tint
+        %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+          %span.caret
+        %ul.dropdown-menu.pull-right
+          %li
+            = form.input :display_styles, :collection => @brick.translated_available_display_styles, :as => :check_boxes
 
-      - if brick_content.present?
-        = brick_content
-      - else
-        = t('.no_content')
+    - if brick_content.present?
+      = brick_content
+    - else
+      = t('.no_content')
 
-    .modal-footer
-      .clearfix
-        .pull-right
-          = form.button :submit, t('.save'), :class => 'btn-success'
+  .modal-footer
+    .clearfix
+      .pull-right
+        = form.button :submit, t('.save'), :class => 'btn-success'

@@ -1,11 +1,13 @@
-$("#form-container #brick-form").modal('hide')
-$("#form-container #brick-form").remove()
+- if @brick.errors.any?
+  $("#brick-form").modal('attention')
 
-$("#form-container").append("#{j(render('kuhsaft/cms/bricks/new', :brick => @brick, :format => :html))}")
+$("#brick-form").empty()
 
-$("#form-container").find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) })
+$("#brick-form").append("#{j(render('kuhsaft/cms/bricks/new', :brick => @brick, :format => :html))}")
+
+$("#brick-form").find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) })
+
+$("#brick-form").modal('show')
 
 -# Stop propagation of display styles dropdown
 stopPropagationOfDisplayStyles($('#display-styles ul'))
-
-$("#brick-form").modal()
