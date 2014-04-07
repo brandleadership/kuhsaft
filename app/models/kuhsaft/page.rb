@@ -170,10 +170,8 @@ module Kuhsaft
     new_brick = brick.dup
 
     if brick.uploader?
-      brick.attribute_names.each do |attribute_name|
-        if brick.class.uploaders.keys.include?(attribute_name.to_sym)
-          new_brick.update_attribute(attribute_name, File.open(brick.send(attribute_name).file.file))
-        end
+      brick.class.uploaders.keys.each do |key|
+        new_brick.update_attribute(key.to_s, File.open(brick.send(key.to_s).path))
       end
     end
 
