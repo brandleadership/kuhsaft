@@ -60,9 +60,7 @@ module Kuhsaft
       def mirror
         @page = Kuhsaft::Page.find(params[:page_id])
 
-        params[:rutheless] = 'true' if @page.bricks.unscoped.where(:locale => params[:target_locale], :brick_list_id => @page.id).empty?
-
-        if params[:rutheless] == 'true'
+        if params[:rutheless] == 'true' || @page.bricks.unscoped.where(:locale => params[:target_locale]).empty?
           @page.clear_bricks_for_locale(params[:target_locale])
           params[:failed_bricks] = @page.clone_bricks_to(params[:target_locale])
         end
