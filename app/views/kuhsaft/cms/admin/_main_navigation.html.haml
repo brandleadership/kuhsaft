@@ -1,6 +1,6 @@
 = link_to 'Kuhsaft CMS', cms_root_path, :class => 'brand'
 
-%ul.nav.pull-right
+%ul.nav.pull-right.language-navigation
   - if render_language_switch?
     - I18n.available_locales.each do |locale|
       %li{ :class => (:active if I18n.locale.to_s == locale.to_s) }

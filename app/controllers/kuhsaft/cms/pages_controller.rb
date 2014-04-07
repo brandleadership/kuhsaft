@@ -64,7 +64,7 @@ module Kuhsaft
 
         if params[:rutheless] == 'true'
           @page.clear_bricks_for_locale(params[:target_locale])
-          params[:failed_bricks] = @page.clone_bricks_to(params[:target_locale]) 
+          params[:failed_bricks] = @page.clone_bricks_to(params[:target_locale])
         end
 
         respond_to :js, :html
