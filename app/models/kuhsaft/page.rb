@@ -160,39 +160,39 @@ module Kuhsaft
         json['url'] = "/pages/#{id}"
       end
     end
-  end
 
-  def clear_bricks_for_locale(locale)
-    self.bricks.unscoped.where(:locale => locale).destroy_all
-  end
+    def clear_bricks_for_locale(locale)
+      self.bricks.unscoped.where(:locale => locale).destroy_all
+    end
 
-  def clone_brick_to(brick, to_locale, new_brick_list_id)
-    new_brick = brick.dup
+    def clone_brick_to(brick, to_locale, new_brick_list_id)
+      new_brick = brick.dup
 
-    if brick.uploader?
-      brick.class.uploaders.keys.each do |key|
-        new_brick.update_attribute(key.to_s, File.open(brick.send(key.to_s).path))
+      if brick.uploader?
+        brick.class.uploaders.keys.each do |key|
+          new_brick.update_attribute(key.to_s, File.open(brick.send(key.to_s).path))
+        end
       end
-    end
 
-    new_brick.update_attribute(:locale, to_locale)
-    new_brick.update_attribute(:brick_list_id, new_brick_list_id)
+      new_brick.update_attribute(:locale, to_locale)
+      new_brick.update_attribute(:brick_list_id, new_brick_list_id)
 
-    if brick.respond_to?(:bricks)
-      brick.bricks.each do |nested_brick|
-        clone_brick_to(nested_brick, to_locale, new_brick.id)
+      if brick.respond_to?(:bricks)
+        brick.bricks.each do |nested_brick|
+          clone_brick_to(nested_brick, to_locale, new_brick.id)
+        end
       end
+
+      new_brick.save
     end
 
-    new_brick.save
-  end
+    def clone_bricks_to(locale)
+      failed_to_clone = []
 
-  def clone_bricks_to(locale)
-    failed_to_clone = []
-
-    self.bricks.each do |brick|
-      failed_to_clone << brick unless clone_brick_to(brick, locale, self.id)
+      self.bricks.each do |brick|
+        failed_to_clone << brick unless clone_brick_to(brick, locale, self.id)
+      end
+      failed_to_clone
     end
-    failed_to_clone
   end
 end
