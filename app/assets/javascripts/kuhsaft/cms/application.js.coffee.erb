@@ -101,6 +101,9 @@ window.stopPropagationOfDisplayStyles = (selector) ->
 $(document).ajaxSuccess ->
   sortableBrick()
 
+  $('a.has-spinner').click ->
+    $(this).toggleClass('active')
+
 $(document).ready ->
   loadTextEditor()
   checkPageType()

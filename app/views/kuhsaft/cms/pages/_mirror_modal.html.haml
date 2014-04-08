@@ -12,7 +12,9 @@
       .pull-right
         .btn{ 'data-dismiss' => 'modal'}
           = t('.abort')
-        = link_to cms_page_mirror_path(@page, :target_locale => params[:target_locale], :rutheless => true), :class => 'btn btn-warning', :remote => true do
+        = link_to cms_page_mirror_path(@page, :target_locale => params[:target_locale], :rutheless => true), :class => 'btn btn-warning has-spinner', :remote => true do
+          %span.spinner
+            %i.icon-refresh.icon-white
           = t('.proceed_replace')
 
 - else
