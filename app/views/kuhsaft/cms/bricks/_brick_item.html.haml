@@ -16,6 +16,11 @@
         .btn-toolbar
           - if brick.persisted?
 
+            - # addable child dropdown menu
+            - if brick.respond_to?(:brick_list)
+              .btn-group
+                = render 'brick_type_dropdown', :brick_list => brick
+
             - # possible styles
             - unless brick.available_display_styles.empty?
               #display-styles.btn-group
@@ -32,11 +37,6 @@
               .btn-group
                 = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', data: { confirm: t('kuhsaft.cms.bricks.brick_item.confirm') }, :method => :delete, :remote => true do
                   %i.icon-trash.icon-white
-
-            - # addable child dropdown menu
-            - if brick.respond_to?(:brick_list)
-              .btn-group
-                = render 'brick_type_dropdown', :brick_list => brick
 
     - if brick_content.present?
       .brick-item-content.collapse.in{ :id => "brick-content-#{brick.id}", 'data-toggle' => true }
