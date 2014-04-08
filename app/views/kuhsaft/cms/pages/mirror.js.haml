@@ -1,6 +1,5 @@
-$("#modal-hook #brick-clone").modal('hide')
-$("#modal-hook #brick-clone").remove()
+$("#modal-container").empty()
 
-$("#modal-hook").append("#{j(render('kuhsaft/cms/pages/mirror_modal', :page => @page, :format => :html))}")
+$("#modal-container").append("#{j(render('kuhsaft/cms/pages/mirror_modal', :page => @page, :format => :html))}")
 
-$("#brick-clone").modal()
+$("#modal-container").modal('show')
