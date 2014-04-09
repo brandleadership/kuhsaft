@@ -18,9 +18,10 @@
 * recreate versions for all bricks with uploaders:
 
   ```ruby
-    Kuhsaft::ImageBrick.all.each { |b| b.image.recreate_versions! }
-    Kuhsaft::AssetBrick.all.each { |b| b.asset.recreate_versions! }
-    Kuhsaft::Asset.all.each { |b| b.file.recreate_versions! }
+    # You need to do this for every locale you are using as bricks have a default_scope on the locale:
+    I18n.with_locale(:de) { Kuhsaft::ImageBrick.all.each { |b| b.image.recreate_versions! if b.image.present? } }
+    I18n.with_locale(:de) { Kuhsaft::AssetBrick.all.each { |b| b.asset.recreate_versions! if b.asset.present? } }
+    I18n.with_locale(:de) { Kuhsaft::Asset.all.each  { |b| b.file.recreate_versions! if b.file.present? } }
   ```
 
 * update your `config.assets.precompile` array with `ckeditor/adv_link/*` if you would
