@@ -4,10 +4,10 @@
 # Common configuration.
 AllCops:
   # Include gemspec and Rakefile
-  Includes:
+  Include:
     - '**/*.gemspec'
     - '**/Rakefile'
-  Excludes:
+  Exclude:
     - tmp/**
     - coverage/**
     - public/**
@@ -61,7 +61,7 @@ AlignHash:
   #   bb: 1
   EnforcedColonStyle: key
 
-HashMethods:
+DeprecatedHashMethods:
   # key? instead of has_key?
   # value? instead of has_value?
   Enabled: false
