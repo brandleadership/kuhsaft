@@ -1,5 +1,4 @@
 module Kuhsaft
-
   module Gridded
     def self.included(base)
       base.extend(ClassMethods)
