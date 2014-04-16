@@ -4,6 +4,7 @@ module Kuhsaft
   require 'kuhsaft/image_uploader_mounting'
   require 'kuhsaft/translatable'
   require 'kuhsaft/searchable'
+  require 'kuhsaft/gridded'
   require 'kuhsaft/brick_list'
   require 'kuhsaft/partial_extractor'
   require 'kuhsaft/touch_placeholders'

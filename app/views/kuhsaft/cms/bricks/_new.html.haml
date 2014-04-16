@@ -14,13 +14,21 @@
 
     - unless @brick.available_display_styles.empty?
       #display-styles.btn-group.pull-right
-        .btn.btn-small
-          %i.icon-tint
         %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+          %i.icon-tint
           %span.caret
         %ul.dropdown-menu.pull-right
           %li
             = form.input :display_styles, :collection => @brick.translated_available_display_styles, :as => :check_boxes
+
+    - if brick.class.include? Kuhsaft::Gridded
+      .btn-group.pull-right
+        %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+          %i.icon-th
+          %span.caret
+        %ul.dropdown-menu.pull-right
+          %li
+            = form.input :col_count, collection: brick.class.available_grid_sizes, as: :radio_buttons, label_method: lambda { |col_count| t("kuhsaft.cms.bricks.columns", count: col_count) }
 
     - if brick_content.present?
       = brick_content
