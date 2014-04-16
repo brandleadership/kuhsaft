@@ -183,6 +183,17 @@ de:
       style2: 'My Style 2'
 ```
 
+## Configuring Grid settings for Bricks
+
+Include the Kuhsaft::Gridded Module on every Brick you want to display in a grid. Default grid options are 1 to 12 (representing columns) wich can be configured via the class method `available_grid_sizes` (should return an array of integers).
+Each instance of a gridded class will have a method `gridded?` wich returns true if a column size is set.
+
+If the Gridded Module is added to a Custom Brick, it should provide a col_count integer field with default value 0.
+
+```
+add_column :your_awesome_brick, :col_count, :integer, default: 0
+```
+
 ## Adding custom templates with placeholder bricks
 
 * Save your partial in `views/kuhsaft/placeholder_bricks/partials/_your_partial.html.haml`

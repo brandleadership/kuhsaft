@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.3.3 - 2014-04-16
+
+* added grid module
+
 ## 2.3.2 - 2014-04-02
 
 * fixed/refactored new brick modals to fit smaller screens/bigger forms
