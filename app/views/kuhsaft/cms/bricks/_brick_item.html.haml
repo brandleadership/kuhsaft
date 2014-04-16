@@ -1,57 +1,25 @@
-.brick-item{ :id => brick.to_brick_item_id, :class => brick.to_style_class, 'data-id' => brick.id }
-  = simple_form_for brick, :as => :brick, :url => kuhsaft.cms_brick_path(brick), :remote => !brick.uploader?, :html => { :id => nil }, :wrapper => :bootstrap do |form|
-    = form.hidden_field :position, :class => 'position-field'
-    - brick_content = render(brick.to_edit_partial_path, :brick => brick, :form => form)
+.brick-item{ id: brick.to_brick_item_id, class: brick.to_style_class, 'data-id' => brick.id }
+  = simple_form_for brick, as: :brick, url: kuhsaft.cms_brick_path(brick), remote: !brick.uploader?, html: { id: nil }, wrapper: :bootstrap do |form|
+    = form.hidden_field :position, class: 'position-field'
+    - brick_content = render(brick.to_edit_partial_path, brick: brick, form: form)
+
     .brick-item-header.clearfix
-      .pull-left
-        - if brick_content.present?
-          .resize-toggler.btn.btn-small{ 'data-toggle' => 'collapse', 'data-target' => "#brick-content-#{brick.id}" }
-            %i.icon-resize-full
-            %i.icon-resize-small
-        - if brick.caption.present?
-          = brick.caption
-        %span.muted
-          = brick.backend_label(:parenthesis => true)
-      .pull-right
-        .btn-toolbar
-          - if brick.persisted?
-
-            - # addable child dropdown menu
-            - if brick.respond_to?(:brick_list)
-              .btn-group
-                = render 'brick_type_dropdown', :brick_list => brick
-
-            - # possible styles
-            - unless brick.available_display_styles.empty?
-              #display-styles.btn-group
-                .btn.btn-small
-                  %i.icon-tint
-                %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
-                  %span.caret
-                %ul.dropdown-menu.pull-right
-                  %li
-                    = form.input :display_styles, :collection => brick.translated_available_display_styles, :as => :check_boxes
-
-            -# delete button
-            - if brick.user_can_delete?
-              .btn-group
-                = link_to kuhsaft.cms_brick_path(brick), :class => 'btn btn-small btn-danger', data: { confirm: t('kuhsaft.cms.bricks.brick_item.confirm') }, :method => :delete, :remote => true do
-                  %i.icon-trash.icon-white
+      = render('kuhsaft/cms/bricks/brick_header', brick: brick, brick_content: brick_content, form: form)
 
     - if brick_content.present?
-      .brick-item-content.collapse.in{ :id => "brick-content-#{brick.id}", 'data-toggle' => true }
+      .brick-item-content.collapse.in{ id: "brick-content-#{brick.id}", 'data-toggle' => true }
         = brick_content
         - if brick.user_can_save?
           - # save button
           .clearfix
             .pull-right
-              %a.submit{ :href => '#', :class => 'btn btn-success btn-small ', 'data-title' => '', 'data-content' => t('.saved') }
+              %a.submit{ href: '#', class: 'btn btn-success btn-small ', 'data-title' => '', 'data-content' => t('.saved') }
                 = t('.save')
 
   - if brick.renders_own_childs?
     .brick-item-childs
-      = render brick.to_edit_childs_partial_path, :brick => brick
+      = render(brick.to_edit_childs_partial_path, brick: brick)
   - else
     - if brick.respond_to?(:bricks)
       .brick-item-childs
-        = render 'kuhsaft/cms/bricks/brick_list', :brick_list => brick
+        = render('kuhsaft/cms/bricks/brick_list', brick_list: brick)

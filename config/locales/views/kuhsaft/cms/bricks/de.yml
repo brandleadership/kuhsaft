@@ -8,7 +8,17 @@ de:
           confirm: 'Wirklich löschen?'
           empty: 'Hier ist noch nichts.'
 
+        columns:
+          zero: Nicht ins Grid integrieren
+          one: "%{count} Spalte"
+          other: "%{count} Spalten"
+
     image_bricks:
       image_brick:
         edit:
           image_preview: 'Vorschau'
+
+  activerecord:
+    attributes:
+      kuhsaft/brick:
+        col_count: 'Breite im Grid'

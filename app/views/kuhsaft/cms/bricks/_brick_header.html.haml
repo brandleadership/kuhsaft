@@ -1,0 +1,43 @@
+.pull-left
+  - if brick_content.present?
+    .resize-toggler.btn.btn-small{ 'data-toggle' => 'collapse', 'data-target' => "#brick-content-#{brick.id}" }
+      %i.icon-resize-full
+      %i.icon-resize-small
+  - if brick.caption.present?
+    = brick.caption
+  %span.muted
+    = brick.backend_label(parenthesis: true)
+.pull-right
+  .btn-toolbar
+    - if brick.persisted?
+
+      - # addable child dropdown menu
+      - if brick.respond_to?(:brick_list)
+        .btn-group
+          = render('brick_type_dropdown', brick_list: brick)
+
+      - # grid selection
+      - if brick.class.include? Kuhsaft::Gridded
+        .btn-group
+          %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+            %i.icon-th
+            %span.caret
+          %ul.dropdown-menu.pull-right
+            %li
+              = form.input :col_count, collection: brick.class.available_grid_sizes, as: :radio_buttons, label_method: lambda { |col_count| t("kuhsaft.cms.bricks.columns", count: col_count) }
+
+      - # possible styles
+      - unless brick.available_display_styles.empty?
+        #display-styles.btn-group
+          %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+            %i.icon-tint
+            %span.caret
+          %ul.dropdown-menu.pull-right
+            %li
+              = form.input :display_styles, collection: brick.translated_available_display_styles, as: :check_boxes
+
+      -# delete button
+      - if brick.user_can_delete?
+        .btn-group
+          = link_to kuhsaft.cms_brick_path(brick), class: 'btn btn-small btn-danger', data: { confirm: t('kuhsaft.cms.bricks.brick_item.confirm') }, method: :delete, remote: true do
+            %i.icon-trash.icon-white
