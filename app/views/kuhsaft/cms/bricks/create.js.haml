@@ -1,4 +1,5 @@
-$("##{@brick.brick_list.to_brick_list_id}.brick-list").append("#{j(render('kuhsaft/cms/bricks/brick_item', :brick => @brick))}").find("> .empty-state").remove()
+- brick_html = render('kuhsaft/cms/bricks/brick_item', :brick => @brick).to_json
+$("##{@brick.brick_list.to_brick_list_id}.brick-list").append(#{brick_html}).find("> .empty-state").remove()
 
 - # need a reference to the new dom node, so a new query is needed here
 var newlyInsertedBrick = $("##{@brick.to_brick_item_id}")
