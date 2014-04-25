@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.3.4 - 2014-04-25
+
+* Handle non-escaped newline in create.js.haml view
+  * Problem occurred only if there’s a ajax image upload combined with a text area. The remotipart JS is executed within a text area. Because of the newline the whole JS is broken.
+
 ## 2.3.3 - 2014-04-16
 
 * added grid module
