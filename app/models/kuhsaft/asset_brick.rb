@@ -21,8 +21,6 @@ module Kuhsaft
       false
     end
 
-    def asset_present?
-      asset.present?
-    end
+    delegate :present?, to: :asset, prefix: true
   end
 end

@@ -18,7 +18,7 @@ module Kuhsaft
       file.url
     end
 
-    def path=(val)
+    def path=(_val)
       # do nothing
     end
 

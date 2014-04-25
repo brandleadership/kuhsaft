@@ -6,17 +6,17 @@ AllCops:
   # Include gemspec and Rakefile
   Include:
     - '**/*.gemspec'
-    - '**/Rakefile'
   Exclude:
-    - tmp/**
-    - coverage/**
-    - public/**
+    - tmp/**/*
+    - coverage/**/*
+    - Rakefile
+    - public/**/*
     - db/schema.rb
-    - config/locales/**
+    - config/locales/**/*
     - config/unicorn.rb
     - db/migrate/*
     - bin/*
-    - spec/dummy*
+    - spec/dummy/**/*
     - config/navigation.rb
     - config/cms_navigation.rb
     - config/blazing.rb
@@ -67,6 +67,9 @@ DeprecatedHashMethods:
   Enabled: false
 
 PredicateName:
+  Enabled: false
+
+Delegate:
   Enabled: false
 
 # don't prefer 'fail' over raise

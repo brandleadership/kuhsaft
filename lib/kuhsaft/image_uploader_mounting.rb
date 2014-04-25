@@ -16,9 +16,7 @@ module Kuhsaft
         image.recreate_versions! if image_size_changed? && image_present?
       end
 
-      def image_present?
-        image.present?
-      end
+      delegate :present?, to: :image, prefix: true
     end
   end
 end
