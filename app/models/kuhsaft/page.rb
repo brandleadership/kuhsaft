@@ -15,7 +15,7 @@ module Kuhsaft
     default_scope { order 'position ASC' }
 
     scope :published, -> { where published: Kuhsaft::PublishState::PUBLISHED }
-    scope :translated, -> { where "url_#{I18n.locale} is not null" }
+    scope :translated, -> { where "url_#{I18n.locale.to_s.underscore} is not null" }
 
     scope :content_page, -> { where page_type: Kuhsaft::PageType::CONTENT }
 
@@ -34,7 +34,7 @@ module Kuhsaft
     validates :identifier, uniqueness: true, allow_blank: true
 
     class << self
-      def flat_tree(_pages = nil)
+      def flat_tree(pages = nil)
         arrange_as_array
       end
 
@@ -140,10 +140,10 @@ module Kuhsaft
       super + bricks.map(&:cache_key).join
     end
 
-    def as_json(_options = {})
+    def as_json(options = {})
       Hash.new.tap do |json|
-        json['title'] = send("title_#{I18n.locale}")
-        json['pretty_url'] = '/' + send("url_#{I18n.locale}")
+        json['title'] = send("title_#{I18n.locale.to_s.underscore}")
+        json['pretty_url'] = '/' + send("url_#{I18n.locale.to_s.underscore}")
         json['url'] = "/pages/#{id}"
       end
     end

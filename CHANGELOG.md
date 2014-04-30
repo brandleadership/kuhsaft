@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.3.5 - 2014-04-30
+
+* HOTFIX: Use .to_s.underscore when calling translated DB fields, so country specific locales work everywhere
+
 ## 2.3.4 - 2014-04-25
 
 * HOTFIX: Handle non-escaped newline in create.js.haml view
