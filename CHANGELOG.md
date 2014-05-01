@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.3.6 - 2014-05-1
+
+* HOTFIX: Fix issues related to 2.3.4 release.
+  - All brick js views are now .js.erb views for better readability
+  - Wrap ruby calls in erb with html_safe
+
 ## 2.3.5 - 2014-04-30
 
 * HOTFIX: Use .to_s.underscore when calling translated DB fields, so country specific locales work everywhere
