@@ -1,8 +1,0 @@
-$("##{@brick.to_brick_item_id}").replaceWith("#{j(render('kuhsaft/cms/bricks/brick_item', :brick => @brick))}")
-
-- # need a reference to the new dom node, so a new query is needed here
-var newlyInsertedBrick = $("##{@brick.to_brick_item_id}")
-initSavePopover(newlyInsertedBrick)
-initSubmitLinks(newlyInsertedBrick)
-
-$(newlyInsertedBrick).find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) })

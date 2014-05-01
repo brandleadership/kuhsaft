@@ -1,0 +1,14 @@
+<%- if @brick.errors.any? %>
+  $("#brick-form").modal('attention');
+<%- end %>
+
+$("#brick-form").empty();
+
+$("#brick-form").append(<%= render('kuhsaft/cms/bricks/new', :brick => @brick, :format => :html).to_json.html_safe %>);
+
+$("#brick-form").find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) });
+
+$("#brick-form").modal('show');
+
+// Stop propagation of display styles dropdown
+stopPropagationOfDisplayStyles($('#display-styles ul'));

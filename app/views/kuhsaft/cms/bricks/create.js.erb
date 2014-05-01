@@ -1,0 +1,11 @@
+<% brick_html = render('kuhsaft/cms/bricks/brick_item', :brick => @brick) %>
+$('#' + <%= @brick.brick_list.to_brick_list_id.to_json.html_safe %> + '.brick-list').append(<%= brick_html.to_json.html_safe %>).find("> .empty-state").remove();
+
+// need a reference to the new dom node, so a new query is needed here
+var newlyInsertedBrick = $("#" + <%= @brick.to_brick_item_id.to_json.html_safe %>);
+initSavePopover(newlyInsertedBrick);
+initSubmitLinks(newlyInsertedBrick);
+
+$(newlyInsertedBrick).find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) });
+
+$("#brick-form").modal('hide');

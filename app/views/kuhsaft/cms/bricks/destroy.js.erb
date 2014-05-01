@@ -1,0 +1,10 @@
+var brick = $("#" + <%= @brick.to_brick_item_id.to_json.html_safe %>);
+var brickList = brick.parent();
+brick.remove();
+
+if(brickList.children().length == 0){
+  brickList.html(<%= render('empty_state', :brick => @parent_brick).to_json.html_safe %>);
+};
+
+// Toggle collapse-bricks-nav
+toggleCollapseBricksNav(<%= @brick.brick_list.bricks.present? %>);

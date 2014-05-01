@@ -1,0 +1,8 @@
+$("#" + <%= @brick.to_brick_item_id.to_json.html_safe %>).replaceWith(<%= render('kuhsaft/cms/bricks/brick_item', :brick => @brick).to_json.html_safe %>);
+
+// need a reference to the new dom node, so a new query is needed here
+var newlyInsertedBrick = $("#" + <%= @brick.to_brick_item_id.to_json.html_safe %>);
+initSavePopover(newlyInsertedBrick);
+initSubmitLinks(newlyInsertedBrick);
+
+$(newlyInsertedBrick).find('textarea.ckeditor').each(function (index, elem) { initCKEditor(elem.id) });
