@@ -26,6 +26,7 @@ module Kuhsaft
     }
 
     before_validation :create_slug, :create_url
+    after_save :update_child_urls
 
     validates :title, presence: true
     validates :slug, presence: true
@@ -116,6 +117,12 @@ module Kuhsaft
     def create_slug
       has_slug = title.present? && slug.blank?
       self.slug = title.downcase.parameterize if has_slug
+    end
+
+    def update_child_urls
+      if children.any?
+        children.each { |child| child.update_attributes(url: child.create_url) }
+      end
     end
 
     def nesting_name
