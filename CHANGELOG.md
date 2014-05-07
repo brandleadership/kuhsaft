@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/fix_ckconfig_issues
+
+* Fix the issue where an old ck-config was being loaded due to the timestamp params ckeditor adds to it's asset urls
+
 ## 2.3.6 - 2014-05-1
 
 * HOTFIX: Fix issues related to 2.3.4 release.
