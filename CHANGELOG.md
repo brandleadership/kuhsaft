@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/ckimage_uploader
+
+Implement views/controller etc. for handling image uploads via CKEditor. Enable the 'Image' Button in the ck-config in order to see it.
+
 ## 2.3.6 - 2014-05-1
 
 * HOTFIX: Fix issues related to 2.3.4 release.
