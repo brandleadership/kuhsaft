@@ -10,7 +10,7 @@ Kuhsaft::Engine.routes.draw do
     end
 
     resources :assets
-    resources :ckimages
+    resources :ckimages, only: [:create, :index, :destroy]
     root to: 'pages#index'
   end
 
