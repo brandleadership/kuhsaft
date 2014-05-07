@@ -6,14 +6,14 @@ module Kuhsaft
       respond_to :html, :js
 
       def create
-        @func_num = params["CKEditorFuncNum"]
-        @ck_editor = params["CKEditor"]
+        @func_num = params['CKEditorFuncNum']
+        @ck_editor = params['CKEditor']
         @ckimage = Kuhsaft::Ckimage.create(file: params[:upload])
       end
 
       def index
-        @func_num = params["CKEditorFuncNum"]
-        @ck_editor = params["CKEditor"]
+        @func_num = params['CKEditorFuncNum']
+        @ck_editor = params['CKEditor']
         @ckimages = Kuhsaft::Ckimage.all
       end
 
