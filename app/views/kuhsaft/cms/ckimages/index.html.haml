@@ -1,0 +1,13 @@
+- @ckimages.each do |image|
+  .ckimage-wrapper{ id: "ckimage_#{image.id}" }
+    .ckimage-thumb{ 'data-image-url' => image.file.url, 'data-func-num' => @func_num }
+      = image_tag image.file.thumb.url
+    .ckimage-delete
+      =link_to 'Delete', cms_ckimage_path(image), method: :delete, remote: true, data: { confirm: 'cms.are_you_sure' }
+
+:coffeescript
+  $('.ckimage-thumb').click ->
+    funcNum = $(this).data('func-num')
+    imageUrl = $(this).data('image-url')
+    window.opener.CKEDITOR.tools.callFunction(funcNum, imageUrl)
+    window.close()

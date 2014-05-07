@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %meta{ charset: "utf-8" }
+    %title Screen Concept CMS
+    = stylesheet_link_tag 'kuhsaft/cms/application.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'kuhsaft/cms/customizations.css', :media => 'screen, projection'
+    = javascript_include_tag 'kuhsaft/cms/application.js'
+    = javascript_include_tag 'kuhsaft/cms/customizations.js'
+    = csrf_meta_tag
+
+  %body
+    .container.cms
+      .row
+        .span3
+        .span6
+          = yield
+        .span3
