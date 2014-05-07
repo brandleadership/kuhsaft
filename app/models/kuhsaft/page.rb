@@ -35,7 +35,7 @@ module Kuhsaft
     validates :identifier, uniqueness: true, allow_blank: true
 
     class << self
-      def flat_tree(pages = nil)
+      def flat_tree
         arrange_as_array
       end
 
@@ -147,7 +147,7 @@ module Kuhsaft
       super + bricks.map(&:cache_key).join
     end
 
-    def as_json(options = {})
+    def as_json
       Hash.new.tap do |json|
         json['title'] = send("title_#{I18n.locale.to_s.underscore}")
         json['pretty_url'] = '/' + send("url_#{I18n.locale.to_s.underscore}")
