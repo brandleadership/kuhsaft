@@ -2,7 +2,7 @@
 
 ## features/ckimage_uploader
 
-Implement views/controller etc. for handling image uploads via CKEditor. Enable the 'Image' Button in the ck-config in order to see it.
+Implement views/controller etc. for handling image uploads via CKEditor. Enable the 'Image' Button in the ck-config in order to see it. ('Image' is the right one. 'ImageButton' is not)
 
 ## 2.3.6 - 2014-05-1
 
