@@ -19,6 +19,8 @@ de:
           create_new: '%{brick} erstellen'
           save: Speichern
           no_content: 'Dieser Brick hat keinen eigenen Inhalt. Nach dem Speichern können darin weitere Bricks erstellt werden.'
+      ckimages:
+        confirm: 'Sind Sie sicher?'
       pages:
         index:
           create: 'Neue Seite erstellen'

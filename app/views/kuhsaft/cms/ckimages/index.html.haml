@@ -3,7 +3,7 @@
     .ckimage-thumb{ 'data-image-url' => image.file.url, 'data-func-num' => @func_num }
       = image_tag image.file.thumb.url
     .ckimage-delete
-      =link_to 'Delete', cms_ckimage_path(image), method: :delete, remote: true, data: { confirm: 'cms.are_you_sure' }
+      =link_to 'Delete', cms_ckimage_path(image), method: :delete, remote: true, data: { confirm: t('kuhsaft.cms.ckimages.confirm') }
 
 :coffeescript
   $('.ckimage-thumb').click ->

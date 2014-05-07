@@ -18,6 +18,17 @@ CKEDITOR.editorConfig = (config) ->
 
   true
 
+# Image Upload options:
+# ---------------------
+
+# enable theese two:
+  # config.filebrowserUploadUrl = '/cms/ckimages'
+  # config.filebrowserBrowseUrl = '/cms/ckimages'
+
+# and add this button:
+  # 'Image'
+
+
 # FULL OPTIONS:
 #[
 #['Source','-','Save','NewPage','Preview','-','Templates'],
