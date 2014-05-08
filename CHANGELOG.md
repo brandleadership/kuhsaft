@@ -7,6 +7,8 @@
 * Bugfixes:
   - consistent slug handling (is always downcased when saving)
   - update page tree urls for nested pages when changing page_type
+  - Fix the issue where an old ck-config was being loaded due to the timestamp params ckeditor adds to
+    it's asset urls
 
 ## 2.3.6 - 2014-05-01
 

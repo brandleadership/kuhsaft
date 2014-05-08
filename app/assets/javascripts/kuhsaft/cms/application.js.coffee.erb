@@ -14,6 +14,10 @@
 #= require ckeditor-jquery
 #= require jquery.nestable
 #= require_tree .
+#
+# Disable timestamp for ckeditor internal asset loading. This prevents issues with Asset Pipeline on production.
+root = exports ? this
+root.CKEDITOR.timestamp = null
 
 # As @ryabrody & @k-graefenhain found out there is obviously a bug which causes the asset_path_helper to return paths always without digest:
 # https://github.com/rails/sprockets-rails/issues/66
