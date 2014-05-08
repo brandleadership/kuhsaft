@@ -1,0 +1,11 @@
+- if @ckimage
+  = image_tag @ckimage.file.url
+
+  :javascript
+    CKEditorFuncNum = #{@func_num};
+    function SetUrl( fileUrl )
+    {
+      window.parent.CKEDITOR.tools.callFunction(CKEditorFuncNum, fileUrl);
+    }
+
+    SetUrl("#{ @ckimage.file.url }");
