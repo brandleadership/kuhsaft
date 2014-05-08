@@ -26,6 +26,7 @@ module Kuhsaft
     }
 
     before_validation :create_slug, :create_url
+    after_save :update_child_urls
 
     validates :title, presence: true
     validates :slug, presence: true
@@ -34,7 +35,7 @@ module Kuhsaft
     validates :identifier, uniqueness: true, allow_blank: true
 
     class << self
-      def flat_tree(pages = nil)
+      def flat_tree
         arrange_as_array
       end
 
@@ -118,6 +119,12 @@ module Kuhsaft
       self.slug = title.downcase.parameterize if has_slug
     end
 
+    def update_child_urls
+      if children.any?
+        children.each { |child| child.update_attributes(url: child.create_url) }
+      end
+    end
+
     def nesting_name
       num_dashes = parent_pages.size
       num_dashes = 0 if num_dashes < 0
@@ -140,7 +147,7 @@ module Kuhsaft
       super + bricks.map(&:cache_key).join
     end
 
-    def as_json(options = {})
+    def as_json
       Hash.new.tap do |json|
         json['title'] = send("title_#{I18n.locale.to_s.underscore}")
         json['pretty_url'] = '/' + send("url_#{I18n.locale.to_s.underscore}")

@@ -367,6 +367,26 @@ describe Kuhsaft::Page do
     end
   end
 
+  describe '#after_save' do
+    context 'when updating a parents page type' do
+      it 'updates the child pages url if parent is changed to navigation' do
+        @parent_page = FactoryGirl.create(:page, slug: 'le_parent')
+        @child_page = FactoryGirl.create(:page, slug: 'le_child', parent: @parent_page)
+
+        @parent_page.update_attributes(page_type: Kuhsaft::PageType::NAVIGATION)
+        @child_page.reload.url.should eq("#{I18n.locale}/le_child")
+      end
+
+      it 'updates the child pages url if parent is changed to content' do
+        @parent_page = FactoryGirl.create(:page, slug: 'le_parent', page_type: Kuhsaft::PageType::NAVIGATION)
+        @child_page = FactoryGirl.create(:page, slug: 'le_child', parent: @parent_page)
+
+        @parent_page.update_attributes(page_type: Kuhsaft::PageType::CONTENT)
+        @child_page.reload.url.should eq("#{I18n.locale}/le_parent/le_child")
+      end
+    end
+  end
+
   describe '#url_without_locale' do
     let :page do
       create(:page, slug: 'page')
