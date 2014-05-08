@@ -116,9 +116,9 @@ module Kuhsaft
 
     def create_slug
       if title.present? && slug.blank?
-        self.slug = title.downcase.parameterize if has_slug
-      else
-        self.slug = self.slug.downcase
+        self.slug = title.downcase.parameterize
+      elsif slug.present?
+        self.slug = slug.downcase
       end
     end
 
