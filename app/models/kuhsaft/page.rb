@@ -115,8 +115,11 @@ module Kuhsaft
     end
 
     def create_slug
-      has_slug = title.present? && slug.blank?
-      self.slug = title.downcase.parameterize if has_slug
+      if title.present? && slug.blank?
+        self.slug = title.downcase.parameterize if has_slug
+      else
+        self.slug = self.slug.downcase
+      end
     end
 
     def update_child_urls
