@@ -1,10 +1,14 @@
 # CHANGELOG
 
-## features/ckimage_uploader
+## 2.4.0 - 2014-05-08
 
-Implement views/controller etc. for handling image uploads via CKEditor. Enable the 'Image' Button in the ck-config in order to see it. ('Image' is the right one. 'ImageButton' is not)
+* Implement CKEditor Image Uploads. Disabled by default. See comments in ck-config for enabling it.
 
-## 2.3.6 - 2014-05-1
+* Bugfixes:
+  - consistent slug handling (is always downcased when saving)
+  - update page tree urls for nested pages when changing page_type
+
+## 2.3.6 - 2014-05-01
 
 * HOTFIX: Fix issues related to 2.3.4 release.
   - All brick js views are now .js.erb views for better readability
