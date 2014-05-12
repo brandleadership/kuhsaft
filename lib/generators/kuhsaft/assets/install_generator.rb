@@ -17,7 +17,7 @@ module Kuhsaft
         copy_file 'ck-config.js.coffee', "#{custom_js_folder}/ck-config.js.coffee"
 
         inject_into_file 'config/environments/production.rb', after: /config\.assets\.precompile.*$/ do
-          "\n  config.assets.precompile += %w( kuhsaft/cms/customizations.css kuhsaft/cms/customizations.js kuhsaft/cms/ck-config.js )"
+          "\n  config.assets.precompile += %w( kuhsaft/cms/customizations.css kuhsaft/cms/customizations.js )"
         end
       end
     end
