@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2.4.1 - 2014-05-12
+
+* Bufix Release: Fix an issue where ck-config in host app would not get recompiled even though changes were made to it.
+
+### HOWTO Upgrade
+
+* Remove ck-config.js from your production.rb's precompile directive after updating kuhsaft to 2.4.1
+
 ## 2.4.0 - 2014-05-08
 
 * Implement CKEditor Image Uploads. Disabled by default. See comments in ck-config for enabling it.
