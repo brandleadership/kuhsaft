@@ -1,4 +1,4 @@
-class Add<%= formatted_locale.classify %>Translation < ActiveRecord::Migration
+class Add<%= formatted_locale.camelize %>Translation < ActiveRecord::Migration
 
   def change
     <%- translated_columns.each do |column_hash| %>
