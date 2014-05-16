@@ -15,7 +15,7 @@ module Kuhsaft
       end
 
       def translated_columns
-        Kuhsaft::Page.column_names.select { |attr| attr.match(/_#{I18n.default_locale}$/) }
+        Kuhsaft::Page.column_names.select { |attr| attr.end_with? "_#{I18n.default_locale}" }
       end
 
       def formatted_locale
