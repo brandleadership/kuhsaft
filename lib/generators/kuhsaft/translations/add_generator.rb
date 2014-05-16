@@ -23,7 +23,7 @@ module Kuhsaft
       end
 
       def create_locale_migration_file
-        migration_template('add_translation.html.erb',
+        migration_template('add_translation.erb',
                            Rails.root.join('db', 'migrate', "add_#{formatted_locale}_translation.rb"))
       end
 
