@@ -15,7 +15,7 @@ module Kuhsaft
       end
 
       def translated_columns
-        Kuhsaft::Page.column_names.select { |attr| attr.include?("_#{I18n.default_locale}") }
+        Kuhsaft::Page.column_names.select { |attr| attr.end_with? "_#{I18n.default_locale}" }
       end
 
       def formatted_locale
@@ -23,7 +23,7 @@ module Kuhsaft
       end
 
       def create_locale_migration_file
-        migration_template('add_translation.html.erb',
+        migration_template('add_translation.erb',
                            Rails.root.join('db', 'migrate', "add_#{formatted_locale}_translation.rb"))
       end
 

@@ -1,0 +1,8 @@
+class Add<%= formatted_locale.camelize %>Translation < ActiveRecord::Migration
+
+  def change
+    <%- translated_columns.each do |column_hash| %>
+      add_column(:kuhsaft_pages, "<%= get_attribute column_hash %>", :<%= get_type column_hash %>) unless Kuhsaft::Page.column_names.include?("<%= get_attribute column_hash %>")
+    <%- end %>
+  end
+end

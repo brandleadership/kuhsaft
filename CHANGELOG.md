@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 2.4.2 - 2014-05-15
+
+* Bugfix: Check if column exists in translations migrations. Now you can always run the install:migrations tasks when updating kuhsaft in order to have all translated fields
+
 ## 2.4.1 - 2014-05-12
 
-* Bufix Release: Fix an issue where ck-config in host app would not get recompiled even though changes were made to it.
+* Bugfix: Fix an issue where ck-config in host app would not get recompiled even though changes were made to it.
 
 ### HOWTO Upgrade
 
