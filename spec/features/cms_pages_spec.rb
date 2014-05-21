@@ -7,7 +7,7 @@ describe 'Cms/Pages' do
   context '#new' do
     before do
       visit kuhsaft.new_cms_page_path
-      fill_in 'Titel', with: 'The Title of the page'
+      fill_in 'Title', with: 'The Title of the page'
       fill_in 'Keywords', with: 'My keywords'
       fill_in 'Description', with: 'My Description'
     end

@@ -6,7 +6,7 @@ en:
         other: 'Pages'
     attributes:
       kuhsaft/page:
-        title: 'Titel'
+        title: 'Title'
         slug: 'URL Name'
         page_title: 'Page title (in browser)'
         keywords: 'Keywords'
