@@ -1,7 +1,0 @@
-de:
-  kuhsaft:
-    video_bricks:
-      video_brick:
-        edit:
-          any_source_error: 'Bitte geben Sie mindestens eine Videoquelle an.'
-          embed_src_optional: 'Alternativ kann ein HTML Code zum einbetten eines Videos eingefügt werden.'
