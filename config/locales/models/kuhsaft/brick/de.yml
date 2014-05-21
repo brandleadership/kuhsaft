@@ -1,0 +1,5 @@
+de:
+  activerecord:
+    attributes:
+      kuhsaft/brick:
+        col_count: 'Breite im Grid'

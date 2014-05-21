@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      kuhsaft/brick:
+        col_count: 'Grid width'

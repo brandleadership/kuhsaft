@@ -1,0 +1,31 @@
+en:
+  kuhsaft:
+    cms:
+      pages:
+        index:
+          add_page: 'Add page'
+        form:
+          tab_metadata: 'Settings'
+          tab_content: 'Content'
+          hint_keywords: |
+            Please enter 2-6 key terms that apply to this page, as search keywords.
+            </br>
+            <strong>For example:</strong>
+            </br>
+            <em>
+            Keyword1, Keyword2, Keyword3
+            </em>
+          hint_description: |
+            Enter a page description about 140 characters.
+            </br>
+             The description is often displayed in the search results of search engines.
+            </br>
+            <strong>For example:</strong>
+            </br>
+            <em>
+             Description of the page content.
+             This description is unique and only available on this page. Other pages have their own descriptions.
+            </em>
+          expand_all: Expand all
+          collapse_all: Collapse all
+          none: none

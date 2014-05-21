@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    models:
+      kuhsaft/asset_brick: 'Asset'
+    attributes:
+      kuhsaft/asset_brick:
+        caption: 'Display text'
+        link_style: 'Style'
+        asset: 'Asset'
