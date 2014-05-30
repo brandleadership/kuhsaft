@@ -11,11 +11,10 @@ module Kuhsaft
     end
 
     def touch_placeholders
-      if self.class.placeholder_templates.present?
-        self.class.placeholder_templates.each do |template_name|
-          related_templates = Kuhsaft::PlaceholderBrick.where(template_name: template_name)
-          related_templates.each { |p| p.touch } if related_templates
-        end
+      return unless self.class.placeholder_templates.present?
+      self.class.placeholder_templates.each do |template_name|
+        related_templates = Kuhsaft::PlaceholderBrick.where(template_name: template_name)
+        related_templates.each { |p| p.touch } if related_templates
       end
     end
 
