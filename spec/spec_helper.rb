@@ -4,8 +4,12 @@ require_relative File.expand_path('../dummy/config/environment.rb', __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
-['factory_girl', 'capybara/rails', 'pry-debugger', 'database_cleaner'
-  ].each { |lib| require lib }
+[
+  'factory_girl',
+  'capybara/rails',
+  'pry-debugger',
+  'database_cleaner'
+].each { |lib| require lib }
 
 FactoryGirl.find_definitions
 

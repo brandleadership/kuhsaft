@@ -18,7 +18,7 @@ module Kuhsaft
         PublishState.new(name: 'published', value: PUBLISHED),
         PublishState.new(name: 'unpublished', value: UNPUBLISHED),
         PublishState.new(name: 'published_at', value: PUBLISHED_AT)
-        ]
+      ]
     end
   end
 end
