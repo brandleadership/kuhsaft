@@ -59,13 +59,9 @@ module Kuhsaft
     # Implement how you see fit.
     #
     def collect_fulltext
-      if respond_to?(:bricks)
-        bricks.localized.reduce('') do |text, brick|
-          text << brick.collect_fulltext
-          text
-        end
-      else
-        ''
+      return '' unless respond_to?(:bricks)
+      bricks.localized.reduce('') do |text, brick|
+        text << brick.collect_fulltext
       end
     end
 

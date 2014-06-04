@@ -28,9 +28,8 @@ module Kuhsaft
 
     def process_brick_image_size
       image_size = Kuhsaft::ImageSize.find_by_name(model.image_size)
-      if image_size.present?
-        resize_to_fill(image_size.width, image_size.height)
-      end
+      return unless image_size.present?
+      resize_to_fill(image_size.width, image_size.height)
     end
   end
 end

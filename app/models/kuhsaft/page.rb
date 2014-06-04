@@ -123,9 +123,8 @@ module Kuhsaft
     end
 
     def update_child_urls
-      if children.any?
-        children.each { |child| child.update_attributes(url: child.create_url) }
-      end
+      return unless children.any?
+      children.each { |child| child.update_attributes(url: child.create_url) }
     end
 
     def nesting_name
