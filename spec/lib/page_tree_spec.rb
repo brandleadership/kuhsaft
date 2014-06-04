@@ -10,7 +10,7 @@ module Kuhsaft
       {
         '0' => { 'id' => '1', 'children' => { '0' => { 'id' => '2' } } },
         '1' => { 'id' => '3' }
-       }
+      }
     end
 
     before :each do
