@@ -1,0 +1,18 @@
+en:
+  kuhsaft:
+    cms:
+      bricks:
+        brick_item:
+          save: 'Save ...'
+          saved: 'Saved! ✔'
+          confirm: 'Are you sure?'
+          empty: 'This element is empty...'
+        new:
+          create_new: 'Create %{brick}'
+          save: Save
+          no_content: 'This Brick has no own content. You can create more bricks within after saving.'
+
+        columns:
+          zero: Do not add to grid
+          one: "%{count} column"
+          other: "%{count} columns"

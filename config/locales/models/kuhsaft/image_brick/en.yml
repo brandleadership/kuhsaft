@@ -9,8 +9,3 @@ en:
         alt_text: 'Alt text'
         href: 'Link'
         image_size: 'Filesize'
-  kuhsaft:
-    image_bricks:
-      image_brick:
-        edit:
-          image_preview: 'Image preview'

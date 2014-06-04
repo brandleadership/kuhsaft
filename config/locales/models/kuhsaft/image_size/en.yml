@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      kuhsaft/image_size: 'Image size'
+    attributes:
+      kuhsaft/image_size:
+        name: 'Name'
+        label: 'Label'
+        width: 'Width'
+        height: 'Height'
+        sizes:
+          gallery: 'Gallery, 960x540'
+          teaser: 'Teaser, 320x180'

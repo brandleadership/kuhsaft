@@ -1,0 +1,7 @@
+en:
+  kuhsaft:
+    video_bricks:
+      video_brick:
+        edit:
+          any_source_error: 'Please enter at least one video source.'
+          embed_src_optional: 'Alternatively an HTML code can be entered to embed a video.'

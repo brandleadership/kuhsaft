@@ -1,0 +1,19 @@
+en:
+  activerecord:
+    models:
+      kuhsaft/page:
+        one: 'Page'
+        other: 'Pages'
+    attributes:
+      kuhsaft/page:
+        title: 'Title'
+        slug: 'URL Name'
+        page_title: 'Page title (in browser)'
+        keywords: 'Keywords'
+        description: 'Description'
+        redirect_url: 'Redirect URL'
+        url: 'URL'
+        published: 'Published'
+        page_type: 'Pagetype'
+        parent_id: 'Parent page'
+        parent: 'Parent page'

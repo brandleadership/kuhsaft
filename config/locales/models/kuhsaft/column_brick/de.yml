@@ -2,5 +2,3 @@ de:
   activerecord:
     models:
       kuhsaft/column_brick: 'Spalte'
-    attributes:
-      kuhsaft/column_brick:

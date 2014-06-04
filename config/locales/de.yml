@@ -100,6 +100,7 @@ de:
     messages:
       accepted: muss akzeptiert werden
       blank: muss ausgefüllt werden
+      present: muss leer sein
       confirmation: stimmt nicht mit der Bestätigung überein
       empty: muss ausgefüllt werden
       equal_to: muss genau %{count} sein
@@ -115,6 +116,9 @@ de:
       not_an_integer: muss ganzzahlig sein
       odd: muss ungerade sein
       record_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
+      restrict_dependent_destroy:
+        one: "Datensatz kann nicht gelöscht werden, da eine Abhängikeit besteht."
+        many: "Datensatz kann nicht gelöscht werden, da Abhängikeiten bestehen."
       taken: ist bereits vergeben
       too_long: ist zu lang (mehr als %{count} Zeichen)
       too_short: ist zu kurz (weniger als %{count} Zeichen)

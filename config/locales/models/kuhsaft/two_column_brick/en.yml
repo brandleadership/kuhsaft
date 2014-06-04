@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    models:
+      kuhsaft/two_column_brick: 'Two column element'
+    attributes:
+      kuhsaft/two_column_brick:
+        partitioning: 'Partition'

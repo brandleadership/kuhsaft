@@ -1,0 +1,12 @@
+en:
+  kuhsaft:
+    cms:
+      admin:
+        confirm_delete: 'Are you sure you want to delete %{name}?'
+        brick_type_dropdown:
+          add_element: 'Add element'
+          add_specific_element: 'Add %{name}'
+        empty_state:
+          empty: 'This element is empty yet...'
+        main_navigation:
+          logout: 'Log out'
