@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## hotfix/fix_bug_in_image_sizes
+
+* Bugfix: Remove unused image_size settings in controller
+
 ## 2.4.2 - 2014-05-19
 
 * Bugfix: Check if column exists in translations migrations. Now you can always run the install:migrations tasks when updating kuhsaft in order to have all translated fields
