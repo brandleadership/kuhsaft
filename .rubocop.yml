@@ -64,7 +64,7 @@ AlignHash:
 DeprecatedHashMethods:
   # key? instead of has_key?
   # value? instead of has_value?
-  #  Enabled: false
+  Enabled: false
 
 PredicateName:
   Enabled: false
