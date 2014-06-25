@@ -85,7 +85,7 @@ module Kuhsaft
     end
 
     def translated_to?(locale)
-      self.send("url_#{locale}").present? && self.send("title_#{locale}").present? && self.send("slug_#{locale}").present?
+      send("url_#{locale}").present? && send("title_#{locale}").present? && send("slug_#{locale}").present?
     end
 
     def link
@@ -162,7 +162,7 @@ module Kuhsaft
     end
 
     def clear_bricks_for_locale(locale)
-      self.bricks.unscoped.where(:locale => locale).destroy_all
+      bricks.unscoped.where(locale: locale).destroy_all
     end
 
     def clone_brick_to(brick, to_locale, new_brick_list_id)
@@ -189,8 +189,8 @@ module Kuhsaft
     def clone_bricks_to(locale)
       failed_to_clone = []
 
-      self.bricks.each do |brick|
-        failed_to_clone << brick unless clone_brick_to(brick, locale, self.id)
+      bricks.each do |brick|
+        failed_to_clone << brick unless clone_brick_to(brick, locale, id)
       end
       failed_to_clone
     end
