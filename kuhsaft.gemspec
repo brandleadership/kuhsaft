@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Immanuel Häussermann', 'Felipe Kaufmann', 'Phil Schilter', 'Donat Baier', 'Franca Rast']
   s.email       = 'developers@screenconcept.ch'
   s.homepage    = 'http://github.com/screenconcept/kuhsaft'
-  s.summary     = %q(A tool that helps you to manage your content within your app.)
-  s.description = %q(Kuhsaft is a Rails engine that offers a simple CMS.)
+  s.summary     = 'A tool that helps you to manage your content within your app.'
+  s.description = 'Kuhsaft is a Rails engine that offers a simple CMS.'
 
   s.rubyforge_project = 'kuhsaft'
 
