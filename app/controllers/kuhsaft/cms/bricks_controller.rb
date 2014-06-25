@@ -5,6 +5,7 @@ module Kuhsaft
 
       def create
         @brick = params[:brick][:type].constantize.create(brick_params)
+        @brick.image_size ||= ImageSize.all.first.name.to_s
 
         if @brick.valid?
           respond_with @brick do |format|
