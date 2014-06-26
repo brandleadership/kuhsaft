@@ -63,6 +63,7 @@ module Kuhsaft
         if params[:rutheless] == 'true' || @page.bricks.unscoped.where(locale: params[:target_locale]).empty?
           @page.clear_bricks_for_locale(params[:target_locale])
           params[:failed_bricks] = @page.clone_bricks_to(params[:target_locale])
+          params[:rutheless] = 'true'
         end
 
         respond_to :js, :html

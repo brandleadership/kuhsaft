@@ -165,25 +165,16 @@ module Kuhsaft
       bricks.unscoped.where(locale: locale).destroy_all
     end
 
-    def clone_brick_to(brick, to_locale, new_brick_list_id)
-      new_brick = brick.dup
-
-      if brick.uploader?
-        brick.class.uploaders.keys.each do |key|
-          new_brick.update_attribute(key.to_s, File.open(brick.send(key.to_s).path))
-        end
+    def copy_assets_to_cloned_brick(brick, new_brick)
+      brick.class.uploaders.keys.each do |key|
+        new_brick.update_attribute(key.to_s, File.open(brick.send(key.to_s).path))
       end
+    end
 
-      new_brick.update_attribute(:locale, to_locale)
-      new_brick.update_attribute(:brick_list_id, new_brick_list_id)
-
-      if brick.respond_to?(:bricks)
-        brick.bricks.each do |nested_brick|
-          clone_brick_to(nested_brick, to_locale, new_brick.id)
-        end
+    def clone_child_bricks(brick, to_locale, new_brick_list_id)
+      brick.bricks.each do |nested_brick|
+        clone_brick_to(nested_brick, to_locale, new_brick_list_id)
       end
-
-      new_brick.save
     end
 
     def clone_bricks_to(locale)
@@ -193,6 +184,19 @@ module Kuhsaft
         failed_to_clone << brick unless clone_brick_to(brick, locale, id)
       end
       failed_to_clone
+    end
+
+    def clone_brick_to(brick, to_locale, new_brick_list_id)
+      new_brick = brick.dup
+
+      copy_assets_to_cloned_brick(brick, new_brick) if brick.uploader?
+
+      new_brick.update_attribute(:locale, to_locale)
+      new_brick.update_attribute(:brick_list_id, new_brick_list_id)
+
+      clone_child_bricks(brick, to_locale, new_brick.id) if brick.respond_to?(:bricks)
+
+      new_brick.save
     end
   end
 end
