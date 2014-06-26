@@ -12,7 +12,10 @@ describe Kuhsaft::Cms::PagesController do
 
     before do
       @page  = FactoryGirl.create(:page, url_de: 'de')
-      @brick = FactoryGirl.create(:text_brick, brick_list_id: @page.id, brick_list_type: "Kuhsaft::Page", text: 'DEUTSCH')
+      @brick = FactoryGirl.create(:text_brick,
+                                  brick_list_id: @page.id,
+                                  brick_list_type: 'Kuhsaft::Page',
+                                  text: 'DEUTSCH')
     end
 
     context 'with no bricks on target locale' do
@@ -24,7 +27,11 @@ describe Kuhsaft::Cms::PagesController do
 
     context 'with bricks on target locale' do
       before do
-        @brick_en = FactoryGirl.create(:text_brick, brick_list_id: @page.id, brick_list_type: "Kuhsaft::Page", locale: :en, text: 'ENGLISH')
+        @brick_en = FactoryGirl.create(:text_brick,
+                                       brick_list_id: @page.id,
+                                       brick_list_type: 'Kuhsaft::Page',
+                                       locale: :en,
+                                       text: 'ENGLISH')
       end
 
       it 'does not clone anything without the required parameter' do
