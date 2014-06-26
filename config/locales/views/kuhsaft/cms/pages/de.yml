@@ -32,6 +32,7 @@ de:
           none: Keine
 
         mirror_modal:
+          no_bricks_to_clone: 'Die Seite enthält keine Bricks zum kopieren.'
           bricks_cloned: '%{brick_count} Brick(s) erfolgreich kopiert.'
           target_page_contains_bricks: |
             <strong>Achtung:</strong>

@@ -2,7 +2,19 @@
   %button.close{ 'data-dismiss' => 'modal' }
     ×
   %h3 header
-- if page.bricks.unscoped.where(:locale => params[:target_locale], :brick_list_id => page.id).any? && params[:rutheless] != 'true'
+
+- if page.bricks.empty?
+  .modal-body
+    .alert.alert-info
+      = t('.no_bricks_to_clone')
+
+  .modal-footer
+    .clearfix
+      .pull-right
+        .btn.btn-success{ 'data-dismiss' => 'modal'}
+          = t('.okay')
+
+- elsif page.bricks.unscoped.where(:locale => params[:target_locale], :brick_list_id => page.id).any? && params[:rutheless] != 'true'
   .modal-body
     .alert.alert-error
       = t('.target_page_contains_bricks', :brick_count => page.bricks.unscoped.where(:locale => params[:target_locale]).count ).html_safe

@@ -20,6 +20,11 @@ FactoryGirl.define do
     tb.template_name 'foo'
   end
 
+  factory :image_brick, class: 'Kuhsaft::ImageBrick' do |ib|
+    ib.image File.open("#{Kuhsaft::Engine.root}/spec/dummy/app/assets/images/spec-image.png")
+    ib.image_size 'gallery'
+  end
+
   factory :asset, class: Kuhsaft::Asset do |a|
     a.file File.open("#{Kuhsaft::Engine.root}/spec/dummy/app/assets/images/spec-image.png")
   end

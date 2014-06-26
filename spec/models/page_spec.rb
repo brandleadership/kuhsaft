@@ -469,4 +469,37 @@ describe Kuhsaft::Page do
       expect(Kuhsaft::Page.by_identifier(cat_page.identifier)).to eq(cat_page)
     end
   end
+
+  describe '#cloning' do
+    around(:each) do |example|
+      I18n.with_locale :de do
+        example.run
+      end
+    end
+
+    before do
+      @page = create(:page)
+    end
+
+    it 'should copy the asset to the cloned brick' do
+      FactoryGirl.create(:image_brick, brick_list_type: 'Kuhsaft::Page', brick_list_id: @page.id)
+
+      @page.clone_bricks_to(:en)
+      expect(@page.bricks.unscoped.where(locale: :en).first).to be_valid
+    end
+
+    it 'should copy all child bricks' do
+      accordion = Kuhsaft::Brick.create(type: 'Kuhsaft::AccordionBrick',
+                                        brick_list_type: 'Kuhsaft::Page',
+                                        brick_list_id: @page.id)
+      section   = Kuhsaft::Brick.create(type: 'Kuhsaft::AccordionItemBrick',
+                                        caption: 'section',
+                                        brick_list_type: 'Kuhsaft::Brick',
+                                        brick_list_id: accordion.id)
+      FactoryGirl.create(:text_brick, brick_list_type: 'Kuhsaft::Brick', brick_list_id: section.id)
+
+      @page.clone_bricks_to(:en)
+      expect(@page.bricks.unscoped.where(locale: :en).count).to eq(3)
+    end
+  end
 end
