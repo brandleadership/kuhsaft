@@ -2,6 +2,7 @@ module Kuhsaft
   class PagesController < ::ApplicationController
     respond_to :html
     before_action :find_page_by_url, only: :show
+    helper_method :is_kuhsaft_page?
 
     def index
       @search = params[:search]
@@ -38,6 +39,5 @@ module Kuhsaft
     def is_kuhsaft_page?
       is_a? Kuhsaft::PagesController
     end
-    helper_method :is_kuhsaft_page?
   end
 end
