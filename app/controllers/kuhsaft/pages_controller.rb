@@ -2,7 +2,6 @@ module Kuhsaft
   class PagesController < ::ApplicationController
     respond_to :html
     before_action :find_page_by_url, only: :show
-    helper_method :is_kuhsaft_page?
 
     def index
       @search = params[:search]
@@ -34,10 +33,6 @@ module Kuhsaft
       url = locale.to_s
       url += "/#{params[:url]}" if params[:url].present?
       @page = Kuhsaft::Page.find_by_url(url)
-    end
-
-    def is_kuhsaft_page?
-      is_a? Kuhsaft::PagesController
     end
   end
 end
