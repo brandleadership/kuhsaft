@@ -34,5 +34,10 @@ module Kuhsaft
       url += "/#{params[:url]}" if params[:url].present?
       @page = Kuhsaft::Page.find_by_url(url)
     end
+
+    def is_kuhsaft_page?
+      is_a? Kuhsaft::PagesController
+    end
+    helper_method :is_kuhsaft_page?
   end
 end
