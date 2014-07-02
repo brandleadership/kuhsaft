@@ -5,9 +5,9 @@
       %span.caret
     %ul.dropdown-menu.pull-right
       - brick_list.brick_types.allowed.group_by(&:group).each do |group, types|
-        - types.each do |type|
+        - types.map { |type| cms_brick_item brick_list, type }.compact.each do |brick_type_item|
           %li
-            = link_to type.class_name.constantize.model_name.human, kuhsaft.new_cms_brick_path(:brick => {:type => type.class_name, :brick_list_id => brick_list.id, :brick_list_type => brick_list.brick_list_type}), :remote => true
+            = brick_type_item
         .divider
   - else
     - brick_list.brick_types.allowed.each do |type|
