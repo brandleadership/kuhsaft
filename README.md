@@ -31,47 +31,61 @@ Kuhsaft requires:
 
 Add Kuhsaft to your Gemfile:
 
+```ruby
     gem 'kuhsaft'
+```
 
 And run
 
+```bash
     bundle install
+```
 
 to get the gem
 
 Then install the assets and the migrations and run them:
 
+```bash
     rake kuhsaft:install:migrations
     rake db:migrate
     rake db:seed
     rails generate kuhsaft:assets:install
+```
 
 You might want to change the language suffixes on the fields inside the create_kuhsaft_pages migration, depending on your app's default_locale.
 
 Mount the kuhsaft engine in your routing file:
 
+```ruby
     MyApp::Application.routes.draw do
       # add your app routes here
-      mount Kuhsaft::Engine => "/"
+      mount Kuhsaft::Engine => '/'
     end
+```
 
 Load the Kuhsaft assets into your app, so you have working grids, widgets etc:
 
+```sass
     # application.css.sass
     @import 'kuhsaft/application'
+```
 
+```coffee
     # application.js.coffee
     //= require 'kuhsaft/application'
+```
 
 Finally, you need to define the image sizes for the image brick or use
 the defaults:
 
+```ruby
     # your_app/config/initializers/kuhsaft.rb
     Rails.application.config.to_prepare do
       Kuhsaft::Engine.configure do
         config.image_sizes.build_defaults! # creates 960x540 and 320x180 sizes
       end
     end
+```
 
 See "Configuring the image brick" for more details.
 
@@ -99,7 +113,7 @@ Make sure they are in the `config.assets.precompile` array in environments like 
 
 There's a dummy app inside spec/dummy. Get it running by executing the following steps:
 
-```
+```bash
 rake setup
 rake start_dummy
 ```
@@ -110,49 +124,59 @@ rake start_dummy
 
 As defined in the rails docs, load the helpers from our isolated Kuhsaft engine inside your application controller:
 
+```ruby
     class ApplicationController < ActionController::Base
       helper Kuhsaft::Engine.helpers
     end
+```
 
 ## Adding sublime video
 
 Create an initializer file in your app inside `config/initializers` and set the `sublime_video_token`:
 
+```ruby
     Rails.application.config.to_prepare do
       Kuhsaft::Engine.configure do
         # Get the token from the MySites section on the sublime video site
         config.sublime_video_token = '123abcd'
       end
     end
+```
 
 Require the sublime javascript with the following helper:
 
+```ruby
     # in your application layout in the head section
     sublime_video_include_tag
-
+```
 
 ## Configuring the image brick
 
 The image brick can process uploaded images into specific sizes. These sizes can be configured inside the engine configuration. You can also use the built-in default sizes:
 
+```ruby
     # your_app/config/initializers/kuhsaft.rb
     Rails.application.config.to_prepare do
       Kuhsaft::Engine.configure do
         config.image_sizes.build_defaults! # creates 960x540 and 320x180 sizes
       end
     end
+```
 
 You can also remove the default sizes:
 
+```ruby
     # your_app/config/initializers/kuhsaft.rb
     Rails.application.config.to_prepare do
       Kuhsaft::Engine.configure do
         config.image_sizes.clear! # .all is now empty
       end
     end
+```
 
 And most importantly, you can add custom sizes:
 
+```ruby
     # your_app/config/initializers/kuhsaft.rb
     Rails.application.config.to_prepare do
       Kuhsaft::Engine.configure do
@@ -160,6 +184,7 @@ And most importantly, you can add custom sizes:
         config.image_sizes.add(:footer_teaser, 320, 220)
       end
     end
+```
 
 The `name` option is a unique identifier, which is also used for translating the dropdown in the brick. You can add your translation by using the translation path:
 
@@ -175,7 +200,7 @@ Implement the `available_display_styles` on a brick model and return an array of
 After setting up display styles in specific model add your translations
 for the UI dropdown. E.g. you've added display styles to the TextBrick model:
 
-```
+```yaml
 de:
   text_brick:
     display_styles:
@@ -190,7 +215,7 @@ Each instance of a gridded class will have a method `gridded?` wich returns true
 
 If the Gridded Module is added to a Custom Brick, it should provide a col_count integer field with default value 0.
 
-```
+```ruby
 add_column :your_awesome_brick, :col_count, :integer, default: 0
 ```
 
@@ -199,7 +224,7 @@ add_column :your_awesome_brick, :col_count, :integer, default: 0
 * Save your partial in `views/kuhsaft/placeholder_bricks/partials/_your_partial.html.haml`
 * Add translations for your partial in `config/locales/models/kuhsaft/placeholder_brick/locale.yml`
 
-```
+```yaml
 de:
   your_partial: Your Partial
 ```
@@ -220,55 +245,70 @@ end
 
 If you want to translate your pages into another language, generate a new translation migration:
 
+```bash
     # translate your pages into french
     rails g kuhsaft:translations:add fr
+```
 Or
 
+```bash
     # translate your pages into swiss german
     rails g kuhsaft:translations:add de-CH
+```
 
 This creates a new migration file inside `db/migrate` of your app. Run the migration as you normally do:
 
+```bash
     rake db:migrate
+```
 
 Finally, add the new translation locale to your `available_locales` inside your apps `application.rb`:
 
+```ruby
     config.available_locales = [:en, :fr]
+```
 Or
 
+```ruby
     config.available_locales = [:en, 'de-CH']
+```
 
 ## Adding a language switch
 
 Add scope around routes:
 
+```ruby
     scope "(:locale)", locale: /de|en|fr/ do
       root 'kuhsaft/pages#show'
     end
+```
 
 Set the locale in the ApplicationController in a before_action and set default url options:
 
+```ruby
     before_action :set_locale
 
     def set_locale
-      if I18n.available_locales.map{|sym| sym.to_s }.include?(params[:locale])
+      if I18n.locale_available? params[:locale]
         I18n.locale = params[:locale]
       else
         I18n.locale = I18n.default_locale
       end
     end
 
-    def default_url_options(options={})
+    def default_url_options(options = {})
       { locale: I18n.locale }
     end
+```
 
 Add method to ApplicationHelper which redirects to homepage when current page is not translated.
 Make sure to have the homepage translated in every available language.
 
+```ruby
     def localized_url(url, target_locale)
       page = Kuhsaft::Page.find_by_url("#{I18n.locale}/#{url}")
       I18n.with_locale target_locale do
-        translated_url = page.presence && page.url
+        translated_url = page.try :url
         if translated_url.present?
           "/#{translated_url}"
         else
@@ -280,19 +320,23 @@ Make sure to have the homepage translated in every available language.
     def language_link(url, locale)
       localized_url(params[:url], locale)
     end
+```
 
 Add language switch to navigation:
 
+```ruby
     SimpleNavigation::Configuration.run do |navigation|
       I18n.available_locales.each do |locale|
         primary.item locale, locale.to_s.upcase, language_link(params[:url], locale), highlights_on: Proc.new { I18n.locale == locale }
       end
     end
+```
 
 Make sure to render only pages which are translated and published by using `published` and `translated` scope, so pages
 without translation and which are not published will not be displayed in the navigation.
 Here is an example of a possible navigation:
 
+```ruby
     SimpleNavigation::Configuration.run do |navigation|
       navigation.items do |primary|
         primary.dom_class = 'right'
@@ -309,6 +353,7 @@ Here is an example of a possible navigation:
         end
       end
     end
+```
 
 ## Styling the content
 
@@ -324,6 +369,7 @@ Or if your page is translated, using the `translated` scope and the `published` 
 
 ### 2 level navigation example using simple-navigation
 
+```ruby
     SimpleNavigation::Configuration.run do |navigation|
       navigation.items do |primary|
         # build first level
@@ -337,6 +383,7 @@ Or if your page is translated, using the `translated` scope and the `published` 
         end
       end
     end
+```
 
 ## Use the `page_title` attribute in your app
 
@@ -344,8 +391,10 @@ Kuhsaft::Pages will provide a `%title` tag containing its `page_title`
 (or the required `title`if no title is present). Simply yield for
 `:head` in your `application.html` to use it.
 
+```haml
     %head
       = yield(:head)
+```
 
 ## Modifying the backend navigation
 
@@ -369,10 +418,12 @@ Simply override the default partial for the main navigation in your app with you
 Kuhsaft has a module called `ImageUploaderMounting`. This module mounts the ImageBrickImageUploader
 and includes a callback method which handles that the image sizes will be updated after save.
 
+```ruby
     class CustomBrick < Brick
       include Kuhsaft::ImageUploaderMounting
       ...
     end
+```
 
 If you do not include this module, then the images will not be changed when selecting one of your own image
 sizes. See "Configuring the image brick" for more details on creating your own image sizes.
@@ -385,8 +436,10 @@ LIKE fallback for any other ActiveRecord DB.
 Add a call to the `search_page_form` helper in your views. This renders
 the default search form. The query will be executed by kuhsaft.
 
+```haml
     # e.g. _footer.html.haml
     = search_page_form
+```
 
 To customize the search and result views you can add your own partials
 to your rails app. The following partials are overridable.
@@ -410,7 +463,7 @@ Add the following lines to your `ck-config.js` file. The first line
 disables the standard link plugin. The second line enables the adv_link
 plugin, which we need for the CMS Page link dialogue in CKEditor.
 
-```
+```javascript
 config.removePlugins = 'link'
 config.extraPlugins = 'adv_link'
 ```
@@ -420,4 +473,4 @@ following to your existing array `ckeditor/adv_link/*`.
 
 # LICENSE
 
-See the file LICENSE.
+See the file [LICENSE](https://github.com/screenconcept/kuhsaft/blob/master/LICENSE).
