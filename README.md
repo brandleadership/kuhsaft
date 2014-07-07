@@ -91,7 +91,7 @@ See "Configuring the image brick" for more details.
 
 ## Authentication
 
-Kuhsaft itself does not ship with any form of authentication. However, it is fairly easy to add by plugging into the Kuhsaft::Cms::AdminController. An example with devise:
+Kuhsaft itself does not ship with any form of authentication. However, it is fairly easy to add by plugging into the Kuhsaft::Cms::AdminController. An example with [devise](https://github.com/plataformatec/devise):
 
 ```ruby
 # config/initializers/kuhsaft.rb
