@@ -1,8 +1,11 @@
 # CHANGELOG
 
-## hotfix/fix_bug_in_image_sizes
+## 2.4.3 - 2014-07-10
 
-* Bugfix: Remove unused image_size settings in controller
+* Fix inconsistent image size handling
+* Fix jquery-ui load path on newer versions
+* Clean up locales
+* Misc refactorings
 
 ## 2.4.2 - 2014-05-19
 
