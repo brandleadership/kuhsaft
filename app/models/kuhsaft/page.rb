@@ -69,7 +69,7 @@ module Kuhsaft
     end
 
     def redirect?
-      page_type == Kuhsaft::PageType::REDIRECT
+      page_type == Kuhsaft::PageType::REDIRECT || page_type == Kuhsaft::PageType::CUSTOM
     end
 
     def navigation?
