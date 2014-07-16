@@ -10,7 +10,7 @@ module Kuhsaft
       end
 
       def hide_content_tab?(page)
-        page.redirect? || !page.translated? || !page.persisted? || page.errors.present?
+        page.page_type == Kuhsaft::PageType::REDIRECT || !page.translated? || !page.persisted? || page.errors.present?
       end
     end
   end
