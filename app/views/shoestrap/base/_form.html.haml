@@ -1,0 +1,9 @@
+= simple_form_for([:cms, resource], wrapper: :bootstrap) do |f|
+  = f.error_notification
+
+  .form-inputs
+    - resource.class.editable_attributes.each do |column_name|
+      = model_attribute_field(resource, column_name, f)
+
+  .form-actions
+    = f.button :submit
