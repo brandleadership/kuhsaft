@@ -14,7 +14,8 @@ describe Kuhsaft::BrickList do
   describe '#collect_fulltext' do
     context 'with bricks' do
       it 'collects its childs fulltext' do
-        allow(brick).to receive_message_chain(:bricks, :localized).and_return([mock_model(Kuhsaft::Brick, collect_fulltext: 'hallo')])
+        result = [mock_model(Kuhsaft::Brick, collect_fulltext: 'hallo')]
+        allow(brick).to receive_message_chain(:bricks, :localized).and_return(result)
         expect(brick.collect_fulltext).to eq('hallo')
       end
     end
