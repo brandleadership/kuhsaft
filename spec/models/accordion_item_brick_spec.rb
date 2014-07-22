@@ -13,38 +13,38 @@ describe Kuhsaft::AccordionItemBrick do
 
     context 'without a #caption' do
       it 'has en error' do
-        accordion_item_brick.should have(1).error_on(:caption)
+        expect(accordion_item_brick).to have(1).error_on(:caption)
       end
     end
   end
 
   describe '#user_can_delete?' do
     it 'returns true' do
-      accordion_item_brick.user_can_delete?.should be_true
+      expect(accordion_item_brick.user_can_delete?).to be_true
     end
   end
 
   describe '#user_can_save' do
     it 'returns true' do
-      accordion_item_brick.user_can_save?.should == true
+      expect(accordion_item_brick.user_can_save?).to eq(true)
     end
   end
 
   describe '#renders_own_childs?' do
     it 'returns false' do
-      accordion_item_brick.renders_own_childs?.should be_false
+      expect(accordion_item_brick.renders_own_childs?).to be_false
     end
   end
 
   describe '#bricks' do
     it 'can have childs' do
-      accordion_item_brick.should respond_to(:bricks)
+      expect(accordion_item_brick).to respond_to(:bricks)
     end
   end
 
   describe '#to_style_class' do
     it 'includes the bootstrap classname' do
-      accordion_item_brick.to_style_class.should == 'kuhsaft-accordion-item-brick accordion-group'
+      expect(accordion_item_brick.to_style_class).to eq('kuhsaft-accordion-item-brick accordion-group')
     end
   end
 end

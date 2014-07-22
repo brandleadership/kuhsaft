@@ -9,40 +9,40 @@ describe Kuhsaft::Page do
     end
 
     it 'should find any containing the search term' do
-      Kuhsaft::Page.search('lorem').should have_at_least(0).items
+      expect(Kuhsaft::Page.search('lorem').size).to be >= 0
     end
 
     it 'should find with "English Title"' do
-      Kuhsaft::Page.search('English Title').should have_at_least(1).item
+      expect(Kuhsaft::Page.search('English Title').size).to be >= 1
     end
 
     it 'should only find published results' do
-      Kuhsaft::Page.search('English Title').should be_all { |p| p.published? == true }
+      expect(Kuhsaft::Page.search('English Title')).to be_all { |p| p.published? == true }
     end
 
     it 'should find by using the old api' do
-      Kuhsaft::Page.search('English').should == Kuhsaft::Page.search('English')
+      expect(Kuhsaft::Page.search('English')).to eq(Kuhsaft::Page.search('English'))
     end
   end
 
   describe '.position_of' do
     it 'should find the position of a page' do
       page = create(:page)
-      Kuhsaft::Page.position_of(page.id).should == page.position
+      expect(Kuhsaft::Page.position_of(page.id)).to eq(page.position)
     end
   end
 
   describe '.find_by_url' do
     it 'should find its translated content by url' do
       page = create(:page)
-      Kuhsaft::Page.find_by_url(page.url).should eq(page)
+      expect(Kuhsaft::Page.find_by_url(page.url)).to eq(page)
     end
   end
 
   describe '.flat_tree' do
     it 'should create an ordered, flat list of the page tree' do
       tree = create_page_tree
-      Kuhsaft::Page.flat_tree.should eq(tree)
+      expect(Kuhsaft::Page.flat_tree).to eq(tree)
     end
   end
 
@@ -57,11 +57,11 @@ describe Kuhsaft::Page do
       end
 
       it 'has a mandatory title' do
-        page.should have(1).error_on(:title)
+        expect(page).to have(1).error_on(:title)
       end
 
       it 'has a mandatory slug' do
-        page.should have(1).error_on(:slug)
+        expect(page).to have(1).error_on(:slug)
       end
     end
   end
@@ -70,7 +70,7 @@ describe Kuhsaft::Page do
     it 'returns only published pages' do
       _p1, p2, _p3 = 3.times.map { create(:page) }
       p2.update_attribute :published, Kuhsaft::PublishState::UNPUBLISHED
-      Kuhsaft::Page.published.should be_all { |p| p.published?.should be_true }
+      expect(Kuhsaft::Page.published).to be_all { |p| expect(p.published?).to be_true }
     end
   end
 
@@ -78,7 +78,7 @@ describe Kuhsaft::Page do
     it 'returns only content pages' do
       p1, p2, p3 = 3.times.map { create(:page) }
       p2.update_attribute :page_type, Kuhsaft::PageType::REDIRECT
-      Kuhsaft::Page.content_page.should == [p1, p3]
+      expect(Kuhsaft::Page.content_page).to eq([p1, p3])
     end
   end
 
@@ -101,7 +101,7 @@ describe Kuhsaft::Page do
     it 'returns pages but not itself' do
       2.times { create(:page) }
       page = Kuhsaft::Page.first
-      page.without_self.should_not include(page)
+      expect(page.without_self).not_to include(page)
     end
   end
 
@@ -120,19 +120,19 @@ describe Kuhsaft::Page do
 
     context 'on the topmost level' do
       it 'has a label representing it\'s nesting depth without a leading dash' do
-        page.nesting_name.should eq(page.title)
+        expect(page.nesting_name).to eq(page.title)
       end
     end
 
     context 'on the first level' do
       it 'should have a label with one dash' do
-        child_page.nesting_name.should eq("- #{child_page.title}")
+        expect(child_page.nesting_name).to eq("- #{child_page.title}")
       end
     end
 
     context 'on the second level' do
       it 'should have a label with two dashes' do
-        child_child_page.nesting_name.should eq("-- #{child_child_page.title}")
+        expect(child_child_page.nesting_name).to eq("-- #{child_child_page.title}")
       end
     end
   end
@@ -147,11 +147,11 @@ describe Kuhsaft::Page do
     end
 
     it 'has a list of parent pages' do
-      child_page.parent_pages.should == [page]
+      expect(child_page.parent_pages).to eq([page])
     end
 
     it 'is ordered from top to bottom' do
-      child_page.parent_pages.last.should == page
+      expect(child_page.parent_pages.last).to eq(page)
     end
   end
 
@@ -162,7 +162,7 @@ describe Kuhsaft::Page do
         child = create(:page, parent: page)
         page.body = nil
         page.save
-        page.link.should == child.link
+        expect(page.link).to eq(child.link)
       end
     end
   end
@@ -172,7 +172,7 @@ describe Kuhsaft::Page do
       page = create :page
       position = page.position
       page.increment_position
-      page.position.should == (position + 1)
+      expect(page.position).to eq(position + 1)
     end
   end
 
@@ -181,7 +181,7 @@ describe Kuhsaft::Page do
       page = create :page
       position = page.position
       page.decrement_position
-      page.position.should == (position - 1)
+      expect(page.position).to eq(position - 1)
     end
   end
 
@@ -190,7 +190,7 @@ describe Kuhsaft::Page do
       _page1 = create :page
       page2 = create :page
       page3 = create :page
-      page3.preceding_sibling.id.should == page2.id
+      expect(page3.preceding_sibling.id).to eq(page2.id)
     end
   end
 
@@ -199,7 +199,7 @@ describe Kuhsaft::Page do
       _page1 = create :page
       page2 = create :page
       page3 = create :page
-      page2.succeeding_sibling.id.should == page3.id
+      expect(page2.succeeding_sibling.id).to eq(page3.id)
     end
   end
 
@@ -209,14 +209,14 @@ describe Kuhsaft::Page do
       _page2 = create :page
       page3 = create :page
       page3.reposition page1.id
-      page3.preceding_sibling.id.should == page1.id
+      expect(page3.preceding_sibling.id).to eq(page1.id)
     end
 
     it 'repositions before all siblings, specified by nil' do
       _page1 = create :page
       page2 = create :page
       page2.reposition nil
-      page2.position.should == 1
+      expect(page2.position).to eq(1)
     end
   end
 
@@ -227,12 +227,12 @@ describe Kuhsaft::Page do
 
     it 'has a slug by default' do
       page.save
-      page.slug.should eq(page.title.parameterize)
+      expect(page.slug).to eq(page.title.parameterize)
     end
 
     context 'when it is empty' do
       it 'generates the slug' do
-        page.should_receive(:create_slug)
+        expect(page).to receive(:create_slug)
         page.save
       end
     end
@@ -241,7 +241,7 @@ describe Kuhsaft::Page do
       it 'takes the slug provided by the user' do
         page.slug = 'my-slug'
         page.save
-        page.slug.should == 'my-slug'
+        expect(page.slug).to eq('my-slug')
       end
     end
   end
@@ -251,7 +251,7 @@ describe Kuhsaft::Page do
       it 'returns the concatenated slug of the whole child/parent tree' do
         page = create(:page, slug: 'parent-slug')
         child = create(:page, slug: 'child-slug', parent: page)
-        child.url.should == 'en/parent-slug/child-slug'
+        expect(child.url).to eq('en/parent-slug/child-slug')
       end
     end
 
@@ -259,21 +259,21 @@ describe Kuhsaft::Page do
       it 'returns without the parent page slug' do
         page = create(:page, slug: 'parent-slug', page_type: Kuhsaft::PageType::NAVIGATION)
         child = create(:page, slug: 'child-slug', parent: page)
-        child.url.should == 'en/child-slug'
+        expect(child.url).to eq('en/child-slug')
       end
     end
 
     context 'when it is a redirect? page' do
       it 'returns the absolute url' do
         page = create(:page, page_type: Kuhsaft::PageType::REDIRECT, redirect_url: 'en/references', slug: 'news')
-        page.link.should eq('/en/news')
+        expect(page.link).to eq('/en/news')
       end
     end
 
     context 'when url part is empty' do
       it 'strips the trailing slash' do
         page = create(:page, page_type: Kuhsaft::PageType::NAVIGATION)
-        page.link.should eq('/en')
+        expect(page.link).to eq('/en')
       end
     end
   end
@@ -281,13 +281,13 @@ describe Kuhsaft::Page do
   describe '#navigation?' do
     context 'when the page_type is navigation' do
       it 'returns true if the page_type is PageType::NAVIGATION' do
-        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).navigation?.should be_true
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).navigation?).to be_true
       end
     end
 
     context 'when the page_type is anything else' do
       it 'returns false' do
-        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).navigation?.should be_false
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).navigation?).to be_false
       end
     end
   end
@@ -295,13 +295,13 @@ describe Kuhsaft::Page do
   describe '#redirect?' do
     context 'when the page_type is a redirect' do
       it 'returns true' do
-        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).redirect?.should be_true
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).redirect?).to be_true
       end
     end
 
     context 'when the page type is anything else' do
       it 'returns false' do
-        Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).redirect?.should be_false
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).redirect?).to be_false
       end
     end
   end
@@ -344,12 +344,12 @@ describe Kuhsaft::Page do
 
     context 'when saved' do
       it 'it collects and assigns the fulltext' do
-        page.should_receive(:collect_fulltext)
+        expect(page).to receive(:collect_fulltext)
         page.save
       end
 
       it 'contains the page part content' do
-        page.fulltext.should include('oh la la')
+        expect(page.fulltext).to include('oh la la')
       end
 
       it 'converts all data to strings' do
@@ -361,9 +361,9 @@ describe Kuhsaft::Page do
   describe '#before_validation' do
     it 'generates url automatically' do
       page = Kuhsaft::Page.new slug: 'slug'
-      page.url.should be_nil
+      expect(page.url).to be_nil
       page.valid?
-      page.url.should be_present
+      expect(page.url).to be_present
     end
   end
 
@@ -374,7 +374,7 @@ describe Kuhsaft::Page do
         @child_page = FactoryGirl.create(:page, slug: 'le_child', parent: @parent_page)
 
         @parent_page.update_attributes(page_type: Kuhsaft::PageType::NAVIGATION)
-        @child_page.reload.url.should eq("#{I18n.locale}/le_child")
+        expect(@child_page.reload.url).to eq("#{I18n.locale}/le_child")
       end
 
       it 'updates the child pages url if parent is changed to content' do
@@ -382,7 +382,7 @@ describe Kuhsaft::Page do
         @child_page = FactoryGirl.create(:page, slug: 'le_child', parent: @parent_page)
 
         @parent_page.update_attributes(page_type: Kuhsaft::PageType::CONTENT)
-        @child_page.reload.url.should eq("#{I18n.locale}/le_parent/le_child")
+        expect(@child_page.reload.url).to eq("#{I18n.locale}/le_parent/le_child")
       end
     end
   end
@@ -394,11 +394,11 @@ describe Kuhsaft::Page do
 
     context 'without parent' do
       it 'returns url without leading /' do
-        page.url_without_locale.should_not start_with '/'
+        expect(page.url_without_locale).not_to start_with '/'
       end
 
       it 'returns a single slug' do
-        page.url_without_locale.should == 'page'
+        expect(page.url_without_locale).to eq('page')
       end
     end
 
@@ -412,11 +412,11 @@ describe Kuhsaft::Page do
       end
 
       it 'returns url without leading /' do
-        child.url_without_locale.should_not start_with '/'
+        expect(child.url_without_locale).not_to start_with '/'
       end
 
       it 'does not concatenate the parent slug' do
-        child.url_without_locale.should == 'child'
+        expect(child.url_without_locale).to eq('child')
       end
     end
 
@@ -430,11 +430,11 @@ describe Kuhsaft::Page do
       end
 
       it 'returns url without leading /' do
-        child.url_without_locale.should_not start_with '/'
+        expect(child.url_without_locale).not_to start_with '/'
       end
 
       it 'does not concatenate the parent slug' do
-        child.url_without_locale.should == 'parent/child'
+        expect(child.url_without_locale).to eq('parent/child')
       end
     end
   end

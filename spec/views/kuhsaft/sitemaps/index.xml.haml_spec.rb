@@ -36,7 +36,7 @@ describe 'kuhsaft/sitemaps/index.xml.haml' do
 
   describe 'count of records'do
     before do
-      I18n.stub(:available_locales).and_return([:de, :en])
+      allow(I18n).to receive(:available_locales).and_return([:de, :en])
 
       I18n.with_locale(:de) do
         @page    = create(:page, title: 'Dummy Page 1 DE')
@@ -53,7 +53,7 @@ describe 'kuhsaft/sitemaps/index.xml.haml' do
     end
 
     it 'has the same count of entry as pages are there' do
-      response.body.should have_xpath('//url', count: 4)
+      expect(response.body).to have_xpath('//url', count: 4)
     end
 
     it 'has a record for the german url' do

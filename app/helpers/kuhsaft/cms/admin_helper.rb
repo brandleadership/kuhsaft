@@ -22,14 +22,8 @@ module Kuhsaft
           f.input column_name, as: :file
         elsif association_class(resource, column_name) == Kuhsaft::Page
           route_input f, column_name, page_routes
-        elsif %w(site access_level).include?(column_name.to_s) && current_admin.is_global?
-          f.input column_name, collection: ElesaganterWeb.config.country_sites.map { |k, c| [c[:caption], k] },
-                               include_blank: false,
-                               selected: resource.send(column_name)
         elsif column_name == :link_url || column_name == :link
           route_input f, column_name, user_selectable_routes
-        elsif column_name == :download_category_id
-          f.association :download_category, label_method: :localized_title, value_method: :id, include_blank: false
         elsif column_name.to_s.end_with? '_id'
           f.association column_name.to_s.gsub(/_id$/, '').to_sym
         elsif column_name == :body
@@ -48,7 +42,8 @@ module Kuhsaft
       end
 
       def association_class(resource, column_name)
-        association_class = resource.class.reflect_on_all_associations.find { |r| r.name == column_name.to_sym }.try :class_name
+        association = resource.class.reflect_on_all_associations.find { |r| r.name == column_name.to_sym }
+        association_class = association.try :class_name
         association_class.present? ? association_class.constantize : nil
       end
 

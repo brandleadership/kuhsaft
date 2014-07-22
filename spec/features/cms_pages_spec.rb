@@ -19,7 +19,7 @@ describe 'Cms/Pages' do
         end
 
         it 'is not possible to change the value in url' do
-          page.find('#page_url')['disabled'].should be_true
+          expect(page.find('#page_url')['disabled']).to be_true
         end
       end
 
@@ -32,7 +32,7 @@ describe 'Cms/Pages' do
           within '.nav-pills' do
             click_on 'EN'
           end
-          page.should have_content(@page.title_en)
+          expect(page).to have_content(@page.title_en)
         end
       end
     end
@@ -52,7 +52,7 @@ describe 'Cms/Pages' do
 
         it 'is invalid when no value is in redirect_page' do
           click_on 'Update Page'
-          page.should have_css('.error', count: 1)
+          expect(page).to have_css('.error', count: 1)
         end
 
         it 'does not change the value in url' do
@@ -70,7 +70,7 @@ describe 'Cms/Pages' do
       invalid_brick.save(validate: false)
 
       visit kuhsaft.edit_cms_page_path(@page)
-      page.should have_css('.error', count: 1)
+      expect(page).to have_css('.error', count: 1)
     end
   end
 end

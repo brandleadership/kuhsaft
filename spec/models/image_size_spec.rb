@@ -7,8 +7,8 @@ describe Kuhsaft::ImageSize do
 
   describe '.build_defaults!' do
     it 'sets the default sizes' do
-      Kuhsaft::ImageSize.all.should == [Kuhsaft::ImageSize.gallery_size,
-                                        Kuhsaft::ImageSize.teaser_size]
+      expect(Kuhsaft::ImageSize.all).to eq([Kuhsaft::ImageSize.gallery_size,
+                                            Kuhsaft::ImageSize.teaser_size])
     end
   end
 
@@ -18,7 +18,7 @@ describe Kuhsaft::ImageSize do
     end
 
     it 'empties the list' do
-      Kuhsaft::ImageSize.all.should be_empty
+      expect(Kuhsaft::ImageSize.all).to be_empty
     end
   end
 
@@ -30,7 +30,7 @@ describe Kuhsaft::ImageSize do
 
   describe '.find_by_name' do
     it 'returns the size' do
-      Kuhsaft::ImageSize.find_by_name('gallery').should == Kuhsaft::ImageSize.gallery_size
+      expect(Kuhsaft::ImageSize.find_by_name('gallery')).to eq(Kuhsaft::ImageSize.gallery_size)
     end
   end
 end
