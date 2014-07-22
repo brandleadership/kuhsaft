@@ -1,5 +1,11 @@
 # CHANGELOG
 
+# features/better_placeholders
+
+* Add CUSTOM page type:
+  Adds a new page type called 'CUSTOM'. Custom pages behave almost like redirect pages except that they can have content and meta tags like normal pages.
+  What can you use this for: To redirect to a custom controller that does whatever you want and still have CMS content along side it.
+
 ## 2.4.3 - 2014-07-10
 
 * Fix inconsistent image size handling

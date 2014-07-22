@@ -204,6 +204,28 @@ de:
   your_partial: Your Partial
 ```
 
+## Mixing Custom Models/Views/Controllers with Kuhsaft Pages
+
+Use the custom page type:
+
+Custom pages behave almost like redirect pages except that they can have content and meta tags like normal pages. 
+
+What can you use this for: To redirect to a custom controller that does whatever you want and still have CMS content along side it. Example usage in a host app:
+
+In Custom Controller that page redirects to:
+```ruby
+  def step_one
+    # could also be extracted into before_action
+    @page = Kuhsaft::Page.find(session[:kuhsaft_referrer]) if session[:kuhsaft_referrer]
+    @somestuff = Somestuff.new
+  end
+```
+
+View:
+```
+= render file: 'kuhsaft/pages/show'
+```
+
 ## Invalidating placeholder bricks containing other models on model changes
 
 Include the TouchPlaceholders module if your model is used within a
