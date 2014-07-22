@@ -40,23 +40,23 @@ describe Kuhsaft::Translatable do
 
     describe 'translated attributes' do
       it 'delegates the getter to the suffixed attribute' do
-        model.should_receive(:name_en).and_return('John')
-        model.name.should == 'John'
+        expect(model).to receive(:name_en).and_return('John')
+        expect(model.name).to eq('John')
       end
 
       it 'delegates the setter to the suffixed attribute' do
-        model.should_receive(:name_en=).with('Johnny')
+        expect(model).to receive(:name_en=).with('Johnny')
         model.name = 'Johnny'
       end
 
       context 'dynamic methods' do
         it 'delegates boolean accessors' do
-          model.should_receive(:name_en?)
+          expect(model).to receive(:name_en?)
           model.name?
         end
 
         it 'delegates simple dynamic finders' do
-          Demo.should_receive(:find_by_name_en).with('Max')
+          expect(Demo).to receive(:find_by_name_en).with('Max')
           Demo.find_by_name('Max')
         end
       end
@@ -67,12 +67,12 @@ describe Kuhsaft::Translatable do
         end
 
         it 'delegates the getter to current locale' do
-          model.should_receive(:name_de).and_return('Johannes')
-          model.name.should == 'Johannes'
+          expect(model).to receive(:name_de).and_return('Johannes')
+          expect(model.name).to eq('Johannes')
         end
 
         it 'delegates the getter to current locale' do
-          model.should_receive(:name_de=).with('Johannes')
+          expect(model).to receive(:name_de=).with('Johannes')
           model.name = 'Johannes'
         end
       end
@@ -114,23 +114,23 @@ describe Kuhsaft::Translatable do
 
     describe 'translated attributes' do
       it 'delegates the getter to the suffixed attribute' do
-        model.should_receive(:name_de_ch).and_return('John')
-        model.name.should == 'John'
+        expect(model).to receive(:name_de_ch).and_return('John')
+        expect(model.name).to eq('John')
       end
 
       it 'delegates the setter to the suffixed attribute' do
-        model.should_receive(:name_de_ch=).with('Johnny')
+        expect(model).to receive(:name_de_ch=).with('Johnny')
         model.name = 'Johnny'
       end
 
       context 'dynamic methods' do
         it 'delegates boolean accessors' do
-          model.should_receive(:name_de_ch?)
+          expect(model).to receive(:name_de_ch?)
           model.name?
         end
 
         it 'delegates simple dynamic finders' do
-          Demo.should_receive(:find_by_name_de_ch).with('Max')
+          expect(Demo).to receive(:find_by_name_de_ch).with('Max')
           Demo.find_by_name('Max')
         end
       end
@@ -141,12 +141,12 @@ describe Kuhsaft::Translatable do
         end
 
         it 'delegates the getter to current locale' do
-          model.should_receive(:name_de).and_return('Johannes')
-          model.name.should == 'Johannes'
+          expect(model).to receive(:name_de).and_return('Johannes')
+          expect(model.name).to eq('Johannes')
         end
 
         it 'delegates the getter to current locale' do
-          model.should_receive(:name_de=).with('Johannes')
+          expect(model).to receive(:name_de=).with('Johannes')
           model.name = 'Johannes'
         end
       end

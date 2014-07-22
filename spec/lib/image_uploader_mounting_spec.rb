@@ -8,7 +8,7 @@ describe Kuhsaft::ImageUploaderMounting do
 
   describe '#uploader_mounting' do
     it 'has a uploader mounted' do
-      brick.class.ancestors.include?(CarrierWave::Mount::Extension).should be_true
+      expect(brick.class.ancestors.include?(CarrierWave::Mount::Extension)).to be_truthy
     end
   end
 end

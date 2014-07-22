@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::LinkBrick do
+describe Kuhsaft::LinkBrick, type: :model do
 
   let :link_brick do
     Kuhsaft::LinkBrick.new
@@ -13,39 +13,39 @@ describe Kuhsaft::LinkBrick do
 
     context 'without a #href' do
       it 'has en error' do
-        link_brick.should have(1).error_on(:href)
+        expect(link_brick.errors[:href].count).to eq(1)
       end
     end
 
     context 'without a #caption' do
       it 'has an error' do
-        link_brick.should have(1).error_on(:caption)
+        expect(link_brick.errors[:caption].count).to eq(1)
       end
     end
   end
 
   describe '#bricks' do
     it 'can not have childs' do
-      link_brick.should_not respond_to(:bricks)
+      expect(link_brick).not_to respond_to(:bricks)
     end
   end
 
   describe '.styles' do
     it 'returns the available link styles' do
-      Kuhsaft::LinkBrick.styles.should == %w(pdf word excel button external)
+      expect(Kuhsaft::LinkBrick.styles).to eq(%w(pdf word excel button external))
     end
   end
 
   describe '#to_style_class' do
     it 'includes the link style' do
-      link_brick.stub(:link_style).and_return('pdf')
-      link_brick.to_style_class.should == 'kuhsaft-link-brick pdf'
+      allow(link_brick).to receive(:link_style).and_return('pdf')
+      expect(link_brick.to_style_class).to eq('kuhsaft-link-brick pdf')
     end
   end
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      link_brick.user_can_add_childs?.should be_false
+      expect(link_brick.user_can_add_childs?).to be_falsey
     end
   end
 end

@@ -29,9 +29,9 @@ module Kuhsaft
 
       it 'sets the correct parent attribute for the nodes' do
         PageTree.update(page_tree)
-        @page1.reload.parent_id.should be_nil
+        expect(@page1.reload.parent_id).to be_nil
         expect(@page2.reload.parent_id).to eq(1)
-        @page3.reload.parent_id.should be nil
+        expect(@page3.reload.parent_id).to be nil
       end
     end
   end

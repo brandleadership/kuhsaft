@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Kuhsaft::Brick do
+describe Kuhsaft::Brick, type: :model do
   let :brick do
     Kuhsaft::Brick.new
   end
 
   describe '#valid?' do
     it 'sets a default position' do
-      brick.should_receive(:set_position)
+      expect(brick).to receive(:set_position)
       brick.valid?
     end
   end
@@ -16,7 +16,7 @@ describe Kuhsaft::Brick do
     context 'witout a position' do
       it 'sets a default' do
         brick.set_position
-        brick.position.should be(1)
+        expect(brick.position).to be(1)
       end
     end
 
@@ -30,70 +30,70 @@ describe Kuhsaft::Brick do
 
   describe '#brick_list_type' do
     it 'returns Kuhsaft::Brick' do
-      brick.brick_list_type.should == 'Kuhsaft::Brick'
+      expect(brick.brick_list_type).to eq('Kuhsaft::Brick')
     end
   end
 
   describe '#parents' do
     it 'returns the chain of parents' do
       item1, item2, item3 = double, double, Kuhsaft::Brick.new
-      item2.stub(:brick_list).and_return(item1)
-      item3.stub(:brick_list).and_return(item2)
-      item3.parents.should == [item1, item2]
+      allow(item2).to receive(:brick_list).and_return(item1)
+      allow(item3).to receive(:brick_list).and_return(item2)
+      expect(item3.parents).to eq([item1, item2])
     end
   end
 
   describe '#to_edit_partial_path' do
     it 'returns the path to the form partial' do
-      Kuhsaft::TextBrick.new.to_edit_partial_path.should == 'kuhsaft/text_bricks/text_brick/edit'
+      expect(Kuhsaft::TextBrick.new.to_edit_partial_path).to eq('kuhsaft/text_bricks/text_brick/edit')
     end
   end
 
   describe '#has_siblings?' do
     it 'returns false if the brick has no siblings' do
       brick = Kuhsaft::Brick.new
-      brick.has_siblings?.should be_false
+      expect(brick.has_siblings?).to be_falsey
     end
 
     it 'returns true if the brick has siblings' do
       item1, item2, item3 = double, double, Kuhsaft::Brick.new
-      item1.stub(:bricks).and_return([item2, item3])
-      item2.stub(:brick_list).and_return(item1)
-      item3.stub(:brick_list).and_return(item1)
-      item3.has_siblings?.should be_true
+      allow(item1).to receive(:bricks).and_return([item2, item3])
+      allow(item2).to receive(:brick_list).and_return(item1)
+      allow(item3).to receive(:brick_list).and_return(item1)
+      expect(item3.has_siblings?).to be_truthy
     end
   end
 
   describe '#to_edit_childs_partial_path' do
     it 'returns the path to the form partial' do
-      Kuhsaft::TextBrick.new.to_edit_childs_partial_path.should == 'kuhsaft/text_bricks/text_brick/childs'
+      expect(Kuhsaft::TextBrick.new.to_edit_childs_partial_path).to eq('kuhsaft/text_bricks/text_brick/childs')
     end
   end
 
   describe '#bricks' do
     it 'can not have childs by default' do
-      brick.should_not respond_to(:bricks)
+      expect(brick).not_to respond_to(:bricks)
     end
   end
 
   describe '#to_style_class' do
     it 'returns a css classname' do
-      Kuhsaft::TextBrick.new.to_style_class.should == 'kuhsaft-text-brick'
+      expect(Kuhsaft::TextBrick.new.to_style_class).to eq('kuhsaft-text-brick')
     end
   end
 
   describe '#to_style_id' do
     it 'returns a unique DOM id' do
       brick = Kuhsaft::TextBrick.new
-      brick.stub(:id).and_return(104)
-      brick.to_style_id.should == 'kuhsaft-text-brick-104'
+      allow(brick).to receive(:id).and_return(104)
+      expect(brick.to_style_id).to eq('kuhsaft-text-brick-104')
     end
   end
 
   describe '#backend_label' do
     it 'returns the name of the brick' do
       brick =  Kuhsaft::TextBrick.new
-      brick.backend_label.should == 'Text'
+      expect(brick.backend_label).to eq('Text')
     end
 
     context 'with the parenthesis option given' do
@@ -104,7 +104,7 @@ describe Kuhsaft::Brick do
 
   describe '#uploader?' do
     it 'returns false' do
-      brick.uploader?.should be_false
+      expect(brick.uploader?).to be_falsey
     end
   end
 
@@ -124,8 +124,8 @@ describe Kuhsaft::Brick do
       end
 
       it 'updates fulltext on bricklist after saving a single brick' do
-        brick.brick_list.should_receive(:update_fulltext)
-        brick.brick_list.should_receive(:save!)
+        expect(brick.brick_list).to receive(:update_fulltext)
+        expect(brick.brick_list).to receive(:save!)
         brick.text = 'foobar'
         brick.save
       end

@@ -21,15 +21,15 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.license = 'MIT'
 
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-rails', '~> 2.14.2'
+  s.add_development_dependency 'rspec-rails', '~> 3.0.1'
+  s.add_development_dependency 'rspec-activemodel-mocks'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'capybara', '>= 2.0'
   s.add_development_dependency 'pg'
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'i18n-tasks'
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'nyan-cat-formatter'
+  # s.add_development_dependency 'nyan-cat-formatter'
 
   s.add_dependency 'coffee-rails'
   s.add_dependency 'remotipart'

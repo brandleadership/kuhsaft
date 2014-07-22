@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::PagesController do
+describe Kuhsaft::PagesController, type: :controller do
   subject { described_class }
 
   describe '#index' do
@@ -16,7 +16,7 @@ describe Kuhsaft::PagesController do
         I18n.with_locale :de do
           get(:index,  use_route: :kuhsaft, search: 'foobar')
         end
-        assigns(:pages).should eq([@pages.first])
+        expect(assigns(:pages)).to eq([@pages.first])
       end
     end
   end
@@ -33,7 +33,7 @@ describe Kuhsaft::PagesController do
             I18n.with_locale(:de) do
               get(:show,   use_route: :kuhsaft)
             end
-            assigns(:page).should eq(@page)
+            expect(assigns(:page)).to eq(@page)
           end
         end
 
@@ -59,7 +59,7 @@ describe Kuhsaft::PagesController do
           page = FactoryGirl.create(:page, slug: 'dumdidum',
                                            url: 'de/dumdidum')
           get :show,   url: page.slug, use_route: :kuhsaft
-          assigns(:page).should eq(page)
+          expect(assigns(:page)).to eq(page)
         end
       end
 

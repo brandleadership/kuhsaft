@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Kuhsaft::PublishState do
+describe Kuhsaft::PublishState, type: :model do
   context 'unpublished' do
     before do
       @publish_state = Kuhsaft::PublishState.new(name: 'unpublished', value: Kuhsaft::PublishState::UNPUBLISHED)
     end
 
     it 'should be UNPUBLISHED' do
-      @publish_state.value.should be(Kuhsaft::PublishState::UNPUBLISHED)
+      expect(@publish_state.value).to be(Kuhsaft::PublishState::UNPUBLISHED)
     end
   end
 
@@ -17,7 +17,7 @@ describe Kuhsaft::PublishState do
     end
 
     it 'should be PUBLISHED' do
-      @publish_state.value.should be(Kuhsaft::PublishState::PUBLISHED)
+      expect(@publish_state.value).to be(Kuhsaft::PublishState::PUBLISHED)
     end
   end
 
@@ -27,7 +27,7 @@ describe Kuhsaft::PublishState do
     end
 
     it 'should be PUBLISHED_AT' do
-      @publish_state.value.should be(Kuhsaft::PublishState::PUBLISHED_AT)
+      expect(@publish_state.value).to be(Kuhsaft::PublishState::PUBLISHED_AT)
     end
   end
 end

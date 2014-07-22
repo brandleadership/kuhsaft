@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::ImageBrick do
+describe Kuhsaft::ImageBrick, type: :model do
 
   let :image_brick do
     Kuhsaft::ImageBrick.new
@@ -13,7 +13,7 @@ describe Kuhsaft::ImageBrick do
 
     context 'without an #image' do
       it 'has en error' do
-        image_brick.should have(1).error_on(:image)
+        expect(image_brick.errors[:image].size).to eq(1)
       end
     end
   end
@@ -21,9 +21,9 @@ describe Kuhsaft::ImageBrick do
   describe '#save' do
     context 'when changing the image size' do
       it 'regenerates the image version' do
-        image_brick.stub(:image_size_changed?).and_return(true)
-        image_brick.stub(:image_present?).and_return(true)
-        image_brick.image.should_receive(:recreate_versions!)
+        allow(image_brick).to receive(:image_size_changed?).and_return(true)
+        allow(image_brick).to receive(:image_present?).and_return(true)
+        expect(image_brick.image).to receive(:recreate_versions!)
         image_brick.resize_image_if_size_changed
       end
     end
@@ -31,19 +31,19 @@ describe Kuhsaft::ImageBrick do
 
   describe '#bricks' do
     it 'can not have childs' do
-      image_brick.should_not respond_to(:bricks)
+      expect(image_brick).not_to respond_to(:bricks)
     end
   end
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      image_brick.user_can_add_childs?.should be_false
+      expect(image_brick.user_can_add_childs?).to be_falsey
     end
   end
 
   describe '#uploader?' do
     it 'returns true' do
-      image_brick.uploader?.should be_true
+      expect(image_brick.uploader?).to be_truthy
     end
   end
 end

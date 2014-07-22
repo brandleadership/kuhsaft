@@ -13,12 +13,12 @@ describe Kuhsaft::Gridded do
 
     it 'returns false on gridded? if no col count is set' do
       expect_any_instance_of(GridClass).to receive(:col_count).at_least(:once).and_return(0)
-      expect(GridClass.new.gridded?).to be_false
+      expect(GridClass.new.gridded?).to be_falsey
     end
 
     it 'returns true on gridded? if a col count is set' do
       expect_any_instance_of(GridClass).to receive(:col_count).at_least(:once).and_return(10)
-      expect(GridClass.new.gridded?).to be_true
+      expect(GridClass.new.gridded?).to be_truthy
     end
   end
 end

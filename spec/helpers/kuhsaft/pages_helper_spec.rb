@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe PagesHelper do
+describe PagesHelper, type: :helper do
   describe '#search_page_form' do
 
     context 'without block' do
       it 'renders the default search form' do
         form = search_page_form
-        form.should have_css('form.form-inline')
-        form.should have_css('input[type=text]')
-        form.should have_css('input[type=submit]')
+        expect(form).to have_css('form.form-inline')
+        expect(form).to have_css('input[type=text]')
+        expect(form).to have_css('input[type=submit]')
       end
     end
 

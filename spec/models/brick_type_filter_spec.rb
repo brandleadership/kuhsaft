@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::BrickTypeFilter do
+describe Kuhsaft::BrickTypeFilter, type: :model do
   let :brick_list do
     Kuhsaft::Page.new
   end
@@ -12,21 +12,21 @@ describe Kuhsaft::BrickTypeFilter do
   describe '#empty?' do
     context 'when the user cant add childs' do
       before do
-        brick_list.stub(:user_can_add_childs?).and_return(false)
+        allow(brick_list).to receive(:user_can_add_childs?).and_return(false)
       end
 
       it 'returns true' do
-        brick_type_filter.empty?.should be_true
+        expect(brick_type_filter.empty?).to be_truthy
       end
     end
 
     context 'when there are no bricks to be added' do
       before do
-        brick_type_filter.stub(:allowed).and_return([])
+        allow(brick_type_filter).to receive(:allowed).and_return([])
       end
 
       it 'returns true' do
-        brick_type_filter.empty?.should be_true
+        expect(brick_type_filter.empty?).to be_truthy
       end
     end
   end
@@ -34,28 +34,28 @@ describe Kuhsaft::BrickTypeFilter do
   describe '#allowed' do
     context 'when no brick types are registered' do
       it 'returns an empty array' do
-        Kuhsaft::BrickType.stub_chain(:count, :zero?).and_return(true)
-        brick_type_filter.allowed.should be_empty
+        allow(Kuhsaft::BrickType).to receive_message_chain(:count, :zero?).and_return(true)
+        expect(brick_type_filter.allowed).to be_empty
       end
     end
 
     context 'when brick types are registered' do
       before do
-        Kuhsaft::BrickType.stub_chain(:enabled, :count, :zero?).and_return(false)
+        allow(Kuhsaft::BrickType).to receive_message_chain(:enabled, :count, :zero?).and_return(false)
       end
 
       context 'when there are no constraints' do
         it 'returns all enabled brick types' do
-          brick_list.stub(:allowed_brick_types).and_return([])
-          Kuhsaft::BrickType.should_receive(:enabled)
+          allow(brick_list).to receive(:allowed_brick_types).and_return([])
+          expect(Kuhsaft::BrickType).to receive(:enabled)
           brick_type_filter.allowed
         end
       end
 
       context 'when there are constraints' do
         it 'constrains the enabled types' do
-          brick_list.stub(:allowed_brick_types).and_return(['Kuhsaft::TextBrick'])
-          Kuhsaft::BrickType.enabled.should_receive(:constrained).with(['Kuhsaft::TextBrick'])
+          allow(brick_list).to receive(:allowed_brick_types).and_return(['Kuhsaft::TextBrick'])
+          expect(Kuhsaft::BrickType.enabled).to receive(:constrained).with(['Kuhsaft::TextBrick'])
           brick_type_filter.allowed
         end
       end
