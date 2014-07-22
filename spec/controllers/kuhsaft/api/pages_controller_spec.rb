@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Api::PagesController do
+describe Kuhsaft::Api::PagesController, type: :controller do
   describe '#index' do
     before do
       @pages = []

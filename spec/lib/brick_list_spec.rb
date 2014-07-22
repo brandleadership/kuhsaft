@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rspec/active_model/mocks'
 
 describe Kuhsaft::BrickList do
 
@@ -13,14 +14,14 @@ describe Kuhsaft::BrickList do
   describe '#collect_fulltext' do
     context 'with bricks' do
       it 'collects its childs fulltext' do
-        brick.stub_chain(:bricks, :localized).and_return([mock_model(Kuhsaft::Brick, collect_fulltext: 'hallo')])
+        allow(brick).to receive_message_chain(:bricks, :localized).and_return([mock_model(Kuhsaft::Brick, collect_fulltext: 'hallo')])
         expect(brick.collect_fulltext).to eq('hallo')
       end
     end
 
     context 'with bricks without content' do
       it 'returns a string' do
-        brick.stub_chain(:bricks, :localized).and_return([])
+        allow(brick).to receive_message_chain(:bricks, :localized).and_return([])
         expect(brick.collect_fulltext).to eq('')
       end
     end

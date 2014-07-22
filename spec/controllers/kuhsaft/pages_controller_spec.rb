@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::PagesController do
+describe Kuhsaft::PagesController, type: :controller do
   subject { described_class }
 
   describe '#index' do

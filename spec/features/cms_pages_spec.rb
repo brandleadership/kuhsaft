@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Cms/Pages' do
+describe 'Cms/Pages', type: :feature do
 
   context '#new' do
     before do
@@ -19,7 +19,7 @@ describe 'Cms/Pages' do
         end
 
         it 'is not possible to change the value in url' do
-          expect(page.find('#page_url')['disabled']).to be_true
+          expect(page.find('#page_url')['disabled']).to be_truthy
         end
       end
 

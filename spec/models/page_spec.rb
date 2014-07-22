@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Page do
+describe Kuhsaft::Page, type: :model do
   # subject { described_class }
 
   describe '.search' do
@@ -57,11 +57,11 @@ describe Kuhsaft::Page do
       end
 
       it 'has a mandatory title' do
-        expect(page).to have(1).error_on(:title)
+        expect(page.errors[:title].count).to eq(1)
       end
 
       it 'has a mandatory slug' do
-        expect(page).to have(1).error_on(:slug)
+        expect(page.errors[:slug].count).to eq(1)
       end
     end
   end
@@ -70,7 +70,7 @@ describe Kuhsaft::Page do
     it 'returns only published pages' do
       _p1, p2, _p3 = 3.times.map { create(:page) }
       p2.update_attribute :published, Kuhsaft::PublishState::UNPUBLISHED
-      expect(Kuhsaft::Page.published).to be_all { |p| expect(p.published?).to be_true }
+      expect(Kuhsaft::Page.published).to be_all { |p| expect(p.published?).to be_truthy }
     end
   end
 
@@ -281,13 +281,13 @@ describe Kuhsaft::Page do
   describe '#navigation?' do
     context 'when the page_type is navigation' do
       it 'returns true if the page_type is PageType::NAVIGATION' do
-        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).navigation?).to be_true
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).navigation?).to be_truthy
       end
     end
 
     context 'when the page_type is anything else' do
       it 'returns false' do
-        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).navigation?).to be_false
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).navigation?).to be_falsey
       end
     end
   end
@@ -295,13 +295,13 @@ describe Kuhsaft::Page do
   describe '#redirect?' do
     context 'when the page_type is a redirect' do
       it 'returns true' do
-        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).redirect?).to be_true
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::REDIRECT).redirect?).to be_truthy
       end
     end
 
     context 'when the page type is anything else' do
       it 'returns false' do
-        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).redirect?).to be_false
+        expect(Kuhsaft::Page.new(page_type: Kuhsaft::PageType::NAVIGATION).redirect?).to be_falsey
       end
     end
   end
@@ -323,13 +323,13 @@ describe Kuhsaft::Page do
   describe '#translated?' do
     it 'returns true when page is translated' do
       @page = create(:page, title: 'Page 1', slug: 'page1')
-      expect(@page.translated?).to be_true
+      expect(@page.translated?).to be_truthy
     end
 
     it 'returns false when page has no translation' do
       @page = create(:page, title: 'Page 1', slug: 'page1')
       I18n.with_locale :de do
-        expect(@page.translated?).to be_false
+        expect(@page.translated?).to be_falsey
       end
     end
   end

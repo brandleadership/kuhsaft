@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::BrickTypeFilter do
+describe Kuhsaft::BrickTypeFilter, type: :model do
   let :brick_list do
     Kuhsaft::Page.new
   end
@@ -16,7 +16,7 @@ describe Kuhsaft::BrickTypeFilter do
       end
 
       it 'returns true' do
-        expect(brick_type_filter.empty?).to be_true
+        expect(brick_type_filter.empty?).to be_truthy
       end
     end
 
@@ -26,7 +26,7 @@ describe Kuhsaft::BrickTypeFilter do
       end
 
       it 'returns true' do
-        expect(brick_type_filter.empty?).to be_true
+        expect(brick_type_filter.empty?).to be_truthy
       end
     end
   end
@@ -34,14 +34,14 @@ describe Kuhsaft::BrickTypeFilter do
   describe '#allowed' do
     context 'when no brick types are registered' do
       it 'returns an empty array' do
-        Kuhsaft::BrickType.stub_chain(:count, :zero?).and_return(true)
+        allow(Kuhsaft::BrickType).to receive_message_chain(:count, :zero?).and_return(true)
         expect(brick_type_filter.allowed).to be_empty
       end
     end
 
     context 'when brick types are registered' do
       before do
-        Kuhsaft::BrickType.stub_chain(:enabled, :count, :zero?).and_return(false)
+        allow(Kuhsaft::BrickType).to receive_message_chain(:enabled, :count, :zero?).and_return(false)
       end
 
       context 'when there are no constraints' do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::ImageSize do
+describe Kuhsaft::ImageSize, type: :model do
   before do
     Kuhsaft::ImageSize.build_defaults!
   end

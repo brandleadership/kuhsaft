@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PagesHelper do
+describe PagesHelper, type: :helper do
   describe '#search_page_form' do
 
     context 'without block' do

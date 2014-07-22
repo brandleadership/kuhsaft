@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::AccordionItemBrick do
+describe Kuhsaft::AccordionItemBrick, type: :model do
 
   let :accordion_item_brick do
     Kuhsaft::AccordionItemBrick.new
@@ -13,14 +13,14 @@ describe Kuhsaft::AccordionItemBrick do
 
     context 'without a #caption' do
       it 'has en error' do
-        expect(accordion_item_brick).to have(1).error_on(:caption)
+        expect(accordion_item_brick.errors[:caption].count).to eq(1)
       end
     end
   end
 
   describe '#user_can_delete?' do
     it 'returns true' do
-      expect(accordion_item_brick.user_can_delete?).to be_true
+      expect(accordion_item_brick.user_can_delete?).to be_truthy
     end
   end
 
@@ -32,7 +32,7 @@ describe Kuhsaft::AccordionItemBrick do
 
   describe '#renders_own_childs?' do
     it 'returns false' do
-      expect(accordion_item_brick.renders_own_childs?).to be_false
+      expect(accordion_item_brick.renders_own_childs?).to be_falsey
     end
   end
 

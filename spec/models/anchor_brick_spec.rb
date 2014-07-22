@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::AnchorBrick do
+describe Kuhsaft::AnchorBrick, type: :model do
 
   let :anchor_brick do
     Kuhsaft::AnchorBrick.new(caption: 'test-anchor')
@@ -14,7 +14,7 @@ describe Kuhsaft::AnchorBrick do
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      expect(anchor_brick.user_can_add_childs?).to be_false
+      expect(anchor_brick.user_can_add_childs?).to be_falsey
     end
   end
 

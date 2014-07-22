@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::PublishState do
+describe Kuhsaft::PublishState, type: :model do
   context 'unpublished' do
     before do
       @publish_state = Kuhsaft::PublishState.new(name: 'unpublished', value: Kuhsaft::PublishState::UNPUBLISHED)

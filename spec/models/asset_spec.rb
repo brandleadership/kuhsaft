@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Asset do
+describe Kuhsaft::Asset, type: :model do
 
   let :asset do
     create(:asset)

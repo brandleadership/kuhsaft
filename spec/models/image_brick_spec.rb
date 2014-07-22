@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::ImageBrick do
+describe Kuhsaft::ImageBrick, type: :model do
 
   let :image_brick do
     Kuhsaft::ImageBrick.new
@@ -13,7 +13,7 @@ describe Kuhsaft::ImageBrick do
 
     context 'without an #image' do
       it 'has en error' do
-        expect(image_brick).to have(1).error_on(:image)
+        expect(image_brick.errors[:image].size).to eq(1)
       end
     end
   end
@@ -37,13 +37,13 @@ describe Kuhsaft::ImageBrick do
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      expect(image_brick.user_can_add_childs?).to be_false
+      expect(image_brick.user_can_add_childs?).to be_falsey
     end
   end
 
   describe '#uploader?' do
     it 'returns true' do
-      expect(image_brick.uploader?).to be_true
+      expect(image_brick.uploader?).to be_truthy
     end
   end
 end

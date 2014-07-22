@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fileutils'
 
-describe Kuhsaft::PlaceholderBrick do
+describe Kuhsaft::PlaceholderBrick, type: :model do
 
   let :placeholder_brick do
     Kuhsaft::PlaceholderBrick.new
@@ -40,7 +40,7 @@ describe Kuhsaft::PlaceholderBrick do
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      expect(placeholder_brick.user_can_add_childs?).to be_false
+      expect(placeholder_brick.user_can_add_childs?).to be_falsey
     end
   end
 end

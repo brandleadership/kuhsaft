@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Brick do
+describe Kuhsaft::Brick, type: :model do
   let :brick do
     Kuhsaft::Brick.new
   end
@@ -52,7 +52,7 @@ describe Kuhsaft::Brick do
   describe '#has_siblings?' do
     it 'returns false if the brick has no siblings' do
       brick = Kuhsaft::Brick.new
-      expect(brick.has_siblings?).to be_false
+      expect(brick.has_siblings?).to be_falsey
     end
 
     it 'returns true if the brick has siblings' do
@@ -60,7 +60,7 @@ describe Kuhsaft::Brick do
       allow(item1).to receive(:bricks).and_return([item2, item3])
       allow(item2).to receive(:brick_list).and_return(item1)
       allow(item3).to receive(:brick_list).and_return(item1)
-      expect(item3.has_siblings?).to be_true
+      expect(item3.has_siblings?).to be_truthy
     end
   end
 
@@ -104,7 +104,7 @@ describe Kuhsaft::Brick do
 
   describe '#uploader?' do
     it 'returns false' do
-      expect(brick.uploader?).to be_false
+      expect(brick.uploader?).to be_falsey
     end
   end
 

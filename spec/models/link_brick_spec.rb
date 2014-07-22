@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::LinkBrick do
+describe Kuhsaft::LinkBrick, type: :model do
 
   let :link_brick do
     Kuhsaft::LinkBrick.new
@@ -13,13 +13,13 @@ describe Kuhsaft::LinkBrick do
 
     context 'without a #href' do
       it 'has en error' do
-        expect(link_brick).to have(1).error_on(:href)
+        expect(link_brick.errors[:href].count).to eq(1)
       end
     end
 
     context 'without a #caption' do
       it 'has an error' do
-        expect(link_brick).to have(1).error_on(:caption)
+        expect(link_brick.errors[:caption].count).to eq(1)
       end
     end
   end
@@ -45,7 +45,7 @@ describe Kuhsaft::LinkBrick do
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      expect(link_brick.user_can_add_childs?).to be_false
+      expect(link_brick.user_can_add_childs?).to be_falsey
     end
   end
 end

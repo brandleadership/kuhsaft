@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::AssetBrick do
+describe Kuhsaft::AssetBrick, type: :model do
 
   let :asset_brick do
     Kuhsaft::AssetBrick.new
@@ -13,7 +13,7 @@ describe Kuhsaft::AssetBrick do
 
     context 'without a #caption' do
       it 'has an error' do
-        expect(asset_brick).to have(1).error_on(:caption)
+        expect(asset_brick.errors[:caption].count).to eq(1)
       end
     end
   end
@@ -39,7 +39,7 @@ describe Kuhsaft::AssetBrick do
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      expect(asset_brick.user_can_add_childs?).to be_false
+      expect(asset_brick.user_can_add_childs?).to be_falsey
     end
   end
 end

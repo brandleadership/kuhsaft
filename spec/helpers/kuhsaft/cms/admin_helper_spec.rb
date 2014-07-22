@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Cms::AdminHelper do
+describe Kuhsaft::Cms::AdminHelper, type: :helper do
   describe '#render_language_switch?' do
     context 'when there is one language' do
       before do
@@ -8,7 +8,7 @@ describe Kuhsaft::Cms::AdminHelper do
       end
 
       it 'returns false' do
-        expect(helper.render_language_switch?).to be_false
+        expect(helper.render_language_switch?).to be_falsey
       end
     end
 
@@ -18,7 +18,7 @@ describe Kuhsaft::Cms::AdminHelper do
       end
 
       it 'returns true' do
-        expect(helper.render_language_switch?).to be_true
+        expect(helper.render_language_switch?).to be_truthy
       end
     end
   end

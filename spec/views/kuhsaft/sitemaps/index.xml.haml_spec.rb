@@ -1,7 +1,7 @@
 require 'spec_helper'
 include SitemapsHelper
 
-describe 'kuhsaft/sitemaps/index.xml.haml' do
+describe 'kuhsaft/sitemaps/index.xml.haml', :type => :view do
   describe 'structure' do
     before :each do
       @page = create(:page)

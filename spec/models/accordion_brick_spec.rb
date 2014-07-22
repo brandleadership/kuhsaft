@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::AccordionBrick do
+describe Kuhsaft::AccordionBrick, type: :model do
 
   let :accordion_brick do
     Kuhsaft::AccordionBrick.new
@@ -8,13 +8,13 @@ describe Kuhsaft::AccordionBrick do
 
   describe '#user_can_delete?' do
     it 'returns true' do
-      expect(accordion_brick.user_can_delete?).to be_true
+      expect(accordion_brick.user_can_delete?).to be_truthy
     end
   end
 
   describe '#renders_own_childs?' do
     it 'returns false' do
-      expect(accordion_brick.renders_own_childs?).to be_false
+      expect(accordion_brick.renders_own_childs?).to be_falsey
     end
   end
 

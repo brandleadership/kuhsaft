@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::SitemapsController do
+describe Kuhsaft::SitemapsController, type: :controller do
   describe '#index' do
     before do
       @page = FactoryGirl.create(:page)

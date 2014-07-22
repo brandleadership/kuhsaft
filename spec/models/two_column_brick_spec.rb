@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::TwoColumnBrick do
+describe Kuhsaft::TwoColumnBrick, type: :model do
 
   let :two_column_brick do
     Kuhsaft::TwoColumnBrick.new
@@ -8,25 +8,25 @@ describe Kuhsaft::TwoColumnBrick do
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      expect(two_column_brick.user_can_add_childs?).to be_false
+      expect(two_column_brick.user_can_add_childs?).to be_falsey
     end
   end
 
   describe '#user_can_delete?' do
     it 'returns true' do
-      expect(two_column_brick.user_can_delete?).to be_true
+      expect(two_column_brick.user_can_delete?).to be_truthy
     end
   end
 
   describe '#user_can_save?' do
     it 'returns true' do
-      expect(two_column_brick.user_can_save?).to be_true
+      expect(two_column_brick.user_can_save?).to be_truthy
     end
   end
 
   describe '#renders_own_childs?' do
     it 'returns true' do
-      expect(two_column_brick.renders_own_childs?).to be_true
+      expect(two_column_brick.renders_own_childs?).to be_truthy
     end
   end
 

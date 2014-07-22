@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::TextBrick do
+describe Kuhsaft::TextBrick, type: :model do
   let :text_brick do
     Kuhsaft::TextBrick.new
   end
@@ -13,7 +13,7 @@ describe Kuhsaft::TextBrick do
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      expect(text_brick.user_can_add_childs?).to be_false
+      expect(text_brick.user_can_add_childs?).to be_falsey
     end
   end
 

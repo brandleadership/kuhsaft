@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'pages#index' do
+describe 'pages#index', type: :feature do
   context 'with search parameter' do
     let! :page1 do
       p = create :page,

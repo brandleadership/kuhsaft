@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::SliderBrick do
+describe Kuhsaft::SliderBrick, type: :model do
 
   let :slider_brick do
     Kuhsaft::SliderBrick.new
