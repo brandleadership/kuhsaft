@@ -8,7 +8,7 @@ describe Kuhsaft::Asset, type: :model do
 
   let :uploader do
     u = Kuhsaft::AssetUploader.new(asset, :file)
-    u.store!(File.open(File.join(Kuhsaft::Engine.root, 'spec', 'dummy', 'app', 'assets', 'images', 'spec-image.png')))
+    u.store! File.open(Kuhsaft::Engine.root.join('spec/dummy/app/assets/images/spec-image.png'))
     u
   end
 
