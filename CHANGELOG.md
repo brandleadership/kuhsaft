@@ -1,7 +1,13 @@
 # CHANGELOG
 
-# features/better_placeholders
+## 2.5.0 - 2014-07-23
 
+* Start merging in shoestrap functionality (for now, only admin_helper form methods)
+* Clean up README
+* Add helper for detecting if we are on a kuhsaft page
+* Fix routing error for sitemap
+* Add Helper for selecting Application URLs
+* Set locale via default_url_options instead of just url_options
 * Add CUSTOM page type:
   Adds a new page type called 'CUSTOM'. Custom pages behave almost like redirect pages except that they can have content and meta tags like normal pages.
   What can you use this for: To redirect to a custom controller that does whatever you want and still have CMS content along side it.
