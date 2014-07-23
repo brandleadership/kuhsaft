@@ -10,7 +10,7 @@ module Kuhsaft
         I18n.locale = params[:content_locale]
       end
 
-      def url_options
+      def default_url_options
         { content_locale: I18n.locale }.merge(super)
       end
     end
