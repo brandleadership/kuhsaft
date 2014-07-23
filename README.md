@@ -214,7 +214,7 @@ What can you use this for: To redirect to a custom controller that does whatever
 
 In Custom Controller that page redirects to:
 ```ruby
-  def step_one
+  def index
     # could also be extracted into before_action
     @page = Kuhsaft::Page.find(session[:kuhsaft_referrer]) if session[:kuhsaft_referrer]
     @somestuff = Somestuff.new
