@@ -62,7 +62,7 @@ module Kuhsaft
       def page_params
         safe_params = [
           :title, :page_title, :slug, :redirect_url, :url, :page_type, :parent_id,
-          :keywords, :description, :published, :position
+          :keywords, :description, :published, :position, :google_verification_key
         ]
         params.require(:page).permit(*safe_params)
       end
