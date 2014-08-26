@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.5.1 - 2014-08-26
+
+* Google Verification Key can be added on homepage and will be rendered in its head
+
 ## 2.5.0 - 2014-07-23
 
 * Start merging in shoestrap functionality (for now, only admin_helper form methods)
