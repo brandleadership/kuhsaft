@@ -1,0 +1,5 @@
+$("#brick-form").empty()
+
+$("#brick-form").append("#{j(render('kuhsaft/cms/pages/mirror_modal', :page => @page, :format => :html))}")
+
+$("#brick-form").modal('show')

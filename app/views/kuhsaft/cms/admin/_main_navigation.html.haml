@@ -1,6 +1,12 @@
 = link_to 'Kuhsaft CMS', cms_root_path, :class => 'brand'
-%p.navbar-text.pull-right
-  = link_to t('.logout'), '', :method => :delete
-%ul.nav
+
+%ul.nav.pull-right.language-navigation
+  - if render_language_switch?
+    - I18n.available_locales.each do |locale|
+      %li{ :class => (:active if I18n.locale.to_s == locale.to_s) }
+        = link_to_content_locale(locale)
   %li
-    = link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.cms_pages_path
+    = link_to t('.logout'), '', :method => :delete
+
+%ul.nav
+  %li= link_to Kuhsaft::Page.model_name.human(:count => 2), kuhsaft.cms_pages_path

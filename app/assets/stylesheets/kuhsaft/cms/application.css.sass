@@ -9,6 +9,7 @@ $baseBorderRadius: 0px
 $borderRadiusLarge: 0px
 $borderRadiusSmall: 0px
 
+@import bourbon
 @import bootstrap
 // base styles
 
@@ -79,6 +80,9 @@ form
 .brick-list
   padding-left: 2em
 
+.popover
+  max-width: none
+
 // The single column brick and the page-content (the "root") needs no level indentation
 // It usually acts as a helper container and is therefore not relevant
 // for the visual hierarchy
@@ -92,6 +96,14 @@ form
   padding-bottom: 6em
   > .brick-list
     padding-left: 0
+
+.nav-tabs
+  a.not-translated:after
+    content: '*'
+    color: #d33
+  a
+    color: black
+
 
 .tab-content
   display: table
@@ -163,6 +175,7 @@ form
         font-weight: bold
 
 .modal
+  text-align: left
   width: 900px
   margin-left: -450px
 
@@ -173,6 +186,24 @@ form
     position: relative
     top: -10px
     padding-left: 10px
+
+
+  .spinner
+    display: inline-block
+    opacity: 0
+    max-width: 0
+    @include animation-name(spinIt)
+    @include animation-duration(2s)
+    @include animation-timing-function(linear)
+    @include animation-iteration-count(infinite)
+
+    @include transition(opacity, 0.25s)
+    @include transition(max-width, 0.45s)
+
+  .has-spinner.active
+    .spinner
+      opacity: 1
+      max-width: 50px
 
 .control-group.text
   min-height: 310px
@@ -202,3 +233,9 @@ form
 @import nestable
 @import bootstrap-responsive
 @import bootstrap_modal
+
+@include keyframes(spinIt)
+  from
+    @include transform(rotate(0deg))
+  to
+    @include transform(rotate(360deg))

@@ -3,6 +3,7 @@ Kuhsaft::Engine.routes.draw do
   namespace :cms do
     resources :pages, except: :show do
       post :sort, on: :collection
+      get :mirror
     end
 
     resources :bricks, except: [:edit, :index] do

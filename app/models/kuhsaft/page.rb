@@ -89,6 +89,10 @@ module Kuhsaft
       url.present? && title.present? && slug.present?
     end
 
+    def translated_to?(locale)
+      send("url_#{locale}").present? && send("title_#{locale}").present? && send("slug_#{locale}").present?
+    end
+
     def link
       if bricks.count == 0 && children.count > 0
         children.first.link
@@ -160,6 +164,44 @@ module Kuhsaft
         json['pretty_url'] = '/' + send("url_#{I18n.locale.to_s.underscore}")
         json['url'] = "/pages/#{id}"
       end
+    end
+
+    def clear_bricks_for_locale(locale)
+      bricks.unscoped.where(locale: locale).destroy_all
+    end
+
+    def copy_assets_to_cloned_brick(brick, new_brick)
+      brick.class.uploaders.keys.each do |key|
+        new_brick.update_attribute(key.to_s, File.open(brick.send(key.to_s).path))
+      end
+    end
+
+    def clone_child_bricks(brick, to_locale, new_brick_list_id)
+      brick.bricks.each do |nested_brick|
+        clone_brick_to(nested_brick, to_locale, new_brick_list_id)
+      end
+    end
+
+    def clone_bricks_to(locale)
+      failed_to_clone = []
+
+      bricks.each do |brick|
+        failed_to_clone << brick unless clone_brick_to(brick, locale, id)
+      end
+      failed_to_clone
+    end
+
+    def clone_brick_to(brick, to_locale, new_brick_list_id)
+      new_brick = brick.dup
+
+      copy_assets_to_cloned_brick(brick, new_brick) if brick.uploader?
+
+      new_brick.update_attribute(:locale, to_locale)
+      new_brick.update_attribute(:brick_list_id, new_brick_list_id)
+
+      clone_child_bricks(brick, to_locale, new_brick.id) if brick.respond_to?(:bricks)
+
+      new_brick.save
     end
   end
 end

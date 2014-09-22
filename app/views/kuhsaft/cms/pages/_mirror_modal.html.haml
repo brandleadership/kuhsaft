@@ -1,0 +1,52 @@
+.modal-header
+  %button.close{ 'data-dismiss' => 'modal' }
+    ×
+  %h3 header
+
+- if page.bricks.empty?
+  .modal-body
+    .alert.alert-info
+      = t('.no_bricks_to_clone')
+
+  .modal-footer
+    .clearfix
+      .pull-right
+        .btn.btn-success{ 'data-dismiss' => 'modal'}
+          = t('.okay')
+
+- elsif page.bricks.unscoped.where(:locale => params[:target_locale], :brick_list_id => page.id).any? && params[:rutheless] != 'true'
+  .modal-body
+    .alert.alert-error
+      = t('.target_page_contains_bricks', :brick_count => page.bricks.unscoped.where(:locale => params[:target_locale]).count ).html_safe
+
+  .modal-footer
+    .clearfix
+      .pull-right
+        .btn{ 'data-dismiss' => 'modal'}
+          = t('.abort')
+        = link_to cms_page_mirror_path(@page, :target_locale => params[:target_locale], :rutheless => true), :class => 'btn btn-warning has-spinner', :remote => true do
+          %span.spinner
+            %i.icon-refresh.icon-white
+          = t('.proceed_replace')
+
+- else
+  .modal-body
+    .alert.alert-info
+      = t('.bricks_cloned', :brick_count => (page.bricks.unscoped.where(:locale => params[:target_locale]).count - params[:failed_bricks].count))
+    - if params[:failed_bricks].any?
+      .alert.alert-error
+        = t('.failed_to_clone_folowwing_bricks')
+        %ul
+          - params[:failed_bricks].each do |failed_brick|
+            %li
+              = failed_brick.caption
+              = failed_brick.type
+              = "(Position: #{failed_brick.position})"
+
+  .modal-footer
+    .clearfix
+      .pull-right
+        = link_to edit_cms_page_path(page, :content_locale => params[:target_locale]), :class => 'btn' do
+          = t('.edit_language', :language => params[:target_locale].upcase)
+        .btn.btn-success{ 'data-dismiss' => 'modal'}
+          = t('.okay')

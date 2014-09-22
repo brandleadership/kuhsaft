@@ -103,6 +103,9 @@ window.stopPropagationOfDisplayStyles = (selector) ->
 $(document).ajaxSuccess ->
   sortableBrick()
 
+  $('a.has-spinner').click ->
+    $(this).toggleClass('active')
+
 $(document).ready ->
   loadTextEditor()
   checkPageType()
@@ -136,3 +139,6 @@ $(document).ready ->
       $(elem).collapse('hide')
     $('.resize-toggler').each (index, elem) ->
       $(elem).addClass('collapsed')
+
+  $("[data-toggle=tooltip]").tooltip(placement: 'top')
+  $("[data-toggle=popover]").popover(placement: 'left', html: true, container: 'body')

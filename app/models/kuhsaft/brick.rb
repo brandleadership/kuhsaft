@@ -37,8 +37,10 @@ module Kuhsaft
     after_save do
       # TODO: replace callback with fulltext row on each
       # searchable model
-      brick_list.update_fulltext
-      brick_list.save!
+      if brick_list
+        brick_list.update_fulltext
+        brick_list.save!
+      end
     end
 
     # TODO: yes. temporary workaround. see above

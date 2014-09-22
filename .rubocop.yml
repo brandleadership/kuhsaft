@@ -86,7 +86,7 @@ BracesAroundHashParameters:
 
 ClassLength:
   CountComments: false  # count full line comments?
-  Max: 130
+  Max: 200
 
 # Align with the style guide.
 CollectionMethods:
@@ -137,7 +137,7 @@ LineLength:
 
 MethodLength:
   CountComments: false  # count full line comments?
-  Max: 13
+  Max: 15
 
 MethodName:
   # Valid values are: snake_case, camelCase

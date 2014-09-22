@@ -1,0 +1,16 @@
+- unless @page.bricks.empty?
+  .btn-group
+    .btn.btn-small{ 'data-toggle' => 'popover', 'data-content' => t('.brick_clone_info'), 'data-original-title' => t('.brick_clone_info_title')}
+      %i.icon-info-sign
+    %a.btn.btn-small.dropdown-toggle{ 'data-toggle' => 'dropdown', 'href' => '#' }
+      = t('.clone_bricks')
+      %span.caret
+    %ul.dropdown-menu.pull-right
+      - I18n.available_locales.each do |locale|
+        - unless I18n.locale == locale
+          - if @page.translated_to?(locale)
+            %li= link_to t('.to_locale', :locale_name => locale.upcase), cms_page_mirror_path(@page, :target_locale => locale, :rutheless => false), :remote => true
+
+          - else
+            %li.disabled{ 'data-toggle' => 'tooltip', 'title' => t('.not_translated') }
+              = link_to t('.to_locale', :locale_name => locale.upcase), '#'

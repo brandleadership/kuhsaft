@@ -5,6 +5,13 @@
     %li{ class: content_tab_active(@page) }
       = link_to t('.tab_content'), '#page-content', 'data-toggle' => :tab
 
+  - I18n.available_locales.reverse.each do |locale|
+    %li.pull-right{ :class => (:active if I18n.locale.to_s == locale.to_s) }
+      - if @page.translated_to?(locale)
+        = link_to_content_locale(locale)
+      - else
+        = link_to locale.to_s.upcase, url_for(:action => params[:action], :content_locale => locale), 'data-toggle' => 'tooltip', 'title' => t('.not_translated'), :class => 'not-translated'
+
 .tab-content
   #page-metadata.tab-pane{ class: metadata_tab_active(@page) }
     = simple_form_for @page, url: url, html: { class: 'form-horizontal' }, wrapper: :bootstrap do |form|
@@ -39,9 +46,9 @@
                 %i.icon-resize-small
                 = t('.collapse_all')
 
-            .btn-group
-              = render 'brick_type_dropdown', brick_list: @page
+            = render 'brick_clone_menu'
+            = render 'brick_type_dropdown', :brick_list => @page
 
-        = render 'kuhsaft/cms/bricks/brick_list', brick_list: @page
+        = render 'kuhsaft/cms/bricks/brick_list', :brick_list => @page
 
 = render 'kuhsaft/cms/bricks/sort_form'

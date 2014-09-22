@@ -7,6 +7,7 @@ de:
         form:
           tab_metadata: 'Einstellungen'
           tab_content: 'Inhalt'
+          not_translated: 'Übersetzungen fehlen'
           hint_keywords: |
             Geben Sie hier 2 - 6 zentrale Begriffe, welche für diese Seite gelten, als Stichwörter an.
             </br>
@@ -29,3 +30,15 @@ de:
           expand_all: Alle aufklappen
           collapse_all: Alle zuklappen
           none: Keine
+
+        mirror_modal:
+          no_bricks_to_clone: 'Die Seite enthält keine Bricks zum kopieren.'
+          bricks_cloned: '%{brick_count} Brick(s) erfolgreich kopiert.'
+          target_page_contains_bricks: |
+            <strong>Achtung:</strong>
+            Die Zielseite enthält %{brick_count} Brick(s). Diese werden überschrieben.
+          abort: Abbrechen
+          proceed_replace: 'Kopieren & Ersetzen'
+          okay: OK
+          edit_language: '%{language} Bricks bearbeiten'
+          failed_to_clone_folowwing_bricks: 'Folgende Bricks konnten nicht kopiert werden:'

@@ -1,7 +1,0 @@
-- if render_language_switch?
-  .pull-right
-    %ul.nav.nav-pills
-      - I18n.available_locales.each do |locale|
-        %li{ :class => (:active if I18n.locale.to_s == locale.to_s) }
-          = link_to_content_locale(locale)
-  .clear

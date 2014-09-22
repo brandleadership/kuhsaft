@@ -57,6 +57,20 @@ module Kuhsaft
         Kuhsaft::PageTree.update(params[:page_tree])
       end
 
+      def mirror
+        @page = Kuhsaft::Page.find(params[:page_id])
+
+        unless @page.bricks.empty?
+          if params[:rutheless] == 'true' || @page.bricks.unscoped.where(locale: params[:target_locale]).empty?
+            @page.clear_bricks_for_locale(params[:target_locale])
+            params[:failed_bricks] = @page.clone_bricks_to(params[:target_locale])
+            params[:rutheless] = 'true'
+          end
+        end
+
+        respond_to :js, :html
+      end
+
       private
 
       def page_params

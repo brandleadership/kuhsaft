@@ -29,7 +29,7 @@ describe 'Cms/Pages', type: :feature do
           visit kuhsaft.edit_cms_page_path(@page)
           fill_in 'page_title', with: ''
           click_on 'Update Page'
-          within '.nav-pills' do
+          within '.language-navigation' do
             click_on 'EN'
           end
           expect(page).to have_content(@page.title_en)

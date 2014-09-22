@@ -6,6 +6,29 @@ de:
         brick_type_dropdown:
           add_element: 'Element hinzufügen'
           add_specific_element: '%{name} hinzufügen'
+        brick_clone_menu:
+          clone_bricks: Bricks kopieren
+          to_locale: 'in die Sprachversion %{locale_name}'
+          not_translated: 'Noch nicht übersetzt'
+          brick_clone_info_title: Kopieren von Bricks
+          brick_clone_info: |
+            Bricks werden mit gesamten Inhalt in eine andere Sprachversion der Seite kopiert.
+            </br>
+            Texte werden nicht übersetzt und müssen angepasst werden.
+            </br>
+            </br>
+            Kopieren ist nicht möglich, falls:
+            <ul>
+            <li>Die gewünschte Sprachversion der Seite nicht Übersetzt ist</li>
+            <li>Die Seite keine Bricks enthält</li>
+            </ul>
+            <span class="label label-warning">Achtung:</span>
+            </br>
+            Diese Funktion dient zum initialen Setup der Seiten.
+            </br>
+            Eventuell vorhandene Bricks auf der Zielseite werden überschrieben!
+          modal_header: Bricks kopieren
+          modal_body: 'Kopiere %{brick_count} Brick(s) von %{from_locale} nach %{to_locale}'
         empty_state:
           empty: 'Hier ist bisher noch nichts...'
         main_navigation:
