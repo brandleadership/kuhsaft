@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-describe Kuhsaft::TextBrick do
+describe Kuhsaft::TextBrick, type: :model do
   let :text_brick do
     Kuhsaft::TextBrick.new
   end
 
   describe '#bricks' do
     it 'can not have childs' do
-      text_brick.should_not respond_to(:bricks)
+      expect(text_brick).not_to respond_to(:bricks)
     end
   end
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      text_brick.user_can_add_childs?.should be_false
+      expect(text_brick.user_can_add_childs?).to be_falsey
     end
   end
 
@@ -24,7 +24,7 @@ describe Kuhsaft::TextBrick do
     end
 
     it 'sanitizes text and read_more_text' do
-      text_brick.collect_fulltext.should == 'foo bar foobar'
+      expect(text_brick.collect_fulltext).to eq('foo bar foobar')
     end
   end
 end

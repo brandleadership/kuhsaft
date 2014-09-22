@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::AnchorBrick do
+describe Kuhsaft::AnchorBrick, type: :model do
 
   let :anchor_brick do
     Kuhsaft::AnchorBrick.new(caption: 'test-anchor')
@@ -8,19 +8,19 @@ describe Kuhsaft::AnchorBrick do
 
   describe '#bricks' do
     it 'can not have childs' do
-      anchor_brick.should_not respond_to(:bricks)
+      expect(anchor_brick).not_to respond_to(:bricks)
     end
   end
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      anchor_brick.user_can_add_childs?.should be_false
+      expect(anchor_brick.user_can_add_childs?).to be_falsey
     end
   end
 
   describe '#to_id' do
     it 'returns a parameterized id' do
-      anchor_brick.to_id.should == 'anchor-test-anchor'
+      expect(anchor_brick.to_id).to eq('anchor-test-anchor')
     end
   end
 end

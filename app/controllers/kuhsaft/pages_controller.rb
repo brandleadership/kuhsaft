@@ -12,6 +12,7 @@ module Kuhsaft
     def show
       if @page.present? && @page.redirect? && @page.redirect_url.present?
         redirect_url = @page.redirect_url.sub(/\A\/+/, '') # remove all preceding slashes
+        session[:kuhsaft_referrer] = @page.id
         redirect_to "/#{redirect_url}"
       elsif @page.present?
         respond_with @page

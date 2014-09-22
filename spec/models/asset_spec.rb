@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::Asset do
+describe Kuhsaft::Asset, type: :model do
 
   let :asset do
     create(:asset)
@@ -8,7 +8,7 @@ describe Kuhsaft::Asset do
 
   let :uploader do
     u = Kuhsaft::AssetUploader.new(asset, :file)
-    u.store!(File.open(File.join(Kuhsaft::Engine.root, 'spec', 'dummy', 'app', 'assets', 'images', 'spec-image.png')))
+    u.store! File.open(Kuhsaft::Engine.root.join('spec/dummy/app/assets/images/spec-image.png'))
     u
   end
 
@@ -21,21 +21,21 @@ describe Kuhsaft::Asset do
   end
 
   it 'has a thumbnail' do
-    uploader.should respond_to(:thumb)
+    expect(uploader).to respond_to(:thumb)
   end
 
   it 'makes the image readable only to the owner and not executable' do
     pending 'how and where do we ensure permissions?'
-    uploader.should have_permissions(0600)
+    expect(uploader).to have_permissions(0600)
   end
 
   describe '#file_type' do
     it 'has a file_type' do
-      asset.should respond_to(:file_type)
+      expect(asset).to respond_to(:file_type)
     end
 
     it 'is symbolized' do
-      asset.file_type.should be_a(Symbol)
+      expect(asset.file_type).to be_a(Symbol)
     end
   end
 end

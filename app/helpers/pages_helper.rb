@@ -46,4 +46,8 @@ module PagesHelper
       end
     end
   end
+
+  def on_kuhsaft_page?
+    controller.is_a? Kuhsaft::PagesController
+  end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fileutils'
 
-describe Kuhsaft::PlaceholderBrick do
+describe Kuhsaft::PlaceholderBrick, type: :model do
 
   let :placeholder_brick do
     Kuhsaft::PlaceholderBrick.new
@@ -20,27 +20,27 @@ describe Kuhsaft::PlaceholderBrick do
 
   describe 'available partials' do
     it 'returns haml files' do
-      Kuhsaft::PlaceholderBrick.available_partials.flatten.should include('valid_partial')
+      expect(Kuhsaft::PlaceholderBrick.available_partials.flatten).to include('valid_partial')
     end
 
     it 'returns only partials' do
-      Kuhsaft::PlaceholderBrick.available_partials.flatten.should_not include('not_a_partial')
+      expect(Kuhsaft::PlaceholderBrick.available_partials.flatten).not_to include('not_a_partial')
     end
 
     it 'does not return other files' do
-      Kuhsaft::PlaceholderBrick.available_partials.flatten.should_not include('not_a_haml_file')
+      expect(Kuhsaft::PlaceholderBrick.available_partials.flatten).not_to include('not_a_haml_file')
     end
   end
 
   describe '#bricks' do
     it 'can not have childs' do
-      placeholder_brick.should_not respond_to(:bricks)
+      expect(placeholder_brick).not_to respond_to(:bricks)
     end
   end
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      placeholder_brick.user_can_add_childs?.should be_false
+      expect(placeholder_brick.user_can_add_childs?).to be_falsey
     end
   end
 end

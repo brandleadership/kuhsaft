@@ -3,7 +3,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.remotipart
-#= require jquery.ui.all
+#= require jquery-ui
 #= require bootstrap
 #= require bootstrap-modal-v2
 #= require bootstrap-modalmanager
@@ -23,24 +23,26 @@ CKEDITOR.config.customConfig = "<%= asset_path('kuhsaft/cms/ck-config.js') %>"
 loadTextEditor = ->
   CKEDITOR.replaceAll('ckeditor')
 
-updateInputsForRedirectPage = (redirect_url, keywords, description) ->
-  redirect_url.removeAttr('disabled')
-  keywords.attr('disabled', 'disabled')
-  description.attr('disabled', 'disabled')
-
-clearInputsFromRedirectPage = (redirect_url, keywords, description) ->
-  redirect_url.attr('disabled', 'disabled')
-  keywords.removeAttr('disabled')
-  description.removeAttr('disabled')
+pageType = ->
+  $('#page_page_type option:selected').val()
 
 checkPageType = ->
   redirect_url = $('#page_redirect_url')
   keywords = $('#page_keywords')
   description = $('#page_description')
-  if ($('#page_page_type option:selected').val() == 'redirect')
-    updateInputsForRedirectPage(redirect_url, keywords, description)
+  if (pageType() == 'redirect')
+    redirect_url.removeAttr('disabled')
+    keywords.attr('disabled', 'disabled')
+    description.attr('disabled', 'disabled')
+  else if (pageType() == 'custom')
+    redirect_url.removeAttr('disabled')
+    keywords.removeAttr('disabled')
+    description.removeAttr('disabled')
   else
-    clearInputsFromRedirectPage(redirect_url, keywords, description)
+    redirect_url.attr('disabled', 'disabled')
+    keywords.removeAttr('disabled')
+    description.removeAttr('disabled')
+
 
 sortableBrick = ->
   $(".brick-list").each (idx, elem) ->

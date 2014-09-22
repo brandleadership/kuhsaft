@@ -109,7 +109,10 @@ CommentAnnotation:
 
 # Avoid complex methods.
 CyclomaticComplexity:
-  Max: 8
+  Max: 9
+
+PerceivedComplexity:
+  Max: 9
 
 # Multi-line method chaining should be done with leading dots.
 # DotPosition:

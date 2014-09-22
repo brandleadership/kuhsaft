@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::VideoBrick do
+describe Kuhsaft::VideoBrick, type: :model do
 
   let :video_brick do
     Kuhsaft::VideoBrick.new
@@ -13,20 +13,20 @@ describe Kuhsaft::VideoBrick do
 
     context 'without any video source' do
       it 'has en error' do
-        video_brick.should have(1).error_on(:any_source)
+        expect(video_brick.errors[:any_source].count).to eq(1)
       end
     end
   end
 
   describe '#bricks' do
     it 'can not have childs' do
-      video_brick.should_not respond_to(:bricks)
+      expect(video_brick).not_to respond_to(:bricks)
     end
   end
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      video_brick.user_can_add_childs?.should be_false
+      expect(video_brick.user_can_add_childs?).to be_falsey
     end
   end
 end

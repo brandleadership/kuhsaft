@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'pages#index' do
+describe 'pages#index', type: :feature do
   context 'with search parameter' do
     let! :page1 do
       p = create :page,
@@ -31,12 +31,12 @@ describe 'pages#index' do
 
       it 'highlights search term in preview' do
         within('ul.search-results.success') do
-          page.should have_content('Chromodorididae')
+          expect(page).to have_content('Chromodorididae')
         end
       end
 
       it 'truncates the text' do
-        find('.summary .excerpt').text.length.should == 110
+        expect(find('.summary .excerpt').text.length).to eq(110)
       end
     end
 
@@ -46,21 +46,21 @@ describe 'pages#index' do
       end
 
       it 'renders match count' do
-        page.should have_content('2 results')
+        expect(page).to have_content('2 results')
       end
 
       it 'renders the search results list' do
         within('ul.search-results.success') do
-          page.should have_content('Chromodorididae Ardeadoris')
-          page.should have_content('Chromodorididae Berlanguella')
-          page.should_not have_content('Gastropoda')
+          expect(page).to have_content('Chromodorididae Ardeadoris')
+          expect(page).to have_content('Chromodorididae Berlanguella')
+          expect(page).not_to have_content('Gastropoda')
         end
       end
 
       it 'renders links to the pages' do
         within('ul.search-results.success') do
-          page.should have_link('Chromodorididae Ardeadoris', href: page1.link)
-          page.should have_link('Chromodorididae Berlanguella', href: page2.link)
+          expect(page).to have_link('Chromodorididae Ardeadoris', href: page1.link)
+          expect(page).to have_link('Chromodorididae Berlanguella', href: page2.link)
         end
       end
     end
@@ -71,7 +71,7 @@ describe 'pages#index' do
       end
 
       it 'renders match count' do
-        page.should have_content('No results')
+        expect(page).to have_content('No results')
       end
     end
   end

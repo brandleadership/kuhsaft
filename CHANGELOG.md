@@ -1,8 +1,27 @@
 # CHANGELOG
 
-## hotfix/fix_bug_in_image_sizes
+## 2.5.1 - 2014-08-26
 
-* Bugfix: Remove unused image_size settings in controller
+* Google Verification Key can be added on homepage and will be rendered in its head
+
+## 2.5.0 - 2014-07-23
+
+* Start merging in shoestrap functionality (for now, only admin_helper form methods)
+* Clean up README
+* Add helper for detecting if we are on a kuhsaft page
+* Fix routing error for sitemap
+* Add Helper for selecting Application URLs
+* Set locale via default_url_options instead of just url_options
+* Add CUSTOM page type:
+  Adds a new page type called 'CUSTOM'. Custom pages behave almost like redirect pages except that they can have content and meta tags like normal pages.
+  What can you use this for: To redirect to a custom controller that does whatever you want and still have CMS content along side it.
+
+## 2.4.3 - 2014-07-10
+
+* Fix inconsistent image size handling
+* Fix jquery-ui load path on newer versions
+* Clean up locales
+* Misc refactorings
 
 ## 2.4.2 - 2014-05-19
 

@@ -2,6 +2,8 @@
   %title= @page.page_title.present? ? @page.page_title : @page.title
   %meta{ name: 'keywords', content: @page.keywords }
   %meta{ name: 'description', content: @page.description }
+  - if @page.google_verification_key.present? && @page == homepage
+    %meta{ name: 'google-site-verification', content: @page.google_verification_key }
 
 - cache [@page, I18n.locale, @page.children, @page.bricks] do
   - unless @page.blank?

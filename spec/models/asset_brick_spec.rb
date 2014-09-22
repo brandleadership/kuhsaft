@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Kuhsaft::AssetBrick do
+describe Kuhsaft::AssetBrick, type: :model do
 
   let :asset_brick do
     Kuhsaft::AssetBrick.new
@@ -13,33 +13,33 @@ describe Kuhsaft::AssetBrick do
 
     context 'without a #caption' do
       it 'has an error' do
-        asset_brick.should have(1).error_on(:caption)
+        expect(asset_brick.errors[:caption].count).to eq(1)
       end
     end
   end
 
   describe '#bricks' do
     it 'can not have childs' do
-      asset_brick.should_not respond_to(:bricks)
+      expect(asset_brick).not_to respond_to(:bricks)
     end
   end
 
   describe '.styles' do
     it 'returns the available link styles' do
-      Kuhsaft::AssetBrick.styles.should == %w(pdf word excel button)
+      expect(Kuhsaft::AssetBrick.styles).to eq(%w(pdf word excel button))
     end
   end
 
   describe '#to_style_class' do
     it 'includes the link style' do
-      asset_brick.stub(:link_style).and_return('pdf')
-      asset_brick.to_style_class.should == 'kuhsaft-asset-brick pdf'
+      allow(asset_brick).to receive(:link_style).and_return('pdf')
+      expect(asset_brick.to_style_class).to eq('kuhsaft-asset-brick pdf')
     end
   end
 
   describe '#user_can_add_childs?' do
     it 'returns false' do
-      asset_brick.user_can_add_childs?.should be_false
+      expect(asset_brick.user_can_add_childs?).to be_falsey
     end
   end
 end

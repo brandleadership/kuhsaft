@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rspec/active_model/mocks'
 
 describe Kuhsaft::BrickList do
 
@@ -13,21 +14,22 @@ describe Kuhsaft::BrickList do
   describe '#collect_fulltext' do
     context 'with bricks' do
       it 'collects its childs fulltext' do
-        brick.stub_chain(:bricks, :localized).and_return([mock_model(Kuhsaft::Brick, collect_fulltext: 'hallo')])
-        brick.collect_fulltext.should == 'hallo'
+        result = [mock_model(Kuhsaft::Brick, collect_fulltext: 'hallo')]
+        allow(brick).to receive_message_chain(:bricks, :localized).and_return(result)
+        expect(brick.collect_fulltext).to eq('hallo')
       end
     end
 
     context 'with bricks without content' do
       it 'returns a string' do
-        brick.stub_chain(:bricks, :localized).and_return([])
-        brick.collect_fulltext.should == ''
+        allow(brick).to receive_message_chain(:bricks, :localized).and_return([])
+        expect(brick.collect_fulltext).to eq('')
       end
     end
 
     context 'without bricks' do
       it 'returns a string' do
-        brick.collect_fulltext.should == ''
+        expect(brick.collect_fulltext).to eq('')
       end
 
       it 'does not fail' do
@@ -38,13 +40,13 @@ describe Kuhsaft::BrickList do
 
   describe '#allowed_brick_types' do
     it 'returns an array of possible classes as strings' do
-      brick.allowed_brick_types.should be_a(Array)
+      expect(brick.allowed_brick_types).to be_a(Array)
     end
   end
 
   describe '#brick_types' do
     it 'returns a Kuhsaft::BrickTypeFilter' do
-      brick.brick_types.should be_a(Kuhsaft::BrickTypeFilter)
+      expect(brick.brick_types).to be_a(Kuhsaft::BrickTypeFilter)
     end
   end
 end

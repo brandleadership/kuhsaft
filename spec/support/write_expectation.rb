@@ -17,11 +17,11 @@ RSpec::Matchers.define :write do |message|
     "write \"#{message}\" #{io_name}"
   end
 
-  failure_message_for_should do
+  failure_message do
     "expected to #{description}"
   end
 
-  failure_message_for_should_not do
+  failure_message_when_negated do
     "expected to not #{description}"
   end
 
