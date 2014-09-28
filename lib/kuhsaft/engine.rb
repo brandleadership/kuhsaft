@@ -8,6 +8,7 @@ module Kuhsaft
   end
 
   class Engine < ::Rails::Engine
+    warn "[DEPRECATION] Kuhsaft has been replaced by qBrick. Please switch to qBrick as soon as possible."
     isolate_namespace Kuhsaft
 
     config.i18n.fallbacks = [:de]

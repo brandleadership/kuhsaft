@@ -57,4 +57,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form', '~> 3.0.1'
   s.add_dependency 'jquery-ui-rails'
   s.add_dependency 'bourbon'
+  s.post_install_message = <<-MESSAGE
+  !    The kuhsaft gem has been deprecated and has been replaced by qBrick.
+  !    See: https://rubygems.org/gems/qbrick
+  !    And: https://github.com/screenconcept/kuhsaft
+  MESSAGE
 end
