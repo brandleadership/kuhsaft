@@ -1,6 +1,6 @@
-Kuhsaft has been replaced by
+**Kuhsaft has been replaced by
 [qBrick](http://github.com/screenconcept/qbrick). Please switch as soon
-as possible.
+as possible.**
 
 # Kuhsaft. A CMS as simple as it could be
 
