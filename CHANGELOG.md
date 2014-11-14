@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.5.2 - 2014-11-14
+
+* Image Upload in update with ajax
+
 ## 2.5.1 - 2014-08-26
 
 * Google Verification Key can be added on homepage and will be rendered in its head
