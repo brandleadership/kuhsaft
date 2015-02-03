@@ -6,9 +6,10 @@
     .brick-item-header.clearfix
       = render('kuhsaft/cms/bricks/brick_header', brick: brick, brick_content: brick_content, form: form)
 
-    - if brick_content.present?
+    - if brick_content.present? || brick.user_can_save?
       .brick-item-content.collapse.in{ id: "brick-content-#{brick.id}", 'data-toggle' => true }
-        = brick_content
+        - if brick_content.present?
+          = brick_content
         - if brick.user_can_save?
           - # save button
           .clearfix
