@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## features/275_save_button
+
+* save button does not depend on 'brick_content' and is always visible when brick.user_can_save?
+
 ## 2.5.1 - 2014-08-26
 
 * Google Verification Key can be added on homepage and will be rendered in its head
