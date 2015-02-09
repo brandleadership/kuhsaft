@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## features/276_ckeditor_fix
+* fix Issue #276 with ckeditor and drag'n'drop
+
 ## 2.5.1 - 2014-08-26
 
 * Google Verification Key can be added on homepage and will be rendered in its head

@@ -23,6 +23,11 @@ CKEDITOR.config.customConfig = "<%= asset_path('kuhsaft/cms/ck-config.js') %>"
 loadTextEditor = ->
   CKEDITOR.replaceAll('ckeditor')
 
+destroyTextEditor = ->
+  for name of CKEDITOR.instances
+    `name = name`
+    CKEDITOR.instances[name].destroy()
+
 pageType = ->
   $('#page_page_type option:selected').val()
 
@@ -59,7 +64,11 @@ sortableBrick = ->
         sortForm = $('#bricks-sort-form form')
         sortForm.find('input[name="bricks[ids]"]').val(idList.toArray().join(','))
         sortForm.trigger('submit')
-      )
+      stop: (event, ui) ->
+        loadTextEditor()
+      start: (event, ui) ->
+        destroyTextEditor()
+    ).disableSelection()
 
 window.initSubmitLinks = (selector = null)->
   selector ||= $('body')

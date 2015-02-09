@@ -26,6 +26,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require_relative f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
 
   # Remove this line if you don't want RSpec's should and should_not
   # methods or matchers
