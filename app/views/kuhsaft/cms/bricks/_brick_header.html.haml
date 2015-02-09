@@ -1,5 +1,5 @@
 .pull-left
-  - if brick_content.present?
+  - if brick_content.present? || brick.user_can_save?
     .resize-toggler.btn.btn-small{ 'data-toggle' => 'collapse', 'data-target' => "#brick-content-#{brick.id}" }
       %i.icon-resize-full
       %i.icon-resize-small
