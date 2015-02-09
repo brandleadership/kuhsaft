@@ -1,8 +1,7 @@
 # CHANGELOG
 
-## features/275_save_button
-
 * save button does not depend on 'brick_content' and is always visible when brick.user_can_save?
+* fix Issue #276 with ckeditor and drag'n'drop
 
 ## 2.5.1 - 2014-08-26
 
