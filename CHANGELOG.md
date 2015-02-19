@@ -1,7 +1,16 @@
 # CHANGELOG
 
+## 2.6.1 - 2015-02-19
+
 * save button does not depend on 'brick_content' and is always visible when brick.user_can_save?
 * fix Issue #276 with ckeditor and drag'n'drop
+* fix caching issue when cache key was to long (#274)
+
+## 2.6.0 - 2014-09-28
+
+* New Feature: Brick Cloning into another locale
+* Deprecations added with reference to qBrick
+* Brick dropdown fix
 
 ## 2.5.2 - 2014-11-14
 
