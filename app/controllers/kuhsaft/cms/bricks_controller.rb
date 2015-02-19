@@ -23,8 +23,9 @@ module Kuhsaft
 
       def update
         @brick = Kuhsaft::Brick.find(params[:id])
+        @brick.image_size ||= ImageSize.all.first.name.to_s
+        params['brick'].delete('image_cache') if params['brick']['image']
         @brick.update_attributes(brick_params)
-
         #
         # rails will fall back to html if ajax can't be used
         # this is the case with the image brick, because ajax does not
