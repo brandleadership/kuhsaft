@@ -5,7 +5,7 @@
   - if @page.google_verification_key.present? && @page == homepage
     %meta{ name: 'google-site-verification', content: @page.google_verification_key }
 
-- cache [@page, I18n.locale, @page.children, @page.bricks] do
+- cache [@page, I18n.locale, "relatedhash-#{(@page.children + @page.bricks).map(&:cache_key).join.hash}"] do
   - unless @page.blank?
     .page-content
       -# TODO: refactor into scopes or simplify otherwise:
