@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.6.1 - 2015-03-19
+
+* fix simple form dependency
+
 ## 2.6.1 - 2015-02-19
 
 * save button does not depend on 'brick_content' and is always visible when brick.user_can_save?
