@@ -1,5 +1,9 @@
 # CHANGELOG
 
+2.6.3 - 2015-05-21
+
+backport from qbrick: fix page visibility bug
+
 ## 2.6.1 - 2015-03-19
 
 * fix simple form dependency
