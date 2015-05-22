@@ -33,7 +33,7 @@ module Kuhsaft
     def find_page_by_url
       url = locale.to_s
       url += "/#{params[:url]}" if params[:url].present?
-      @page = Kuhsaft::Page.find_by_url(url)
+      @page = Kuhsaft::Page.published.find_by_url(url)
     end
   end
 end

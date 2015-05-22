@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'launchy'
   s.add_development_dependency 'i18n-tasks'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'rails-dom-testing', '1'
   # s.add_development_dependency 'nyan-cat-formatter'
 
   s.add_dependency 'coffee-rails'
@@ -40,7 +41,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ancestry'
   s.add_dependency 'bootstrap-sass', '2.3.2.2'
   s.add_dependency 'ckeditor_rails', '4.2'
-  s.add_dependency 'pg_search'
+  s.add_dependency 'pg_search', '< 1.0.0'
   s.add_dependency 'htmlentities'
 
   s.add_dependency 'jquery-rails'
