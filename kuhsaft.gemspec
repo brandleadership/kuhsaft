@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
-  
+
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl_rails'
   s.add_development_dependency 'capybara', '>= 0.4.0'
@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'compass', '0.11.1'
   s.add_dependency 'simple_form'
   s.add_dependency 'carrierwave', '0.5.2'
-  s.add_dependency 'rmagick', '2.12.2'
+  s.add_dependency 'mini_magick', '2.1'
   s.add_dependency 'rdiscount'
   s.add_dependency 'acts-as-taggable-on', '2.0.6'
 end
